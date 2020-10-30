@@ -80,7 +80,7 @@ const submitHandler = (event) =>{
         description:Description,
         price:Price,
         images:Images,
-        tokens: Tokens
+        tokens: Tokens[Token-1].value
     }
 
      //서버로 보내기

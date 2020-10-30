@@ -219,7 +219,7 @@ class NewPage extends React.Component {
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
-              src="https://lh3.googleusercontent.com/proxy/BDv4nz9J8-8PACYntspVrQHLRIvpjgP0ixSqgsqzgXWiv3yDgg2Qa8Bk6smYL_aQZCmdfJVnsRGzDotqcR_BjHU8ZzsJ70fKhlzOrAFN5POuZrhrFYjWd9pnIN_tqPK3tA"
+              src="https://thum.buzzni.com/unsafe/640x640/center/smart/http://cdn.image.buzzni.com/2016/04/29/qD3ZLloooj.jpg"
               style={{ width: "250px" ,height: "220px"}}
               
             />
