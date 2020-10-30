@@ -1,0 +1,20 @@
+{
+    "name": "cryptoberry_server",
+    "version": "1.0.0",
+    "scripts": {
+        "client": "cd client && yarn webpack",
+        "server": "cd server && nodemon server.js",
+        "dev": "concurrently --kill-others-on-fail \"yarn client\""
+    },
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "cors": "^2.8.5",
+        "express": "^4.16.4",
+        "mongodb": "^3.6.2",
+        "mongoose": "^5.10.9",
+        "multer": "^1.4.2"
+    },
+    "devDependencies": {
+        "concurrently": "5.3.0"
+    }
+}
