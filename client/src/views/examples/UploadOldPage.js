@@ -1,5 +1,5 @@
 import React from "react";
-import OldNavbar from "components/Navbars/OldNavbar.js";
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import { useState } from 'react';
 import Axios from 'axios';
 import { Button, Form, Input} from 'antd';
@@ -103,7 +103,7 @@ const submitHandler = (event) =>{
 return(
     
   <div style={{ maxWidth: '800px', margin: '2rem auto'}}>
-      <OldNavbar/>
+      <IndexNavbar/>
       <div style={{ textAlign:'center', marginBottom:'2rem'}}>
           <h2> &nbsp; </h2>
       </div>

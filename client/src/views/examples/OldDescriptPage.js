@@ -21,7 +21,7 @@ import {
 } from "reactstrap";
 
 // core components
-import OldNavbar from "components/Navbars/OldNavbar.js";
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
@@ -107,7 +107,7 @@ handleOnChange(e) {
        
       
   
-       <OldNavbar />
+       <IndexNavbar />
 
            <img
               alt="..."

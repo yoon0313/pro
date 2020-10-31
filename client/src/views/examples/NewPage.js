@@ -24,7 +24,7 @@ import {
 
 //test
 // core components
-import NewNavbar from "components/Navbars/NewNavbar.js";
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
@@ -67,7 +67,7 @@ class NewPage extends React.Component {
   render() {
     return (
       <>
-        <NewNavbar />
+        <IndexNavbar />
         <div className="wrapper">
           <div className="page-header">
             <div className="page-header-image" />

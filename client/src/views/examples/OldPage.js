@@ -23,7 +23,7 @@ import {
 } from "reactstrap";
 
 // core components
-import OldNavbar from "components/Navbars/OldNavbar.js";
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
@@ -66,7 +66,7 @@ class OldPage extends React.Component {
   render() {
     return (
       <>
-        <OldNavbar />
+        <IndexNavbar />
         <div className="wrapper">
           <div className="page-header">
             <div className="page-header-image" />

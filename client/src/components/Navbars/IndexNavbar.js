@@ -199,8 +199,8 @@ class ComponentsNavbar extends React.Component {
                 to="/"
                 tag={Link}
                 id="navbar-brand">
-                <span>CRYPTOBERRY• </span>
-              Blockchain Project
+                <span>CRYPTOBERRY • </span>
+              
             </NavbarBrand>
 
               <button
@@ -226,7 +226,7 @@ class ComponentsNavbar extends React.Component {
                 <Row>
                   <Col className="collapse-brand" xs="6">
                     <a href="#pablo" onClick={e => e.preventDefault()}>
-                      CRYPTOBERRY•
+                      CRYPTOBERRY •
                   </a>
                   </Col>
                   <Col className="collapse-close text-right" xs="6">
