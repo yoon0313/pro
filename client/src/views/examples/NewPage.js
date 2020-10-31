@@ -22,6 +22,7 @@ import {
   Col
 } from "reactstrap";
 
+//test
 // core components
 import NewNavbar from "components/Navbars/NewNavbar.js";
 import Footer from "components/Footer/Footer.js";
