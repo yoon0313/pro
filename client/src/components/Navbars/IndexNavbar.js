@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { Button, Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav, Container, Row, Col, FormGroup, Modal, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Label } from "reactstrap";
-
 import Caver from "caver-js";
+
 const config = { rpcURL: 'https://api.baobab.klaytn.net:8651' }
 const caver = new Caver(config.rpcURL);
 
@@ -28,30 +28,12 @@ class ComponentsNavbar extends React.Component {
     })
   }
 
-  handleAmountChange = (e) => {
-    e.target.name = this.currentState.items.amount;
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-
-  handleItemChange = (e, _tokenid) => {
-    var tokenid = _tokenid
-    var itemIndex = this.state.items.findIndex(element => element.Id == tokenid)
-    console.log(itemIndex);
-    this.state.items[itemIndex].amount = e.target.value;
-    this.setState({
-      items: this.state.items
-    })
-  }
-
   reset = () => {
     this.setState({
       keystore: '',
       privateKey: '',
       password: '',
-      keystoreMsg: '',
-
+      keystoreMsg: ''
     })
   }
 
@@ -106,7 +88,22 @@ class ComponentsNavbar extends React.Component {
   }
 
   getWallet = () => {
+    console.log("getWallet"+caver.klay.accounts.wallet.length);
     if (caver.klay.accounts.wallet.length) {
+
+      return caver.klay.accounts.wallet[0]
+    } else {
+      // const walletFromSession = sessionStorage.getItem('walletInstance');
+      // console.log(walletFromSession)
+      // caver.klay.accounts.wallet.add(JSON.parse(walletFromSession));
+      const walletFromSession = sessionStorage.getItem('walletInstance')
+      try {
+        caver.klay.accounts.wallet.add(JSON.parse(walletFromSession))
+      } catch (e) {
+        // If value in sessionStorage is invalid wallet instance,
+        // remove it from sessionStorage.
+        sessionStorage.removeItem('walletInstance')
+      }
       return caver.klay.accounts.wallet[0]
     }
   }
@@ -186,7 +183,7 @@ class ComponentsNavbar extends React.Component {
   render() {
     var { keystore, keystoreMsg, keystoreName, accessType } = this.state;
     var walletInstance = this.getWallet();
-
+    console.log("walletInstance:" + walletInstance);
     if (walletInstance) {
       return (
         <Navbar
@@ -264,10 +261,6 @@ class ComponentsNavbar extends React.Component {
                   <p >{walletInstance.address}</p>
                   <Button onClick={this.removeWallet}>Logout</Button>
                 </div>
-
-
-
-
               </Nav>
             </Collapse>
           </Container>
@@ -331,7 +324,6 @@ class ComponentsNavbar extends React.Component {
 
             <Nav navbar>
 
-
               <NavItem className="p-0">
                 <NavLink
                   tag={Link} to="/new-page">
@@ -390,11 +382,24 @@ class ComponentsNavbar extends React.Component {
                           </InputGroupAddon>
                           <Input
                             placeholder="Keystore"
-                            type="file"
-                            onChange={this.handleImport} accept=".json"
+                            id="keystore"
+                            type="keystore"
+                            onChange={this.handleImport}
+                            accept=".json"
                             onFocus={e => this.setState({ emailFocus: true })}
                             onBlur={e => this.setState({ emailFocus: false })}
                           />
+                          <label className="Auth__button" htmlFor="keystore"></label>
+                          <input 
+                            className="Auth__file"
+                            id="keystore"
+                            type="file"
+                            onChange={this.handleImport}
+                            accept=".json"
+                          />
+                          <p className="Auth__fileName">
+                          {keystoreName}
+                          </p>
                         </InputGroup>
                       </FormGroup>
 
@@ -432,7 +437,8 @@ class ComponentsNavbar extends React.Component {
                       <div className="text-center">
                         <Button className="my-4" color="primary" type="button" onClick={this.handleLogin}>
                           Sign in
-                    </Button>
+                        </Button>
+                        <p>{keystoreMsg}</p>
                       </div>
                     </Form>
                   </div>
