@@ -259,6 +259,7 @@ class ComponentsNavbar extends React.Component {
                 <div>
                   <label >Integrated: </label>
                   <p >{walletInstance.address}</p>
+                  <i className="tim-icons icon-single-02"></i>
                   <Button onClick={this.removeWallet}>Logout</Button>
                 </div>
               </Nav>

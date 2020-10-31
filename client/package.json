@@ -33,6 +33,7 @@
     "caver-js": "1.4.1",
     "chart.js": "2.9.3",
     "classnames": "^2.2.6",
+    "concurrently": "^5.3.0",
     "connect-privkey-to-provider": "0.0.3",
     "git": "^0.1.5",
     "gulp": "4.0.2",
