@@ -1,5 +1,5 @@
 import React from "react";
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
+import OldNavbar from "components/Navbars/OldNavbar.js";
 import { useState } from 'react';
 import Axios from 'axios';
 import { Button, Form, Input} from 'antd';
@@ -24,7 +24,7 @@ function UploadOldPage(props){
   const [Title, setTitle] = useState("")
   const [Description, setDescription] = useState("")
   const [Price, setPrice] =  useState(0)
-  const [Token, setToken] = useState(1) //드롭박스
+  const [Token, setToken] = useState(1) //드롭박스343535
   const [Images, setImages] = useState([])
 
   
@@ -103,7 +103,7 @@ const submitHandler = (event) =>{
 return(
     
   <div style={{ maxWidth: '800px', margin: '2rem auto'}}>
-      <IndexNavbar/>
+      <OldNavbar/>
       <div style={{ textAlign:'center', marginBottom:'2rem'}}>
           <h2> &nbsp; </h2>
       </div>
