@@ -543,7 +543,7 @@ handleOnChange(e) {
 
                 <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                 <Link to="profile-page">
-                      <i className="tim-icons icon-single-02">
+                  <i className="tim-icons icon-single-02">
 
                       </i>
                       </Link>

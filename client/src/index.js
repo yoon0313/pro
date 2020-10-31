@@ -16,7 +16,8 @@ import NewDescriptPage from "views/examples/NewDescriptPage.js"
 import OrderPage from "views/examples/OrderPage.js"
 import OrderCompletePage from "views/examples/OrderCompletePage.js"
 import OldDescriptPage from "views/examples/OldDescriptPage.js";
-import UploadOldPage from "views/examples/UploadOldPage.js"
+import UploadOldPage from "views/examples/UploadOldPage.js";
+import MyPage from "views/examples/MyPage.js";
 
 
 ReactDOM.render(
@@ -51,6 +52,10 @@ ReactDOM.render(
       <Route
        exact path="/upload-old-page"
         render={props => <UploadOldPage {...props} />}
+      />
+      <Route
+       exact path="/my-page"
+        render={props => <MyPage {...props} />}
       />
       <Redirect from="/" to="/components" />
     </Switch>

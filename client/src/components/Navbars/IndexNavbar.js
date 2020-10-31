@@ -199,44 +199,7 @@ class ComponentsNavbar extends React.Component {
                 <span>CRYPTOBERRY • </span>
               
             </NavbarBrand>
-
-              <button
-                aria-expanded={this.state.collapseOpen}
-                className="navbar-toggler navbar-toggler"
-                onClick={this.toggleCollapse}
-              >
-                <span className="navbar-toggler-bar bar1" />
-                <span className="navbar-toggler-bar bar2" />
-                <span className="navbar-toggler-bar bar3" />
-              </button>
             </div>
-
-
-            <Collapse
-              className={"justify-content-end " + this.state.collapseOut}
-              navbar
-              isOpen={this.state.collapseOpen}
-              onExiting={this.onCollapseExiting}
-              onExited={this.onCollapseExited}
-            >
-              <div className="navbar-collapse-header">
-                <Row>
-                  <Col className="collapse-brand" xs="6">
-                    <a href="#pablo" onClick={e => e.preventDefault()}>
-                      CRYPTOBERRY •
-                  </a>
-                  </Col>
-                  <Col className="collapse-close text-right" xs="6">
-                    <button
-                      aria-expanded={this.state.collapseOpen}
-                      className="navbar-toggler"
-                      onClick={this.toggleCollapse}
-                    >
-                      <i className="tim-icons icon-simple-remove" />
-                    </button>
-                  </Col>
-                </Row>
-              </div>
 
               <Nav navbar>
                 <NavItem className="p-0">
@@ -257,13 +220,18 @@ class ComponentsNavbar extends React.Component {
                 </NavItem>
 
                 <div>
+                <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
+                <Link to="my-page">
+                  <i className="tim-icons icon-single-02"/>
+                      </Link>
+                    </button>
                   <label >Integrated: </label>
                   <p >{walletInstance.address}</p>
-                  <i className="tim-icons icon-single-02"></i>
+                  <i className="tim-icons icon-single-02"/>
                   <Button onClick={this.removeWallet}>Logout</Button>
                 </div>
               </Nav>
-            </Collapse>
+           
           </Container>
         </Navbar>
 
