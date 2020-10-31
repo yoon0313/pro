@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
-import { Button, Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav, Container, Row, Col, FormGroup, Modal, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Label } from "reactstrap";
+import { Button,  Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav, Container, Row, Col, FormGroup, Modal, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Label } from "reactstrap";
+
 import Caver from "caver-js";
 
 const config = { rpcURL: 'https://api.baobab.klaytn.net:8651' }
@@ -179,11 +180,12 @@ class ComponentsNavbar extends React.Component {
       [modalState]: !this.state[modalState]
     });
   };
-
   render() {
     var { keystore, keystoreMsg, keystoreName, accessType } = this.state;
     var walletInstance = this.getWallet();
     console.log("walletInstance:" + walletInstance);
+
+
     if (walletInstance) {
       return (
         <Navbar
@@ -199,6 +201,40 @@ class ComponentsNavbar extends React.Component {
                 <span>CRYPTOBERRY • </span>
               
             </NavbarBrand>
+            <button
+              aria-expanded={this.state.collapseOpen}
+              className="navbar-toggler navbar-toggler"
+              onClick={this.toggleCollapse}
+            >
+              <span className="navbar-toggler-bar bar1" />
+              <span className="navbar-toggler-bar bar2" />
+              <span className="navbar-toggler-bar bar3" />
+            </button>
+            </div>
+            <Collapse
+            className={"justify-content-end " + this.state.collapseOut}
+            navbar
+            isOpen={this.state.collapseOpen}
+            onExiting={this.onCollapseExiting}
+            onExited={this.onCollapseExited}
+          >
+            <div className="navbar-collapse-header">
+              <Row>
+                <Col className="collapse-brand" xs="6">
+                  
+                    CRYPTOBERRY•
+                  
+                </Col>
+                <Col className="collapse-close text-right" xs="6">
+                  <button
+                    aria-expanded={this.state.collapseOpen}
+                    className="navbar-toggler"
+                    onClick={this.toggleCollapse}
+                  >
+                    <i className="tim-icons icon-simple-remove" />
+                  </button>
+                </Col>
+              </Row>
             </div>
 
               <Nav navbar>
@@ -214,24 +250,24 @@ class ComponentsNavbar extends React.Component {
                   <NavLink
                     tag={Link} to="/old-page"
                   >
-
                     <p>Old Product</p>
                   </NavLink>
                 </NavItem>
+                
+                <Button className="btn-round btn-icon" color="success">
+                    <Link to="my-page">
+                     <i className="tim-icons  icon-single-02" />
+                     </Link>
+                </Button>
+                <p >{walletInstance.address}</p>
 
-                <div>
-                <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                <Link to="my-page">
-                  <i className="tim-icons icon-single-02"/>
-                      </Link>
-                    </button>
-                  <label >Integrated: </label>
-                  <p >{walletInstance.address}</p>
-                  <i className="tim-icons icon-single-02"/>
-                  <Button onClick={this.removeWallet}>Logout</Button>
-                </div>
+
+
+                 
+                  <Button size="sm" color="secondary" onClick={this.removeWallet}>Logout</Button>
+                
               </Nav>
-           
+              </Collapse>
           </Container>
         </Navbar>
 
@@ -252,7 +288,6 @@ class ComponentsNavbar extends React.Component {
               <span>CRYPTOBERRY• </span>
 
             </NavbarBrand>
-
             <button
               aria-expanded={this.state.collapseOpen}
               className="navbar-toggler navbar-toggler"
@@ -263,8 +298,6 @@ class ComponentsNavbar extends React.Component {
               <span className="navbar-toggler-bar bar3" />
             </button>
           </div>
-
-
           <Collapse
             className={"justify-content-end " + this.state.collapseOut}
             navbar
@@ -275,9 +308,8 @@ class ComponentsNavbar extends React.Component {
             <div className="navbar-collapse-header">
               <Row>
                 <Col className="collapse-brand" xs="6">
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
-                    CRYPTOBERRY•
-                  </a>
+                    CRYPTOBERRY •
+                  
                 </Col>
                 <Col className="collapse-close text-right" xs="6">
                   <button
@@ -290,6 +322,11 @@ class ComponentsNavbar extends React.Component {
                 </Col>
               </Row>
             </div>
+
+
+
+
+
 
             <Nav navbar>
 
@@ -415,7 +452,7 @@ class ComponentsNavbar extends React.Component {
               </NavItem>
 
             </Nav>
-          </Collapse>
+            </Collapse>              
         </Container>
       </Navbar>
 

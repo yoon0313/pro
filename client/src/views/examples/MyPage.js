@@ -93,69 +93,17 @@ class Mypage extends React.Component {
 
       <>
        
-      
-  
        <IndexNavbar />
 
-      
-
-
-           {/* <img
-              alt="..."
-              className="path"
-              src={require("assets/img/blob.png")}
-            />
-
-            <img
-              alt="..."
-              className="shapes circle"
-              src={require("assets/img/cercuri.png")}
-            /> */}
-       
        <div className="wrapper">
            <div className="section">
                <div className="container">
-
-               <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
-                    <div
-                      className="square square-7"
-                      id="square7"
-                      style={{ transform: this.state.squares7and8 }}
-                    />
-                    <div
-                      className="square square-8"
-                      id="square8"
-                      style={{ transform: this.state.squares7and8 }}
-                    />
-                  </Col>
-                    <div
-                      className="square square-3"
-                      id="square3"
-                      style={{ transform: this.state.squares1to6 }}
-                    />
-                    <div
-                      className="square square-4"
-                      id="square4"
-                      style={{ transform: this.state.squares1to6 }}
-                    />
-                    <div
-                      className="square square-5"
-                      id="square5"
-                      style={{ transform: this.state.squares1to6 }}
-                    />
-                    <div
-                      className="square square-6"
-                      id="square6"
-                      style={{ transform: this.state.squares1to6 }}
-                    />
-                    
                    <Row>
                    <Col className="col-md-3">
                     <div className="section">
                         <section className="text-center">
                             <div className="fileinput text-center">
-                                {/* <input type="file" accept='image/jpg,impge/png,image/jpeg,image/gif' 
-                                  name='profile_img' onChange={this.handleFileOnChange}/> */}
+
                                
                             <div className="thumbnail img-circle">
                             <img src={this.state.image} alt="..."></img>
@@ -232,7 +180,7 @@ class Mypage extends React.Component {
                         <div className="tab-pane active">
                           <div>
                             <header>
-                              <h2 className="text-uppercase">General information</h2>
+                              <h2 className="text-uppercase">My Information</h2>
 
                             </header>
                             <hr className="line-info"/>
@@ -684,22 +632,7 @@ class Mypage extends React.Component {
                             <br/>
                                                  
                                                         
-                            {/* 저장버튼 */}
-                            <Row>
-                              <Col className="col-md-9">
-                                <div>
-                                  <Link to="Landing-page"> 
-                                <button type="button" class="btn btn-info" style={{float: 'right'}}>Save Changes</button>
-                                </Link>
-                                </div>
-                              </Col>
-
-                              <div>    
-                                <Link to="components"> 
-                                <button type="button" class="btn-simple ml-1 btn btn-info" style={{float: 'right'}}>Cancel</button>
-                                </Link>
-                              </div>                           
-                            </Row>       
+            
 
                           </div>
                         </div>
