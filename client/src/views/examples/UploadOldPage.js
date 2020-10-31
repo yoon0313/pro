@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import OldNavbar from "components/Navbars/OldNavbar.js";
 import { useState } from 'react';
 import Axios from 'axios';
-import {Typography, Button, Form, Input} from 'antd';
-
+import { Button, Form, Input} from 'antd';
 
 
 const {TextArea} =Input;
@@ -21,12 +19,16 @@ const Tokens= [
 ]
 
 
+
 function UploadOldPage(props){
   const [Title, setTitle] = useState("")
   const [Description, setDescription] = useState("")
   const [Price, setPrice] =  useState(0)
   const [Token, setToken] = useState(1) //드롭박스
-  const [ Images, setImages] = useState([])
+  const [Images, setImages] = useState([])
+
+  
+
 
   const titleChangeHandler = (event) => {
 
@@ -52,10 +54,11 @@ const  tokenChangeHandler = (event) => {
 
 }
 
-const updateImages = (newImages) => {
+const updateImages = (event) => {
      
-    setImages(newImages)
-
+    setImages(event.currentTarget.value)
+    
+    
 
 }
 
@@ -99,12 +102,15 @@ const submitHandler = (event) =>{
 
 return(
     
-  <div style={{ maxWidth: '700px', margin: '2rem auto'}}>
+  <div style={{ maxWidth: '800px', margin: '2rem auto'}}>
       <OldNavbar/>
       <div style={{ textAlign:'center', marginBottom:'2rem'}}>
-          <h2>여행 상품 업로드</h2>
+          <h2> &nbsp; </h2>
       </div>
 
+      <div style={{ textAlign:'center'}}>
+      <h2>여행 상품 업로드</h2>
+      </div>
 
      <Form onSubmit={submitHandler}>
          {/* DropZone */}
@@ -112,25 +118,35 @@ return(
 
          <br/>
          <br/>
-         <label>이름</label>
+         <label>이름 &nbsp;</label>
          <Input onChange={titleChangeHandler} value={Title}/>
          <br/>
          <br/>
-         <label>설명</label>
+         <label>설명 &nbsp;</label>
          <TextArea onChange={descriptionChangeHandler} value={Description}/>
          <br/>
          <br/>
-         <label>가격($)</label>
+         <label>가격(eth) &nbsp;</label>
          <Input type="number" onChange={priceChangeHandler} value={Price}/>
          <br/>
          <br/>
+         <label>국적 &nbsp; </label>
          <select onChange={tokenChangeHandler} value={Token}>
              {Tokens.map(item =>(
                    <option key={item.key} value={item.key}>{item.value}</option>
              ))}
          </select>
+
          <br/>
          <br/>
+         <label>이미지 &nbsp;</label>
+         <Input type="file" onChange={updateImages} value={Images} />
+
+         <br/>
+         <br/>
+
+
+
          
          <Button type="submit"onClick={submitHandler}>
              확인
