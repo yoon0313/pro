@@ -19,7 +19,8 @@ import {
   InputGroup,
   Container,
   Row,
-  Col
+  Col,
+  
 } from "reactstrap";
 
 //test
@@ -89,22 +90,15 @@ class NewPage extends React.Component {
           <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
         </Row>
 
-            <Row>
-                <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/>
-                  <div button class="btn-simple btn btn-success" style={{float: 'right'}}>
-                    <Link to="Landing-page"> 
-                    <font color="cyan">등록</font></Link></div>
-                </Col>
-            </Row>
-
-              <Row>
-              <font size="150" color="white" > &nbsp; &nbsp; &nbsp; ★</font>
-              </Row>
+       
+        <div class="space-70"></div>
+   
 
         <Row>
-        <font size="150" color="white " > &nbsp; &nbsp; TOP 8</font>
+        <font size="100" color="white " > &nbsp; &nbsp; TOP 8</font>
         </Row>
 
+        <div class="space-70"></div>
 
         <Row>
           {/* <ImageButton imagePath="assets/img/guccci.jpg" linkPage="/Product-page" itemName="GUCCI Snake wallet" itemPrice="41 ETH"></ImageButton> */}
@@ -248,58 +242,31 @@ class NewPage extends React.Component {
 
         </Row>
 
-        
-                <Row>
-                  <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
-                    <div
-                      className="square square-7"
-                      id="square7"
-                      style={{ transform: this.state.squares7and8 }}
-                    />
-                    <div
-                      className="square square-8"
-                      id="square8"
-                      style={{ transform: this.state.squares7and8 }}
-                    />
-
-                  </Col>
-                </Row>
-
-                
-                
-                {/* <div className="register-bg" /> */}
-                {/* <div
-                  className="square square-1"
-                  id="square1"
-                  style={{ transform: this.state.squares1to6 }}
-                /> */}
-                {/* <div
-                  className="square square-2"
-                  id="square2"
-                  style={{ transform: this.state.squares1to6 }}
-                /> */}
+      
                 <div
                   className="square square-3"
                   id="square3"
                   style={{ transform: this.state.squares1to6 }}
                 />
-                {/* <div
+                <div
                   className="square square-4"
                   id="square4"
                   style={{ transform: this.state.squares1to6 }}
-                /> */}
-                {/* <div
+                />
+                <div
                   className="square square-5"
                   id="square5"
                   style={{ transform: this.state.squares1to6 }}
-                /> */}
+                />
                 <div
                   className="square square-6"
                   id="square6"
                   style={{ transform: this.state.squares1to6 }}
                 />
+                  <div class="space-70"></div>
               </Container>
             </div>
+            
           </div>
           <Footer />
         </div>

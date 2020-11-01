@@ -386,6 +386,8 @@ class ComponentsNavbar extends React.Component {
                               <i className="tim-icons icon-email-85" />
                             </InputGroupText>
                           </InputGroupAddon>
+
+                          
                           <Input
                             placeholder="Keystore"
                             id="keystore"

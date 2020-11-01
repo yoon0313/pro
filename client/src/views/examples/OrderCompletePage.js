@@ -7,26 +7,10 @@ import { Link } from "react-router-dom";
 
 // reactstrap components
 import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  Label,
-  FormGroup,
-  Form,
-  Input,
-  FormText,
-  NavItem,
-  NavLink,
-  Nav,
-  Table,
-  TabContent,
-  TabPane,
+
   Container,
   Row,
-  Col,
-  UncontrolledTooltip,
-  UncontrolledCarousel
+  Col
 } from "reactstrap";
 
 
@@ -36,52 +20,10 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 
 
-const carouselItems = [
-  {
-    src: require("assets/img/denys.jpg"),
-    altText: "Slide 1",
-    caption: "Big City Life, United States"
-  },
-  {
-    src: require("assets/img/fabien-bazanegue.jpg"),
-    altText: "Slide 2",
-    caption: "Somewhere Beyond, United States"
-  },
-  {
-    src: require("assets/img/mark-finn.jpg"),
-    altText: "Slide 3",
-    caption: "Stocks, United States"
-  }
-];
-
 let ps = null;
 
 class OrderCompletePage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tabs: 1
-    };
-  }
-  componentDidMount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      document.documentElement.className += " perfect-scrollbar-on";
-      document.documentElement.classList.remove("perfect-scrollbar-off");
-      let tables = document.querySelectorAll(".table-responsive");
-      for (let i = 0; i < tables.length; i++) {
-        ps = new PerfectScrollbar(tables[i]);
-      }
-    }
-    document.body.classList.toggle("profile-page");
-  }
-  componentWillUnmount() {
-    if (navigator.platform.indexOf("Win") > -1) {
-      ps.destroy();
-      document.documentElement.className += " perfect-scrollbar-off";
-      document.documentElement.classList.remove("perfect-scrollbar-on");
-    }
-    document.body.classList.toggle("profile-page");
-  }
+ 
   toggleTabs = (e, stateName, index) => {
     e.preventDefault();
     this.setState({
