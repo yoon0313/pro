@@ -2,7 +2,10 @@
 import React , { Component } from "react";
 
 import { Line } from "react-chartjs-2";
+import Caver from "caver-js";
 
+const config = { rpcURL: 'https://api.baobab.klaytn.net:8651' }
+const caver = new Caver(config.rpcURL);
 
 import {
   Button,
@@ -32,6 +35,7 @@ class Mypage extends React.Component {
     squares1to6: "",
     squares7and8: ""
   };
+
   componentDidMount() {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", this.followCursor);
@@ -87,8 +91,28 @@ class Mypage extends React.Component {
   
   state = {};
   
+  getWallet = () => {
+    console.log("getWallet"+caver.klay.accounts.wallet.length);
+    if (caver.klay.accounts.wallet.length) {
+
+      return caver.klay.accounts.wallet[0]
+    } else {
+      // const walletFromSession = sessionStorage.getItem('walletInstance');
+      // console.log(walletFromSession)
+      // caver.klay.accounts.wallet.add(JSON.parse(walletFromSession));
+      const walletFromSession = sessionStorage.getItem('walletInstance')
+      try {
+        caver.klay.accounts.wallet.add(JSON.parse(walletFromSession))
+      } catch (e) {
+        // If value in sessionStorage is invalid wallet instance,
+        // remove it from sessionStorage.
+        sessionStorage.removeItem('walletInstance')
+      }
+      return caver.klay.accounts.wallet[0]
+    }
+  }
   render() {
-    
+    var walletInstance = this.getWallet();
     return (
 
       <>
@@ -191,12 +215,8 @@ class Mypage extends React.Component {
                                 <label className="labels" for="#firstName">User Address</label>
                               </Col>
                               <Col className="align-self-center col-md-8">
-                                <div className="form=group">
-                                  <input id="firstName" name="firstName" type="text" className="form-control" 
-                                  placeholder="ex) 0xd193b5de228c31324e330e1e67cd4afa228539de"/>
-                                  {/* or<br/>                                  
-                                  <input type="file" id="ex_file" style={{width:"0px",}} accept='image/jpg,impge/png,image/jpeg,image/gif' 
-                                  onChange={this.handleFileOnChange}/> */}
+                                <div>
+                                 {walletInstance.address}
                                 </div>
                               </Col>
                             </Row>
