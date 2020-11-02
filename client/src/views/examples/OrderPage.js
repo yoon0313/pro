@@ -57,7 +57,6 @@ class OrderPage extends React.Component {
 
     if (walletInstance) {
         return (
-
             <>
             <IndexNavbar />
     
@@ -245,24 +244,16 @@ class OrderPage extends React.Component {
                 </Container>
     
                 </div>
-    
-           
-    
-                           
-                
-                <div class="space-70"></div>
-    
-    
-    
-    
-          
+                <div class="space-70"></div>      
               <Footer />
             </div>
-          </>
+         </>
 
-        )
+            )
+        }
+          
 
-    return (
+        return (
       <>
         <IndexNavbar />
 
@@ -454,8 +445,9 @@ class OrderPage extends React.Component {
         </div>
       </>
     );
-  }
+  
 }
 }
+
 
 export default OrderPage;
