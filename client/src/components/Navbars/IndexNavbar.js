@@ -15,6 +15,7 @@ class ComponentsNavbar extends React.Component {
       collapseOpen: false,
       color: "navbar-transparent",
       formModal: false,
+      formModal2: false,
       accessType: 'keystore',
       keystore: '',
       keystoreMsg: '',
@@ -23,6 +24,12 @@ class ComponentsNavbar extends React.Component {
     };
   }
   ////////////////////////////////////////
+
+  generatePrivateKey = () => {
+    const { privateKey } = caver.klay.accounts.create()
+    this.setState({ privateKey })
+  }
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -184,6 +191,7 @@ class ComponentsNavbar extends React.Component {
     var { keystore, keystoreMsg, keystoreName, accessType } = this.state;
     var walletInstance = this.getWallet();
     console.log("walletInstance:" + walletInstance);
+    const { privateKey } = this.state
 
 
     if (walletInstance) {
@@ -260,10 +268,6 @@ class ComponentsNavbar extends React.Component {
                      </Link>
                 </Button>
                 <p >{walletInstance.address}</p>
-
-
-
-                 
                   <Button size="sm" color="secondary" onClick={this.removeWallet}>Logout</Button>
                 
               </Nav>
@@ -367,7 +371,7 @@ class ComponentsNavbar extends React.Component {
                       <i className="tim-icons icon-simple-remove text-white" />
                     </button>
                     <div className="text-muted text-center ml-auto mr-auto">
-                      <h3 className="mb-0">Sign in </h3>
+                      <h3 className="mb-0">Login </h3>
                     </div>
                   </div>
                   <div className="modal-body">
@@ -435,19 +439,109 @@ class ComponentsNavbar extends React.Component {
                         </InputGroup>
                       </FormGroup>
 
+                      <FormGroup>
+                        <InputGroup>
+                          <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="tim-icons icon-lock-circle" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+                          <Input
+                            id="input-privatekey"
+                            name="privatekey"
+                            placeholder="privatekey"
+                            type="privatekey"
+                            onChange={this.handleChange}
+                            onFocus={e => this.setState({ passwordFocus: true })}
+                            onBlur={e => this.setState({ passwordFocus: false })}
+                          />
+
+                        </InputGroup>
+                      </FormGroup>
+                      
+
+
+
+
                       <FormGroup check className="mt-3">
                         <Label check>
                           <Input defaultChecked type="checkbox" />
                           <span className="form-check-sign" />
                       Remember me!
-                    </Label>
+                       </Label>
                       </FormGroup>
+  
+
+                      
                       <div className="text-center">
-                        <Button className="my-4" color="primary" type="button" onClick={this.handleLogin}>
-                          Sign in
+                        <Button className="my-4" color="success" type="button" onClick={this.handleLogin}>
+                          Login
                         </Button>
                         <p>{keystoreMsg}</p>
                       </div>
+                    </Form>
+                  </div>
+                </Modal>
+              </NavItem>
+
+              
+
+              <NavItem>
+                <Button
+                  color="primary"
+                  onClick={() => this.toggleModal("formModal2")}
+                >
+                  Sign up
+              </Button>
+                <Modal
+                  modalClassName="modal-black"
+                  isOpen={this.state.formModal2}
+                  toggle={() => this.toggleModal("formModal2")}
+                >
+                  <div className="modal-header justify-content-center">
+                    <button
+                      className="close"
+                      onClick={() => this.toggleModal("formModal2")}
+                    >
+                      <i className="tim-icons icon-simple-remove text-white" />
+                    </button>
+                    <div className="text-muted text-center ml-auto mr-auto">
+                      <h3 className="mb-0">Sign up </h3>
+                    </div>
+                  </div>
+                  <div className="modal-body">
+                    <div className="btn-wrapper text-center">
+                    </div>
+
+                    <Form role="form">
+                      <FormGroup className="mb-3">
+                        <InputGroup>
+                      <InputGroupAddon addonType="prepend">
+                            <InputGroupText>
+                              <i className="tim-icons icon-lock-circle" />
+                            </InputGroupText>
+                          </InputGroupAddon>
+
+                      <Input
+          className="SignupForm__input"
+          placeholder="Generate Private Key to Sign up"
+          value={privateKey || ''}
+          label="Private key"
+          
+        />
+
+                        </InputGroup>
+                        <div className="text-center">
+                        <Button
+          color="primary"
+          className="SignupForm__button"
+          title="Generate Private key"
+          onClick={this.generatePrivateKey}
+        >Generate Private key</Button>
+        </div>
+                      </FormGroup>
+
+                      
                     </Form>
                   </div>
                 </Modal>

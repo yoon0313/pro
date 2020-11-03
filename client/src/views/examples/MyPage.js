@@ -1,7 +1,6 @@
 
 import React , { Component } from "react";
 
-import { Line } from "react-chartjs-2";
 import Caver from "caver-js";
 
 const config = { rpcURL: 'https://api.baobab.klaytn.net:8651' }
@@ -65,6 +64,7 @@ class Mypage extends React.Component {
         "deg)"
     });
   };
+  
   constructor(props) {
     super(props);
     this.state = {
