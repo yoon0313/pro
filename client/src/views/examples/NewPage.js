@@ -1,6 +1,7 @@
 
 import React , { Component } from "react";
 import classnames from "classnames";
+
 // reactstrap components
 import {
   Button,
@@ -79,6 +80,15 @@ class NewPage extends React.Component {
           <Col className="item"><h1>NEW PRODUCT</h1></Col>
           <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
         </Row>
+
+        {/* <Row>
+          <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
+          <video loop="loop" autoPlay="autoplay" muted="muted" webkit-playsInline="webkit-playsinline" playsInline="playsinline" >
+                  <source src ={require('assets/video/newproduct_nike_video.mp4')}></source>
+                </video>
+          <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
+        </Row> */}
+
         <Row>
           <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
 

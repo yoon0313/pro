@@ -449,7 +449,7 @@ class ComponentsNavbar extends React.Component {
           // View 2: Access by private key.
           : (
             <Fragment>
- <FormGroup>
+                  <FormGroup>
                         <InputGroup>
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
@@ -457,22 +457,21 @@ class ComponentsNavbar extends React.Component {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            id="input-password"
-                            name="privatekey"
-                            placeholder="privatekey"
-                            type="password"
+                            id="input-privateKey"
+                            name="privateKey"
+                            placeholder="privateKey"
+                            type="privateKey"
                             onChange={this.handleChange}
                             onFocus={e => this.setState({ passwordFocus: true })}
                             onBlur={e => this.setState({ passwordFocus: false })}
                           />
-
                         </InputGroup>
                       </FormGroup>
             </Fragment>
           )
         }
 
-                      <p className="Auth__keystoreMsg">{keystoreMsg}</p>
+        <p className="Auth__keystoreMsg">{keystoreMsg}</p>
         <p className="Auth__toggleAccessButton" onClick={this.toggleAccessType}>
           {accessType === 'privateKey'
             ? 'Want to login with keystore? (click)'
@@ -492,7 +491,7 @@ class ComponentsNavbar extends React.Component {
                 </Button>
                         </div>
        
-      </Fragment>
+              </Fragment>
                     
                     </Form>
                   </div>
