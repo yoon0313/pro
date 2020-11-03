@@ -527,7 +527,7 @@ class ComponentsNavbar extends React.Component {
           placeholder="Generate Private Key to Sign up"
           value={privateKey || ''}
           label="Private key"
-          
+          readOnly
         />
 
                         </InputGroup>

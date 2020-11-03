@@ -25,7 +25,7 @@ import {
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
-import ReactPlayer from "react-player";
+
 import { Link } from "react-router-dom";
 
 
@@ -77,13 +77,7 @@ class OldPage extends React.Component {
           <Col className="item"><h1>OLD PRODUCT</h1></Col>
           <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
         </Row>
-        {/* <Row>
-          <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
-          <video loop="loop" autoPlay="autoplay" muted="muted" webkit-playsInline="webkit-playsinline" playsInline="playsinline" >
-                  <source src ={require("assets/video/videoplayback.mp4")}></source>
-                </video>
-          <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
-        </Row> */}
+
          <Row className="row-grid justify-content-between align-items-center text-left">
                 <Col lg="6" md="6">
                   <h1 className="text-white">
@@ -154,17 +148,10 @@ class OldPage extends React.Component {
                 className="btn-simple btn btn-success" style={{float: "right"}} Link tag={Link} to="/upload-old-page">
                 <font color="cyan">등록</font>
 
-              </Button>
-
-
-
+                  </Button>
                 </Col>
-
-
               </Row>
-              <Row>
-              <font size="150" color="white" > &nbsp; &nbsp; &nbsp; ★</font>
-              </Row>
+             
         <Row>
         <font size="150" color="white " > &nbsp; &nbsp; TOP 8</font>
         </Row>

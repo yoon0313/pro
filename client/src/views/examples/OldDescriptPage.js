@@ -2,17 +2,10 @@
 import React , { Component } from "react";
 
 
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 
 import {
   Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  ListGroupItem,
-  ListGroup,
+
   Container,
   Row,
   Col,
@@ -259,15 +252,7 @@ handleOnChange(e) {
 
                   <Col className="col-sm-6 col-md-4 col-lg-4">
                   <label>Select color</label>
-                  {/* <div className="react-select react-select-warning css-2b097c-container">
-                    <div className="react-select__control css-yk16xz-control">
-                    <div className="react-select__value-container react-select__value-container--has-value css-1hwfws3">
-                    <div className="react-select__placeholder css-1wa3eu0-placeholder"></div>
-                    <div> */}
-                    {/* <div className="react-select__placeholder css-1wa3eu0-placeholder"></div>
-                    <div className="react-select__single-value css-1uccc91-singleValue">Black</div>
-                    <div className="react-select__single-value css-1uccc91-singleValue">Gray</div>
-                    <div className="react-select__single-value css-1uccc91-singleValue">White</div> */}
+               
                     <select>
                       <option selected value="choice">==선택==</option>
                       <option value="Black">Black</option>
@@ -276,57 +261,12 @@ handleOnChange(e) {
                       <option value="Navy">Navy</option>
                       <option value="gita">기타</option>
                     </select>
-                    {/* </div>
-                   
-
-                        <div className="css-1g6gooi">
-                          <div className="react-select__input" style={{display: "inline-block"}}>
-                          <input autocapitalize="none" autocomplete= "off" autocorrect="off" id="react-select-2-input" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" value="" style={{ boxSizing: "content-box", width: "2px", background: "0px center", border: "0px", fontSize: "inherit", opacity: "1", outline: "0px", padding: "0px", color: "inherit"}}/>
-                          <div style={{position: "absolute",
-                            top: "0px",
-                            left: "0px",
-                            visibility: "hidden",
-                            height: "0px",
-                            overflow: "scroll",
-                            whiteSpace: "pre",
-                            fontSize: "14px",
-                            fontFamily: "Poppins sans-serif",
-                            fontWeight: "400",
-                            fontStyle: "normal",
-                            letterSpacing: "normal",
-                            textTransform: "none"}}></div>
-
-                          </div>
-                        </div>
-                      </div> */}
-                      
-                      {/* <div className="react-select__indicators css-1wy0on6">
-                        <span className="react-select__indicator-separator css-1okebmr-indicatorSeparator"></span>
-                      <div aria-hidden="true" class="react-select__indicator react-select__dropdown-indicator css-tlfecz-indicatorContainer">
-                        <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" 
-                        focusable="false" class="css=19bqh2r">
-                          <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                        </svg>
-
-                      </div>
-                      </div>
-                      
-                    </div>
-                  </div> */}
+                
                   </Col>
 
                   <Col className="col-sm-6 col-md-4 col-lg-4">
                     <label>Select size</label>
-{/* 
-                  <div className="react-select react-select-warning css-2b097c-container">
 
-                  <div className="react-select__control css-yk16xz-control">
-                  <div className="react-select__value-container react-select__vlaue-container--has-value css-1hwfws3"> */}
-                  {/* <div className="react-select__single-value css-1uccc91-singleValue">Extra Small</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Small</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Medium</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Large</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Extra Large</div> */}
 
                   <select>
                       <option selected value="choice">==선택==</option>
@@ -339,27 +279,7 @@ handleOnChange(e) {
                     </select>
                  
 
-                  {/* </div>
-                  </div>
-                  </div> */}
-
-                  {/* <div className="react-select__indicators css-1wy0on6">
-                    <span className="react-select__indicators-separator css-1okebmr-
-                    indicatorSeparator"></span>
-                  <div aria-hidden="true" className="react-select__indicator react-select__dropdown-indicator css-tlfecz-indicatorContainer">
-                  <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true"
-                  focusable="false" class="css-19bqh2r">
-                  <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                  </svg>
-                  
-
-                    
-                  </div>
-                  
-                  
-
-                  </div> */}
-                
+               
                   
                   
                       
@@ -377,16 +297,6 @@ handleOnChange(e) {
                   </Col>
                   
                   
-
-                   {/* <div className="justify-content-start row">
-                  <button className="m1-39 btn btn-primary" style={{float: 'right'}}>
-                     구매하기 &nbsp;
-                    <i class="tim-icons icon-cart">
-                      
-                    </i>
-                  </button>
-
-                  </div>  */}
                   </Row>
                  
                 </Container>
@@ -451,7 +361,7 @@ handleOnChange(e) {
                   <div className="card-testimonial card">
                   <div className="card-avatar">
                         <a href="#pablo">
-                          <img alt="..." class="img img-raised" src={require("assets/img/man1.jpg")}></img>"
+                          <img alt="..." className="img img-raised" src={require("assets/img/man1.jpg")}></img>"
                         </a>
                       </div>
 
@@ -490,7 +400,7 @@ handleOnChange(e) {
                   <div className="card-testimonial card">
                   <div className="card-avatar">
                         <a href="#pablo">
-                          <img alt="..." class="img img-raised" src={require("assets/img/girl2.jpg")}></img>"
+                          <img alt="..." className="img img-raised" src={require("assets/img/girl2.jpg")}></img>"
                         </a>
                       </div>
 

@@ -163,7 +163,7 @@ class Basics extends React.Component {
             </Row>
 
           {/* ---------------------------------------- */}
-          <div class="space-70"></div>
+          <div className="space-70"></div>
           <Row>
             <Col md="1">
             <h1>
@@ -256,7 +256,7 @@ class Basics extends React.Component {
 
           </div>
 
-          <div class="space-70"></div>
+          <div className="space-70"></div>
 
 
         

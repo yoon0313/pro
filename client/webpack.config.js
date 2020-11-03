@@ -52,8 +52,11 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'url-loader',
-                        options: { name: 'images/[hash]-[name].[ext]' },
+                        loader: 'file-loader',
+                        options: {
+                            esModule: false
+                          }
+                        // options: { name: 'images/[hash]-[name].[ext]' },
                     },
                 ],
             },
