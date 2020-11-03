@@ -1,161 +1,253 @@
-import React from "react";
-import OldNavbar from "components/Navbars/OldNavbar.js";
-import { useState } from 'react';
-import Axios from 'axios';
-import { Button, Form, Input} from 'antd';
+import React, { Component, PropTypes } from "react";
+import classnames from "classnames";
+import { Link } from "react-router-dom";
+import IndexNavbar from "components/Navbars/IndexNavbar.js";
 
 
-const {TextArea} =Input;
+// reactstrap components
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  CardImg,
+  CardTitle,
+  Label,
+  FormGroup,
+  Form,
+  Input,
+  InputGroupAddon,
+  InputGroupText,
+  InputGroup,
+  Container,
+  Row,
+  Col
+} from "reactstrap";
 
-const Tokens= [
-  {key:1, value:"Africa"},
-  {key:2, value:"Asia"},
-  {key:3, value:"America"},
-  {key:4, value:"Europe"},
-  {key:5, value:"Austrailia"},
-  {key:6, value:"North America"},
-  {key:7, value:"South America"},
-
-]
 
 
+class UploadOldPage extends React.Component {
+  state = {
+    squares1to6: "",
+    squares7and8: ""
+  };
+  componentDidMount() {
+    document.documentElement.addEventListener("mousemove", this.followCursor);
+  }
+  componentWillUnmount() {
+    document.documentElement.removeEventListener(
+      "mousemove",
+      this.followCursor
+    );
+  }
+  followCursor = event => {
+    let posX = event.clientX - window.innerWidth / 2;
+    let posY = event.clientY - window.innerWidth / 6;
+    this.setState({
+      squares1to6:
+        "perspective(500px) rotateY(" +
+        posX * 0.05 +
+        "deg) rotateX(" +
+        posY * -0.05 +
+        "deg)",
+      squares7and8:
+        "perspective(500px) rotateY(" +
+        posX * 0.02 +
+        "deg) rotateX(" +
+        posY * -0.02 +
+        "deg)"
+    });
+  };
 
-function UploadOldPage(props){
-  const [Title, setTitle] = useState("")
-  const [Description, setDescription] = useState("")
-  const [Price, setPrice] =  useState(0)
-  const [Token, setToken] = useState(1) //드롭박스343535
-  const [Images, setImages] = useState([])
+
+  // 여러 이미지 업로드 및 미리보기
+  constructor(props) {
+    super(props);
+    this.state = {
+      file : [],
+      previewURL : []
+    }
+  }
 
   
-
-
-  const titleChangeHandler = (event) => {
-
-    setTitle(event.currentTarget.value)
-
-}
-
-const descriptionChangeHandler = (event) => {
-
-    setDescription(event.currentTarget.value)
-
-}
-
-const priceChangeHandler = (event) => {
-
-    setPrice(event.currentTarget.value)
-
-}
-
-const  tokenChangeHandler = (event) => {
-
-    setToken(event.currentTarget.value)
-
-}
-
-const updateImages = (event) => {
-     
-    setImages(event.currentTarget.value)
-    
-    
-
-}
-
-const submitHandler = (event) =>{
-    // preventDefault를 해줘야 확인 버튼을 눌렀을때
-    // 화면이 새로고침되지 않는다.
+  handleFileOnChange = (event) => {
     event.preventDefault();
-
-
-    //모든 입력칸이 채워지지않으면 submit할 수없게 조건문
-    if(!Title || !Description || !Price || !Token || !Images){
-        return alert("모든 값을 넣어주세요")
+    if(this.state.previewURL.length >=3){
+      alert("더 이상은 무리데쓰");
+      return;
     }
+    let reader = new FileReader();
+    let file = event.target.files[0];
+    reader.onloadend = () => {
+      this.state.file.push(file)
+      this.state.previewURL.push(reader.result)
+  
+      console.log(this.state.previewURL)
+      this.forceUpdate()
+    }
+    reader.readAsDataURL(file);
+  }
 
-
-    //서버에 채운 값을 request로 보낸다.
-    //axious post를 하면 body를 적어줘야함
-    const body = {
-        //로그인된 사람의 ID를 가져오기위해 
+  state = {};
+  
+  render() {
+    let profile_preview =[];
+      let i = 0;
+      for(let i=0 ;i<3;i++){
+        const element = this.state.previewURL[i];
+        profile_preview.push(<img style={{maxWidth:'200px'}}  src={element}></img>)
         
-        title:Title,
-        description:Description,
-        price:Price,
-        images:Images,
-        tokens: Tokens[Token-1].value
-    }
+      }
+      return (
+      <>
+        <IndexNavbar/>
+        <div className="section section-signup">
+          <Container>
+            <Row>
+                  <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
+                  <Col className="item"><h2>OLD PRODUCT REGISTER</h2></Col>
+                  <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>                
+            </Row>
+           
+              <Row className="row-grid justify-content-between align-items-center">
+                <Row>
+                  <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
+                    <div
+                      className="square square-7"
+                      id="square7"
+                      style={{ transform: this.state.squares7and8 }}
+                    />
+                    <div
+                      className="square square-8"
+                      id="square8"
+                      style={{ transform: this.state.squares7and8 }}
+                    />
+                  </Col>
+                </Row>
+                { <div
+                  className="square square-3"
+                  id="square3"
+                  style={{ transform: this.state.squares1to6 }}
+                />}
+                <div
+                  className="square square-4"
+                  id="square4"
+                  style={{ transform: this.state.squares1to6 }}
+                />
+                <div
+                  className="square square-5"
+                  id="square5"
+                  style={{ transform: this.state.squares1to6 }}
+                />
+                <div
+                  className="square square-6"
+                  id="square6"
+                  style={{ transform: this.state.squares1to6 }}
+                />
 
-     //서버로 보내기
-    Axios.post("http://localhost:5000/OldP/products/register", body)
-        .then(response => {
-            if(response.data.success){
-                alert('상품 업로드에 성공 했습니다.')
-                //상품업로드 후 랜딩페이지로 돌아감
-                props.history.push('/')
-            }else{
-                alert('상품 업로드에 실패 했습니다.')
-            }
-        })
+                <Card className="card-register">
+                  <CardHeader>
+                    <CardImg
+                      alt="..."
+                      src={require("assets/img/square-purple-1.png")}
+                    />
+                    <CardTitle tag="h4">register</CardTitle>
+                  </CardHeader>
+                  
+                  <CardBody>
+                    <Form className="form">
+                    
+                      <Input
+                            placeholder="Title"
+                            type="text"
+                            onFocus={e => this.setState({ emailFocus: true })}
+                            onBlur={e => this.setState({ emailFocus: false })}
+                      />
+                   
+          
+                      <Row>
+                          <Col>
+                          <div>
+                          <br/>
 
+                          </div>
+                          </Col>
+                      </Row>
+
+                      <div>
+                      <select>
+                      <option selected value="TokenBox">TokenBox &nbsp;&nbsp; </option>
+                        <option value="Nike">Nike</option>
+                        <option value="Gucci">Gucci</option>
+                        <option value="Rolex">Rolex</option>
+                        <option value="PRADA">PRADA</option>
+                      </select>
+                      <br/>
+                      </div>
+                      <br/>
+                                      
+                      <Input
+                            placeholder="price"
+                            type="text"
+                            onFocus={e => this.setState({ emailFocus: true })}
+                            onBlur={e => this.setState({ emailFocus: false })}
+                            
+                      />
+                   
+
+                      <br/>
+                      {/* product 체크박스로 */}
+                      
+                      <Input
+                            cols="100" rows="1000"
+                            placeholder="descriptions"
+                            type="textarea"
+                            onFocus={e => this.setState({ emailFocus: true })}
+                            onBlur={e => this.setState({ emailFocus: false })}
+                      />
+                    
+                      
+
+
+                      {/* 여러 이미지 업로드 및 미리보기 출력 */}
+
+                      <div class="profile_img">                      
+                        <input type='file' 
+                            accept='image/jpg,impge/png,image/jpeg,image/gif' 
+                            name='profile_img' 
+                            
+                            onChange={this.handleFileOnChange}>
+                        </input>
+                        {profile_preview}
+                      </div>
+
+                      
+                      <FormGroup check className="text-left">
+                        <Label check>
+                          <Input type="checkbox" />
+                          <span className="form-check-sign" />I agree to the{" "}
+                          <a href="#pablo" onClick={e => e.preventDefault()}>
+                            terms and conditions
+                          </a>
+                          .
+                        </Label>
+                      </FormGroup>
+                    </Form>
+                  </CardBody>
+                  <CardFooter>
+                    <div Button className="btn-round btn btn-primary" size="lg">
+                    <Link to="profile-page3"> 
+                    <font color="white">판매하기 &nbsp;</font>
+                      </Link>
+                      </div>  
+                  </CardFooter>
+                </Card>
+              </Row>          
+          </Container>
+        </div>
+        </>
+      )                    
+  }
 }
-
-return(
-    
-  <div style={{ maxWidth: '800px', margin: '2rem auto'}}>
-      <OldNavbar/>
-      <div style={{ textAlign:'center', marginBottom:'2rem'}}>
-          <h2> &nbsp; </h2>
-      </div>
-
-      <div style={{ textAlign:'center'}}>
-      <h2>여행 상품 업로드</h2>
-      </div>
-
-     <Form onSubmit={submitHandler}>
-         {/* DropZone */}
-         
-
-         <br/>
-         <br/>
-         <label>이름 &nbsp;</label>
-         <Input onChange={titleChangeHandler} value={Title}/>
-         <br/>
-         <br/>
-         <label>설명 &nbsp;</label>
-         <TextArea onChange={descriptionChangeHandler} value={Description}/>
-         <br/>
-         <br/>
-         <label>가격(eth) &nbsp;</label>
-         <Input type="number" onChange={priceChangeHandler} value={Price}/>
-         <br/>
-         <br/>
-         <label>국적 &nbsp; </label>
-         <select onChange={tokenChangeHandler} value={Token}>
-             {Tokens.map(item =>(
-                   <option key={item.key} value={item.key}>{item.value}</option>
-             ))}
-         </select>
-
-         <br/>
-         <br/>
-         <label>이미지 &nbsp;</label>
-         <Input type="file" onChange={updateImages} value={Images} />
-
-         <br/>
-         <br/>
-
-
-
-         
-         <Button type="submit"onClick={submitHandler}>
-             확인
-         </Button>
-     </Form>
-  </div>
-)
-
-}
-
-
 export default UploadOldPage;

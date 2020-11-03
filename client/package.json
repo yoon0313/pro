@@ -30,6 +30,7 @@
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.7.2",
     "axios": "^0.19.2",
+    "babel-polyfill": "^6.26.0",
     "caver-js": "1.4.1",
     "chart.js": "2.9.3",
     "classnames": "^2.2.6",

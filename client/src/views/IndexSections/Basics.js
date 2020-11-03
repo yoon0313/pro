@@ -23,7 +23,7 @@ import {
 } from "reactstrap";
 
 
-axios.get('/api/products');
+axios.get('http://localhost:5000/OldP/products/register');
 
 class Basics extends React.Component {
 
@@ -50,7 +50,7 @@ class Basics extends React.Component {
   
   callApi = async()=>{
     //접속하고자 하는 api주소를 넣어줌
-    const response = await fetch('/api/products');
+    const response = await fetch('http://localhost:5000/OldP/products/register');
     //출력한 데이터를 json으로 만들어서 body라는 변수에 넣어줌
     const body = await response.json();
     return body;
