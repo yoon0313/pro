@@ -5,6 +5,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 
+    node: {
+        fs: 'empty',
+        net: 'empty',
+    },
 
     devtool: 'cheap-moudle-source-map',
 

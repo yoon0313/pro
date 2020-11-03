@@ -8,10 +8,10 @@ const productSchema = mongoose.Schema({
         ref: 'User'
         
     },
-    title:{
-        type: String,
-        maxlength: 50
-    },
+    // title:{
+    //     type: String,
+    //     maxlength: 50
+    // },
     description:{
         type: String
     },
@@ -22,16 +22,16 @@ const productSchema = mongoose.Schema({
     images:{
         type:Array,
         default:[]
-    },
-    sold:{
-        type:Number,
-        maxlength: 100,
-        default: 0
-    },
-    views:{
-        type:Number,
-        default:0
     }
+    // sold:{
+    //     type:Number,
+    //     maxlength: 100,
+    //     default: 0
+    // },
+    // views:{
+    //     type:Number,
+    //     default:0
+    // }
 
 },{timestamps:true})
 
