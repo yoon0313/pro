@@ -20,11 +20,28 @@ module.exports = {
 
     module: {
         rules: [
+            
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                use: "babel-loader"
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            "presets": [
+                              [
+                                "@babel/preset-env", {
+                                  "targets": {"chrome": "55"}, /* chrome 55 이상으로 지정 */
+                                  "debug": true
+                                }
+                              ]
+                            ]
+                        }
+                    }
+                ]
             },
+
+                                  
             {
                 test: /\.(sa|sc|c)ss$/i,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
@@ -35,8 +52,11 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'url-loader',
-                        options: { name: 'images/[hash]-[name].[ext]' },
+                        loader: 'file-loader',
+                        options: {
+                            esModule: false
+                          }
+                        // options: { name: 'images/[hash]-[name].[ext]' },
                     },
                 ],
             },

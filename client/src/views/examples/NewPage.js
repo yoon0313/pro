@@ -1,4 +1,3 @@
-
 import React , { Component } from "react";
 import classnames from "classnames";
 // reactstrap components
@@ -22,12 +21,13 @@ import {
   Col
 } from "reactstrap";
 
-//test
 // core components
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
+import NewNavbar from "components/Navbars/NewNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
+import gucci4 from 'assets/img/gucci4.jpg';
+
 
 
 class NewPage extends React.Component {
@@ -67,7 +67,7 @@ class NewPage extends React.Component {
   render() {
     return (
       <>
-        <IndexNavbar />
+        <NewNavbar />
         <div className="wrapper">
           <div className="page-header">
             <div className="page-header-image" />
@@ -114,9 +114,11 @@ class NewPage extends React.Component {
                                         window.location.href='/new-descript-page';
           }}>
             <img
-              alt="..."
+              alt=""
               className="img-fluid rounded shadow-lg"
-              src="https://t1.daumcdn.net/cfile/tistory/9996C04A5A55B3F91C"
+              // src="{require('/src/assets/img/gucci.jpg)}"
+              // src="%PUBLIC_URL%/img/gucci4.jpg"
+              src={gucci4}
               style={{ width: "250px",height: "220px" }}
               
             />
@@ -124,6 +126,10 @@ class NewPage extends React.Component {
             <p>GUCCI Snake wallet</p>
             <h5>41 ETH</h5>
         </Col>
+
+
+
+        
 
         <Col className="mt-5 mt-sm-0" sm="3" xs="6">
           <button type="button" onClick={(e) => {
