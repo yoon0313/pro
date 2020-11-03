@@ -186,9 +186,9 @@ class UploadOldPage extends React.Component {
         <div className="section section-signup">
           <Container>
             <Row>
-              <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
-              <Col className="item"><h2>OLD PRODUCT REGISTER</h2></Col>
-              <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>                
+                  <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
+                  <Col className="item"><h2>OLD PRODUCT REGISTER</h2></Col>
+                  <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>                
             </Row>
             
               <Row className="row-grid justify-content-between align-items-center">

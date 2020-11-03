@@ -6,9 +6,22 @@ const {Product} = require('../models/Product');
 const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(Mongodb_URI);
 var DB;
+let getNextSequence
 client.connect().then( res =>{
   DB = client.db('Cryptoberry')
   console.log(DB)
+
+  getNextSequence = async function(){
+    let pd = DB.collection('products')
+    var ret = await pd.findOneAndUpdate(
+      { _id: "index" },
+      { $inc: { seq: 1 } },
+      {
+        returnOriginal: false
+      })
+    return ret.value.seq;
+  }
+  console.log(getNextSequence)
 })
 //=================================
 //             Product
@@ -40,6 +53,7 @@ router.post('/image',(req,res) => {
 router.post('/',(req,res) => {
   //받아온 정보들을 DB에 넣어준다.
   const product = new Product(req.body)
+  const productSchema = new productSchema(req.body)
 
   product.save((err)=>{
     if(err) return res.status(400).json({success:false, err})
@@ -47,34 +61,64 @@ router.post('/',(req,res) => {
   })
 })
 
-router.post('/register', (req,res) =>{
+router.post('/register', async (req,res) =>{
   console.log(req.body);
   var products = DB.collection('products');
-  products.insertOne(req.body).then( (data)=>{
+  idx = await getNextSequence(),
+  products.insertOne({
+    index: idx,
+    description : req.body.description,
+    price : req.body.price,
+    images : req.body.images,
+    date : req.body.date
+
+
+  }).then( (data)=>{
     res.json({success:true, msg:data})
   })
 })
 
+// router.get('/getOldP', (req,res) =>{
+//   console.log(req.body);
+//   var products = DB.collection('products');
+//   products.selectAll(req.body).then( (data)=>{
+//     res.json({success:true, msg:data})
+//   })
+// })
+
+// const query = {Id : 1};
+
 //db에서 가져오기 
 router.get('/getOldP', (req,res) =>{
   var products = DB.collection('products');
-  const cursor =products.find({});
+
+  
+  let cusor;
+  if(req.query.index){
+    cursor =products.find({index:parseInt(req.query.index)});
+  }
+  else {
+    cursor =products.find({});
+  }
+  
 
   let result=[];
   cursor.count().then(cnt =>{
-    let arrLength=cnt;
-    cursor.each( function(err,doc){
-      if (doc != null) {
-        result.push(doc)
-        if(result.length == arrLength){
-          res.json(result)
-  
-        }
-      } 
-    })
-  });
-  
- 
+    let arrLength=  cnt;
+    if(cnt==0) {
+      res.json(result);
+    } else{
+      cursor.each( function(err,doc){
+        if (doc != null) {
+          result.push(doc)
+          if(result.length == arrLength){
+            res.json(result)
+    
+          }
+        } 
+      })
+    }
+  }); 
 })
 
 module.exports = router;
