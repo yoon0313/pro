@@ -36,7 +36,7 @@ const connect = mongoose.connect(config.mongoURI,
 //     ]);
 // });
 
-app.use('/OldP/products', require('./routes/product'))
+app.use('/api/products', require('./routes/product'))
 
 
 app.get('/api/hello', (req, res)=>{
