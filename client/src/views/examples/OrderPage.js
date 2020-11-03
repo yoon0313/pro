@@ -205,26 +205,16 @@ class OrderPage extends React.Component {
                                                 <Col className="col-md-12">
                                                     <div className="js-form-message">
                                                     <label className="labels">
-                                                    Wallet
+                                                    My Wallet
                                                 </label>
                                                 <div>
-                                 {walletInstance.address}
-                                </div>
+                                                {walletInstance.address}
+                                                </div>
                                                     </div>
                                                 </Col>
                                             </Row>
                                             <br/>
-                                            <Row>
-                                                <Col className="col-md-12">
-                                                    <div className="js-form-message">
-                                                    <label className="labels">
-                                                    Password
-                                                    
-                                                </label>
-                                                <input aria-label="*****" name="password" placeholder="*****" type="text" className="form-control"></input>
-                                                    </div>
-                                                </Col>
-                                            </Row>
+                                           
                                         </div>
                                         <div className="tab-pane"></div>
                                     </div>
