@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import { Button,  Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav, Container, Row, Col, FormGroup, Modal, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Label } from "reactstrap";
@@ -358,6 +358,8 @@ class ComponentsNavbar extends React.Component {
                 >
                   Login
               </Button>
+
+
                 <Modal
                   modalClassName="modal-black"
                   isOpen={this.state.formModal}
@@ -379,7 +381,13 @@ class ComponentsNavbar extends React.Component {
                     </div>
 
                     <Form role="form">
-                      <FormGroup className="mb-3">
+                      
+      <Fragment>
+        {accessType === 'keystore'
+          // View 1: Access by keystore + password.
+          ? (
+            <Fragment>
+<FormGroup className="mb-3">
                         <InputGroup
                           className={classnames("input-group-alternative", {
                             "input-group-focus": this.state.emailFocus
@@ -391,7 +399,6 @@ class ComponentsNavbar extends React.Component {
                             </InputGroupText>
                           </InputGroupAddon>
 
-                          
                           <Input
                             placeholder="Keystore"
                             id="keystore"
@@ -414,7 +421,6 @@ class ComponentsNavbar extends React.Component {
                           </p>
                         </InputGroup>
                       </FormGroup>
-
                       <FormGroup>
                         <InputGroup
                           className={classnames("input-group-alternative", {
@@ -438,8 +444,12 @@ class ComponentsNavbar extends React.Component {
 
                         </InputGroup>
                       </FormGroup>
-
-                      <FormGroup>
+            </Fragment>
+          )
+          // View 2: Access by private key.
+          : (
+            <Fragment>
+ <FormGroup>
                         <InputGroup>
                           <InputGroupAddon addonType="prepend">
                             <InputGroupText>
@@ -447,10 +457,10 @@ class ComponentsNavbar extends React.Component {
                             </InputGroupText>
                           </InputGroupAddon>
                           <Input
-                            id="input-privatekey"
+                            id="input-password"
                             name="privatekey"
                             placeholder="privatekey"
-                            type="privatekey"
+                            type="password"
                             onChange={this.handleChange}
                             onFocus={e => this.setState({ passwordFocus: true })}
                             onBlur={e => this.setState({ passwordFocus: false })}
@@ -458,27 +468,32 @@ class ComponentsNavbar extends React.Component {
 
                         </InputGroup>
                       </FormGroup>
-                      
+            </Fragment>
+          )
+        }
 
-
-
-
-                      <FormGroup check className="mt-3">
+                      <p className="Auth__keystoreMsg">{keystoreMsg}</p>
+        <p className="Auth__toggleAccessButton" onClick={this.toggleAccessType}>
+          {accessType === 'privateKey'
+            ? 'Want to login with keystore? (click)'
+            : 'Want to login with privatekey? (click)'
+          }
+        </p>
+        <FormGroup check className="mt-3">
                         <Label check>
                           <Input defaultChecked type="checkbox" />
                           <span className="form-check-sign" />
                       Remember me!
                        </Label>
                       </FormGroup>
-  
-
-                      
-                      <div className="text-center">
-                        <Button className="my-4" color="success" type="button" onClick={this.handleLogin}>
+                <div className="text-center">
+               <Button className="my-4" color="success" type="button" onClick={this.handleLogin}>
                           Login
-                        </Button>
-                        <p>{keystoreMsg}</p>
-                      </div>
+                </Button>
+                        </div>
+       
+      </Fragment>
+                    
                     </Form>
                   </div>
                 </Modal>
