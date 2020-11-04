@@ -13,16 +13,19 @@ const productSchema = mongoose.Schema({
     //     maxlength: 50
     // },
     description:{
-        type: String
+        type: String,
+        require: true
     },
     price:{
         type: Number,
-        default:0
+        default:0,
+        require: true
     },
     images:{
-        type:Array,
-        default:[]
-    }
+        type: Array,
+        default:[],
+        require: true
+    },
     // sold:{
     //     type:Number,
     //     maxlength: 100,
@@ -35,6 +38,7 @@ const productSchema = mongoose.Schema({
 
 },{timestamps:true})
 
-const Product = mongoose.model('Product', productSchema);
+// const Product = mongoose.model('Product', productSchema);
 
-module.exports = { Product }
+// module.exports = { Product }
+module.exports =  mongoose.model('Product', productSchema);

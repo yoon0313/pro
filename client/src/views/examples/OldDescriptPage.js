@@ -1,6 +1,7 @@
 
-import React , { Component } from "react";
-
+import React, { Component, PropTypes, useState } from "react";
+import Axios from 'axios';
+import classnames from "classnames";
 
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 
@@ -50,8 +51,12 @@ let ps = null;
 
 
 class OldDescriptPage extends React.Component {
+  state = {products: []}
   componentDidMount() {
     document.body.classList.toggle("Product-page");
+    fetch('/products')
+      .then(res => res.json())
+      .then(products => this.setState({ products }));
   }
   componentWillUnmount() {
     document.body.classList.toggle("Product-page");
@@ -61,7 +66,11 @@ class OldDescriptPage extends React.Component {
   super(props);
 
   this.state={
-    value:0
+    value:0,
+    file : [],
+    previewURL : [],
+    description : "",
+    price : ""
   };
   this.handleClickPlus=this.handleClickPlus.bind(this);
   this.handleClickMinus=this.handleClickMinus.bind(this);
@@ -94,21 +103,54 @@ handleOnChange(e) {
 }
 
 
-  selectChange(e){
-    this.setState({
-      selectedValue: e.target.value
-      
-    })
+selectChange(e){
+  this.setState({
+    selectedValue: e.target.value
+    
+  })
+}
+
+//데이터 불러오기
+loadHandler = (event) =>{
+  // preventDefault를 해줘야 확인 버튼을 눌렀을때
+  // 화면이 새로고침되지 않는다.
+  event.preventDefault();
+  const body = {
+    //로그인된 사람의 ID를 가져오기위해 
+    
+    description:this.state.description,
+    price:this.state.price,
+    images:this.state.file
+    // tokens: Tokens[Token-1].value
   }
+  //서버에서 가져오기
+  Axios.get("http://localhost:5000/OldP/products/getOldP", body)
+      .then(response => {
+          if(response.data.success){
+              alert('상품 불러오기 성공 했습니다.')
+              //상품업로드 후 랜딩페이지로 돌아감
+              this.props.history.pull('/')
+          }else{
+              alert('상품 불러오기에 실패 했습니다.')
+          }
+      })
+}
+
   render() {
     return (
 
       <>
-       
-      
   
        <IndexNavbar />
 
+          <div className = "Product">
+            <h1>Products</h1>
+            {/* {this.state.products.map(product =>
+              <div key = {product._id}>{product.description} {product.price} {product.images} </div>
+            )}  */}
+            <button onClick={this.loadHandler} type="button" className="btn-round btn-simple btn btn-warning"/>
+          </div>
+          
            <img
               alt="..."
               className="path"

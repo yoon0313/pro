@@ -152,8 +152,8 @@ class UploadOldPage extends React.Component {
                 alert('상품 업로드에 실패 했습니다.')
             }
         })
-}
-
+        
+  }
   state = {
     description : "",
     price : ""
