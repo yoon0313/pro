@@ -2,7 +2,6 @@ const path = require("path");
 const fs = require('fs');
 const webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
 module.exports = {
 
 
@@ -11,11 +10,11 @@ module.exports = {
     mode: 'development',
 
     devServer: {
-        contentBase: path.resolve(__dirname, "./dist"),
         historyApiFallback: true,
-        open: true
-    },
-
+        contentBase: './',
+        hot: true
+     },
+     
     entry: path.resolve(__dirname, "./src/index.js"),
 
     module: {
@@ -74,7 +73,7 @@ module.exports = {
     },
 
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: "bundle.js"
     },
 

@@ -27,27 +27,27 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 
 import { Link } from "react-router-dom";
 
+
+
 const carouselItems = [
   {
-    src: require("assets/img/gucci2.jpg"),
+    src: require("assets/img/gucci2.jpg"), //DB 연결
     altText: "Slide 1",
-    caption: "2018 프리폴 컬렉션"
+    caption: "2018 프리폴 컬렉션"   //DB 연결
   },
   {
-    src: require("assets/img/gucci3.jpg"),
+    src: require("assets/img/gucci3.jpg"),  //DB 연결
     altText: "Slide 2",
-    caption: "cryptoberry는 정품만 취급합니다"
+    caption: "cryptoberry는 정품만 취급합니다"  //DB 연결
   },
   {
-    src: require("assets/img/gucci.jpg"),
+    src: require("assets/img/gucci.jpg"),   //DB 연결
     altText: "Slide 3",
-    caption: "정품이 아닐시 1000% 보상"
+    caption: "정품이 아닐시 1000% 보상"   // DB 연결
   }
 ];
 
 let ps = null;
-
-
 
 class NewDescriptPage extends React.Component {
   componentDidMount() {
@@ -57,11 +57,14 @@ class NewDescriptPage extends React.Component {
     document.body.classList.toggle("Product-page");
   }
 
+  
+
   constructor(props){
   super(props);
-    
+  
   this.state={
-    value:0,min:0,counter:0
+    value:0,min:0,counter:0,
+    id:props.location.search.split("=")[1] //이 부분 해결되어야함
   };
   this.handleClickPlus=this.handleClickPlus.bind(this);
   this.handleClickMinus=this.handleClickMinus.bind(this);
@@ -98,57 +101,35 @@ handleOnChange(e) {
     return (
 
       <>
-       
-      
-  
-       <IndexNavbar />
-
-           <img
-              alt="..."
-              className="path"
-              src={require("assets/img/blob.png")}
-            />
-
-            <img
-              alt="..."
-              className="shapes circle"
-              src={require("assets/img/cercuri.png")}
-            />
-       
-
-       
-        
-       <div className="wrapper">
+        <IndexNavbar />
+        <img
+          alt="..."
+          className="path"
+          src={require("assets/img/blob.png")}
+        />
+        <img
+          alt="..."
+          className="shapes circle"
+          src={require("assets/img/cercuri.png")}
+        />
+        <div className="wrapper">
           <div className="page-header" style={{display : 'inline'}}>
-
-         
-
-
-         
-          <Row className="row-grid justify-content align-items text-left">
-                <Col lg="12" md="6">
-                  <h1 className="text-white">
-                  </h1><br/>
-                  <h3 className="text-white mb-3">
-                  </h3><br/>
-                  <h3 className="text-white mb-3">
-                  </h3><br/>
-                  <div className="btn-wrapper">
-                    </div>
-                </Col>
-
-              </Row>
-
-          
-
-          <Row className="row-grid justify-content align-items text-left">
-                <Col lg="12" md="6">
-                  <h1 className="text-white">
+            <Row className="row-grid justify-content align-items text-left">
+              <Col lg="12" md="6">
+                <h1 className="text-white"></h1><br/>
+                <h3 className="text-white mb-3"></h3><br/>
+                <h3 className="text-white mb-3"></h3><br/>
+                <div className="btn-wrapper"></div>
+              </Col>
+            </Row>
+            <Row className="row-grid justify-content align-items text-left">
+              <Col lg="12" md="6">
+                <h1 className="text-white">
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   Our products 
-                  </h1><br/>
-                  <h3 className="text-white mb-3">
+                </h1><br/>
+                <h3 className="text-white mb-3">
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp;
@@ -358,10 +339,9 @@ handleOnChange(e) {
 
                   <Col>
                   
-                  <Button
-                className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
+              <Button className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
                 <i className="tim-icons icon-cart"></i>
-	구매하기
+	              구매하기
               </Button>
 
                   
@@ -581,13 +561,12 @@ handleOnChange(e) {
                   <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/Product-page2';
+                                         window.location.href='/new-descript-page?id=${products[1]}';
           }}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
               src={require("assets/img/ballpen3.jpg")}
-              
             />
           </button>
                   </a>
@@ -620,7 +599,7 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/product-page2';
+                                        window.location.href='/new-descript-page?id=${products[2]}';
           }}>
             <img
               alt="..."
@@ -660,7 +639,7 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/product-page2';
+                                        window.location.href='/new-descript-page?id=${products[3]}';
           }}>
             <img
               alt="..."
@@ -699,8 +678,9 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/product-old';
+                                        window.location.href='/new-descript-page?id=${products[4}';
           }}>
+           
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"

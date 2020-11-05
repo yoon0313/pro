@@ -23,7 +23,10 @@ import UploadOldPage from "views/examples/UploadOldPage.js"
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route path="/components" render={props => <Index {...props} />} />
+      <Route 
+        path="/components" 
+        render={props => <Index {...props} />} 
+      />
       <Route
         path="/old-page"
         render={props => <OldPage {...props} />}
@@ -53,6 +56,11 @@ ReactDOM.render(
        exact path="/upload-old-page"
         render={props => <UploadOldPage {...props} />}
       />
+      <Route
+        path="/new-descript-page"
+        render={props => <NewDescriptPage {...props} />}
+      />
+      
       <Redirect from="/" to="/components" />
     </Switch>
   </BrowserRouter>,

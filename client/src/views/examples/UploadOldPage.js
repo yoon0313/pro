@@ -97,9 +97,8 @@ class UploadOldPage extends React.Component {
   
   handleFileOnChange = (event) => {
     event.preventDefault();
-    
     if(this.state.previewURL.length >=3){
-      alert("사진 첨부는 최대 3장까지 가능합니다.");
+      alert("더 이상은 무리데쓰");
       return;
     }
     let reader = new FileReader();
@@ -115,7 +114,6 @@ class UploadOldPage extends React.Component {
       this.forceUpdate()
     }
     reader.readAsDataURL(file);
-   
   }
 
   submitHandler = (event) =>{
@@ -154,8 +152,8 @@ class UploadOldPage extends React.Component {
                 alert('상품 업로드에 실패 했습니다.')
             }
         })
-}
-
+        
+  }
   state = {
     description : "",
     price : ""
@@ -170,7 +168,7 @@ class UploadOldPage extends React.Component {
       }
       return (
       <>
-        <IndexNavbar/>
+        <IndexNavbar />
         <div className="section section-signup">
           <Container>
             <Row>
@@ -267,7 +265,7 @@ class UploadOldPage extends React.Component {
                         <input type='file' 
                             accept='image/jpg,impge/png,image/jpeg,image/gif' 
                             name='profile_img' 
-                            value={this.file}
+                            
                             onChange={this.handleFileOnChange}>
                         </input>
                         {profile_preview}

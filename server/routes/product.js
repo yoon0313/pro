@@ -53,6 +53,28 @@ router.post('/register', (req,res) =>{
   products.insertOne(req.body).then( (data)=>{
     res.json({success:true, msg:data})
   })
-
 })
+
+//db에서 가져오기 
+router.get('/getOldP', (req,res) =>{
+  var products = DB.collection('products');
+  const cursor =products.find({});
+
+  let result=[];
+  cursor.count().then(cnt =>{
+    let arrLength=cnt;
+    cursor.each( function(err,doc){
+      if (doc != null) {
+        result.push(doc)
+        if(result.length == arrLength){
+          res.json(result)
+  
+        }
+      } 
+    })
+  });
+  
+ 
+})
+
 module.exports = router;
