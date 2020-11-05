@@ -63,6 +63,8 @@ router.post('/register', (req,res) =>{
 //   })
 // })
 
+// const query = {Id : 1};
+
 //db에서 가져오기 
 router.get('/getOldP', (req,res) =>{
   var products = DB.collection('products');

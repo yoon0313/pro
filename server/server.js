@@ -8,11 +8,6 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cors = require('cors')
 
-// //mongoDB연결
-// mongoClient = new MongoClient("localhost",PORT);
-// DB = mongoClient.getDatabase(DB_NAME);
-// System.out.println("Connected to the database successfully");
-// documentMongoCollection = DB.getCollection(col);
 
 
 app.use(bodyParser.json());
