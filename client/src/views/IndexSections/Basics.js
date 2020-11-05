@@ -47,6 +47,10 @@ class Basics extends React.Component {
       .then(res => this.setState({products: res}))
       //만약 오류가 발생하는경우 콘솔창에 오류를 보여준다.
       .catch(err => console.log(err));
+      
+      fetch('/products')
+      .then(res => res.json())
+      .then(products => this.setState({ products }));
   }
   
   callApi = async()=>{
@@ -84,7 +88,7 @@ class Basics extends React.Component {
             </Col>
           </Row>
           
-            <Row>
+          <Row>
 
             <Row>
           {/* <ImageButton imagePath="assets/img/gucci.jpg" linkPage="/product-page" itemName="GUCCI Snake wallet" itemPrice="41 ETH"></ImageButton> */}
@@ -195,7 +199,6 @@ class Basics extends React.Component {
               className="img-fluid rounded shadow-lg"
               src="https://ccimg.hellomarket.com/images/2019/item/03/23/17/1642_1945942_1.jpg?size=s6"
               style={{ width: "250px" ,height: "220px"}}
-              
             />
           </button>
             <p>Air Jordan shoes</p>

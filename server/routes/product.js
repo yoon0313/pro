@@ -55,26 +55,44 @@ router.post('/register', (req,res) =>{
   })
 })
 
+// router.get('/getOldP', (req,res) =>{
+//   console.log(req.body);
+//   var products = DB.collection('products');
+//   products.selectAll(req.body).then( (data)=>{
+//     res.json({success:true, msg:data})
+//   })
+// })
+
 //db에서 가져오기 
 router.get('/getOldP', (req,res) =>{
   var products = DB.collection('products');
-  const cursor =products.find({});
+
+  let cusor;
+  if(req.query.id){
+    cursor =products.find({tokenId:req.query.id});
+  }
+  else {
+    cursor =products.find({});
+  }
+  
 
   let result=[];
   cursor.count().then(cnt =>{
     let arrLength=cnt;
-    cursor.each( function(err,doc){
-      if (doc != null) {
-        result.push(doc)
-        if(result.length == arrLength){
-          res.json(result)
-  
-        }
-      } 
-    })
-  });
-  
- 
+    if(cnt==0) {
+      res.json(result);
+    } else{
+      cursor.each( function(err,doc){
+        if (doc != null) {
+          result.push(doc)
+          if(result.length == arrLength){
+            res.json(result)
+    
+          }
+        } 
+      })
+    }
+  }); 
 })
 
 module.exports = router;

@@ -52,6 +52,10 @@ ReactDOM.render(
        exact path="/upload-old-page"
         render={props => <UploadOldPage {...props} />}
       />
+       <Route
+        path="/new-descript-page/:id"
+        render={props => <NewDescriptPage {...props} />}
+      />
       <Redirect from="/" to="/components" />
     </Switch>
   </BrowserRouter>,
