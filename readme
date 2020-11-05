@@ -1,0 +1,4 @@
+cd server
+-> npm install mongodb
+
+npm install mongoose-auto-increment

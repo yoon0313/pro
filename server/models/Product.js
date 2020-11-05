@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
+var connection = mongoose.createConnection("mongodb+srv://devil:a1234@cluster0.u2r1k.mongodb.net/Cryptoberry?retryWrites=true&w=majority");
+ autoIncrement.initialize(connection);
+
+
 const Schema = mongoose.Schema;
 
-const productSchema = mongoose.Schema({
+let productSchema = mongoose.Schema({
     writer:{
         type: Schema.Types.ObjectId,
         ref: 'User'
-        
     },
 
     // title:{
@@ -21,10 +25,7 @@ const productSchema = mongoose.Schema({
     //내가해야할거
     //특정값 불러오기
     //제품등록날짜(수기입력)(자동입력하는거 있을거임 newdate)
-    index:{
-        type: String,
-        require: true
-    },
+    index:'number',
     description:{
         type: String,
         require: true
@@ -43,22 +44,18 @@ const productSchema = mongoose.Schema({
         type: String,
         default:0,
         require: true
-    },
-
-    // sold:{
-    //     type:Number,
-    //     maxlength: 100,
-    //     default: 0
-    // },
-    // views:{
-    //     type:Number,
-    //     default:0
-    // }
-
+    }
 },{timestamps:true});
-productSchema.index({index : 1});
+
+productSchema.plugin(
+    autoIncrement.plugin,
+    { model : 'Product', field : 'index', startAt : 1,increment : 1 }
+);
+
 
 // const Product = mongoose.model('Product', productSchema);
 
 // module.exports = { Product }
-module.exports =  mongoose.model('Product', productSchema);
+module.exports =  {
+    Product : connection.model('Product',productSchema)//mongoose.model('Product', productSchema);
+}
