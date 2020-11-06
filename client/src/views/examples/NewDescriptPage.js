@@ -26,10 +26,11 @@ import Footer from "components/Footer/Footer.js";
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 const products = [
   {
-    'id' :1,
+    'id' :'',
     'index' : '',
     'image' : '',
     'pname' : '',
@@ -79,16 +80,36 @@ class NewDescriptPage extends React.Component {
   var params = new URLSearchParams(props.location.search);
   
   this.state={
-    products:"",
+    products:{
+      id           :'',
+      index        :'',
+      image        :'',
+      pname        :'',
+      description  :'',
+      price        :'',
+      date         :''  
+    },
     value:0,min:0,counter:0,
-    id:params.get('id')
+    index:params.get('index')
   };
-  console.log(this.state.id)
   this.handleClickPlus=this.handleClickPlus.bind(this);
   this.handleClickMinus=this.handleClickMinus.bind(this);
   this.handleOnChange=this.handleOnChange.bind(this);
-  
+
+  Axios.get("http://localhost:5000/OldP/products/getOldp?index="+params.get('index'))
+    .then(response => {
+        if(response.status==200){
+          this.setState({
+            products:response.data[0]
+          })
+            
+        }else{
+            
+        }
+  })
 }
+  
+
 handleClickPlus(){
   this.setState({
     value:this.state.value+1
@@ -166,7 +187,22 @@ handleOnChange(e) {
                   <Col className="col-md-12 col-lg-6">
                   <div className="carousel slide">
                   <Row className="justify-content-between align-items-center">
-                    <UncontrolledCarousel items={carouselItems} />
+                    <UncontrolledCarousel items={[{
+                                                  src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                                  altText: "Slide 1",
+                                                  caption: "2020 HOT ITEM"  
+                                                },
+                                              {
+                                                src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                                altText: "Slide 2",
+                                                caption: "cryptoberry는 정품만 취급합니다"  
+                                              },
+                                            {
+                                              src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                              altText: "Slide 3",
+                                              caption: "정품이 아닐시 1000% 보상"  
+                                            },]} 
+                    />
                   </Row>
                   </div>
                   
@@ -176,7 +212,7 @@ handleOnChange(e) {
                   
                   
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="title">GUCCI Snake wallet</h2>
+                    <h2 className="title">{this.state.products.pname}</h2>
 
                     <div className="stars stars-right">
                       <div className="stars text-warning">
@@ -203,9 +239,9 @@ handleOnChange(e) {
                       </div>
                     </div>
                   <br/>
-                  <h2 className="main-price">41 ETH</h2>
+                  <h2 className="main-price">{this.state.products.price}</h2>
                   <h5 className="category">Description</h5>
-                  <p className="description">GG 수프림 캔버스 지갑. 구찌 하우스의 시그니처 디테일로 끊임없이 활용되는 강렬한 컬러의 킹스네이크 프린트. 친환경 소재.</p><br/>
+                  <p className="description">{this.state.products.description}</p><br/>
 
                  
 
