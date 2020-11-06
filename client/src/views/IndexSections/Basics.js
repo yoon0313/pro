@@ -5,7 +5,6 @@ import Slider from "nouislider";
 // react plugin used to create switch buttons
 import Switch from "react-bootstrap-switch";
 import { Link } from "react-router-dom";
-
 import axios from 'axios';
 
 // reactstrap components

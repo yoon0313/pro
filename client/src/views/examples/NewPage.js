@@ -30,6 +30,7 @@ import gucci4 from 'assets/img/gucci4.jpg';
 
 
 
+
 class NewPage extends React.Component {
   state = {
     squares1to6: "",
