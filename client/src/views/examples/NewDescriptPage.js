@@ -26,28 +26,43 @@ import Footer from "components/Footer/Footer.js";
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 import { Link } from "react-router-dom";
+import Axios from "axios";
+
+const products = [
+  {
+    'id' :'',
+    'index' : '',
+    'image' : '',
+    'pname' : '',
+    'description' : '',
+    'price' : '',
+    'date' : '',
+  },
+
+
+]
+
+
 
 const carouselItems = [
   {
-    src: require("assets/img/gucci2.jpg"),
+    src: require("assets/img/gucci2.jpg"), //DB 연결
     altText: "Slide 1",
-    caption: "2018 프리폴 컬렉션"
+    caption: "2020 HOT ITEM"  
   },
   {
-    src: require("assets/img/gucci3.jpg"),
+    src: require("assets/img/gucci3.jpg"),  //DB 연결
     altText: "Slide 2",
-    caption: "cryptoberry는 정품만 취급합니다"
+    caption: "cryptoberry는 정품만 취급합니다"  
   },
   {
-    src: require("assets/img/gucci.jpg"),
+    src: require("assets/img/gucci.jpg"),   //DB 연결
     altText: "Slide 3",
-    caption: "정품이 아닐시 1000% 보상"
+    caption: "정품이 아닐시 1000% 보상"  
   }
 ];
 
 let ps = null;
-
-
 
 class NewDescriptPage extends React.Component {
   componentDidMount() {
@@ -58,18 +73,43 @@ class NewDescriptPage extends React.Component {
     document.body.classList.toggle("Product-page");
   }
 
+  
+
   constructor(props){
   super(props);
   
     
   this.state={
-    value:0,min:0,counter:0
+    products:{
+      id           :'',
+      index        :'',
+      image        :'',
+      pname        :'',
+      description  :'',
+      price        :'',
+      date         :''  
+    },
+    value:0,min:0,counter:0,
+    index:params.get('index')
   };
   this.handleClickPlus=this.handleClickPlus.bind(this);
   this.handleClickMinus=this.handleClickMinus.bind(this);
   this.handleOnChange=this.handleOnChange.bind(this);
-  
+
+  Axios.get("http://localhost:5000/OldP/products/getOldp?index="+params.get('index'))
+    .then(response => {
+        if(response.status==200){
+          this.setState({
+            products:response.data[0]
+          })
+            
+        }else{
+            
+        }
+  })
 }
+  
+
 handleClickPlus(){
   this.setState({
     value:this.state.value+1
@@ -100,57 +140,35 @@ handleOnChange(e) {
     return (
 
       <>
-       
-      
-  
-       <IndexNavbar />
-
-           <img
-              alt="..."
-              className="path"
-              src={require("assets/img/blob.png")}
-            />
-
-            <img
-              alt="..."
-              className="shapes circle"
-              src={require("assets/img/cercuri.png")}
-            />
-       
-
-       
-        
-       <div className="wrapper">
+        <IndexNavbar />
+        <img
+          alt="..."
+          className="path"
+          src={require("assets/img/blob.png")}
+        />
+        <img
+          alt="..."
+          className="shapes circle"
+          src={require("assets/img/cercuri.png")}
+        />
+        <div className="wrapper">
           <div className="page-header" style={{display : 'inline'}}>
-
-         
-
-
-         
-          <Row className="row-grid justify-content align-items text-left">
-                <Col lg="12" md="6">
-                  <h1 className="text-white">
-                  </h1><br/>
-                  <h3 className="text-white mb-3">
-                  </h3><br/>
-                  <h3 className="text-white mb-3">
-                  </h3><br/>
-                  <div className="btn-wrapper">
-                    </div>
-                </Col>
-
-              </Row>
-
-          
-
-          <Row className="row-grid justify-content align-items text-left">
-                <Col lg="12" md="6">
-                  <h1 className="text-white">
+            <Row className="row-grid justify-content align-items text-left">
+              <Col lg="12" md="6">
+                <h1 className="text-white"></h1><br/>
+                <h3 className="text-white mb-3"></h3><br/>
+                <h3 className="text-white mb-3"></h3><br/>
+                <div className="btn-wrapper"></div>
+              </Col>
+            </Row>
+            <Row className="row-grid justify-content align-items text-left">
+              <Col lg="12" md="6">
+                <h1 className="text-white">
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   Our products 
-                  </h1><br/>
-                  <h3 className="text-white mb-3">
+                </h1><br/>
+                <h3 className="text-white mb-3">
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp;
@@ -169,7 +187,22 @@ handleOnChange(e) {
                   <Col className="col-md-12 col-lg-6">
                   <div className="carousel slide">
                   <Row className="justify-content-between align-items-center">
-                    <UncontrolledCarousel items={carouselItems} />
+                    <UncontrolledCarousel items={[{
+                                                  src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                                  altText: "Slide 1",
+                                                  caption: "2020 HOT ITEM"  
+                                                },
+                                              {
+                                                src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                                altText: "Slide 2",
+                                                caption: "cryptoberry는 정품만 취급합니다"  
+                                              },
+                                            {
+                                              src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                              altText: "Slide 3",
+                                              caption: "정품이 아닐시 1000% 보상"  
+                                            },]} 
+                    />
                   </Row>
                   </div>
                   
@@ -179,7 +212,7 @@ handleOnChange(e) {
                   
                   
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="title">GUCCI Snake wallet</h2>
+                    <h2 className="title">{this.state.products.pname}</h2>
 
                     <div className="stars stars-right">
                       <div className="stars text-warning">
@@ -206,9 +239,9 @@ handleOnChange(e) {
                       </div>
                     </div>
                   <br/>
-                  <h2 className="main-price">41 ETH</h2>
+                  <h2 className="main-price">{this.state.products.price}</h2>
                   <h5 className="category">Description</h5>
-                  <p className="description">GG 수프림 캔버스 지갑. 구찌 하우스의 시그니처 디테일로 끊임없이 활용되는 강렬한 컬러의 킹스네이크 프린트. 친환경 소재.</p><br/>
+                  <p className="description">{this.state.products.description}</p><br/>
 
                  
 
@@ -252,6 +285,7 @@ handleOnChange(e) {
                   {/* <Col className="col-sm-6 col-md-4 col-lg-4">
                   <label>Select color</label>
              
+                
                     <select>
                       <option selected value="choice">==선택==</option>
                       <option value="Black">Black</option>
@@ -267,7 +301,6 @@ handleOnChange(e) {
 
                   {/* <Col className="col-sm-6 col-md-4 col-lg-4">
                     <label>Select size</label>
-
                   <select>
                       <option selected value="choice">==선택==</option>
                       <option value="Extra Small">Extra Small</option>
@@ -285,10 +318,9 @@ handleOnChange(e) {
 
                   <Col>
                   
-                  <Button
-                className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
+              <Button className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
                 <i className="tim-icons icon-cart"></i>
-	구매하기
+	              구매하기
               </Button>
 
                   
@@ -499,13 +531,12 @@ handleOnChange(e) {
                   <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/Product-page2';
+                                         window.location.href='/new-descript-page?id=${products[1]}';
           }}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
               src={require("assets/img/ballpen3.jpg")}
-              
             />
           </button>
                   </a>
@@ -538,7 +569,7 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/product-page2';
+                                        window.location.href='/new-descript-page?id=${products[2]}';
           }}>
             <img
               alt="..."
@@ -578,7 +609,7 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/product-page2';
+                                        window.location.href='/new-descript-page?id=${products[3]}';
           }}>
             <img
               alt="..."
@@ -617,8 +648,9 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/product-old';
+                                        window.location.href='/new-descript-page?id=${products[4}';
           }}>
+           
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"

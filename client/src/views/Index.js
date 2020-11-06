@@ -11,7 +11,6 @@ import Basics from "views/IndexSections/Basics.js";
 
 
 
-
 class Index extends React.Component {
 
 
@@ -30,6 +29,7 @@ class Index extends React.Component {
           <PageHeader />
           <div className="main">
            <Basics/>
+            
             
           </div>
           <Footer />
