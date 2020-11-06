@@ -35,21 +35,28 @@ class UploadOldPage extends React.Component {
     squares1to6: "",
     squares7and8: ""
   };
+
+  //컴포넌트 실행시
   componentDidMount() {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", this.followCursor);
-    // Axios.get('/OldP/products')
-    // .then(response => {
-    //   this.setState({textarea : response.data.description})
-    // })
+    //시간흐르게
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000)
   }
+
+  //컴포넌트 실행안할시
   componentWillUnmount() {
     document.body.classList.toggle("register-page");
     document.documentElement.removeEventListener(
       "mousemove",
       this.followCursor
     );
+    //시간흐르게
+    clearInterval(this.timerID);
   }
+
   followCursor = event => {
     let posX = event.clientX - window.innerWidth / 2;
     let posY = event.clientY - window.innerWidth / 6;
@@ -78,9 +85,15 @@ class UploadOldPage extends React.Component {
       previewURL : [],
       description : "",
       price : "",
+      date: new Date()
     }
   }
-
+  //시간 계속 흐르게하기
+  tick() {
+    this.setState({
+        date: new Date()
+    })
+}
   handleDescriptionOnChange = (event) => {
     event.preventDefault();
     this.setState({
@@ -138,6 +151,7 @@ class UploadOldPage extends React.Component {
         description:this.state.description,
         price:this.state.price,
         images:this.state.file,
+        date:this.state.date
         // tokens: Tokens[Token-1].value
     }
 
@@ -172,9 +186,9 @@ class UploadOldPage extends React.Component {
         <div className="section section-signup">
           <Container>
             <Row>
-                  <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
-                  <Col className="item"><h2>OLD PRODUCT REGISTER</h2></Col>
-                  <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>                
+              <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
+              <Col className="item"><h2>OLD PRODUCT REGISTER</h2></Col>
+              <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>                
             </Row>
             
               <Row className="row-grid justify-content-between align-items-center">
@@ -236,7 +250,20 @@ class UploadOldPage extends React.Component {
                       <br/>
                       </div>
                       <br/> */}
-                                      
+                      {/* <Input
+                            placeholder="date"
+                            type="number"
+                            value={this.Price}
+                            onChange={this.handlePriceOnChange}
+                      /> */}
+
+                      <div value={this.date}>
+                      
+                      Posting Date :  {this.state.date.toLocaleString()}
+                      {/* {this.setState.date.toLocaleString()} */}
+                      {/* {this.state.date.getFullYear()},{this.state.date.getFullYear()}{this.state.date.toLocaleTimeString()}, */}
+                      </div>
+
                       <Input
                             placeholder="price"
                             type="number"
@@ -284,15 +311,12 @@ class UploadOldPage extends React.Component {
                       </FormGroup>
                     </Form>
                   </CardBody>
-                  <Button type="submit"onClick={this.submitHandler}>
-                      확인
-                  </Button>
-                  {/* <CardFooter>
-                    <div Button type="submit" onClick={submitHandler}
+                  <CardFooter>
+                    <div Button type="submit"onClick={this.submitHandler}
                     className="btn-round btn btn-primary" size="lg">                   
-                    <font color="white">register &nbsp;</font>
-                    </div>  
-                  </CardFooter> */}
+                      <font color="white">Post &nbsp;</font>
+                    </div>
+                  </CardFooter>
                 </Card>
               </Row>          
           </Container>
@@ -301,4 +325,5 @@ class UploadOldPage extends React.Component {
       )                    
   }
 }
+
 export default UploadOldPage;

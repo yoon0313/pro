@@ -109,34 +109,31 @@ selectChange(e){
   })
 }
 
-//데이터 불러오기
-loadHandler = (event) =>{
-  // preventDefault를 해줘야 확인 버튼을 눌렀을때
-  // 화면이 새로고침되지 않는다.
-  event.preventDefault();
-  const body = {
-    //로그인된 사람의 ID를 가져오기위해 
+// //데이터 불러오기
+// loadHandler = (event) =>{
+//   // preventDefault를 해줘야 확인 버튼을 눌렀을때
+//   // 화면이 새로고침되지 않는다.
+//   event.preventDefault();
+//   const body = {
+//     //로그인된 사람의 ID를 가져오기위해 
     
-    description:this.state.description,
-    price:this.state.price,
-    images:this.state.file
-    // tokens: Tokens[Token-1].value
-  }
-  //서버에서 가져오기
-  Axios.get("http://localhost:5000/OldP/products/getOldP?id=1", body)
-      .then(response => {
-        console.log("dddd")
-          if(response.data.success){
-              alert('상품 불러오기 성공 했습니다.')
-              //상품업로드 후 랜딩페이지로 돌아감
-              this.props.history.pull('/')
-          }else{
-              alert('상품 불러오기에 실패 했습니다.')
-          }
-      })
-
-
-  }
+//     description:this.state.description,
+//     price:this.state.price,
+//     images:this.state.file
+//     // tokens: Tokens[Token-1].value
+//   }
+//   //서버에서 가져오기
+//   Axios.get("http://localhost:5000/OldP/products/getOldP", body)
+//       .then(response => {
+//           if(response.data.success){
+//               alert('상품 불러오기 성공 했습니다.')
+//               //상품업로드 후 랜딩페이지로 돌아감
+//               this.props.history.pull('/')
+//           }else{
+//               alert('상품 불러오기에 실패 했습니다.')
+//           }
+//       })
+// }
 
   render() {
     return (
@@ -144,14 +141,14 @@ loadHandler = (event) =>{
       <>
   
        <IndexNavbar />
-
+{/* 
           <div className = "Product">
-            <h1>Products</h1>
+            <h1>Products</h1> */}
             {/* {this.state.products.map(product =>
               <div key = {product._id}>{product.description} {product.price} {product.images} </div>
-            )}  */}
-            <button onClick={this.loadHandler} type="button" className="btn-round btn-simple btn btn-warning"/>
-          </div>
+            )}  */} 
+            {/* <button onClick={this.loadHandler} type="button" className="btn-round btn-simple btn btn-warning"/>
+          </div> */}
           
            <img
               alt="..."
@@ -303,15 +300,6 @@ loadHandler = (event) =>{
 
                   <Col className="col-sm-6 col-md-4 col-lg-4">
                   <label>Select color</label>
-                  {/* <div className="react-select react-select-warning css-2b097c-container">
-                    <div className="react-select__control css-yk16xz-control">
-                    <div className="react-select__value-container react-select__value-container--has-value css-1hwfws3">
-                    <div className="react-select__placeholder css-1wa3eu0-placeholder"></div>
-                    <div> */}
-                    {/* <div className="react-select__placeholder css-1wa3eu0-placeholder"></div>
-                    <div className="react-select__single-value css-1uccc91-singleValue">Black</div>
-                    <div className="react-select__single-value css-1uccc91-singleValue">Gray</div>
-                    <div className="react-select__single-value css-1uccc91-singleValue">White</div> */}
                     <select>
                       <option selected value="choice">==선택==</option>
                       <option value="Black">Black</option>
@@ -320,54 +308,10 @@ loadHandler = (event) =>{
                       <option value="Navy">Navy</option>
                       <option value="gita">기타</option>
                     </select>
-                    {/* </div>
-                   
-                        <div className="css-1g6gooi">
-                          <div className="react-select__input" style={{display: "inline-block"}}>
-                          <input autocapitalize="none" autocomplete= "off" autocorrect="off" id="react-select-2-input" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" value="" style={{ boxSizing: "content-box", width: "2px", background: "0px center", border: "0px", fontSize: "inherit", opacity: "1", outline: "0px", padding: "0px", color: "inherit"}}/>
-                          <div style={{position: "absolute",
-                            top: "0px",
-                            left: "0px",
-                            visibility: "hidden",
-                            height: "0px",
-                            overflow: "scroll",
-                            whiteSpace: "pre",
-                            fontSize: "14px",
-                            fontFamily: "Poppins sans-serif",
-                            fontWeight: "400",
-                            fontStyle: "normal",
-                            letterSpacing: "normal",
-                            textTransform: "none"}}></div>
-                          </div>
-                        </div>
-                      </div> */}
-                      
-                      {/* <div className="react-select__indicators css-1wy0on6">
-                        <span className="react-select__indicator-separator css-1okebmr-indicatorSeparator"></span>
-                      <div aria-hidden="true" class="react-select__indicator react-select__dropdown-indicator css-tlfecz-indicatorContainer">
-                        <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" 
-                        focusable="false" class="css=19bqh2r">
-                          <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                        </svg>
-                      </div>
-                      </div>
-                      
-                    </div>
-                  </div> */}
                   </Col>
 
                   <Col className="col-sm-6 col-md-4 col-lg-4">
                     <label>Select size</label>
-{/* 
-                  <div className="react-select react-select-warning css-2b097c-container">
-                  <div className="react-select__control css-yk16xz-control">
-                  <div className="react-select__value-container react-select__vlaue-container--has-value css-1hwfws3"> */}
-                  {/* <div className="react-select__single-value css-1uccc91-singleValue">Extra Small</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Small</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Medium</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Large</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Extra Large</div> */}
-
                   <select>
                       <option selected value="choice">==선택==</option>
                       <option value="Extra Small">Extra Small</option>
@@ -377,53 +321,18 @@ loadHandler = (event) =>{
                       <option value="Extra Large">Extra Large</option>
                       <option value="gita">기타</option>
                     </select>
-                 
 
-                  {/* </div>
-                  </div>
-                  </div> */}
-
-                  {/* <div className="react-select__indicators css-1wy0on6">
-                    <span className="react-select__indicators-separator css-1okebmr-
-                    indicatorSeparator"></span>
-                  <div aria-hidden="true" className="react-select__indicator react-select__dropdown-indicator css-tlfecz-indicatorContainer">
-                  <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true"
-                  focusable="false" class="css-19bqh2r">
-                  <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                  </svg>
-                  
-                    
-                  </div>
-                  
-                  
-                  </div> */}
-                
-                  
-                  
-                      
                   </Col>
                   <Col>
-                  <Button
-                className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
-                <i className="tim-icons icon-cart"></i>
-	구매하기
-              </Button>
-                  
+                    <Button
+                      className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
+                      <i className="tim-icons icon-cart"></i>
+                      구매하기
+                    </Button>                  
                   </Col>
 
                   </div>
                   </Col>
-                  
-                  
-
-                   {/* <div className="justify-content-start row">
-                  <button className="m1-39 btn btn-primary" style={{float: 'right'}}>
-                     구매하기 &nbsp;
-                    <i class="tim-icons icon-cart">
-                      
-                    </i>
-                  </button>
-                  </div>  */}
                   </Row>
                  
                 </Container>
