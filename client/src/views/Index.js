@@ -10,7 +10,12 @@ import Footer from "components/Footer/Footer.js";
 import Basics from "views/IndexSections/Basics.js";
 
 
+
+
 class Index extends React.Component {
+
+
+
   componentDidMount() {
     document.body.classList.toggle("index-page");
   }
@@ -24,7 +29,8 @@ class Index extends React.Component {
         <div className="wrapper">
           <PageHeader />
           <div className="main">
-            <Basics />
+           <Basics/>
+            
           </div>
           <Footer />
         </div>

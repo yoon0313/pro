@@ -4,7 +4,7 @@
     "scripts": {
         "client": "cd client && yarn webpack",
         "server": "cd server && nodemon server.js",
-        "dev": "concurrently --kill-others-on-fail \"yarn client\""
+        "dev": "concurrently --kill-others-on-fail \"yarn client\" \"yarn server\""
     },
     "dependencies": {
         "body-parser": "^1.18.3",

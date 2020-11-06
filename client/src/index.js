@@ -33,7 +33,7 @@ ReactDOM.render(
         render={props => <NewPage {...props} />}
       />
       <Route
-        path="/new-descript-page"
+        path="/new-descript-page/:id"
         render={props => <NewDescriptPage {...props} />}
       />
 

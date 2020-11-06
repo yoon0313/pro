@@ -190,7 +190,7 @@ class ComponentsNavbar extends React.Component {
   render() {
     var { keystore, keystoreMsg, keystoreName, accessType } = this.state;
     var walletInstance = this.getWallet();
-    console.log("walletInstance:" + walletInstance);
+   
     const { privateKey } = this.state
 
 
