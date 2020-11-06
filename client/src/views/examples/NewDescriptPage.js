@@ -29,7 +29,8 @@ import { Link } from "react-router-dom";
 
 const products = [
   {
-  'id' :1,
+    'id' :1,
+    'index' : '',
     'image' : '',
     'pname' : '',
     'description' : '',

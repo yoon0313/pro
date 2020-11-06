@@ -143,7 +143,7 @@ class Basics extends React.Component {
         
          
           <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <Link to={`/new-descript-page?id=${products[0].id}`}>
+          <Link to={`/new-descript-page?index=${products[0].id}`}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
@@ -158,7 +158,7 @@ class Basics extends React.Component {
         </Col>
 
         <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-        <Link to={`/new-descript-page?id=${products[1].id}`}>
+        <Link to={`/new-descript-page?index=${products[1].id}`}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
@@ -174,7 +174,7 @@ class Basics extends React.Component {
         </Col>
 
         <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-        <Link to={`/new-descript-page?id=${products[2].id}`}>
+        <Link to={`/new-descript-page?index=${products[2].id}`}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
@@ -188,7 +188,7 @@ class Basics extends React.Component {
         </Col>
 
         <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-        <Link to={`/new-descript-page?id=${products[3].id}`}>
+        <Link to={`/new-descript-page?index=${products[3].id}`}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
@@ -230,7 +230,7 @@ class Basics extends React.Component {
 
             <Row>
             <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-            <Link to={`/new-descript-page?id=${products[4].id}`}>
+            <Link to={`/new-descript-page?index=${products[4].id}`}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
@@ -244,7 +244,7 @@ class Basics extends React.Component {
         </Col>
               
         <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-        <Link to={`/new-descript-page?id=${products[5].id}`}>
+        <Link to={`/new-descript-page?index=${products[5].id}`}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
@@ -259,7 +259,7 @@ class Basics extends React.Component {
               </Col>
 
               <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-              <Link to={`/new-descript-page?id=${products[6].id}`}>
+              <Link to={`/new-descript-page?index=${products[6].id}`}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
@@ -273,7 +273,7 @@ class Basics extends React.Component {
               </Col>
 
               <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-              <Link to={`/new-descript-page?id=${products[7].id}`}>
+              <Link to={`/new-descript-page?index=${products[7].id}`}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
