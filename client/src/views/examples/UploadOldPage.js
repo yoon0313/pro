@@ -1,13 +1,9 @@
-import React, { Component, PropTypes } from "react";
+
+import React, { Component, PropTypes, useState } from "react";
 import classnames from "classnames";
-import { Link } from "react-router-dom";
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
-import Caver from "caver-js";
-
-const config = { rpcURL: 'https://api.baobab.klaytn.net:8651' }
-const caver = new Caver(config.rpcURL);
-
-
+// import { Link } from "react-router-dom";
+import IndexNavbar  from "components/Navbars/IndexNavbar.js";
+import Axios from 'axios';
 
 
 // reactstrap components
@@ -20,8 +16,6 @@ import {
   CardImg,
   CardTitle,
   Label,
-  ListGroupItem,
-  ListGroup,
   FormGroup,
   Form,
   Input,
@@ -32,6 +26,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+// import { response } from "express";
 
 
 
@@ -40,17 +35,28 @@ class UploadOldPage extends React.Component {
     squares1to6: "",
     squares7and8: ""
   };
+
+  //컴포넌트 실행시
   componentDidMount() {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", this.followCursor);
+    //시간흐르게
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000)
   }
+
+  //컴포넌트 실행안할시
   componentWillUnmount() {
     document.body.classList.toggle("register-page");
     document.documentElement.removeEventListener(
       "mousemove",
       this.followCursor
     );
+    //시간흐르게
+    clearInterval(this.timerID);
   }
+
   followCursor = event => {
     let posX = event.clientX - window.innerWidth / 2;
     let posY = event.clientY - window.innerWidth / 6;
@@ -69,17 +75,37 @@ class UploadOldPage extends React.Component {
         "deg)"
     });
   };
-
-
+  
   // 여러 이미지 업로드 및 미리보기
   constructor(props) {
     super(props);
     this.state = {
       file : [],
-      previewURL : []
+      previewURL : [],
+      description : "",
+      price : "",
+      date: new Date()
     }
   }
+  //시간 계속 흐르게하기
+  tick() {
+    this.setState({
+        date: new Date()
+    })
+}
+  handleDescriptionOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+        description : event.target.value
+      })
+  }
 
+  handlePriceOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      price : event.target.value
+    })
+  }
   
   handleFileOnChange = (event) => {
     event.preventDefault();
@@ -92,36 +118,60 @@ class UploadOldPage extends React.Component {
     reader.onloadend = () => {
       this.state.file.push(file)
       this.state.previewURL.push(reader.result)
-  
+      /*this.setState({
+        file : file,
+        previewURL : reader.result
+      })*/
       console.log(this.state.previewURL)
       this.forceUpdate()
     }
     reader.readAsDataURL(file);
   }
 
-  state = {};
-  getWallet = () => {
-    console.log("getWallet"+caver.klay.accounts.wallet.length);
-    if (caver.klay.accounts.wallet.length) {
+  submitHandler = (event) =>{
+    // preventDefault를 해줘야 확인 버튼을 눌렀을때
+    // 화면이 새로고침되지 않는다.
+    event.preventDefault();
 
-      return caver.klay.accounts.wallet[0]
-    } else {
-      // const walletFromSession = sessionStorage.getItem('walletInstance');
-      // console.log(walletFromSession)
-      // caver.klay.accounts.wallet.add(JSON.parse(walletFromSession));
-      const walletFromSession = sessionStorage.getItem('walletInstance')
-      try {
-        caver.klay.accounts.wallet.add(JSON.parse(walletFromSession))
-      } catch (e) {
-        // If value in sessionStorage is invalid wallet instance,
-        // remove it from sessionStorage.
-        sessionStorage.removeItem('walletInstance')
-      }
-      return caver.klay.accounts.wallet[0]
+
+
+
+    //모든 입력칸이 채워지지않으면 submit할 수없게 조건문
+    if(!this.state.description || !this.state.price || !this.state.file){
+        return alert("모든 값을 넣어주세요")
     }
+
+
+    //서버에 채운 값을 request로 보낸다.
+    //axious post를 하면 body를 적어줘야함
+    const body = {
+        //로그인된 사람의 ID를 가져오기위해 
+        
+        description:this.state.description,
+        price:this.state.price,
+        images:this.state.file,
+        date:this.state.date
+        // tokens: Tokens[Token-1].value
+    }
+
+     //서버로 보내기
+    Axios.post("http://localhost:5000/OldP/products/register", body)
+        .then(response => {
+            if(response.data.success){
+                alert('상품 업로드에 성공 했습니다.')
+                //상품업로드 후 랜딩페이지로 돌아감
+                this.props.history.push('/')
+            }else{
+                alert('상품 업로드에 실패 했습니다.')
+            }
+        })
+        
   }
+  state = {
+    description : "",
+    price : ""
+    };
   render() {
-    var walletInstance = this.getWallet();
     let profile_preview =[];
       let i = 0;
       for(let i=0 ;i<3;i++){
@@ -139,9 +189,7 @@ class UploadOldPage extends React.Component {
                   <Col className="item"><h2>OLD PRODUCT REGISTER</h2></Col>
                   <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>                
             </Row>
-            <br/>
-            <br/>
-           
+            
               <Row className="row-grid justify-content-between align-items-center">
                 <Row>
                   <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
@@ -188,234 +236,38 @@ class UploadOldPage extends React.Component {
                   </CardHeader>
                   
                   <CardBody>
-                    <Form className="form">
-                    <Row>
-                              <Col className="align-self-center col-md-3">
-                                <label className="labels" for="#firstName">User Address</label>
-                              </Col>
-                              <Col className="align-self-center col-md-8">
-                                <div>
-                                 {walletInstance.address}
-                                </div>
-                              </Col>
-                            </Row>
-                    
+                    <Form onSubmit= {this.submitHandler}>
 
-                   
-          
-                   <Row>            
-                              <Col className="align-self-center col-md-3">
-                                <label className="labels" for="#firstName">갖고 있는 토큰</label>
-                              </Col>
-                            </Row>
-                            <Col className="align-self-center ">
-                              <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
-                                <br/> 
-                                <Row>
-                                  {/* 첫번째 토큰 */}                              
-                                  <Col>
-                                    <Card className="card-coin card-plain" >
-
-                    
-                                        <img
-                                          alt="..."
-                                          className="img-center img-fluid"
-                                          src={require("assets/img/ripp.png")}
-                                        />      
-                                                                                         
-                                        <Row>
-                                          <Col className="text-center" md="12" style={{width:"230px"}}>
-                                            <h4 className="text-uppercase">
-                                              <Link to="product-page">
-                                                <p style ={{color : "white"}}>
-                                              Light Coin
-                                             </p>
-                                            </Link>
-                                            </h4>
-                                            <hr className="line-primary" />
-                                          </Col>
-                                        </Row>
-                                        <Row>
-                                          <ListGroup>
-                                            product<ListGroupItem>Wallet</ListGroupItem>
-                                            Brand<ListGroupItem>Gucci</ListGroupItem>
-                                            
-                                          </ListGroup>
-
-                                      
-                                        </Row>
-                                        
-                                   
-                                    </Card>
-                                  </Col>
-                                  {/* 두번째 토큰 */}
-                                  <Col>
-                                    <Card className="card-coin card-plain">                                  
-                                        <img
-                                          alt="..."
-                                          className="img-center img-fluid"
-                                          src={require("assets/img/ripp.png")}
-                                        />                                                                
-                                        <Row>
-                                          <Col className="text-center" md="12" style={{width:"230px" }}>
-                                            <h4 className="text-uppercase">
-                                            <Link to="product-page2">
-                                                <p style ={{color : "white"}}>
-                                              DARK Coin
-                                             </p>
-                                            </Link>
-                                            </h4>
-                                            <hr className="line-success" />
-                                          </Col>
-                                        </Row>
-                                        <Row>
-                                          <ListGroup>
-                                          product<ListGroupItem>Fountain pen</ListGroupItem>
-                                            Brand<ListGroupItem>Monblanc</ListGroupItem>
-                                            
-                                          </ListGroup>
-                                        </Row>
-                                    
-                                    </Card>
-                                  </Col>
-                                  {/* 세번째 토큰 */}      
-                                  <Col>
-                                    <Card className="card-coin card-plain">                                  
-                                        <img
-                                          alt="..."
-                                          className="img-center img-fluid"
-                                          src={require("assets/img/bitcoin.png")}
-                                        />                                                                
-                                        <Row>
-                                          <Col className="text-center" md="12" style={{width:"230px"}}>
-                                            <h4 className="text-uppercase">
-                                            <Link to="product-page">
-                                                <p style ={{color : "white"}}>
-                                              BRIGHT Coin
-                                             </p>
-                                            </Link>
-                                              </h4>
-                                            <hr className="line-warning" />
-                                          </Col>
-                                        </Row>
-                                        <Row>
-                                          <ListGroup>
-                                          product<ListGroupItem>T-shirts</ListGroupItem>
-                                            Brand<ListGroupItem>Gucci</ListGroupItem>
-                                          </ListGroup>
-                                        </Row>
-                             
-                                    </Card>
-                                  </Col>
-                                  {/* 네번째 토큰 */}    
-                                  <Col>
-                                    <Card className="card-coin card-plain">                                  
-                                        <img
-                                          alt="..."
-                                          className="img-center img-fluid"
-                                          src={require("assets/img/bitcoin.png")}
-                                        />                                                                
-                                        <Row>
-                                          <Col className="text-center" md="12" style={{width:"230px"}}>
-                                            <h4 className="text-uppercase">
-                                            <Link to="product-page">
-                                                <p style ={{color : "white"}}>
-                                              LIGHT Coin
-                                             </p>
-                                            </Link>
-                                            </h4>
-                                            <hr className="line-primary" />
-                                          </Col>
-                                        </Row>
-                                        <Row>
-                                          <ListGroup>
-                                          product<ListGroupItem>Wallet</ListGroupItem>
-                                            Brand<ListGroupItem>LuiVuitton</ListGroupItem>
-                                          </ListGroup>
-                                        </Row>
-                                 
-                                    </Card>
-                                  </Col>
-
-                                  
-
-                                  <Col>
-                                    <Card className="card-coin card-plain">                                  
-                                        <img
-                                          alt="..."
-                                          className="img-center img-fluid"
-                                          src={require("assets/img/etherum.png")}
-                                        />                                                                
-                                        <Row>
-                                          <Col className="text-center" md="12" style={{width:"230px"}}>
-                                            <h4 className="text-uppercase">
-                                            <Link to="product-page">
-                                                <p style ={{color : "white"}}>
-                                              DARK Coin
-                                             </p>
-                                            </Link>
-                                              </h4>
-                                            <hr className="line-success" />
-                                          </Col>
-                                        </Row>
-                                        <Row>
-                                          <ListGroup>
-                                          product<ListGroupItem>Bag</ListGroupItem>
-                                            Brand<ListGroupItem>Chanel</ListGroupItem>
-                                          </ListGroup>
-                                        </Row>
-                                       
-                                    </Card>
-                                  </Col>
-
-                                  <Col>
-                                    <Card className="card-coin card-plain">                                  
-                                        <img
-                                          alt="..."
-                                          className="img-center img-fluid"
-                                          src={require("assets/img/ripp.png")}
-                                        />                                                                
-                                        <Row>
-                                          <Col className="text-center" md="12" style={{width:"230px"}}>
-                                          <h4 className="text-uppercase">
-                                            <Link to="product-page">
-                                                <p style ={{color : "white"}}>
-                                              BRIGHT Coin
-                                             </p>
-                                            </Link>
-                                              </h4>
-                                            <hr className="line-warning" />
-                                          </Col>
-                                        </Row>
-                                        <Row>
-                                          <ListGroup>
-                                          product<ListGroupItem>Belt</ListGroupItem>
-                                            Brand<ListGroupItem>Hermes</ListGroupItem>
-                                          </ListGroup>
-                                        </Row>
-           
-                                    </Card>
-                                  </Col>
-
-                              
-                              
-                                </Row>
-
-                                
-                              </Card>
-                            </Col>
-
-
-
-                      
+                      {/* <div>
+                      <select>
+                      <option selected value="TokenBox">TokenBox &nbsp;&nbsp; </option>
+                        <option value="Nike">Nike</option>
+                        <option value="Gucci">Gucci</option>
+                        <option value="Rolex">Rolex</option>
+                        <option value="PRADA">PRADA</option>
+                      </select>
                       <br/>
-                                      
+                      </div>
+                      <br/> */}
+                      {/* <Input
+                            placeholder="date"
+                            type="number"
+                            value={this.Price}
+                            onChange={this.handlePriceOnChange}
+                      /> */}
+
+                      <div value={this.date}>
+                      
+                      Posting Date :  {this.state.date.toLocaleString()}
+                      {/* {this.setState.date.toLocaleString()} */}
+                      {/* {this.state.date.getFullYear()},{this.state.date.getFullYear()}{this.state.date.toLocaleTimeString()}, */}
+                      </div>
+
                       <Input
                             placeholder="price"
-                            type="text"
-                            onFocus={e => this.setState({ emailFocus: true })}
-                            onBlur={e => this.setState({ emailFocus: false })}
-                            
+                            type="number"
+                            value={this.Price}
+                            onChange={this.handlePriceOnChange}
                       />
                    
 
@@ -424,10 +276,10 @@ class UploadOldPage extends React.Component {
                       
                       <Input
                             cols="100" rows="1000"
-                            placeholder="descriptions"
+                            placeholder="description"
                             type="textarea"
-                            onFocus={e => this.setState({ emailFocus: true })}
-                            onBlur={e => this.setState({ emailFocus: false })}
+                            onChange={this.handleDescriptionOnChange}
+                            value={this.Description}
                       />
                     
                       
@@ -459,11 +311,10 @@ class UploadOldPage extends React.Component {
                     </Form>
                   </CardBody>
                   <CardFooter>
-                    <div Button className="btn-round btn btn-primary" size="lg">
-                    <Link to="profile-page3"> 
-                    <font color="white">판매하기 &nbsp;</font>
-                      </Link>
-                      </div>  
+                    <div Button type="submit"onClick={this.submitHandler}
+                    className="btn-round btn btn-primary" size="lg">                   
+                      <font color="white">Post &nbsp;</font>
+                    </div>
                   </CardFooter>
                 </Card>
               </Row>          

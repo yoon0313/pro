@@ -1,40 +1,61 @@
 const mongoose = require('mongoose');
+var autoIncrement = require('mongoose-auto-increment');
+var connection = mongoose.createConnection('mongodb+srv://angel:a1234@cluster0.o7lvu.mongodb.net/Cryptoberry?retryWrites=true&w=majority');
+ autoIncrement.initialize(connection);
+
+
 const Schema = mongoose.Schema;
 
-
-const productSchema = mongoose.Schema({
+let productSchema = mongoose.Schema({
     writer:{
         type: Schema.Types.ObjectId,
         ref: 'User'
-        
     },
-    title:{
-        type: String,
-        maxlength: 50
-    },
+
+    // title:{
+    //     type: String,
+    //     maxlength: 50
+    // },
+
+    //(동근이형올리실예정)
+    //위에 토큰 클릭시 wallet 주소가 들어가감
+    //판매자 주소, 토큰소유자 주소, 토큰 url(제품이미지), 제품이름, 브랜드이름, 제품생성날짜(자동생성)
+    
+
+    //내가해야할거
+    //특정값 불러오기
+    //제품등록날짜(수기입력)(자동입력하는거 있을거임 newdate)
+    index:'number',
     description:{
-        type: String
+        type: String,
+        require: true
     },
     price:{
         type: Number,
-        default:0
+        default:0,
+        require: true
     },
     images:{
-        type:Array,
-        default:[]
+        type: Array,
+        default:[],
+        require: true
     },
-    sold:{
-        type:Number,
-        maxlength: 100,
-        default: 0
-    },
-    views:{
-        type:Number,
-        default:0
+    date:{
+        type: String,
+        default:0,
+        require: true
     }
+},{timestamps:true});
 
-},{timestamps:true})
+productSchema.plugin(
+    autoIncrement.plugin,
+    { model : 'Product', field : 'index', startAt : 1,increment : 1 }
+);
 
-const Product = mongoose.model('Product', productSchema);
 
-module.exports = { Product }
+// const Product = mongoose.model('Product', productSchema);
+
+// module.exports = { Product }
+module.exports =  {
+    Product : connection.model('Product',productSchema)//mongoose.model('Product', productSchema);
+}

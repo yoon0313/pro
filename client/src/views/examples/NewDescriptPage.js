@@ -26,28 +26,43 @@ import Footer from "components/Footer/Footer.js";
 import 'pure-react-carousel/dist/react-carousel.es.css';
 
 import { Link } from "react-router-dom";
+import Axios from "axios";
+
+const products = [
+  {
+    'id' :'',
+    'index' : '',
+    'image' : '',
+    'pname' : '',
+    'description' : '',
+    'price' : '',
+    'date' : '',
+  },
+
+
+]
+
+
 
 const carouselItems = [
   {
-    src: require("assets/img/gucci2.jpg"),
+    src: require("assets/img/gucci2.jpg"), //DB 연결
     altText: "Slide 1",
-    caption: "2018 프리폴 컬렉션"
+    caption: "2020 HOT ITEM"  
   },
   {
-    src: require("assets/img/gucci3.jpg"),
+    src: require("assets/img/gucci3.jpg"),  //DB 연결
     altText: "Slide 2",
-    caption: "cryptoberry는 정품만 취급합니다"
+    caption: "cryptoberry는 정품만 취급합니다"  
   },
   {
-    src: require("assets/img/gucci.jpg"),
+    src: require("assets/img/gucci.jpg"),   //DB 연결
     altText: "Slide 3",
-    caption: "정품이 아닐시 1000% 보상"
+    caption: "정품이 아닐시 1000% 보상"  
   }
 ];
 
 let ps = null;
-
-
 
 class NewDescriptPage extends React.Component {
   componentDidMount() {
@@ -57,17 +72,44 @@ class NewDescriptPage extends React.Component {
     document.body.classList.toggle("Product-page");
   }
 
+  
+
   constructor(props){
   super(props);
-    
+
+  var params = new URLSearchParams(props.location.search);
+  
   this.state={
-    value:0,min:0,counter:0
+    products:{
+      id           :'',
+      index        :'',
+      image        :'',
+      pname        :'',
+      description  :'',
+      price        :'',
+      date         :''  
+    },
+    value:0,min:0,counter:0,
+    index:params.get('index')
   };
   this.handleClickPlus=this.handleClickPlus.bind(this);
   this.handleClickMinus=this.handleClickMinus.bind(this);
   this.handleOnChange=this.handleOnChange.bind(this);
-  
+
+  Axios.get("http://localhost:5000/OldP/products/getOldp?index="+params.get('index'))
+    .then(response => {
+        if(response.status==200){
+          this.setState({
+            products:response.data[0]
+          })
+            
+        }else{
+            
+        }
+  })
 }
+  
+
 handleClickPlus(){
   this.setState({
     value:this.state.value+1
@@ -98,57 +140,35 @@ handleOnChange(e) {
     return (
 
       <>
-       
-      
-  
-       <IndexNavbar />
-
-           <img
-              alt="..."
-              className="path"
-              src={require("assets/img/blob.png")}
-            />
-
-            <img
-              alt="..."
-              className="shapes circle"
-              src={require("assets/img/cercuri.png")}
-            />
-       
-
-       
-        
-       <div className="wrapper">
+        <IndexNavbar />
+        <img
+          alt="..."
+          className="path"
+          src={require("assets/img/blob.png")}
+        />
+        <img
+          alt="..."
+          className="shapes circle"
+          src={require("assets/img/cercuri.png")}
+        />
+        <div className="wrapper">
           <div className="page-header" style={{display : 'inline'}}>
-
-         
-
-
-         
-          <Row className="row-grid justify-content align-items text-left">
-                <Col lg="12" md="6">
-                  <h1 className="text-white">
-                  </h1><br/>
-                  <h3 className="text-white mb-3">
-                  </h3><br/>
-                  <h3 className="text-white mb-3">
-                  </h3><br/>
-                  <div className="btn-wrapper">
-                    </div>
-                </Col>
-
-              </Row>
-
-          
-
-          <Row className="row-grid justify-content align-items text-left">
-                <Col lg="12" md="6">
-                  <h1 className="text-white">
+            <Row className="row-grid justify-content align-items text-left">
+              <Col lg="12" md="6">
+                <h1 className="text-white"></h1><br/>
+                <h3 className="text-white mb-3"></h3><br/>
+                <h3 className="text-white mb-3"></h3><br/>
+                <div className="btn-wrapper"></div>
+              </Col>
+            </Row>
+            <Row className="row-grid justify-content align-items text-left">
+              <Col lg="12" md="6">
+                <h1 className="text-white">
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   Our products 
-                  </h1><br/>
-                  <h3 className="text-white mb-3">
+                </h1><br/>
+                <h3 className="text-white mb-3">
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp;
@@ -167,7 +187,22 @@ handleOnChange(e) {
                   <Col className="col-md-12 col-lg-6">
                   <div className="carousel slide">
                   <Row className="justify-content-between align-items-center">
-                    <UncontrolledCarousel items={carouselItems} />
+                    <UncontrolledCarousel items={[{
+                                                  src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                                  altText: "Slide 1",
+                                                  caption: "2020 HOT ITEM"  
+                                                },
+                                              {
+                                                src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                                altText: "Slide 2",
+                                                caption: "cryptoberry는 정품만 취급합니다"  
+                                              },
+                                            {
+                                              src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                              altText: "Slide 3",
+                                              caption: "정품이 아닐시 1000% 보상"  
+                                            },]} 
+                    />
                   </Row>
                   </div>
                   
@@ -177,7 +212,7 @@ handleOnChange(e) {
                   
                   
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="title">GUCCI Snake wallet</h2>
+                    <h2 className="title">{this.state.products.pname}</h2>
 
                     <div className="stars stars-right">
                       <div className="stars text-warning">
@@ -204,9 +239,9 @@ handleOnChange(e) {
                       </div>
                     </div>
                   <br/>
-                  <h2 className="main-price">41 ETH</h2>
+                  <h2 className="main-price">{this.state.products.price}</h2>
                   <h5 className="category">Description</h5>
-                  <p className="description">GG 수프림 캔버스 지갑. 구찌 하우스의 시그니처 디테일로 끊임없이 활용되는 강렬한 컬러의 킹스네이크 프린트. 친환경 소재.</p><br/>
+                  <p className="description">{this.state.products.description}</p><br/>
 
                  
 
@@ -249,15 +284,7 @@ handleOnChange(e) {
 
                   <Col className="col-sm-6 col-md-4 col-lg-4">
                   <label>Select color</label>
-                  {/* <div className="react-select react-select-warning css-2b097c-container">
-                    <div className="react-select__control css-yk16xz-control">
-                    <div className="react-select__value-container react-select__value-container--has-value css-1hwfws3">
-                    <div className="react-select__placeholder css-1wa3eu0-placeholder"></div>
-                    <div> */}
-                    {/* <div className="react-select__placeholder css-1wa3eu0-placeholder"></div>
-                    <div className="react-select__single-value css-1uccc91-singleValue">Black</div>
-                    <div className="react-select__single-value css-1uccc91-singleValue">Gray</div>
-                    <div className="react-select__single-value css-1uccc91-singleValue">White</div> */}
+                
                     <select>
                       <option selected value="choice">==선택==</option>
                       <option value="Black">Black</option>
@@ -266,58 +293,11 @@ handleOnChange(e) {
                       <option value="Navy">Navy</option>
                       <option value="gita">기타</option>
                     </select>
-                    {/* </div>
-                   
 
-                        <div className="css-1g6gooi">
-                          <div className="react-select__input" style={{display: "inline-block"}}>
-                          <input autocapitalize="none" autocomplete= "off" autocorrect="off" id="react-select-2-input" spellcheck="false" tabindex="0" type="text" aria-autocomplete="list" value="" style={{ boxSizing: "content-box", width: "2px", background: "0px center", border: "0px", fontSize: "inherit", opacity: "1", outline: "0px", padding: "0px", color: "inherit"}}/>
-                          <div style={{position: "absolute",
-                            top: "0px",
-                            left: "0px",
-                            visibility: "hidden",
-                            height: "0px",
-                            overflow: "scroll",
-                            whiteSpace: "pre",
-                            fontSize: "14px",
-                            fontFamily: "Poppins sans-serif",
-                            fontWeight: "400",
-                            fontStyle: "normal",
-                            letterSpacing: "normal",
-                            textTransform: "none"}}></div>
-
-                          </div>
-                        </div>
-                      </div> */}
-                      
-                      {/* <div className="react-select__indicators css-1wy0on6">
-                        <span className="react-select__indicator-separator css-1okebmr-indicatorSeparator"></span>
-                      <div aria-hidden="true" class="react-select__indicator react-select__dropdown-indicator css-tlfecz-indicatorContainer">
-                        <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true" 
-                        focusable="false" class="css=19bqh2r">
-                          <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                        </svg>
-
-                      </div>
-                      </div>
-                      
-                    </div>
-                  </div> */}
                   </Col>
 
                   <Col className="col-sm-6 col-md-4 col-lg-4">
                     <label>Select size</label>
-{/* 
-                  <div className="react-select react-select-warning css-2b097c-container">
-
-                  <div className="react-select__control css-yk16xz-control">
-                  <div className="react-select__value-container react-select__vlaue-container--has-value css-1hwfws3"> */}
-                  {/* <div className="react-select__single-value css-1uccc91-singleValue">Extra Small</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Small</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Medium</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Large</div>
-                  <div className="react-select__single-value css-1uccc91-singleValue">Extra Large</div> */}
-
                   <select>
                       <option selected value="choice">==선택==</option>
                       <option value="Extra Small">Extra Small</option>
@@ -327,29 +307,6 @@ handleOnChange(e) {
                       <option value="Extra Large">Extra Large</option>
                       <option value="gita">기타</option>
                     </select>
-                 
-                
-
-                  {/* </div>
-                  </div>
-                  </div> */}
-
-                  {/* <div className="react-select__indicators css-1wy0on6">
-                    <span className="react-select__indicators-separator css-1okebmr-
-                    indicatorSeparator"></span>
-                  <div aria-hidden="true" className="react-select__indicator react-select__dropdown-indicator css-tlfecz-indicatorContainer">
-                  <svg height="20" width="20" viewBox="0 0 20 20" aria-hidden="true"
-                  focusable="false" class="css-19bqh2r">
-                  <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-                  </svg>
-                  
-
-                    
-                  </div>
-                  
-                  
-
-                  </div> */}
                   
                       
                   </Col>
@@ -358,10 +315,9 @@ handleOnChange(e) {
 
                   <Col>
                   
-                  <Button
-                className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
+              <Button className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
                 <i className="tim-icons icon-cart"></i>
-	구매하기
+	              구매하기
               </Button>
 
                   
@@ -369,18 +325,7 @@ handleOnChange(e) {
 
                   </div>
                   </Col>
-                  
-                  
 
-                   {/* <div className="justify-content-start row">
-                  <button className="m1-39 btn btn-primary" style={{float: 'right'}}>
-                     구매하기 &nbsp;
-                    <i class="tim-icons icon-cart">
-                      
-                    </i>
-                  </button>
-
-                  </div>  */}
                   </Row>
                  
                 </Container>
@@ -581,13 +526,12 @@ handleOnChange(e) {
                   <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/Product-page2';
+                                         window.location.href='/new-descript-page?id=${products[1]}';
           }}>
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
               src={require("assets/img/ballpen3.jpg")}
-              
             />
           </button>
                   </a>
@@ -620,7 +564,7 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/product-page2';
+                                        window.location.href='/new-descript-page?id=${products[2]}';
           }}>
             <img
               alt="..."
@@ -660,7 +604,7 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/product-page2';
+                                        window.location.href='/new-descript-page?id=${products[3]}';
           }}>
             <img
               alt="..."
@@ -699,8 +643,9 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/product-old';
+                                        window.location.href='/new-descript-page?id=${products[4}';
           }}>
+           
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"

@@ -10,6 +10,12 @@ import Footer from "components/Footer/Footer.js";
 import Basics from "views/IndexSections/Basics.js";
 
 
+// element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+ 
+//   const img = document.createElement('img');
+//   img.src = treeImage;
+//   element.appendChild(img);
+
 class Index extends React.Component {
   componentDidMount() {
     document.body.classList.toggle("index-page");
