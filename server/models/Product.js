@@ -1,7 +1,7 @@
 const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 var autoIncrement = require('mongoose-auto-increment');
-var connection = mongoose.createConnection('mongodb+srv://angel:a1234@cluster0.o7lvu.mongodb.net/Cryptoberry?retryWrites=true&w=majority');
+var connection = mongoose.createConnection('mongodb+srv://angel:a1234@cluster0.0bdxl.mongodb.net/Cryptoberry?retryWrites=true&w=majority');
  autoIncrement.initialize(connection);
 
 
