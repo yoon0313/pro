@@ -82,6 +82,7 @@ class UploadOldPage extends React.Component {
     this.state = {
       file : [],
       previewURL : [],
+      binary : "",
       brandname : "",
       description : "",
       price : "",
@@ -118,14 +119,32 @@ class UploadOldPage extends React.Component {
   handleFileOnChange = (event) => {
     event.preventDefault();
     if(this.state.previewURL.length >=3){
-      alert("더 이상은 무리데쓰");
+      alert("사진은 최대 3장까지 업로드 가능합니다.");
       return;
     }
     let reader = new FileReader();
     let file = event.target.files[0];
+    if(file.size >=5000000){
+      alert("5MB 이상의 파일은 올릴수 없습니다.")
+
+      return;
+    }
     reader.onloadend = () => {
-      this.state.file.push(file)
-      this.state.previewURL.push(reader.result)
+      this.state.file.push(
+        {
+          metadata:{
+            name: file.name,
+            lastModifieddate: file.lastModifieddate,
+            size: file.size,
+            type: file.type
+          },
+          binary : reader.result
+        }
+      )
+      this.state.previewURL.push(
+        reader.result
+      )
+
       /*this.setState({
         file : file,
         previewURL : reader.result
