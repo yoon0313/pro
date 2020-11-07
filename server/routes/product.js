@@ -67,16 +67,17 @@ router.post('/register', async (req,res) =>{
   idx = await getNextSequence(),
   products.insertOne({
     index: idx,
+    brandname: req.body.brandname,
     description : req.body.description,
     price : req.body.price,
     images : req.body.images,
     date : req.body.date
-
-
   }).then( (data)=>{
     res.json({success:true, msg:data})
   })
 })
+
+
 
 // router.get('/getOldP', (req,res) =>{
 //   console.log(req.body);
@@ -88,7 +89,7 @@ router.post('/register', async (req,res) =>{
 
 // const query = {Id : 1};
 
-//db에서 가져오기 
+//db에서 OldProduct 가져오기 
 router.get('/getOldP', (req,res) =>{
   var products = DB.collection('products');
 
@@ -120,5 +121,38 @@ router.get('/getOldP', (req,res) =>{
     }
   }); 
 })
+
+// //db에서 NewProduct 가져오기 
+// router.get('/getNewP', (req,res) =>{
+//   var products = DB.collection('new');
+
+  
+//   let cusor;
+//   if(req.query.index){
+//     cursor =new.find({index:parseInt(req.query.index)});
+//   }
+//   else {
+//     cursor =new.find({});
+//   }
+  
+
+//   let result=[];
+//   cursor.count().then(cnt =>{
+//     let arrLength=  cnt;
+//     if(cnt==0) {
+//       res.json(result);
+//     } else{
+//       cursor.each( function(err,doc){
+//         if (doc != null) {
+//           result.push(doc)
+//           if(result.length == arrLength){
+//             res.json(result)
+    
+//           }
+//         } 
+//       })
+//     }
+//   }); 
+// })
 
 module.exports = router;

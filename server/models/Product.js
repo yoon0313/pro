@@ -1,3 +1,4 @@
+const { Binary } = require('mongodb');
 const mongoose = require('mongoose');
 var autoIncrement = require('mongoose-auto-increment');
 var connection = mongoose.createConnection('mongodb+srv://angel:a1234@cluster0.o7lvu.mongodb.net/Cryptoberry?retryWrites=true&w=majority');
@@ -26,17 +27,20 @@ let productSchema = mongoose.Schema({
     //특정값 불러오기
     //제품등록날짜(수기입력)(자동입력하는거 있을거임 newdate)
     index:'number',
+    brandname:{
+        type: String,
+        require: true
+    },
     description:{
         type: String,
         require: true
     },
     price:{
-        type: Number,
-        default:0,
+        type: String,
         require: true
     },
     images:{
-        type: Array,
+        type: Buffer,
         default:[],
         require: true
     },

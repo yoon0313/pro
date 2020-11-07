@@ -82,16 +82,22 @@ class NewPage extends React.Component {
           <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
         </Row>
 
-
+        {/* <Row>
+          <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
+          <video loop="loop" autoPlay="autoplay" muted="muted" webkit-playsInline="webkit-playsinline" playsInline="playsinline" >
+                  <source src ={require('assets/video/newproduct_nike_video.mp4')}></source>
+                </video>
+          <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
+        </Row> */}
 
         <Row>
           <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
 
 
-    
+        {/* <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/63/IMG_%28business%29.svg/1280px-IMG_%28business%29.svg.png" width="560" height="315"></img> */}
 
         <iframe width="850" height="400" src="https://www.youtube.com/embed/ch6f2mrGUYk?amp;autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-     
+        {/* <iframe width="560" height="315" src="https://www.youtube.com/embed/kQjepPDeUw0?amp;autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
           <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
         </Row>
 
@@ -106,7 +112,7 @@ class NewPage extends React.Component {
         <div class="space-70"></div>
 
         <Row>
-       
+          {/* <ImageButton imagePath="assets/img/guccci.jpg" linkPage="/Product-page" itemName="GUCCI Snake wallet" itemPrice="41 ETH"></ImageButton> */}
           <Col className="mt-5 mt-sm-0" sm="3" xs="6">
           <button type="button" onClick={(e) => {
                                         e.preventDefault();

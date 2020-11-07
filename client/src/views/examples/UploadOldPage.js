@@ -82,6 +82,7 @@ class UploadOldPage extends React.Component {
     this.state = {
       file : [],
       previewURL : [],
+      brandname : "",
       description : "",
       price : "",
       date: new Date()
@@ -98,6 +99,13 @@ class UploadOldPage extends React.Component {
     this.setState({
         description : event.target.value
       })
+  }
+
+  handleBrandNameOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      brandname : event.target.value
+    })
   }
 
   handlePriceOnChange = (event) => {
@@ -137,7 +145,7 @@ class UploadOldPage extends React.Component {
 
 
     //모든 입력칸이 채워지지않으면 submit할 수없게 조건문
-    if(!this.state.description || !this.state.price || !this.state.file){
+    if(!this.state.description || !this.state.price || !this.state.file || !this.state.brandname){
         return alert("모든 값을 넣어주세요")
     }
 
@@ -148,6 +156,7 @@ class UploadOldPage extends React.Component {
         //로그인된 사람의 ID를 가져오기위해 
         
         description:this.state.description,
+        brandname:this.state.brandname,
         price:this.state.price,
         images:this.state.file,
         date:this.state.date
@@ -262,7 +271,15 @@ class UploadOldPage extends React.Component {
                       {/* {this.setState.date.toLocaleString()} */}
                       {/* {this.state.date.getFullYear()},{this.state.date.getFullYear()}{this.state.date.toLocaleTimeString()}, */}
                       </div>
-
+                      <br/>
+                      
+                      <Input
+                            placeholder="Brand Name"
+                            type="string"
+                            value={this.brandname}
+                            onChange={this.handleBrandNameOnChange}
+                      />
+                      <br/>
                       <Input
                             placeholder="price"
                             type="number"
