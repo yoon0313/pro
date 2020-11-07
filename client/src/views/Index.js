@@ -10,11 +10,13 @@ import Footer from "components/Footer/Footer.js";
 import Basics from "views/IndexSections/Basics.js";
 
 
+// element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+ 
+//   const img = document.createElement('img');
+//   img.src = treeImage;
+//   element.appendChild(img);
 
 class Index extends React.Component {
-
-
-
   componentDidMount() {
     document.body.classList.toggle("index-page");
   }
@@ -28,9 +30,7 @@ class Index extends React.Component {
         <div className="wrapper">
           <PageHeader />
           <div className="main">
-           <Basics/>
-            
-            
+            <Basics />
           </div>
           <Footer />
         </div>

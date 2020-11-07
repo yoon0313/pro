@@ -1,4 +1,3 @@
-
 import React, { Component, PropTypes, useState } from "react";
 import Axios from 'axios';
 import classnames from "classnames";
@@ -6,7 +5,6 @@ import classnames from "classnames";
 
 import {
   Button,
-
   Container,
   Row,
   Col,
@@ -21,26 +19,23 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 
 import { Link } from "react-router-dom";
 
-const carouselItems = [
-  {
-    src: require("assets/img/ballpen4.JPG"),
-    altText: "Slide 1",
-    caption: "2020 프리폴 컬렉션"
-  },
-  {
-    src: require("assets/img/ballpen5.JPG"),
-    altText: "Slide 2",
-    caption: "cryptoberry는 정품만 취급합니다"
-  },
-  {
-    src: require("assets/img/ballpen6.JPG"),
-    altText: "Slide 3",
-    caption: "정품이 아닐시 1000% 보상"
-  }
-];
-
-let ps = null;
-
+// const carouselItems = [
+//   {
+//     src: require("assets/img/ballpen4.JPG"),
+//     altText: "Slide 1",
+//     caption: "2020 프리폴 컬렉션"
+//   },
+//   {
+//     src: require("assets/img/ballpen5.JPG"),
+//     altText: "Slide 2",
+//     caption: "cryptoberry는 정품만 취급합니다"
+//   },
+//   {
+//     src: require("assets/img/ballpen6.JPG"),
+//     altText: "Slide 3",
+//     caption: "정품이 아닐시 1000% 보상"
+//   }
+// ];
 
 
 class OldDescriptPage extends React.Component {
@@ -58,20 +53,40 @@ class OldDescriptPage extends React.Component {
   constructor(props){
   super(props);
 
+  var params = new URLSearchParams(props.location.search);
+  
   this.state={
-    value:0,
-    file : [],
-    previewURL : [],
-    description : "",
-    price : ""
+    products:{
+      id           :'',
+      index        :'',
+      image        :'',
+      brandname    :'',
+      productName  :'',
+      tokenuri     :'',
+      description  :'',
+      price        :'',
+      date         :''  
+    },
+    value:0,min:0,counter:0,
+    index:params.get('index')
   };
   this.handleClickPlus=this.handleClickPlus.bind(this);
   this.handleClickMinus=this.handleClickMinus.bind(this);
   this.handleOnChange=this.handleOnChange.bind(this);
-  
+
+  Axios.get("http://localhost:5000/OldP/products/getOldp?index="+params.get('index'))
+    .then(response => {
+        if(response.status==200){
+          this.setState({
+            products:response.data[0]
+          })
+            
+        }else{
+            
+        }
+  })
 }
-
-
+  
 
 handleClickPlus(){
   this.setState({
@@ -83,7 +98,6 @@ handleClickMinus(){
   if(this.state.value <=0) return;
   this.setState({
     value:this.state.value-1
-  
   });
 }
 
@@ -95,55 +109,17 @@ handleOnChange(e) {
   });
 }
 
-
-selectChange(e){
-  this.setState({
-    selectedValue: e.target.value
-    
-  })
-}
-
-// //데이터 불러오기
-// loadHandler = (event) =>{
-//   // preventDefault를 해줘야 확인 버튼을 눌렀을때
-//   // 화면이 새로고침되지 않는다.
-//   event.preventDefault();
-//   const body = {
-//     //로그인된 사람의 ID를 가져오기위해 
-    
-//     description:this.state.description,
-//     price:this.state.price,
-//     images:this.state.file
-//     // tokens: Tokens[Token-1].value
-//   }
-//   //서버에서 가져오기
-//   Axios.get("http://localhost:5000/OldP/products/getOldP", body)
-//       .then(response => {
-//           if(response.data.success){
-//               alert('상품 불러오기 성공 했습니다.')
-//               //상품업로드 후 랜딩페이지로 돌아감
-//               this.props.history.pull('/')
-//           }else{
-//               alert('상품 불러오기에 실패 했습니다.')
-//           }
-//       })
-// }
-
+  selectChange(e){
+    this.setState({
+      selectedValue: e.target.value
+    })
+  }
   render() {
     return (
 
       <>
   
        <IndexNavbar />
-{/* 
-          <div className = "Product">
-            <h1>Products</h1> */}
-            {/* {this.state.products.map(product =>
-              <div key = {product._id}>{product.description} {product.price} {product.images} </div>
-            )}  */} 
-            {/* <button onClick={this.loadHandler} type="button" className="btn-round btn-simple btn btn-warning"/>
-          </div> */}
-          
            <img
               alt="..."
               className="path"
@@ -155,18 +131,10 @@ selectChange(e){
               className="shapes circle"
               src={require("assets/img/cercuri.png")}
             />
-       
-
-       
-        
+ 
        <div className="wrapper">
           <div className="page-header" style={{display : 'inline'}}>
-
-         
-
-
-         
-          <Row className="row-grid justify-content align-items text-left">
+  <Row className="row-grid justify-content align-items text-left">
                 <Col lg="12" md="6">
                   <h1 className="text-white">
                   </h1><br/>
@@ -180,9 +148,7 @@ selectChange(e){
 
               </Row>
 
-          
-
-          <Row className="row-grid justify-content align-items text-left">
+              <Row className="row-grid justify-content align-items text-left">
                 <Col lg="12" md="6">
                   <h1 className="text-white">
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -208,87 +174,72 @@ selectChange(e){
                   <Col className="col-md-12 col-lg-6">
                   <div className="carousel slide">
                   <Row className="justify-content-between align-items-center">
-                    <UncontrolledCarousel items={carouselItems} />
+                    <UncontrolledCarousel items={[{
+                                                  src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                                  altText: "Slide 1",
+                                                  caption: "2020 HOT ITEM"  
+                                                  },
+                                                  {
+                                                src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                                altText: "Slide 2",
+                                                caption: "cryptoberry는 정품만 취급합니다"  
+                                                  },
+                                                  {
+                                              src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
+                                              altText: "Slide 3",
+                                              caption: "정품이 아닐시 1000% 보상"  
+                                                  },]} 
+                    />
                   </Row>
-                  </div>
-                  
-
-                  </Col>
+              </div>
+            </Col>
 
                   
                   
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="title">Monblanc ballpen</h2>
+                    <h2 className="brandname">{this.state.products.brandname}</h2>
 
                     <div className="stars stars-right">
                       <div className="stars text-warning">
-                        <i className="fas fa-star">
+                        <i className="fas fa-star"></i>
 
-                        </i>
+                        <i className="fas fa-star ml-1"></i>
 
-                        <i className="fas fa-star ml-1">
+                        <i className="fas fa-star ml-1"></i>
 
-                        </i>
+                        <i className="fas fa-star ml-1"></i>
 
-                        <i className="fas fa-star ml-1">
-                          
-                        </i>
-
-                        <i className="fas fa-star ml-1">
-                          
-                        </i>
-
-                        <i className="far fa-star ml-1">
-                          
-                        </i>
-                        <p className="d-inline ml-1">(87 customer reviews)</p>
+                        <i className="far fa-star ml-1"></i>
+                        <p className="d-inline ml-1">(8080 customer reviews)</p>
                       </div>
                     </div>
                   <br/>
-                  <h2 className="main-price">9 ETH</h2>
+                  <h2 className="main-price">{this.state.products.price} KLAY</h2>
                   <h5 className="category">Description</h5>
-                  <p className="description">몽블랑 픽스 PIX 블랙 볼펜 떠오르는 남자의 필수품</p><br/>
-
-                 
-
+                  <p className="description">{this.state.products.description}</p><br/>
                   <div className="pick-size row">
                   <Col className="col-md-4 col-lg-2">
+                    
                     <label>
                       &nbsp; &nbsp; 수량
                     </label>
 
-
-
-                   
                     <div className="input-group">
                       <div className="input-group-btn">
                         <button onClick={this.handleClickMinus} type="button" className="btn-round btn-simple btn btn-warning">
-                          <i className="tim-icons icon-simple-delete">
-                            
-                          </i>
+                          <i className="tim-icons icon-simple-delete"></i>
                         </button>
                       </div>
-
-                      
-
                     </div> 
 
                    
                     <input id="myNumber" type="text" className="input-number form-control"  value={this.state.value}/>
-                    
-
                     <div className="input-group">
                     <div className="input-group-btn">
                       <button onClick={this.handleClickPlus} type="button" className="btn-round btn-simple btn btn-warning">
-                        <i className="tim-icons icon-simple-add">
-                          
-                        </i>
+                        <i className="tim-icons icon-simple-add"></i>
                       </button>
-                      
-                      
                     </div>    
-
-                    
                     </div>          
                   </Col>
 
