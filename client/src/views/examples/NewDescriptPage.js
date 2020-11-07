@@ -1,6 +1,4 @@
-
 import React , { Component } from "react";
-
 
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 
@@ -28,45 +26,8 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
-const products = [
-  {
-    'id' :'',
-    'index' : '',
-    'image' : '',
-    'pname' : '',
-    'description' : '',
-    'price' : '',
-    'date' : '',
-  },
-
-
-]
-
-
-
-const carouselItems = [
-  {
-    src: require("assets/img/gucci2.jpg"), //DB 연결
-    altText: "Slide 1",
-    caption: "2020 HOT ITEM"  
-  },
-  {
-    src: require("assets/img/gucci3.jpg"),  //DB 연결
-    altText: "Slide 2",
-    caption: "cryptoberry는 정품만 취급합니다"  
-  },
-  {
-    src: require("assets/img/gucci.jpg"),   //DB 연결
-    altText: "Slide 3",
-    caption: "정품이 아닐시 1000% 보상"  
-  }
-];
-
-let ps = null;
-
 class NewDescriptPage extends React.Component {
   componentDidMount() {
-    
     document.body.classList.toggle("Product-page");
   }
   componentWillUnmount() {
@@ -76,81 +37,91 @@ class NewDescriptPage extends React.Component {
   
 
   constructor(props){
-  super(props);
-  
+    super(props);
+
+    var params = new URLSearchParams(props.location.search);
     
-  this.state={
-    products:{
-      id           :'',
-      index        :'',
-      image        :'',
-      pname        :'',
-      description  :'',
-      price        :'',
-      date         :''  
-    },
-    value:0,min:0,counter:0,
-    index:params.get('index')
-  };
-  this.handleClickPlus=this.handleClickPlus.bind(this);
-  this.handleClickMinus=this.handleClickMinus.bind(this);
-  this.handleOnChange=this.handleOnChange.bind(this);
+    this.state={
+      products:{
+        id           :'',
+        index        :'',
+        images       :'',
+        brandname    :'',
+        productName  :'',
+        tokenuri     :'',
+        description  :'',
+        price        :'',
+        date         :''  
+      },
+      value:0,min:0,counter:0,
+      index:params.get('index')
+    };
+    this.handleClickPlus=this.handleClickPlus.bind(this);
+    this.handleClickMinus=this.handleClickMinus.bind(this);
+    this.handleOnChange=this.handleOnChange.bind(this);
 
-  Axios.get("http://localhost:5000/OldP/products/getOldp?index="+params.get('index'))
-    .then(response => {
-        if(response.status==200){
-          this.setState({
-            products:response.data[0]
-          })
-            
-        }else{
-            
-        }
-  })
-}
+    Axios.get("http://localhost:5000/OldP/products/getOldp?index="+params.get('index'))
+      .then(response => {
+          if(response.status==200){
+            this.setState({
+              products:response.data[0]
+            })
+              
+          }else{
+              
+          }
+    })
+  }
   
 
-handleClickPlus(){
-  this.setState({
-    value:this.state.value+1
-  });
-}
+  handleClickPlus(){
+    this.setState({
+      value:this.state.value+1
+    });
+  }
 
-handleClickMinus(){
-  if(this.state.value <=0) return;
-  this.setState({
-    value:this.state.value-1
-  });
-}
+  handleClickMinus(){
+    if(this.state.value <=0) return;
+    this.setState({
+      value:this.state.value-1
+    });
+  }
 
-handleOnChange(e) {
-  
-  // e.target.value 숫자만 있는지 확인
-  this.setState({
-    value: e.target.value
-  });
-}
+  handleOnChange(e) {
+    
+    // e.target.value 숫자만 있는지 확인
+    this.setState({
+      value: e.target.value
+    });
+  }
 
   selectChange(e){
     this.setState({
       selectedValue: e.target.value
     })
   }
-  render() {
-    return (
 
+  render() {
+
+    var imageItems=[];
+    if(!this.state.products.images|| this.state.products.images.length == 0){
+      imageItems = []
+    }
+    else{
+      this.state.products.images.forEach(element => {
+        imageItems.push({
+          src : element.binary,
+          altText: element.metadata.name,
+          caption: element.metadata.name
+        })
+      });
+    }
+
+    return (  
       <>
         <IndexNavbar />
-        <img
-          alt="..."
-          className="path"
-          src={require("assets/img/blob.png")}
-        />
-        <img
-          alt="..."
-          className="shapes circle"
-          src={require("assets/img/cercuri.png")}
-        />
+        <img alt="..." className="path" src={require("assets/img/blob.png")} />
+        <img alt="..." className="shapes circle" src={require("assets/img/cercuri.png")} />
         <div className="wrapper">
           <div className="page-header" style={{display : 'inline'}}>
             <Row className="row-grid justify-content align-items text-left">
@@ -173,261 +144,160 @@ handleOnChange(e) {
                   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                   &nbsp; &nbsp; &nbsp; &nbsp;
                   크립토 베리 에서는 본사에서 직접 받아온 제품만 판매합니다.
-                  </h3>
-                  <div className="btn-wrapper">
-                    </div>
-                </Col>
+                </h3>
+                <div className="btn-wrapper"></div>
+              </Col>
+            </Row>
 
-              </Row>
-
-              <div className="section">
-                <Container>
-                  <Row>
-
+            <div className="section">
+              <Container>
+                <Row>
                   <Col className="col-md-12 col-lg-6">
-                  <div className="carousel slide">
-                  <Row className="justify-content-between align-items-center">
-                    <UncontrolledCarousel items={[{
-                                                  src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
-                                                  altText: "Slide 1",
-                                                  caption: "2020 HOT ITEM"  
-                                                },
-                                              {
-                                                src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
-                                                altText: "Slide 2",
-                                                caption: "cryptoberry는 정품만 취급합니다"  
-                                              },
-                                            {
-                                              src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
-                                              altText: "Slide 3",
-                                              caption: "정품이 아닐시 1000% 보상"  
-                                            },]} 
-                    />
-                  </Row>
-                  </div>
-                  
-
+                    <div className="carousel slide">
+                      <Row className="justify-content-between align-items-center">
+                        <UncontrolledCarousel items={imageItems}/>
+                      </Row>
+                    </div>
                   </Col>
-
-                  
-                  
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="title">{this.state.products.pname}</h2>
-
+                    <h2 className="brandname">{this.state.products.brandname}</h2>
+                    <h5>Wallet</h5>
                     <div className="stars stars-right">
                       <div className="stars text-warning">
-                        <i className="fas fa-star">
-
-                        </i>
-
-                        <i className="fas fa-star ml-1">
-
-                        </i>
-
-                        <i className="fas fa-star ml-1">
-                          
-                        </i>
-
-                        <i className="fas fa-star ml-1">
-                          
-                        </i>
-
-                        <i className="far fa-star ml-1">
-                          
-                        </i>
-                        <p className="d-inline ml-1">(76 customer reviews)</p>
+                        <i className="fas fa-star"></i>
+                        <i className="fas fa-star ml-1"></i>
+                        <i className="fas fa-star ml-1"></i>
+                        <i className="fas fa-star ml-1"></i>
+                        <i className="far fa-star ml-1"></i>
+                        <p className="d-inline ml-1">(8080 customer reviews)</p>
                       </div>
+                    </div> <br/>
+                    <h2 className="main-price">{this.state.products.price} KLAY</h2>
+                    <h5 className="category">Description</h5>
+                    <p className="description">{this.state.products.description}</p><br/>
+                    <h5 className="category">참고 LINK</h5>
+                    <a href="http://www.naver.com">www.naver.com</a>
+                    <div className="pick-size row">
+                      <Col className="col-md-4 col-lg-2">
+                        <label>
+                          &nbsp; &nbsp; 수량
+                        </label>
+                        <div className="input-group">
+                          <div className="input-group-btn">
+                            <button onClick={this.handleClickMinus} type="button" className="btn-round btn-simple btn btn-warning">
+                              <i className="tim-icons icon-simple-delete"></i>
+                            </button>
+                          </div>
+                        </div> 
+                        <input id="myNumber" type="text" className="input-number form-control"  value={this.state.value} onChange={this.handleOnChange}/>
+                        <div className="input-group">
+                          <div className="input-group-btn">
+                            <button onClick={this.handleClickPlus} type="button" className="btn-round btn-simple btn btn-warning">
+                              <i className="tim-icons icon-simple-add"></i>
+                            </button>
+                          </div>
+                        </div>          
+                      </Col>
+
+                      <Col className="col-sm-6 col-md-4 col-lg-4">
+                        <label>Select color</label>
+                        <select>
+                          <option selected value="choice">==선택==</option>
+                          <option value="Black">Black</option>
+                          <option value="Brown">Brown</option>
+                          <option value="Gray">Gray</option>
+                          <option value="Navy">Navy</option>
+                          <option value="gita">기타</option>
+                        </select>
+                      </Col>
+                      <Col className="col-sm-6 col-md-4 col-lg-4">
+                        <label>Select size</label>
+                        <select>
+                          <option selected value="choice">==선택==</option>
+                          <option value="Extra Small">Extra Small</option>
+                          <option value="Small">Small</option>
+                          <option value="Medium">Medium</option>
+                          <option value="Large">Large</option>
+                          <option value="Extra Large">Extra Large</option>
+                          <option value="gita">기타</option>
+                        </select>
+                      </Col>
+                      <Col>
+                        <Button className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
+                          <i className="tim-icons icon-cart"></i>
+                          구매하기
+                        </Button>
+                      </Col>
                     </div>
-                  <br/>
-                  <h2 className="main-price">{this.state.products.price}</h2>
-                  <h5 className="category">Description</h5>
-                  <p className="description">{this.state.products.description}</p><br/>
-
-                 
-
-                  <div className="pick-size row">
-                  {/* <Col className="col-md-4 col-lg-2">
-                    <label>
-                      &nbsp; &nbsp; 수량
-                    </label>
-                    <div className="input-group">
-                      <div className="input-group-btn">
-                        <button onClick={this.handleClickMinus} type="button" className="btn-round btn-simple btn btn-warning">
-                          <i className="tim-icons icon-simple-delete">
-                            
-                          </i>
-                        </button>
-                      </div>
-
-                      
-
-                    </div> 
-
-                   
-                    <input id="myNumber" type="text" className="input-number form-control"  value={this.state.value} onChange={this.handleOnChange}/>
-                    
-
-                    <div className="input-group">
-                    <div className="input-group-btn">
-                      <button onClick={this.handleClickPlus} type="button" className="btn-round btn-simple btn btn-warning">
-                        <i className="tim-icons icon-simple-add">
-                          
-                        </i>
-                      </button>
-                      
-                      
-                    </div>    
-
-                    
-                    </div>          
-                  </Col> */}
-
-                  {/* <Col className="col-sm-6 col-md-4 col-lg-4">
-                  <label>Select color</label>
-             
-                
-                    <select>
-                      <option selected value="choice">==선택==</option>
-                      <option value="Black">Black</option>
-                      <option value="Brown">Brown</option>
-                      <option value="Gray">Gray</option>
-                      <option value="Navy">Navy</option>
-                      <option value="gita">기타</option>
-                    </select>
-
-                      
-    
-                  </Col> */}
-
-                  {/* <Col className="col-sm-6 col-md-4 col-lg-4">
-                    <label>Select size</label>
-                  <select>
-                      <option selected value="choice">==선택==</option>
-                      <option value="Extra Small">Extra Small</option>
-                      <option value="Small">Small</option>
-                      <option value="Medium">Medium</option>
-                      <option value="Large">Large</option>
-                      <option value="Extra Large">Extra Large</option>
-                      <option value="gita">기타</option>
-                    </select>
-                 
-
-                  </Col> */}
-
-                  
-
-                  <Col>
-                  
-              <Button className="btn-simple btn btn-primary" style={{float: "right"}} Link tag={Link} to="/order-page">
-                <i className="tim-icons icon-cart"></i>
-	              구매하기
-              </Button>
-
-                  
                   </Col>
-
-                  </div>
-                  </Col>
-                  
-                  
-
-                  </Row>
-                 
-                </Container>
-
-                
-              </div>
-              
+                </Row>
+              </Container>
             </div>
-            
-            <div className="section">
-             
+              <div className="section">
                 <div className="container">
                   <Row>
                     <Col className="ml-auto mr-auto text-center col-md-6">
                       <h2 className="title">Not convinced yet?</h2>
-                      
                       <h4 className="description">정보가 더 필요한가요? 다른 사람이 우리 제품에 대해 말하는 것을 확인해보세요. 그들은 그들의 구매에 매우 만족합니다.</h4>
                     </Col>
                   </Row>
-                
                   <Row>
-                <Col className="col-md-3" >
-                  <div className="card-testimonial card">
-                  <div className="card-avatar">
-                        <a href="#pablo">
-                          <img alt="..." class="img img-raised" src={require("assets/img/girl11.jpg")}></img>"
-                        </a>
+                    <Col className="col-md-3" >
+                      <div className="card-testimonial card">
+                        <div className="card-avatar">
+                          <a href="#pablo">
+                            <img alt="..." class="img img-raised" src={require("assets/img/girl11.jpg")}></img>"
+                          </a>
+                        </div>
+                        <div className="icon icon-primary">
+                          <i className="fa fa-quote-right"></i>
+                        </div>
+                        <div className="card-body">
+                          <p className="card-description">크립토베리에서 10번 넘게 구매합니다. 히히</p><br/>
+                          <p className="card-description">믿고 사셔도 좋아요 ㅎㅎ</p>
+                        </div>
+                        <div className="icon icon-primary">
+                          <i className="fa fa-quote-right"></i>
+                        </div>
+                      <div className="card-footer">
+                        <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
+                          <Link to="profile-page">
+                            <i className="tim-icons icon-single-02"></i>
+                          </Link>
+                        </button>
+                        <h4 className="card-title">효정님</h4>
+                        <p classNamee="category">@hyojung</p>
                       </div>
-
-                      <div className="icon icon-primary">
-                      <i className="fa fa-quote-right"></i>
-                      </div>
-
-                      <div className="card-body">
-                  <p className="card-description">크립토베리에서 10번 넘게 구매합니다. 히히</p><br/>
-                  <p className="card-description">믿고 사셔도 좋아요 ㅎㅎ</p>
-                </div>
-                <div className="icon icon-primary">
-                  <i className="fa fa-quote-right">
-                    
-                  </i>
-                </div>
-                <div className="card-footer">
-
-                <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                <Link to="profile-page">
-                      <i className="tim-icons icon-single-02">
-
-                      </i>
-                      </Link>
-                    </button>
-                  <h4 className="card-title">효정님</h4>
-                  <p classNamee="category">@hyojung</p>
-
                     </div>
-                    </div>
-                    
                   </Col>
-
-
-                <Col className="col-md-3">
-                  <div className="card-testimonial card">
-                  <div className="card-avatar">
-                        <a href="#pablo">
-                          <img alt="..." class="img img-raised" src={require("assets/img/man1.jpg")}></img>"
-                        </a>
+                    <Col className="col-md-3">
+                      <div className="card-testimonial card">
+                        <div className="card-avatar">
+                          <a href="#pablo">
+                            <img alt="..." class="img img-raised" src={require("assets/img/man1.jpg")}></img>"
+                          </a>
+                        </div>
+                        <div className="icon icon-primary">
+                          <i className="fa fa-quote-right"></i>
+                        </div>
+                        <div className="card-body">
+                          <p className="card-description">명품샵 가기는 귀찮고 그렇다고</p><br/>
+                          <p className="card-description">인터넷은 가짜 같은데, 여긴 그 생각을 깨줬습니당</p>
+                        </div>
+                        <div className="icon icon-primary">
+                          <i className="fa fa-quote-right"></i>
+                        </div>
+                        <div className="card-footer">
+                          <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
+                            <Link to="profile-page">
+                              <i className="tim-icons icon-single-02"></i>
+                            </Link>
+                          </button>
+                          <h4 className="card-title">Olivia Harper</h4>
+                          <p classNamee="category">@oliviaharper</p>
+                        </div>
                       </div>
-
-                      <div className="icon icon-primary">
-                      <i className="fa fa-quote-right"></i>
-                      </div>
-
-                      <div className="card-body">
-                  <p className="card-description">명품샵 가기는 귀찮고 그렇다고</p><br/>
-                  <p className="card-description">인터넷은 가짜 같은데, 여긴 그 생각을 깨줬습니당</p>
-                </div>
-                <div className="icon icon-primary">
-                  <i className="fa fa-quote-right">
-                    
-                  </i>
-                </div>
-                <div className="card-footer">
-
-                <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                <Link to="profile-page">
-                      <i className="tim-icons icon-single-02">
-
-                      </i>
-                      </Link>
-                    </button>
-                  <h4 className="card-title">Olivia Harper</h4>
-                  <p classNamee="category">@oliviaharper</p>
-
-                </div>
-                  </div>
-
-                </Col>
+                       </Col>
                 
 
                 <Col className="col-md-3">
@@ -447,14 +317,12 @@ handleOnChange(e) {
                   <p className="card-description">cryptoberry very nice!!!</p>
                 </div>
                 <div className="icon icon-primary">
-                  <i className="fa fa-quote-right">
-               
-                  </i>
+                  <i className="fa fa-quote-right"></i>
                 </div>
                 <div className="card-footer">
 
                 <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                <Link to="profile-page">
+                  <Link to="profile-page">
                       <i className="tim-icons icon-single-02">
 
                       </i>
@@ -511,6 +379,7 @@ handleOnChange(e) {
                 </Row>
                 
                 </div>
+              </div>
             </div>
           </div>
 
@@ -648,8 +517,7 @@ handleOnChange(e) {
                 <a href="#pablo">
                   <button type="button" onClick={(e) => {
                                         e.preventDefault();
-                                        window.location.href='/new-descript-page?id=${products[4}';
-          }}>
+                                        window.location.href='/new-descript-page?id=${products[4}';}}>
            
             <img
               alt="..."
