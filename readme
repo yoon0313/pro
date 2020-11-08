@@ -1,8 +1,15 @@
-설치해주세요
+*설치해주세요
 
-root
+**root
 npm install mongoose-auto-increment
 
-cd server
+**cd server
 -> npm install mongodb
 
+ㅡㅡㅡㅡ
+*mongodb
+데이터베이스 초기화 하는경우
+insert document 눌러서
+아래와 같이 추가 요망
+    _id:"index"
+    seq:0
