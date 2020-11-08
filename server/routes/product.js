@@ -68,8 +68,9 @@ router.post('/register', async (req,res) =>{
   products.insertOne({
     index: idx,
     brand: req.body.brand,
+    productName: req.body.productName,
     description : req.body.description,
-    price : req.body.price +" klay",
+    price : req.body.price,
     images : req.body.images,
     date : req.body.date,
     tokenUri1: req.body.tokenUri1,

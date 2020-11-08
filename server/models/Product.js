@@ -31,6 +31,10 @@ let productSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    productName:{
+        type: String,
+        require: true
+    },
     description:{
         type: String,
         require: true
