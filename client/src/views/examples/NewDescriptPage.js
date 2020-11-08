@@ -46,7 +46,7 @@ class NewDescriptPage extends React.Component {
         id           :'',
         index        :'',
         images       :'',
-        brandname    :'',
+        brand        :'',
         productName  :'',
         tokenuri     :'',
         description  :'',
@@ -160,8 +160,8 @@ class NewDescriptPage extends React.Component {
                     </div>
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="brandname">{this.state.products.brandname}</h2>
-                    <h5>Wallet</h5>
+                    <h2 className="brandname">{this.state.products.brand}</h2>
+                    <h5 className="productname">{this.state.products.productName}</h5>
                     <div className="stars stars-right">
                       <div className="stars text-warning">
                         <i className="fas fa-star"></i>
@@ -172,7 +172,7 @@ class NewDescriptPage extends React.Component {
                         <p className="d-inline ml-1">(8080 customer reviews)</p>
                       </div>
                     </div> <br/>
-                    <h2 className="main-price">{this.state.products.price} KLAY</h2>
+                    <h2 className="main-price">{this.state.products.price}</h2>
                     <h5 className="category">Description</h5>
                     <p className="description">{this.state.products.description}</p><br/>
                     <h5 className="category">참고 LINK</h5>
@@ -368,23 +368,14 @@ class NewDescriptPage extends React.Component {
                     </button>
                   <h4 className="card-title">DELE ALLI</h4>
                   <p classNamee="category">@delealli</p>
-
-                
-
-                </div>
                   </div>
-
-                </Col>
-                
-                </Row>
-                
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Row>
           </div>
-
-          
-          
+        </div>
+      </div>
+     </div>
 
          <div className="section related-products">
           <div className="container">
@@ -541,25 +532,16 @@ class NewDescriptPage extends React.Component {
                       <span className="price">78 ETH</span>
                     </div>
                     <button id="tooltip755498009" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                      <i className="tim-icons icon-heart-2">
-                        
-                      </i>
+                      <i className="tim-icons icon-heart-2"></i>
                     </button>
                   </div>
                 </div>
               </div>
             </Col>
-            
           </Row>
-
-
           </div>
          </div>
-
-
-             
-          <Footer />
-        
+        <Footer />
         
       </>
     );

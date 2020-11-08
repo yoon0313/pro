@@ -99,6 +99,8 @@ class Basics extends React.Component {
       //만약 오류가 발생하는경우 콘솔창에 오류를 보여준다.
       .catch(err => console.log(err));
   }
+
+ 
   
   callApi = async()=>{
     //접속하고자 하는 api주소를 넣어줌
@@ -107,6 +109,8 @@ class Basics extends React.Component {
     const body = await response.json();
     return body;
   }
+
+  
 
 
   render() {
@@ -234,13 +238,13 @@ class Basics extends React.Component {
             <img
               alt="..."
               className="img-fluid rounded shadow-lg"
-              src={products[0].image}
+              src={products[4].image}
               style={{ width: "250px" ,height: "220px"}}
               
             />
             </Link>
-            <p>{products[0].pname}</p>
-            <h5>{products[0].price}</h5>
+            <p>{products[4].pname}</p>
+            <h5>{products[4].price}</h5>
         </Col>
               
         <Col className="mt-5 mt-sm-0" sm="3" xs="6">
