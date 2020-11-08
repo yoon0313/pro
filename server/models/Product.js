@@ -27,7 +27,7 @@ let productSchema = mongoose.Schema({
     //특정값 불러오기
     //제품등록날짜(수기입력)(자동입력하는거 있을거임 newdate)
     index:'number',
-    brandname:{
+    brand:{
         type: String,
         require: true
     },
@@ -48,7 +48,19 @@ let productSchema = mongoose.Schema({
         type: String,
         default:0,
         require: true
-    }
+    },
+    tokenUri1:{
+        type: String,
+        require: true
+    },
+    tokenUri2:{
+        type: String,
+        require: true
+    },
+    tokenUri3:{
+        type: String,
+        require: true
+    },
 },{timestamps:true});
 
 productSchema.plugin(

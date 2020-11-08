@@ -83,10 +83,13 @@ class UploadOldPage extends React.Component {
       file : [],
       previewURL : [],
       binary : "",
-      brandname : "",
+      brand : "",
       description : "",
-      price : "",
-      date: new Date()
+      price : "" ,
+      date: new Date(),
+      tokenUri1:"",
+      tokenUri2:"",
+      tokenUri3:""
     }
   }
   //시간 계속 흐르게하기
@@ -102,10 +105,10 @@ class UploadOldPage extends React.Component {
       })
   }
 
-  handleBrandNameOnChange = (event) => {
+  handleBrandOnChange = (event) => {
     event.preventDefault();
     this.setState({
-      brandname : event.target.value
+      brand : event.target.value
     })
   }
 
@@ -115,7 +118,25 @@ class UploadOldPage extends React.Component {
       price : event.target.value
     })
   }
-  
+
+  handleTokenUri1OnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      tokenUri1 : event.target.value
+    })
+  }
+  handleTokenUri2OnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      tokenUri2 : event.target.value
+    })
+  }
+  handleTokenUri3OnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      tokenUri3 : event.target.value
+    })
+  }
   handleFileOnChange = (event) => {
     event.preventDefault();
     if(this.state.previewURL.length >=3){
@@ -164,7 +185,7 @@ class UploadOldPage extends React.Component {
 
 
     //모든 입력칸이 채워지지않으면 submit할 수없게 조건문
-    if(!this.state.description || !this.state.price || !this.state.file || !this.state.brandname){
+    if(!this.state.description || !this.state.price || !this.state.file || !this.state.brand){
         return alert("모든 값을 넣어주세요")
     }
 
@@ -175,10 +196,13 @@ class UploadOldPage extends React.Component {
         //로그인된 사람의 ID를 가져오기위해 
         
         description:this.state.description,
-        brandname:this.state.brandname,
+        brand:this.state.brand,
         price:this.state.price,
         images:this.state.file,
-        date:this.state.date
+        date:this.state.date,
+        tokenUri1:this.state.tokenUri1,
+        tokenUri2:this.state.tokenUri2,
+        tokenUri3:this.state.tokenUri3
         // tokens: Tokens[Token-1].value
     }
 
@@ -293,14 +317,14 @@ class UploadOldPage extends React.Component {
                       <br/>
                       
                       <Input
-                            placeholder="Brand Name"
+                            placeholder="Brand"
                             type="string"
-                            value={this.brandname}
-                            onChange={this.handleBrandNameOnChange}
+                            value={this.brand}
+                            onChange={this.handleBrandOnChange}
                       />
                       <br/>
                       <Input
-                            placeholder="price"
+                            placeholder="price(klay)"
                             type="number"
                             value={this.Price}
                             onChange={this.handlePriceOnChange}
@@ -317,7 +341,32 @@ class UploadOldPage extends React.Component {
                             onChange={this.handleDescriptionOnChange}
                             value={this.Description}
                       />
-                    
+
+                      <br/>
+                      {/* ToeknUri1 */}
+                      <Input
+                            placeholder="TokenUri1"
+                            type="string"
+                            value={this.tokenUri1}
+                            onChange={this.handleTokenUri1OnChange}
+                      />
+                      <br/>
+                      {/* ToeknUri2 */}
+                      <Input
+                            placeholder="TokenUri2"
+                            type="string"
+                            value={this.tokenUri2}
+                            onChange={this.handleTokenUri2OnChange}
+                      />
+                      <br/>
+                      {/* ToeknUri3 */}
+                      <Input
+                            placeholder="TokenUri3"
+                            type="string"
+                            value={this.tokenUri3}
+                            onChange={this.handleTokenUri3OnChange}
+                      />
+                      <br/>
                       
 
 

@@ -67,11 +67,14 @@ router.post('/register', async (req,res) =>{
   idx = await getNextSequence(),
   products.insertOne({
     index: idx,
-    brandname: req.body.brandname,
+    brand: req.body.brand,
     description : req.body.description,
-    price : req.body.price,
+    price : req.body.price +" klay",
     images : req.body.images,
-    date : req.body.date
+    date : req.body.date,
+    tokenUri1: req.body.tokenUri1,
+    tokenUri2: req.body.tokenUri2,
+    tokenUri3: req.body.tokenUri3
   }).then( (data)=>{
     res.json({success:true, msg:data})
   })
