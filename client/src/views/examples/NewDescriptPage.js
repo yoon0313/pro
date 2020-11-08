@@ -48,7 +48,9 @@ class NewDescriptPage extends React.Component {
         images       :'',
         brand        :'',
         productName  :'',
-        tokenuri     :'',
+        tokenUri1    :'',
+        tokenUri2    :'',
+        tokenUri3    :'',
         description  :'',
         price        :'',
         date         :''  
@@ -175,8 +177,7 @@ class NewDescriptPage extends React.Component {
                     <h2 className="main-price">{this.state.products.price}</h2>
                     <h5 className="category">Description</h5>
                     <p className="description">{this.state.products.description}</p><br/>
-                    <h5 className="category">참고 LINK</h5>
-                    <a href="http://www.naver.com">www.naver.com</a>
+                    <h5 className="tokenUri"><a href={this.state.products.tokenUri1}>Tokenuri</a></h5>
                     <div className="pick-size row">
                       <Col className="col-md-4 col-lg-2">
                         <label>
