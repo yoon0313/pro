@@ -86,6 +86,7 @@ class UploadOldPage extends React.Component {
       brand : "",
       description : "",
       price : "" ,
+      productName: "",
       date: new Date(),
       tokenUri1:"",
       tokenUri2:"",
@@ -116,6 +117,13 @@ class UploadOldPage extends React.Component {
     event.preventDefault();
     this.setState({
       price : event.target.value
+    })
+  }
+
+  handleProductNameOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      productName : event.target.value
     })
   }
 
@@ -185,7 +193,7 @@ class UploadOldPage extends React.Component {
 
 
     //모든 입력칸이 채워지지않으면 submit할 수없게 조건문
-    if(!this.state.description || !this.state.price || !this.state.file || !this.state.brand){
+    if(!this.state.description || !this.state.price || !this.state.productName || !this.state.file || !this.state.brand){
         return alert("모든 값을 넣어주세요")
     }
 
@@ -200,6 +208,7 @@ class UploadOldPage extends React.Component {
         price:this.state.price,
         images:this.state.file,
         date:this.state.date,
+        productName:this.state.productName,
         tokenUri1:this.state.tokenUri1,
         tokenUri2:this.state.tokenUri2,
         tokenUri3:this.state.tokenUri3
@@ -324,7 +333,14 @@ class UploadOldPage extends React.Component {
                       />
                       <br/>
                       <Input
-                            placeholder="price(klay)"
+                            placeholder="ProductName"
+                            type="string"
+                            value={this.productName}
+                            onChange={this.handleProductNameOnChange}
+                      />
+                      <br/>
+                      <Input
+                            placeholder="Price(klay)"
                             type="number"
                             value={this.Price}
                             onChange={this.handlePriceOnChange}
@@ -336,7 +352,7 @@ class UploadOldPage extends React.Component {
                       
                       <Input
                             cols="100" rows="1000"
-                            placeholder="description"
+                            placeholder="Description"
                             type="textarea"
                             onChange={this.handleDescriptionOnChange}
                             value={this.Description}
