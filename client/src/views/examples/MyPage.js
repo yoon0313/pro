@@ -19,6 +19,7 @@ import Footer from "components/Footer/Footer.js";
 import { Link } from "react-router-dom";
 import Caver from "caver-js";
 
+//gittest code
 const axios = require('axios').default;
 const config = {rpcURL: 'https://api.baobab.klaytn.net:8651'}
 const caver = new Caver(config.rpcURL);
@@ -26,7 +27,6 @@ var ipfsClient = require('ipfs-http-client');//ipfs 클라이언트를 import�
 var ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' });
 const yttContract = new caver.klay.Contract(DEPLOYED_ABI, DEPLOYED_ADDRESS);
 const tsContract = new caver.klay.Contract(DEPLOYED_ABI_TOKENSALES, DEPLOYED_ADDRESS_TOKENSALES);
-
 
 class Mypage extends React.Component {
   state = {
@@ -117,6 +117,7 @@ class Mypage extends React.Component {
   displayMyTokensAndSale = async () => {       
     var walletInstance = this.getWallet()
     var balance = parseInt(await this.getBalanceOf(walletInstance.address));
+    console.log(balance);
     if (balance === 0) {
       alert("현재 보유한 토큰이 없습니다.");
     } else {
@@ -130,12 +131,11 @@ class Mypage extends React.Component {
           var ytt = await this.getYTT(tokenIndex);
           var metadata = await this.getMetadata(tokenUri);
           var price = await this.getTokenPrice(tokenIndex);
-          // console.log(tokenIndex, tokenUri, price)
+          console.log(tokenIndex, tokenUri, price)
           this.renderMyTokens(tokenIndex, ytt, metadata, isApproved, price);   
           if (parseInt(price) > 0) {
             this.renderSellTokens(tokenIndex, ytt, metadata, price);
           }
-
           // if (parseInt(price) == 0) {
           //   this.renderMyTokens(tokenIndex, ytt, metadata, isApproved, price);  
           // }
@@ -154,23 +154,19 @@ class Mypage extends React.Component {
     var _dateCreated = ytt[1];
     var _price = caver.utils.fromPeb(price, 'KLAY')
   
-    // if (isApproved) {
-    //   if (parseInt(price) > 0) {
-        var currentState = this.state;
-        currentState.items.push({
-          index : _tokenIndex,
-          Url : _url,
-          Id : _productKey,
-          brand : _brand,
-          productName : _productName,
-          date : _dateCreated,
-          amount : _price
-        })
+    var currentState = this.state;
+    currentState.items.push({
+      index : _tokenIndex,
+      Url : _url,
+      Id : _productKey,
+      brand : _brand,
+      productName : _productName,
+      date : _dateCreated,
+      amount : _price
+    })
     this.setState(currentState);
-      }
-  //   }
-  // }
-
+    }
+  
   renderSellTokens = (tokenIndex, ytt, metadata, price) => {   
     var _tokenIndex = tokenIndex;  
     var _url = metadata.properties.image.description;
@@ -251,6 +247,46 @@ class Mypage extends React.Component {
     return await yttContract.methods.ownerOf(tokenIndex).call();
   }
 
+  cancelApproval = async () => {//approve 함수와 같지만 false(권한부여 취소)만 다르다
+    
+    const walletInstance = this.getWallet();
+    
+    const receipt = await yttContract.methods.setApprovalForAll(DEPLOYED_ADDRESS_TOKENSALES, false).send({
+      from: walletInstance.address,
+      gas: '250000'
+    })
+
+    if (receipt.transactionHash) {
+      await this.onCancelApprovalSuccess(walletInstance);//로그인계정의 정보를 넣고 승인취소 된 토큰 안보이게 지움
+      location.reload();
+    }
+  }
+//내 판매 중 토큰에 승인 취소 후 정보 안보이게 하는 함수
+  onCancelApprovalSuccess = async (walletInstance) => {
+    var balance = parseInt(await this.getBalanceOf(walletInstance.address));
+    //토큰 소유개수
+    if (balance > 0) {
+      var tokensOnSale = [];
+      for (var i = 0; i < balance; i++) {
+        var tokenIndex = await this.getTokenOfOwnerByIndex(walletInstance.address, i);
+        var price = await this.getTokenPrice(tokenIndex);
+        if (parseInt(price) > 0)
+          tokensOnSale.push(tokenIndex);//price 있는 토큰을 배열에 넣는다
+      }
+
+      if (tokensOnSale.length > 0) {
+        const receipt = await tsContract.methods.removeTokenOnSale(tokensOnSale).send({
+          //비동기로 영수증을 받는다
+          from: walletInstance.address,
+          gas: '250000'
+        });//transaction object를 넘긴다
+
+        if (receipt.transactionHash)//trasactionHash가 잘 return 되었다면
+          alert(receipt.transactionHash);
+      }
+    }
+  }
+
   render() {
     var walletInstance = this.getWallet();
     var DOM_items = [];
@@ -280,9 +316,10 @@ class Mypage extends React.Component {
               <ListGroupItem>브렌드: {item.brand}</ListGroupItem>
               <ListGroupItem>제품이름: {item.productName}</ListGroupItem>
               <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
-              {/* <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem>
-              <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem>
-              <Button onClick = {this.approve}> 토큰 판매승인</Button>
+              <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem>
+              {/* <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem> */}
+              {/* <Button onClick = {this.approve}> 토큰 판매승인</Button>
+              <Button onClick = {this.cancelApproval}> 승인 취소</Button>
               <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button> */}
             </ListGroup>
           </Row>
