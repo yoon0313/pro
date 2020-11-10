@@ -22,6 +22,7 @@ import {
   Col
 } from "reactstrap";
 // core components
+
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import { Link } from "react-router-dom";
@@ -107,6 +108,9 @@ class OldPage extends React.Component {
     images:this.state.file
     // tokens: Tokens[Token-1].value
   }
+
+
+
   //서버에서 가져오기
   Axios.get("http://localhost:5000/OldP/products/getOldP", body)
       .then(response => {
@@ -119,6 +123,8 @@ class OldPage extends React.Component {
           }
       })
   }
+
+  // -------------------------------------------------------------------------------------
 
   render() {
     
