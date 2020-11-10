@@ -38,7 +38,7 @@ class Basics extends React.Component {
         id           :'',
         index        :'',
         images       :'',
-        brand        :'',
+        brand    :'',
         productName  :'',
         tokenuri     :'',
         description  :'',
@@ -72,7 +72,7 @@ class Basics extends React.Component {
 
     //수정하기
     var display=[];
-    if(!this.state.products.images||this.state.products.brand||this.state.products.price){
+    if(!this.state.products.images||this.state.products.brand){
       display = []
     }
     else{
