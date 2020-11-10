@@ -48,11 +48,11 @@ class NewDescriptPage extends React.Component {
     
     this.state={
       productKey: '',
-      brand: '구찌',
+      brand: '',
       imgUrl: '',
-      productName: 'snake wallet',
+      productName: '',
       dateCreated: '',
-      tokenUri:'http://image.gsshop.com/image/32/61/32619201_L1.jpg',
+      tokenUri:'',
       price:'',
       productKey:null,
       items :[],
@@ -631,7 +631,7 @@ class NewDescriptPage extends React.Component {
                     </div>
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="brandname">{this.state.products.brandname}</h2>
+                    <h2 className="brandname">{this.state.products.brand}</h2>
                     <h5>Wallet</h5>
                     <div className="stars stars-right">
                       <div className="stars text-warning">

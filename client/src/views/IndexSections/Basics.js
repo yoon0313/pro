@@ -22,9 +22,7 @@ import {
 } from "reactstrap";
 
 
-
 class Basics extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -53,7 +51,6 @@ class Basics extends React.Component {
         
       .catch(err => console.log(err));
   }
-
   callApi = async()=>{
     const response = await fetch('http://localhost:5000/NewP/new/getNewP');
     const body = await response.json();
@@ -103,7 +100,6 @@ class Basics extends React.Component {
     })
   }
 
-
   render() {
 
     let Items = this.state.news.map( item=>{
@@ -140,59 +136,38 @@ class Basics extends React.Component {
         )});
 
     return (
-        <Container>
-          
-         
-          <div id="images">
+      <Container>
+        
+        <div id="images">
 
           <Row>
             <Col md="1">
-            <h1>
-              NEW
-            </h1>
+              <h1>NEW</h1>
             </Col>
             <Col md="9">
-              <Button
-                className="btn-simple btn-round"
-                color="primary"
-                type="button"
-                Link tag={Link} to="/new-page"
-              >
-                + More
-              </Button>
+              <Button className="btn-simple btn-round" color="primary" type="button" Link tag={Link} to="/new-page">+ More</Button>
             </Col>
           </Row>
-          
-            <Row>
 
             <Row>
                   {Items}
                 </Row>
 
 
-        
+        <div/>
       
-            </Row>
+         
 
-          {/* ---------------------------------------- */}
           <div className="space-70"></div>
-          <Row>
-            <Col md="1">
-            <h1>
-              OLD
-            </h1>
-            </Col>
-            <Col md="9">
-              <Button
-                className="btn-simple btn-round"
-                color="info"
-                type="button"
-                Link tag={Link} to="/old-page"
-              >
-                + More
-              </Button>
-            </Col>
-          </Row>
+
+            <Row>
+              <Col md="1">
+                <h1> OLD</h1>
+              </Col>
+              <Col md="9">
+                <Button className="btn-simple btn-round" color="info" type="button" Link tag={Link} to="/old-page">+ More</Button>
+              </Col>
+            </Row>
 
 
           <Row>
