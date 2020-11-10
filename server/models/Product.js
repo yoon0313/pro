@@ -13,19 +13,6 @@ let productSchema = mongoose.Schema({
         ref: 'User'
     },
 
-    // title:{
-    //     type: String,
-    //     maxlength: 50
-    // },
-
-    //(동근이형올리실예정)
-    //위에 토큰 클릭시 wallet 주소가 들어가감
-    //판매자 주소, 토큰소유자 주소, 토큰 url(제품이미지), 제품이름, 브랜드이름, 제품생성날짜(자동생성)
-    
-
-    //내가해야할거
-    //특정값 불러오기
-    //제품등록날짜(수기입력)(자동입력하는거 있을거임 newdate)
     index:'number',
     brand:{
         type: String,
@@ -73,9 +60,6 @@ productSchema.plugin(
 );
 
 
-// const Product = mongoose.model('Product', productSchema);
-
-// module.exports = { Product }
 module.exports =  {
     Product : connection.model('Product',productSchema)//mongoose.model('Product', productSchema);
 }
