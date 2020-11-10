@@ -229,12 +229,12 @@ class OldPage extends React.Component {
                   {Items}
                 </Row>
                   
-                  <Row>
+                  {/* <Row>
                     <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
                     <div className="square square-7" id="square7" style={{ transform: this.state.squares7and8 }}/>
                     <div className="square square-8" id="square8" style={{ transform: this.state.squares7and8 }}/>
                     </Col>
-                  </Row>
+                  </Row> */}
 
                   <div className="square square-3" id="square3" style={{ transform: this.state.squares1to6 }}/>
                   <div className="square square-5" id="square5" style={{ transform: this.state.squares1to6 }}/>

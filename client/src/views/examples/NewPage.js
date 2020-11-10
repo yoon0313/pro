@@ -129,7 +129,7 @@ class NewPage extends React.Component {
       })
   }
 
-  
+
   // -------------------------------------------------------------------------------------
 
   render() {
@@ -194,9 +194,16 @@ class NewPage extends React.Component {
 
         <div class="space-70"></div>
 
-        <Row>
+               <Row>
                   {Items}
                 </Row>
+
+                <Row>
+                    <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
+                    <div className="square square-7" id="square7" style={{ transform: this.state.squares7and8 }}/>
+                    <div className="square square-8" id="square8" style={{ transform: this.state.squares7and8 }}/>
+                    </Col>
+                  </Row>
 
       
                 <div
