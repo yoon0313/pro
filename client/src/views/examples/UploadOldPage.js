@@ -1,8 +1,9 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component, PropTypes, useState } from "react";
 import classnames from "classnames";
 import { Link } from "react-router-dom";
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Caver from "caver-js";
+import Axios from 'axios';
 
 import {
   Button,
@@ -76,13 +77,23 @@ class UploadOldPage extends React.Component {
       file : [],
       previewURL : [],
       items :[],
+      sell_items:[],
       t_index:'',
       t_productKey:'',
       index:'',
       productKey:'',
       brand:'',
       productName:'',
-      amount:''
+      amount:'',
+      file : [],
+      previewURL : [],
+      binary : "",
+      brand : "",
+      description : "",
+      price : "" ,
+      productName: "",
+      date: new Date(),
+      tokenIndex:""
     }
   }
   
@@ -161,7 +172,13 @@ class UploadOldPage extends React.Component {
           var ytt = await this.getYTT(tokenIndex);
           var metadata = await this.getMetadata(tokenUri);
           var price = await this.getTokenPrice(tokenIndex);
-          this.renderMyTokens(tokenIndex, ytt, metadata, isApproved, price);   
+          // this.renderMyTokens(tokenIndex, ytt, metadata, isApproved, price); 
+          if (parseInt(price) > 0) {
+            this.renderSellTokens(tokenIndex, ytt, metadata, price);
+          }
+          if (parseInt(price) == 0) {
+            this.renderMyTokens(tokenIndex, ytt, metadata, isApproved, price);  
+          }
       })();      
       }
     }
@@ -177,7 +194,7 @@ class UploadOldPage extends React.Component {
     var _dateCreated = ytt[1];
     var _price = caver.utils.fromPeb(price, 'KLAY')
     //가격없는 토큰들(중고판매하지 않고 있는 토큰들)
-    if(price == 0){
+    // if(price == 0){
     var currentState = this.state;
       currentState.items.push({
         index : _tokenIndex,
@@ -189,9 +206,32 @@ class UploadOldPage extends React.Component {
         amount : _price
       })
     this.setState(currentState);
-    }
+    // }
   }
 
+  renderSellTokens = (tokenIndex, ytt, metadata, price) => {   
+    var _tokenIndex = tokenIndex;  
+    var _url = metadata.properties.image.description;
+    var _brand = metadata.properties.description.description;
+    var _productKey = metadata.properties.name.description;
+    var _productName= ytt[0];
+    var _dateCreated = ytt[1];
+    var _price = caver.utils.fromPeb(price, 'KLAY');
+
+    // if (parseInt(price) > 0) {
+      var sellState = this.state;
+      sellState.sell_items.push({
+        index : _tokenIndex,
+        Url : _url,
+        Id : _productKey,
+        brand : _brand,
+        productName: _productName,
+        date : _dateCreated,
+        amount : _price
+      })
+      this.setState(sellState);
+    // } 
+  }
   getBalanceOf = async (address) => {
     return await yttContract.methods.balanceOf(address).call();
   }
@@ -288,6 +328,7 @@ class UploadOldPage extends React.Component {
     } catch (err) {
       console.error(err);
     }
+    window.location.reload();
   }
 
   approve = () => {//판매승인
@@ -302,6 +343,204 @@ class UploadOldPage extends React.Component {
     });
   }
 
+  //인호
+   //컴포넌트 실행시
+   componentDidMount() {
+    document.body.classList.toggle("register-page");
+    document.documentElement.addEventListener("mousemove", this.followCursor);
+   
+    //시간흐르게
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000)
+  }
+
+  //컴포넌트 실행안할시
+  componentWillUnmount() {
+    document.body.classList.toggle("register-page");
+    document.documentElement.removeEventListener(
+      "mousemove",
+      this.followCursor
+    );
+    //시간흐르게
+    clearInterval(this.timerID);
+  }
+
+  followCursor = event => {
+    let posX = event.clientX - window.innerWidth / 2;
+    let posY = event.clientY - window.innerWidth / 6;
+    this.setState({
+      squares1to6:
+        "perspective(500px) rotateY(" +
+        posX * 0.05 +
+        "deg) rotateX(" +
+        posY * -0.05 +
+        "deg)",
+      squares7and8:
+        "perspective(500px) rotateY(" +
+        posX * 0.02 +
+        "deg) rotateX(" +
+        posY * -0.02 +
+        "deg)"
+    });
+  };
+  
+  //시간 계속 흐르게하기
+  tick() {
+    this.setState({
+        date: new Date()
+    })
+  }
+  
+  handleIndexOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+        index : event.target.value
+      })
+  }
+
+  handletokenIndexOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+        tokenIndex : event.target.value
+      })
+  }
+  
+  handleproductKeyOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+        productKey : event.target.value
+      })
+  }
+
+  handleAmoutOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+        amount : event.target.value
+      })
+  }
+
+  handleDescriptionOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+        description : event.target.value
+      })
+  }
+
+  handleBrandOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      brand : event.target.value
+    })
+  }
+
+  handlePriceOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      price : event.target.value
+    })
+  }
+
+  handleProductNameOnChange = (event) => {
+    event.preventDefault();
+    this.setState({
+      productName : event.target.value
+    })
+  }
+
+
+
+
+  handleFileOnChange = (event) => {
+    event.preventDefault();
+    if(this.state.previewURL.length >=3){
+      alert("사진은 최대 3장까지 업로드 가능합니다.");
+      return;
+    }
+    let reader = new FileReader();
+    let file = event.target.files[0];
+    if(file.size >=5000000){
+      alert("5MB 이상의 파일은 올릴수 없습니다.")
+
+      return;
+    }
+    reader.onloadend = () => {
+      this.state.file.push(
+        {
+          metadata:{
+            name: file.name,
+            lastModifieddate: file.lastModifieddate,
+            size: file.size,
+            type: file.type
+          },
+          binary : reader.result
+        }
+      )
+      this.state.previewURL.push(
+        reader.result
+      )
+
+      /*this.setState({
+        file : file,
+        previewURL : reader.result
+      })*/
+      console.log(this.state.previewURL)
+      this.forceUpdate()
+    }
+    reader.readAsDataURL(file);
+  }
+
+  submitHandler = (event) =>{
+    // preventDefault를 해줘야 확인 버튼을 눌렀을때
+    // 화면이 새로고침되지 않는다.
+    event.preventDefault();
+
+
+
+
+    //모든 입력칸이 채워지지않으면 submit할 수없게 조건문
+    // if(!this.state.description || !this.state.amount ){
+    //     return alert("모든 값을 넣어주세요")
+    // }
+
+
+    //서버에 채운 값을 request로 보낸다.
+    //axious post를 하면 body를 적어줘야함
+    const body = {
+        //로그인된 사람의 ID를 가져오기위해 
+        
+        description:this.state.description,
+        brand:this.state.brand,
+        // price:this.state.price,
+        images:this.state.file,
+        date:this.state.date,
+        productName:this.state.productName,
+        tokenIndex:this.state.tokenIndex,
+        productKey:this.state.productKey,
+        amount:this.state.amount,
+        index:this.state.index
+
+        // tokens: Tokens[Token-1].value
+    }
+
+     //서버로 보내기
+    Axios.post("http://localhost:5000/OldP/products/register", body)
+        .then(response => {
+            if(response.data.success){
+                alert('상품 업로드에 성공 했습니다.')
+                //상품업로드 후 랜딩페이지로 돌아감
+                this.props.history.push('/')
+            }else{
+                alert('상품 업로드에 실패 했습니다.')
+            }
+        })
+        
+  }
+
+  state = {
+    };
+
+
   render() {
     var walletInstance = this.getWallet();
     let profile_preview =[];
@@ -311,6 +550,7 @@ class UploadOldPage extends React.Component {
         profile_preview.push(<img style={{maxWidth:'200px'}}  src={element}></img>)
       }
     var DOM_items = [];
+    var sell_items = [];
 
     for(const item of this.state.items){
 
@@ -352,6 +592,39 @@ class UploadOldPage extends React.Component {
       )
     }
 
+    //판매 중 토큰 검색//
+    for(const item of this.state.sell_items){
+      sell_items.push(
+        <>
+        <Card className="card-coin card-plain" >
+         <img alt="..." className="img-center img-fluid" src={item.Url}/>      
+          <Row>
+            <Col className="text-center" md="12" style={{width:"230px"}}>
+            <h4 className="text-uppercase">
+              <Link to="product-page">
+                <p style ={{color : "white"}}>
+                  Light Coin
+                </p>
+              </Link>
+            </h4>
+            <hr className="line-primary" />
+            </Col>
+          </Row>
+          <Row>
+            <ListGroup>
+              <ListGroupItem>index: {item.index}</ListGroupItem>
+              <ListGroupItem>제품고유번호: {item.Id}</ListGroupItem>
+              <ListGroupItem>브렌드: {item.brand}</ListGroupItem>
+              <ListGroupItem>제품이름: {item.productName}</ListGroupItem>
+              <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
+              <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem>
+            </ListGroup>
+          </Row>
+        </Card>
+        </>
+      )
+    }
+
     return (
     <>
       <IndexNavbar/>
@@ -365,7 +638,7 @@ class UploadOldPage extends React.Component {
           <br/>
           <br/>
             <Row className="row-grid justify-content-between align-items-center">
-              {/* <Row>
+              <Row>
                 <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
                   <div
                     className="square square-7"
@@ -398,17 +671,17 @@ class UploadOldPage extends React.Component {
                 className="square square-6"
                 id="square6"
                 style={{ transform: this.state.squares1to6 }}
-              /> */}
+              />
 
               <Card className="card-register">
-                {/* <CardHeader>
+                <CardHeader>
                   <CardImg
                     alt="..."
                     src={require("assets/img/square-purple-1.png")}
                   />
                   <CardTitle tag="h4">register</CardTitle>
                 </CardHeader>
-                  */}
+                 
                 <CardBody>
                   <Form className="form">
                     <Row>
@@ -440,7 +713,8 @@ class UploadOldPage extends React.Component {
                     </Col>
                     <br/>
 
-                    Token Index:{this.state.index} <br/>    
+                    Token Index:{this.state.tokenIndex}<br/>   
+                    Index:{this.state.index} 
                     {/* <Input placeholder="Token Index" 
                           type="text"
                           onFocus={e => this.setState({ emailFocus: true })}
@@ -462,22 +736,17 @@ class UploadOldPage extends React.Component {
                     Pruduct Name: {this.state.productName} <br/>    
                     <br/>   
                     
-                    Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleValueChange}/> klay
+                    {/* Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleValueChange}/> klay */}
+                    Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleAmoutOnChange}/> klay
 
-                    {/* <Input placeholder="price" 
-                          type="text"
-                          onFocus={e => this.setState({ emailFocus: true })}
-                          onBlur={e => this.setState({ emailFocus: false })}
-                    /> */}
                     <br/>
                     <br/>
                     
-                    Price: {this.state.amount}
+                    Description: {this.state.description}
                     <Input cols="100" rows="1000"
-                          placeholder="descriptions"
+                          placeholder="description"
                           type="textarea"
-                          onFocus={e => this.setState({ emailFocus: true })}
-                          onBlur={e => this.setState({ emailFocus: false })}
+                          onChange={this.handleDescriptionOnChange}
                     />
 
                   <div class="profile_img">                      
@@ -509,6 +778,8 @@ class UploadOldPage extends React.Component {
                   </div>  
                 </CardFooter> */}
                 <Button onClick = {this.approve}> 중고 판매 승인</Button>
+                {/* <Button onClick={(e) => this.sellToken(this.state.index)} 
+                  type="submit" onClick={this.submitHandler}>중고 판매 등록</Button> */}
                 <Button onClick={(e) => this.sellToken(this.state.index)}>중고 판매 등록</Button>
               </Card>
             </Row>          
