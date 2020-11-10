@@ -132,17 +132,7 @@ class OldPage extends React.Component {
       if (item._id ==='index') return( <></>)
       return(
 
-<<<<<<< HEAD
-            <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-              <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/old-descript-page?index='+item.index;}}>
-              <img alt="..." className="img-fluid rounded shadow-lg" 
-              src={item.images[0].binary}
-              style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/old-descript-page"/>
-              </button>
-              <p>{item.brand}</p>
-              <h5>{item.price}</h5>
-            </Col>
-=======
+
                         <Col className="mt-5 mt-sm-0" sm="3" xs="6">
                           <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/old-descript-page?index='+item.index;}}>
                           <img alt="..." className="img-fluid rounded shadow-lg" 
@@ -152,8 +142,7 @@ class OldPage extends React.Component {
                           <p>{item.brand}</p>
                           <h5>{item.price}</h5>
                         </Col>
->>>>>>> cce2c2e0e5d5e7b4df3603a5fc6cdb15ef1e126f
-                  
+
       )});
 
    
@@ -233,16 +222,10 @@ class OldPage extends React.Component {
                 </Row>
               
                 <Row>
-<<<<<<< HEAD
-                <font size="150" color="white " > &nbsp; ★ HOT ITEM</font>
-                </Row>
-                
-=======
+
                 <font size="150" color="white " > &nbsp; &nbsp; TOP ITEM</font>
                 </Row>
 
-
->>>>>>> cce2c2e0e5d5e7b4df3603a5fc6cdb15ef1e126f
                 <Row>
                   {Items}
                 </Row>
