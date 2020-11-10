@@ -35,6 +35,17 @@ class OldDescriptPage extends React.Component {
   var params = new URLSearchParams(props.location.search);
   
   this.state={
+    productKey    : '',
+      brand       : '',
+      imgUrl      : '',
+      productName : '',
+      dateCreated : '',
+      tokenUri    :'',
+      price       :'',
+      productKey  :null,
+      items       :[],
+      sell_items  : [],
+      all_items   : [],
     products:{
       id           :'',
       index        :'',
@@ -84,12 +95,312 @@ handleOnChange(e) {
   });
 }
 
-  selectChange(e){
+  // selectChange(e){
+  //   this.setState({
+  //     selectedValue: e.target.value
+  //   })
+  // }
+
+  ///////////////create token//////////////////////////
+  handleItemChange = (e, _tokenIndex) => {
+    var tokenIndex=_tokenIndex
+    var itemIndex = this.state.items.findIndex(element => element.Id == tokenIndex)
+    console.log(itemIndex);
+    this.state.items[itemIndex].amount =  e.target.value;
     this.setState({
-      selectedValue: e.target.value
+      items :  this.state.items
     })
   }
+
+  getWallet = () => {
+    if (caver.klay.accounts.wallet.length) {
+      return caver.klay.accounts.wallet[0]
+    } else {
+      const walletFromSession = sessionStorage.getItem('walletInstance');
+      caver.klay.accounts.wallet.add(JSON.parse(walletFromSession));
+      return caver.klay.accounts.wallet[0];
+    }
+  }
+
+  getERC721MetadataSchema = (productKey, brand, imgUrl) => {
+    return {
+      "title": "Asset Metadata",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": productKey
+        },
+        "description": {
+          "type": "string",
+          "description": brand
+        },
+        "image": {
+          "type": "string",
+          "description": imgUrl
+        }
+      }
+    }
+  }
+
+  handleCreateToken = async () => {
+    var now = new Date();
+    var productKey = this.state.productKey;//유닉크해야한다.
+    var brand = this.state.products.brand;
+    var productName = this.state.products.productName;
+    var dateCreated = now.toLocaleDateString();
+    var tokenUri = this.state.products.tokenUri1;  
+    if (!productKey || !brand || !productName || !dateCreated ) {
+      alert("조건이 맞지 않습니다")
+      return;
+    }
+    try {
+      const metaData = this.getERC721MetadataSchema(productKey, brand, tokenUri);
+      var res = await ipfs.add(Buffer.from(JSON.stringify(metaData)));
+      await this.mintYTT(productKey, productName, dateCreated, res[0].hash);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  mintYTT = async (productKey, productName, dateCreated, hash) => {
+    const sender = this.getWallet();// 함수를 호출하는 계정
+    var feePayer;
+    try { 
+      feePayer = caver.klay.accounts.wallet.add('0x4e2fc35f9a305401b0f7dedf2dcaa97f3cb0bb9dcae12378d9f31d7644fc34a7')
+    }
+    catch(e){
+      feePayer = caver.klay.accounts.wallet.getAccount('0xee345743f1c137207c9d8212502e3e975157a22b');
+    }    
+    const { rawTransaction: senderRawTransaction } = await caver.klay.accounts.signTransaction({
+      type: 'FEE_DELEGATED_SMART_CONTRACT_EXECUTION',//컨트랙 대납 타입
+      from: sender.address,//sender계정이 호출한다
+      to: DEPLOYED_ADDRESS,//전역상수/배포된 contract의 주소
+      data: yttContract.methods.mintYTT(productKey, productName, dateCreated, "https://ipfs.infura.io/ipfs/" + hash).encodeABI(),
+      gas: '500000',
+      value: caver.utils.toPeb('0', 'KLAY'),
+    }, sender.privateKey)//트렌젝션에 sender가 서명을 한다
+
+    caver.klay.sendTransaction({
+      senderRawTransaction: senderRawTransaction,//위의 서명이 끝난 transaction을 넘긴다
+      feePayer: feePayer.address,//feepayer의 공개주소를 넘긴다
+    })
+    .then(function (receipt) {
+      if (receipt.transactionHash) {//제대로 영수증을 받았다면
+        console.log("https://ipfs.infura.io/ipfs/" + hash);//console.log로 보여준다
+        alert(receipt.transactionHash);
+        // location.reload();//새로고침
+      }
+    });
+  }
+
+  approve = () => {//판매승인
+    const walletInstance = this.getWallet();//계정정보 불러온다
+    yttContract.methods.setApprovalForAll(DEPLOYED_ADDRESS_TOKENSALES, true).send({
+      from: walletInstance.address,//현재 로그인된 계정의 주소
+      gas: '250000'
+    }).then(function (receipt) {
+      if (receipt.transactionHash) {
+        alert("토큰등록 승인완료"+ receipt.transactionHash)
+      }
+    });
+  }
+
+  generateProductKey = () => {
+    const productKey = crypto.createHmac('sha256', this.state.brand).update(new Date()+this.state.productName).digest('hex');
+    this.setState({ productKey: productKey.substr(0,15)})
+    console.log(productKey);
+    console.log("key 생성완료");
+  }
+  ///////////////////////토큰 이미지.///////////////////////////
+  displayMyTokensAndSale = async () => {       
+    var walletInstance = this.getWallet()
+    var balance = parseInt(await this.getBalanceOf(walletInstance.address));
+    console.log(balance);
+    if (balance === 0) {
+      alert("현재 보유한 토큰이 없습니다.");
+    } else {
+      var isApproved = await this.isApprovedForAll(walletInstance.address, DEPLOYED_ADDRESS_TOKENSALES);
+      this.state.items = [];//초기화
+      this.state.sell_items = [];//초기화
+      for (var i = 0; i < balance; i++) {
+      (async () => {//빨리 렌더링하기 위해 쓰이는 방법
+          var tokenIndex = await this.getTokenOfOwnerByIndex(walletInstance.address, i);
+          var tokenUri = await this.getTokenUri(tokenIndex);
+          var ytt = await this.getYTT(tokenIndex);
+          var metadata = await this.getMetadata(tokenUri);
+          var price = await this.getTokenPrice(tokenIndex);
+          console.log(tokenIndex, tokenUri, price)
+          // this.renderMyTokens(tokenIndex, ytt, metadata, isApproved, price);   
+          if (parseInt(price) > 0) {
+            this.renderSellTokens(tokenIndex, ytt, metadata, price);
+          }
+
+          if (parseInt(price) == 0) {
+            this.renderMyTokens(tokenIndex, ytt, metadata, isApproved, price);  
+          }
+      })();      
+      }
+    }
+  }
+
+  renderMyTokens = (tokenIndex, ytt, metadata, isApproved, price) => {
+
+  var _tokenIndex = tokenIndex;  
+  var _url = metadata.properties.image.description;
+  var _brand = metadata.properties.description.description;
+  var _productKey = metadata.properties.name.description;
+  var _productName = ytt[0];
+  var _dateCreated = ytt[1];
+  var _price = caver.utils.fromPeb(price, 'KLAY')
+
+  var currentState = this.state;
+  currentState.items.push({
+    index : _tokenIndex,
+    Url : _url,
+    Id : _productKey,
+    brand : _brand,
+    productName : _productName,
+    date : _dateCreated,
+    amount : _price
+  })
+  this.setState(currentState);
+  }
+
+  renderSellTokens = (tokenIndex, ytt, metadata, price) => {   
+    var _tokenIndex = tokenIndex;  
+    var _url = metadata.properties.image.description;
+    var _brand = metadata.properties.description.description;
+    var _productKey = metadata.properties.name.description;
+    var _productName= ytt[0];
+    var _dateCreated = ytt[1];
+    var _price = caver.utils.fromPeb(price, 'KLAY');
+
+    // if (parseInt(price) > 0) {
+      var sellState = this.state;
+      sellState.sell_items.push({
+        index : _tokenIndex,
+        Url : _url,
+        Id : _productKey,
+        brand : _brand,
+        productName: _productName,
+        date : _dateCreated,
+        amount : _price
+      })
+      this.setState(sellState);
+    // } 
+  }
+
+  sellToken = async(index) => {    
+    var tokenIndex=index
+    var itemIndex = this.state.items.findIndex(element => element.index == tokenIndex)
+    var amount = this.state.items[itemIndex].amount;
+    console.log(tokenIndex, amount, typeof(tokenIndex))
+    if (amount==null) 
+      return;//수가0이하면 함수 종료
+    
+    var feePayer;
+    try {
+      var sender = this.getWallet();
+      console.log(sender.address);
+      
+      try { 
+        feePayer = caver.klay.accounts.wallet.add('0x4e2fc35f9a305401b0f7dedf2dcaa97f3cb0bb9dcae12378d9f31d7644fc34a7')
+      }
+      catch(e){
+        feePayer = caver.klay.accounts.wallet.getAccount('0xee345743f1c137207c9d8212502e3e975157a22b');
+      }
+      console.log(feePayer.address);
+      var { rawTransaction: senderRawTransaction } = await caver.klay.accounts.signTransaction({
+        type: 'FEE_DELEGATED_SMART_CONTRACT_EXECUTION',
+        from: sender.address,
+        to:   DEPLOYED_ADDRESS_TOKENSALES,
+        data: tsContract.methods.setForSale(tokenIndex, caver.utils.toPeb(amount, 'KLAY')).encodeABI(),
+        gas:  '500000',
+        value: caver.utils.toPeb('0', 'KLAY'),
+      }, sender.privateKey)
+
+      caver.klay.sendTransaction({
+        senderRawTransaction: senderRawTransaction,
+        feePayer: feePayer.address,
+      })
+      .then(function(receipt){
+        if (receipt.transactionHash) {         
+          alert("토큰 등록 완료" + receipt.transactionHash);
+        }
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+  
+  getBalanceOf = async (address) => {
+    return await yttContract.methods.balanceOf(address).call();
+  }
+
+  getTokenOfOwnerByIndex = async (address, index) => {
+    return await yttContract.methods.tokenOfOwnerByIndex(address, index).call();
+  }
+
+  getTokenUri = async (tokenIndex) => {
+    return await yttContract.methods.tokenURI(tokenIndex).call();
+  }
+
+  getYTT = async (tokenIndex) => {
+    return await yttContract.methods.getYTT(tokenIndex).call();
+  }
+
+  getMetadata = async (tokenUri) => {
+    if(~tokenUri.indexOf("http")) {
+      tokenUri = tokenUri;
+    }
+    else {
+      tokenUri = "https://ipfs.infura.io/ipfs/" + tokenUri;
+    }
+    return new Promise(function (resolve,reject){
+      axios({
+        method: 'get',
+        url: tokenUri,
+      })
+      .then(function (response) {
+        resolve(response.data);
+      })
+      .catch(error => reject(error));
+    })
+  }
+
+  getTokenByIndex = async (index) => {
+    return await yttContract.methods.tokenByIndex(index).call();
+  }
+
+  isApprovedForAll = async (owner, operator) => {
+    return await yttContract.methods.isApprovedForAll(owner, operator).call();
+  }
+
+  getTokenPrice = async (tokenIndex) => {
+    return await tsContract.methods.tokenPrice(tokenIndex).call();
+  }
+
+  getOwnerOf = async (tokenIndex) => {
+    return await yttContract.methods.ownerOf(tokenIndex).call();
+  }
+
   render() {
+    
+    var imageItems=[];
+    if(!this.state.products.images|| this.state.products.images.length == 0){
+      imageItems = []
+    }
+    else{
+      this.state.products.images.forEach(element => {
+        imageItems.push({
+          src : element.binary,
+          altText: element.metadata.name,
+          caption: element.metadata.name
+        })
+      });
+    }
+    
     return (
 
       <>
@@ -126,22 +437,7 @@ handleOnChange(e) {
                   <Col className="col-md-12 col-lg-6">
                     <div className="carousel slide">
                       <Row className="justify-content-between align-items-center">
-                        <UncontrolledCarousel items={[{
-                                                      src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
-                                                      altText: "Slide 1",
-                                                      caption: "2020 HOT ITEM"  
-                                                      },
-                                                      {
-                                                    src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
-                                                    altText: "Slide 2",
-                                                    caption: "cryptoberry는 정품만 취급합니다"  
-                                                      },
-                                                      {
-                                                  src: '/05cc0d04cc8cf5ceeb5d9885e72e0e30'+'.png', //DB 연결
-                                                  altText: "Slide 3",
-                                                  caption: "정품이 아닐시 1000% 보상"  
-                                                      },]} 
-                        />
+                      <UncontrolledCarousel items={imageItems}/>
                   </Row>
             </div>
             </Col>
@@ -331,16 +627,14 @@ handleOnChange(e) {
                   <div className="card-product card">
                     <div className="card-image">
                       <a href="#pablo">
-                      <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/new-descript-page?id=${products[1]}';}}>
-                        <img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ballpen3.jpg")}/>
-                    </button>
-                    </a>
-                  </div>
-                  <div className="card-body">
+                      <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
+                      </a>
+                    </div>
+
+                    <div className="card-body">
                     <h6 className="category text-warning">Trending</h6>
-                    <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">monblanc ballpen</a>
-                    </h4>
+                    <h4 className="card-title"><a href="#pablo" className="text-white card-link">monblanc ballpen</a></h4>
+                    
                     <div className="card-description">
                       마이스터스튁 클래식 볼펜은 고급 블랙 레진 캡과 배럴로 대표되는 특별한 디자인 아이콘입니다.
                     </div>
@@ -360,12 +654,7 @@ handleOnChange(e) {
                 <div className="card-product card">
                   <div className="card-image">
                   <a href="#pablo">
-                    <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/new-descript-page?id=${products[2]}';}}>
-                      <img alt="..."
-                          className="img-fluid rounded shadow-lg"
-                          src={require("assets/img/dior2.jpg")}
-                      />
-                    </button>
+                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
                   </a>
                 </div>
 
@@ -394,9 +683,7 @@ handleOnChange(e) {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/new-descript-page?id=${products[3]}';}}>
-                        <img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/patek2.jpg")}/>
-                      </button>
+                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
                     </a>
                   </div>
                   
@@ -424,12 +711,9 @@ handleOnChange(e) {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <button type="button" onClick={(e) => {e.preventDefault();window.location.href='/new-descript-page?id=${products[4}';}}>
-                      <img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/tagheuer2.jpg")}/>
-                      </button>
+                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
                     </a>
                   </div>
-
                   <div className="card-body">
                     <h6 className="category text-warning">Trending</h6>
                     <h4 className="card-title">

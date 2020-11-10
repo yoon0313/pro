@@ -22,7 +22,6 @@ import {
   Col
 } from "reactstrap";
 // core components
-
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import { Link } from "react-router-dom";
@@ -108,9 +107,6 @@ class OldPage extends React.Component {
     images:this.state.file
     // tokens: Tokens[Token-1].value
   }
-
-
-
   //서버에서 가져오기
   Axios.get("http://localhost:5000/OldP/products/getOldP", body)
       .then(response => {
@@ -124,14 +120,11 @@ class OldPage extends React.Component {
       })
   }
 
-  // -------------------------------------------------------------------------------------
-
   render() {
     
     let Items = this.state.products.map( item=>{
       if (item._id ==='index') return( <></>)
       return(
-
 
                         <Col className="mt-5 mt-sm-0" sm="3" xs="6">
                           <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/old-descript-page?index='+item.index;}}>
@@ -142,7 +135,7 @@ class OldPage extends React.Component {
                           <p>{item.brand}</p>
                           <h5>{item.price}</h5>
                         </Col>
-
+                  
       )});
 
    
@@ -222,9 +215,9 @@ class OldPage extends React.Component {
                 </Row>
               
                 <Row>
-
                 <font size="150" color="white " > &nbsp; &nbsp; TOP ITEM</font>
                 </Row>
+
 
                 <Row>
                   {Items}
