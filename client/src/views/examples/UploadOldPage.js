@@ -323,6 +323,7 @@ class UploadOldPage extends React.Component {
       .then(function(receipt){
         if (receipt.transactionHash) {         
           alert("토큰 등록 완료" + receipt.transactionHash);
+          submitHandler()
         }
       });
     } catch (err) {
@@ -490,25 +491,17 @@ class UploadOldPage extends React.Component {
     reader.readAsDataURL(file);
   }
 
-  submitHandler = (event) =>{
+  submitHandler = () =>{
     // preventDefault를 해줘야 확인 버튼을 눌렀을때
     // 화면이 새로고침되지 않는다.
-    event.preventDefault();
-
-
-
-
     //모든 입력칸이 채워지지않으면 submit할 수없게 조건문
     // if(!this.state.description || !this.state.amount ){
     //     return alert("모든 값을 넣어주세요")
     // }
-
-
     //서버에 채운 값을 request로 보낸다.
     //axious post를 하면 body를 적어줘야함
     const body = {
         //로그인된 사람의 ID를 가져오기위해 
-        
         description:this.state.description,
         brand:this.state.brand,
         // price:this.state.price,
@@ -519,10 +512,8 @@ class UploadOldPage extends React.Component {
         productKey:this.state.productKey,
         amount:this.state.amount,
         index:this.state.index
-
         // tokens: Tokens[Token-1].value
     }
-
      //서버로 보내기
     Axios.post("http://localhost:5000/OldP/products/register", body)
         .then(response => {
@@ -534,12 +525,10 @@ class UploadOldPage extends React.Component {
                 alert('상품 업로드에 실패 했습니다.')
             }
         })
-        
   }
 
   state = {
     };
-
 
   render() {
     var walletInstance = this.getWallet();
@@ -778,9 +767,9 @@ class UploadOldPage extends React.Component {
                   </div>  
                 </CardFooter> */}
                 <Button onClick = {this.approve}> 중고 판매 승인</Button>
-                {/* <Button onClick={(e) => this.sellToken(this.state.index)} 
-                  type="submit" onClick={this.submitHandler}>중고 판매 등록</Button> */}
-                <Button onClick={(e) => this.sellToken(this.state.index)}>중고 판매 등록</Button>
+                <Button onClick={(e) => {this.sellToken(this.state.index)}} 
+                  type="submit" >중고 판매 등록</Button>
+                {/* <Button onClick={(e) => this.sellToken(this.state.index)}>중고 판매 등록</Button> */}
               </Card>
             </Row>          
         </Container>
