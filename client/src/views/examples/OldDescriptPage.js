@@ -35,19 +35,20 @@ class OldDescriptPage extends React.Component {
   var params = new URLSearchParams(props.location.search);
   
   this.state={
-    productKey    : '',
-      brand       : '',
-      imgUrl      : '',
-      productName : '',
-      dateCreated : '',
-      tokenUri    :'',
-      price       :'',
-      productKey  :null,
-      items       :[],
-      sell_items  : [],
-      all_items   : [],
+    productKey  : '',
+    brand       : '',
+    imgUrl      : '',
+    productName : '',
+    dateCreated : '',
+    tokenUri    : '',
+    price       : '',
+    productKey  : null,
+    items       : [],
+    sell_items  : [],
+    all_items   : [],
     products:{
       id           :'',
+      tokenIndex   :'',
       index        :'',
       image        :'',
       brandname    :'',
@@ -443,7 +444,9 @@ handleOnChange(e) {
             </Col>
                 
             <Col className="mx-auto col-md-12 col-lg-6">
-              <h2 className="brandname">{this.state.products.brand}</h2>
+              <h2 className="brandname">Index: {this.state.products.tokenIndex}</h2>
+              <h2 className="brandname">Product Key: {this.state.products.productKey}</h2>
+              <h2 className="brandname">Brand: {this.state.products.brand}</h2>
               <div className="stars stars-right">
                 <div className="stars text-warning">
                   <i className="fas fa-star"></i>
@@ -454,7 +457,7 @@ handleOnChange(e) {
                   <p className="d-inline ml-1">(8080 customer reviews)</p>
                 </div>
               </div><br/>
-              <h2 className="main-price">{this.state.products.price}</h2>
+              <h2 className="main-price">Price: {this.state.products.price} klay</h2>
               <h5 className="category">Description</h5>
               <p className="description">{this.state.products.description}</p><br/>
               
