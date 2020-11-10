@@ -48,11 +48,11 @@ class NewDescriptPage extends React.Component {
     
     this.state={
       productKey: '',
-      brand: '구찌',
+      brand: '',
       imgUrl: '',
-      productName: 'snake wallet',
+      productName: '',
       dateCreated: '',
-      tokenUri:'http://image.gsshop.com/image/32/61/32619201_L1.jpg',
+      tokenUri:'',
       price:'',
       productKey:null,
       items :[],
