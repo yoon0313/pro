@@ -60,8 +60,11 @@ app.get('/OldP/products', (req,res)=>{
     
 });
 
+//Old Table
 app.use('/OldP/products', require('./routes/product'))
 
+//New Table
+app.use('/NewP/new', require('./routes/new'))
 
 app.get('/api/hello', (req, res)=>{
     res.send({message: 'Hello Express!'});
