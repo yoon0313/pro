@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React , { Component } from "react";
 import classnames from "classnames";
 
@@ -41,6 +42,9 @@ class NewPage extends React.Component {
   componentDidMount() {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", this.followCursor);
+    fetch('/products')
+    .then(res => res.json())
+    .then(products => this.setState({ products }));
   }
   componentWillUnmount() {
     document.body.classList.toggle("register-page");
@@ -67,7 +71,86 @@ class NewPage extends React.Component {
         "deg)"
     });
   };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      inputFocus: false,
+      news:[],
+      value:0,min:0,counter:0
+    };
+  }
+
+  componentDidMount(){
+    this.callApi()
+      //body로 담은 고객 목록을 받아서 
+      //이 목록을 state로 설정해주는것
+      //결과적으로 body가 res라는 변수이름으로 바뀌고
+      //그것을 customers 변수값에 넣어줌
+      .then(res => this.setState({news: res}))
+      //만약 오류가 발생하는경우 콘솔창에 오류를 보여준다.
+      .catch(err => console.log(err));
+  }
+
+  callApi = async()=>{
+    //접속하고자 하는 api주소를 넣어줌
+    const response = await fetch('http://localhost:5000/NewP/new/getNewP');
+    //출력한 데이터를 json으로 만들어서 body라는 변수에 넣어줌
+    const body = await response.json();
+    return body;
+  }
+
+  //데이터 불러오기
+  loadHandler = (event) =>{
+  // preventDefault를 해줘야 확인 버튼을 눌렀을때
+  // 화면이 새로고침되지 않는다.
+  event.preventDefault();
+  const body = {
+    //로그인된 사람의 ID를 가져오기위해 
+    description:this.state.description,
+    price:this.state.price,
+    images:this.state.file
+    // tokens: Tokens[Token-1].value
+  }
+
+
+
+  //서버에서 가져오기
+  Axios.get("http://localhost:5000/NewP/new/getNewP", body)
+      .then(response => {
+          if(response.data.success){
+              alert('상품 불러오기 성공 했습니다.')
+              //상품업로드 후 랜딩페이지로 돌아감
+              this.props.history.pull('/')
+          }else{
+              alert('상품 불러오기에 실패 했습니다.')
+          }
+      })
+  }
+
+  
+  // -------------------------------------------------------------------------------------
+
   render() {
+
+    let Items = this.state.news.map( item=>{
+      if (item._id ==='index') return( <></>)
+      return(
+
+                        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                          <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/new-descript-page?index='+item.index;}}>
+                          <img alt="..." className="img-fluid rounded shadow-lg" 
+                          src={item.tokenUri1}
+                          style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/new-descript-page"/>
+                          </button>
+                          <p>{item.brand}</p>
+                          <h5>{item.price}</h5>
+                        </Col>
+                  
+      )});
+
+
     return (
       <>
         <IndexNavbar />
@@ -112,152 +195,8 @@ class NewPage extends React.Component {
         <div class="space-70"></div>
 
         <Row>
-          {/* <ImageButton imagePath="assets/img/guccci.jpg" linkPage="/Product-page" itemName="GUCCI Snake wallet" itemPrice="41 ETH"></ImageButton> */}
-          <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <button type="button" onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href='/new-descript-page';
-          }}>
-            <img
-              alt=""
-              className="img-fluid rounded shadow-lg"
-              // src="{require('/src/assets/img/gucci.jpg)}"
-              // src="%PUBLIC_URL%/img/gucci4.jpg"
-              src={gucci4}
-              style={{ width: "250px",height: "220px" }}
-              
-            />
-          </button>
-            <p>GUCCI Snake wallet</p>
-            <h5>41 ETH</h5>
-        </Col>
-
-
-
-        
-
-        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <button type="button" onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href='/new-descript-page';
-          }}>
-            <img
-              alt="..."
-              className="img-fluid rounded shadow-lg"
-              src="https://boheme.co.kr/web/product/big/201704/7400_shop1_396252.jpg"
-              style={{ width: "250px",height: "220px" }}
-              
-            />
-          </button>
-            <p>MONTBLAC ballpen</p>
-            <h5>9 ETH</h5>
-        </Col>
-
-        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <button type="button" onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href='/new-descript-page';
-          }}>
-            <img
-              alt="..."
-              className="img-fluid rounded shadow-lg"
-              src="https://wwws.dior.com/couture/ecommerce/media/catalog/product/cache/1/grid_image_1/460x497/17f82f742ffe127f42dca9de82fb58b1/X/9/1591811105_B0040CNRB_M900_E01_GH.jpg"
-              style={{ width: "250px" ,height: "220px"}}
-              
-            />
-          </button>
-            <p>Dior belt</p>
-            <h5>17 ETH</h5>
-        </Col>
-
-        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <button type="button" onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href='/new-descript-page';
-          }}>
-            <img
-              alt="..."
-              className="img-fluid rounded shadow-lg"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQCCwbf48BOI_EgqTQqz-LqEOjmV50Jm_n1-A&usqp=CAU"
-              style={{ width: "250px" ,height: "220px"}}
-              
-            />
-          </button>
-            <p>patekphilippe watch</p>
-            <h5>555 ETH</h5>
-        </Col>
-        </Row>
-
-          <Row>
-        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <button type="button" onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href='/new-descript-page';
-          }}>
-            <img
-              alt="..."
-              className="img-fluid rounded shadow-lg"
-              src="https://sineorb3.cafe24.com/Design/web19/web/product/big/TAG%20HEUER/CV2A1S.FC6236.jpg"
-              style={{ width: "250px" ,height: "220px"}}
-              
-            />
-          </button>
-            <p>TAGHeuer watch</p>
-            <h5>78 ETH</h5>
-        </Col>
-
-        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <button type="button" onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href='/new-descript-page';
-          }}>
-            <img
-              alt="..."
-              className="img-fluid rounded shadow-lg"
-              src="https://image.msscdn.net/images/goods_img/20200318/1357091/1357091_1_500.jpg"
-              style={{ width: "250px" ,height: "220px"}}
-              
-            />
-          </button>
-            <p>maison tshirts</p>
-            <h5>12 ETH</h5>
-        </Col>
-
-        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <button type="button" onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href='/my-page';
-          }}>
-            <img
-              alt="..."
-              className="img-fluid rounded shadow-lg"
-              src="https://thum.buzzni.com/unsafe/640x640/center/smart/http://cdn.image.buzzni.com/2016/04/29/qD3ZLloooj.jpg"
-              style={{ width: "250px" ,height: "220px"}}
-              
-            />
-          </button>
-            <p>prada backpack</p>
-            <h5>28 ETH</h5>
-        </Col>
-
-        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <button type="button" onClick={(e) => {
-                                        e.preventDefault();
-                                        window.location.href='/new-descript-page';
-          }}>
-            <img
-              alt="..."
-              className="img-fluid rounded shadow-lg"
-              src="https://img.lfmall.co.kr/file/product/prd/D307/2018/640/D307XX00081_00.jpg?2020-07-13T13:33:26.000+09:00"
-              style={{ width: "250px" ,height: "220px"}}
-              
-            />
-          </button>
-            <p>Louis vuitton clutch</p>
-            <h5>97 ETH</h5>
-        </Col>
-
-        </Row>
+                  {Items}
+                </Row>
 
       
                 <div
