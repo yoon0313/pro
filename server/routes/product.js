@@ -75,7 +75,8 @@ router.post('/register', async (req,res) =>{
     date : req.body.date,
     tokenUri1: req.body.tokenUri1,
     tokenUri2: req.body.tokenUri2,
-    tokenUri3: req.body.tokenUri3
+    tokenUri3: req.body.tokenUri3,
+    productKey: req.body.productKey
   }).then( (data)=>{
     res.json({success:true, msg:data})
   })
