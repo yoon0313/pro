@@ -45,6 +45,7 @@ class Mypage extends React.Component {
       this.followCursor
     );
   }
+
   followCursor = event => {
     let posX = event.clientX - window.innerWidth / 2;
     let posY = event.clientY - window.innerWidth / 6;
@@ -337,9 +338,7 @@ class Mypage extends React.Component {
             <Col className="text-center" md="12" style={{width:"230px"}}>
             <h4 className="text-uppercase">
               <Link to="product-page">
-                <p style ={{color : "white"}}>
-                  Light Coin
-                </p>
+                <p style ={{color : "white"}}>Light Coin</p>
               </Link>
             </h4>
             <hr className="line-primary" />
@@ -480,7 +479,7 @@ class Mypage extends React.Component {
                             </Col>
                             <br/>
 
-                       <Row>            
+                         <Row>            
                               <Col className="align-self-center col-md-3">
                                 <label className="labels" for="#firstName">판매중인 토큰</label>
                               </Col>

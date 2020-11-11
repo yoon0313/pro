@@ -44,11 +44,8 @@ class Basics extends React.Component {
 
     this.callApi2()
       .then(res => {
-        
         this.setState({products: res})
-
       })
-        
       .catch(err => console.log(err));
   }
   callApi = async()=>{
@@ -74,8 +71,6 @@ class Basics extends React.Component {
     // tokens: Tokens[Token-1].value
   }
 
-
-
   //서버에서 가져오기
   Axios.get("hhttp://localhost:5000/NewP/new/getNewP", body)
       .then(response => {
@@ -88,7 +83,7 @@ class Basics extends React.Component {
       })
 
     //서버에서 가져오기
-    Axios.get("hhttp://localhost:5000/OldP/products/getOldP", body2)
+  Axios.get("hhttp://localhost:5000/OldP/products/getOldP", body2)
     .then(response => {
         if(response.data.success){
             alert('상품 불러오기 성공 했습니다.')
@@ -106,40 +101,36 @@ class Basics extends React.Component {
       if (item._id ==='index') return( <></>)
       return(
 
-                        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                          <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/new-descript-page?index='+item.index;}}>
-                          <img alt="..." className="img-fluid rounded shadow-lg" 
-                          src={item.tokenUri1}
-                          style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/new-descript-page"/>
-                          </button>
-                          <p>{item.brand}</p>
-                          <h5>{item.price}</h5>
-                        </Col>
-                  
+          <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+            <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/new-descript-page?index='+item.index;}}>
+            <img alt="..." className="img-fluid rounded shadow-lg" 
+            src={item.tokenUri1}
+            style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/new-descript-page"/>
+            </button>
+            <p>{item.brand}</p>
+            <h5>{item.price}</h5>
+          </Col>
       )});
 
       let Items2 = this.state.products.map( item2=>{
         if (item2._id ==='index') return( <></>)
         return(
   
-
           <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-          <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/old-descript-page?index='+item2.index;}}>
-          <img alt="..." className="img-fluid rounded shadow-lg" 
-          src={item2.images[0].binary}
-          style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/old-descript-page"/>
-          </button>
-          <p>{item2.brand}</p>
-          <h5>{item2.price}</h5>
-        </Col>
+            <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/old-descript-page?index='+item2.index;}}>
+            <img alt="..." className="img-fluid rounded shadow-lg" 
+            src={item2.images[0].binary}
+            style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/old-descript-page"/>
+            </button>
+            <p>{item2.brand}</p>
+            <h5>{item2.price}</h5>
+          </Col>
                     
         )});
 
     return (
       <Container>
-        
         <div id="images">
-
           <Row>
             <Col md="1">
               <h1>NEW</h1>
@@ -150,15 +141,11 @@ class Basics extends React.Component {
           </Row>
 
             <Row>
-                  {Items}
-                </Row>
-
-
+             {Items}
+            </Row>
         <div/>
       
-         
-
-          <div className="space-70"></div>
+         <div className="space-70"></div>
 
             <Row>
               <Col md="1">
@@ -168,19 +155,15 @@ class Basics extends React.Component {
                 <Button className="btn-simple btn-round" color="info" type="button" Link tag={Link} to="/old-page">+ More</Button>
               </Col>
             </Row>
-
-
-          <Row>
-                  {Items2}
-                </Row>
-
+              
+            <Row>
+              {Items2}
+            </Row>
           </div>
 
           <div className="space-70"></div>
-
-
-        
-        </Container>
+ 
+      </Container>
       
     );
   }
