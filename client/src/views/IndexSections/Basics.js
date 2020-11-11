@@ -244,7 +244,7 @@ class Basics extends React.Component {
                 <h1> OLD</h1>
               </Col>
               <Col md="9">
-                <Button className="btn-simple btn-round" color="info" type="button" Link tag={Link} to="/old-page">+ More</Button>
+                <Button className="btn-simple btn-round" color="success" type="button" Link tag={Link} to="/old-page">+ More</Button>
               </Col>
             </Row>
 
@@ -259,20 +259,20 @@ class Basics extends React.Component {
                       </a>
                     </div>
                     <div className="card-body">
-                      <hr className="line-primary"></hr>
+                      <hr className="line-success"></hr>
                         <table className="tablesorter table">
                           <tbody>
                             <tr>
                               <td className="text-left" >
-                                <i className="tim-icons icon-bag-16 text-primary " ></i> &nbsp;
-                                <p className="category text-primary d-inline">Brand</p>
+                                <i className="tim-icons icon-bag-16 text-success " ></i> &nbsp;
+                                <p className="category text-success d-inline">Brand</p>
                               </td>
                               <td className="text-right">{products[4].pname}</td>
                             </tr>
                             <tr>
                               <td className="text-left">
-                                <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
-                                <p className="category text-primary d-inline ">Price</p>
+                                <i class="tim-icons icon-money-coins text-success"/>&nbsp;&nbsp;
+                                <p className="category text-success d-inline ">Price</p>
                               </td>
                               <td className="text-right">{products[4].price} Klay</td>
                             </tr>
@@ -292,20 +292,20 @@ class Basics extends React.Component {
                       </a>
                     </div>
                     <div className="card-body">
-                      <hr className="line-primary"></hr>
+                      <hr className="line-success"></hr>
                         <table className="tablesorter table">
                           <tbody>
                             <tr>
                               <td className="text-left" >
-                                <i className="tim-icons icon-bag-16 text-primary " ></i> &nbsp;
-                                <p className="category text-primary d-inline">Brand</p>
+                                <i className="tim-icons icon-bag-16 text-success " ></i> &nbsp;
+                                <p className="category text-success d-inline">Brand</p>
                               </td>
                               <td className="text-right">{products[5].pname}</td>
                             </tr>
                             <tr>
                               <td className="text-left">
-                                <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
-                                <p className="category text-primary d-inline">Price</p>
+                                <i class="tim-icons icon-money-coins text-success"/>&nbsp;&nbsp;
+                                <p className="category text-success d-inline">Price</p>
                               </td>
                               <td className="text-right">{products[5].price} Klay</td>
                             </tr>
@@ -325,20 +325,20 @@ class Basics extends React.Component {
                       </a>
                     </div>
                     <div className="card-body">
-                      <hr className="line-primary"></hr>
+                      <hr className="line-success"></hr>
                         <table className="tablesorter table">
                           <tbody>
                             <tr>
                               <td className="text-left" >
-                                <i className="tim-icons icon-bag-16  text-primary" ></i> &nbsp;
-                                <p className="category text-primary d-inline">Brand</p>
+                                <i className="tim-icons icon-bag-16  text-success" ></i> &nbsp;
+                                <p className="category text-success d-inline">Brand</p>
                               </td>
                               <td className="text-right">{products[6].pname}</td>
                             </tr>
                             <tr>
                               <td className="text-left">
-                                <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
-                                <p className="category text-primary d-inline">Price</p>
+                                <i class="tim-icons icon-money-coins text-success"/>&nbsp;&nbsp;
+                                <p className="category text-success d-inline">Price</p>
                               </td>
                               <td className="text-right">{products[6].price} Klay</td>
                             </tr>
@@ -358,20 +358,20 @@ class Basics extends React.Component {
                       </a>
                     </div>
                     <div className="card-body">
-                      <hr className="line-primary"></hr>
+                      <hr className="line-success"></hr>
                         <table className="tablesorter table">
                           <tbody>
                             <tr>
                               <td className="text-left" >
-                                <i className="tim-icons icon-bag-16 text-primary" ></i> &nbsp;
-                                <p className="category text-primary d-inline">Brand</p>
+                                <i className="tim-icons icon-bag-16 text-success" ></i> &nbsp;
+                                <p className="category text-success d-inline">Brand</p>
                               </td>
                               <td className="text-right">{products[7].pname}</td>
                             </tr>
                             <tr>
                               <td className="text-left">
-                                <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
-                                <p className="category text-primary d-inline">Price</p>
+                                <i class="tim-icons icon-money-coins text-success"/>&nbsp;&nbsp;
+                                <p className="category text-success d-inline">Price</p>
                               </td>
                               <td className="text-right">{products[7].price} Klay</td>
                             </tr>
