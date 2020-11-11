@@ -33,27 +33,20 @@ let productSchema = mongoose.Schema({
         require: true
     },
     date:{
-        type: String,
+        type: Date,
         default:0,
         require: true
     },
-    tokenUri1:{
-        type: String,
-        require: true
-    },
-    tokenUri2:{
-        type: String,
-        require: true
-    },
-    tokenUri3:{
-        type: String,
-        require: true
-    },
+
     productKey:{
         type: String,
         require: true
+    },
+    tokenIndex:{
+        type: String,
+        require:true
     }
-},{sysdate:true});
+},{Date:true});
 
 productSchema.plugin(
     autoIncrement.plugin,
