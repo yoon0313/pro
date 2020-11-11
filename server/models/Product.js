@@ -49,6 +49,10 @@ let productSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    productKey:{
+        type: String,
+        require: true
+    }
 },{sysdate:true});
 
 productSchema.plugin(
