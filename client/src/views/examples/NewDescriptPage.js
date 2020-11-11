@@ -63,10 +63,11 @@ class NewDescriptPage extends React.Component {
         index        :'',
         brand        :'',
         productName  :'',
-        tokenUri1    :'',
+        image :'',
+        tokenUri    :'',
         description  :'',
         price        :'',
-       
+        date         :''  
       },
       value:0,min:0,counter:0,
       index:params.get('index')
@@ -80,7 +81,7 @@ class NewDescriptPage extends React.Component {
       .then(response => {
           if(response.status==200){
             this.setState({
-              products:response.data[0]
+              news:response.data[0]
             })
               
           }else{
@@ -164,7 +165,7 @@ class NewDescriptPage extends React.Component {
     var brand = this.state.news.brand;
     var productName = this.state.news.productName;
     var dateCreated = now.toLocaleDateString();
-    var tokenUri = this.state.news.tokenUri1;  
+    var tokenUri = this.state.news.tokenUri;  
     if (!productKey || !brand || !productName || !dateCreated ) {
       alert("조건이 맞지 않습니다")
       return;
@@ -402,11 +403,11 @@ class NewDescriptPage extends React.Component {
   render() {
 
     var imageItems=[];
-    if(!this.state.products.images|| this.state.products.images.length == 0){
+    if(!this.state.news.images|| this.state.news.images.length == 0){
       imageItems = []
     }
     else{
-      this.state.products.images.forEach(element => {
+      this.state.news.images.forEach(element => {
         imageItems.push({
           src : element.binary,
           altText: element.metadata.name,
@@ -629,8 +630,8 @@ class NewDescriptPage extends React.Component {
                     </div>
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="brandname">{this.state.products.brand}</h2>
-                    <h5>Wallet</h5>
+                    <h2 className="brandname">{this.state.news.brand}</h2>
+                    <h5>{this.state.news.productName}</h5>
                     <div className="stars stars-right">
                       <div className="stars text-warning">
                         <i className="fas fa-star"></i>
@@ -644,8 +645,7 @@ class NewDescriptPage extends React.Component {
                     <h2 className="main-price">{this.state.news.price} KLAY</h2>
                     <h5 className="category">Description</h5>
                     <p className="description">{this.state.news.description}</p><br/>
-                    <h5 className="category">참고 LINK</h5>
-                    <a href="http://www.naver.com">www.naver.com</a>
+                    
                     <div className="pick-size row">
                       <Col className="col-md-4 col-lg-2">
                         <label>
