@@ -858,7 +858,7 @@ class NewDescriptPage extends React.Component {
                   <div className="card-product card">
                     <div className="card-image">
                       <a href="#pablo">
-                      <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju1.jpg")}/></Link>
+                      <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
                       </a>
                     </div>
 
@@ -882,7 +882,7 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                   <a href="#pablo">
-                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju2.jpg")}/></Link>
+                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
                   </a>
                 </div>
 
@@ -908,7 +908,7 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju3.jpg")}/></Link>
+                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
                     </a>
                   </div>
                   
@@ -934,7 +934,7 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju4.jpg")}/></Link>
+                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
                     </a>
                   </div>
                   <div className="card-body">
