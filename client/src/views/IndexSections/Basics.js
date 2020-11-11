@@ -101,44 +101,144 @@ class Basics extends React.Component {
             </Col>
           </Row>
 
+          <Row>
             <Row>
-              <Row>
-                <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                  <Link to={`/new-descript-page?index=${products[0].id}`}>
-                    <img alt="..." className="img-fluid rounded shadow-lg" src={products[0].image} style={{ width: "250px" ,height: "220px"}}/>
-                  </Link>
-                  <p>{products[0].pname}</p>
-                  <h5>{products[0].price}</h5>
-                </Col>
+              <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                <div className="card-profile card">
+                  <div className="card-image">
+                    <a href="#pablo">
+                      <Link to={`/new-descript-page?index=${products[0].id}`}>
+                        <img alt="..." className="img-fluid rounded shadow-lg" src={products[0].image} style={{ width: "250px" ,height: "220px"}}/>
+                      </Link>
+                    </a>
+                  </div>
+                  <div className="card-body">
+                    <hr className="line-primary"></hr>
+                      <table className="tablesorter table">
+                        <tbody>
+                          <tr>
+                            <td className="text-left" >
+                              <i className="tim-icons icon-bag-16 text-primary " ></i> &nbsp;
+                              <p className="category text-primary d-inline">Brand</p>
+                            </td>
+                            <td className="text-right">{products[0].pname}</td>
+                          </tr>
+                          <tr>
+                            <td className="text-left">
+                              <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
+                              <p className="category text-primary d-inline">Price</p>
+                            </td>
+                            <td className="text-right">{products[0].price} Klay</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+              </Col>
+        
 
-                <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                  <Link to={`/new-descript-page?index=${products[1].id}`}>
-                    <img alt="..." className="img-fluid rounded shadow-lg" src={products[1].image} style={{ width: "250px" ,height: "220px"}}/>
-                  </Link>
-                  <p>{products[1].pname}</p>
-                  <h5>{products[1].price}</h5>
-                </Col>
+              <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                <div className="card-profile card">
+                  <div className="card-image">
+                    <a href="#pablo">
+                      <Link to={`/new-descript-page?index=${products[1].id}`}>
+                        <img alt="..." className="img-fluid rounded shadow-lg" src={products[1].image} style={{ width: "250px" ,height: "220px"}}/>
+                      </Link>
+                    </a>
+                  </div>
+                  <div className="card-body">
+                    <hr className="line-primary"></hr>
+                      <table className="tablesorter table">
+                        <tbody>
+                          <tr>
+                            <td className="text-left" >
+                              <i className="tim-icons icon-bag-16 text-primary " ></i> &nbsp;
+                              <p className="category text-primary d-inline">Brand</p>
+                            </td>
+                            <td className="text-right">{products[1].pname}</td>
+                          </tr>
+                          <tr>
+                            <td className="text-left">
+                              <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
+                              <p className="category text-primary d-inline">Price</p>
+                            </td>
+                            <td className="text-right">{products[1].price} Klay</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+              </Col>
 
-                <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                  <Link to={`/new-descript-page?index=${products[2].id}`}>
-                    <img alt="..." className="img-fluid rounded shadow-lg" src={products[2].image} style={{ width: "250px" ,height: "220px"}}/>
-                  </Link>
-                  <p>{products[2].pname}</p>
-                  <h5>{products[2].price}</h5>
-                </Col>
+              <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                <div className="card-profile card">
+                  <div className="card-image">
+                    <a href="#pablo">
+                      <Link to={`/new-descript-page?index=${products[2].id}`}>
+                        <img alt="..." className="img-fluid rounded shadow-lg" src={products[2].image} style={{ width: "250px" ,height: "220px"}}/>
+                      </Link>
+                    </a>
+                  </div>
+                  <div className="card-body">
+                    <hr className="line-primary"></hr>
+                      <table className="tablesorter table">
+                        <tbody>
+                          <tr>
+                            <td className="text-left" >
+                              <i className="tim-icons icon-bag-16 text-primary " ></i> &nbsp;
+                              <p className="category text-primary d-inline">Brand</p>
+                            </td>
+                            <td className="text-right">{products[2].pname}</td>
+                          </tr>
+                          <tr>
+                            <td className="text-left">
+                              <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
+                              <p className="category text-primary d-inline">Price</p>
+                            </td>
+                            <td className="text-right">{products[2].price} Klay</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+              </Col>
 
-                <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                  <Link to={`/new-descript-page?index=${products[3].id}`}>
-                    <img alt="..." className="img-fluid rounded shadow-lg" src={products[3].image} style={{ width: "250px" ,height: "220px"}}/>
-                  </Link>
-                  <p>{products[3].pname}</p>
-                  <h5>{products[3].price}</h5>
+              <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                <div className="card-profile card">
+                  <div className="card-image">
+                    <a href="#pablo">
+                      <Link to={`/new-descript-page?index=${products[3].id}`}>
+                        <img alt="..." className="img-fluid rounded shadow-lg" src={products[3].image} style={{ width: "250px" ,height: "220px"}}/>
+                      </Link>
+                    </a>
+                  </div>
+                  <div className="card-body">
+                    <hr className="line-primary"></hr>
+                      <table className="tablesorter table">
+                        <tbody>
+                          <tr>
+                            <td className="text-left" >
+                              <i className="tim-icons icon-bag-16 text-primary " ></i> &nbsp;
+                              <p className="category text-primary d-inline">Brand</p>
+                            </td>
+                            <td className="text-right">{products[3].pname}</td>
+                          </tr>
+                          <tr>
+                            <td className="text-left">
+                              <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
+                              <p className="category text-primary d-inline">Price</p>
+                            </td>
+                            <td className="text-right">{products[3].price} Klay</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </Col>
               </Row>
             </Row>
 
           <div className="space-70"></div>
-
             <Row>
               <Col md="1">
                 <h1> OLD</h1>
@@ -148,39 +248,138 @@ class Basics extends React.Component {
               </Col>
             </Row>
 
-
             <Row>
               <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                <Link to={`/old-descript-page?index=${products[4].id}`}>
-                  <img alt="..." className="img-fluid rounded shadow-lg" src={products[4].image} style={{ width: "250px" ,height: "220px"}}/>
-                </Link>
-                <p>{products[4].pname}</p>
-                <h5>{products[4].price}</h5>
-              </Col>
+                  <div className="card-profile card">
+                    <div className="card-image">
+                      <a href="#pablo">
+                        <Link to={`/old-descript-page?index=${products[4].id}`}>
+                          <img alt="..." className="img-fluid rounded shadow-lg" src={products[4].image} style={{ width: "250px" ,height: "220px"}}/>
+                        </Link>
+                      </a>
+                    </div>
+                    <div className="card-body">
+                      <hr className="line-primary"></hr>
+                        <table className="tablesorter table">
+                          <tbody>
+                            <tr>
+                              <td className="text-left" >
+                                <i className="tim-icons icon-bag-16 text-primary " ></i> &nbsp;
+                                <p className="category text-primary d-inline">Brand</p>
+                              </td>
+                              <td className="text-right">{products[4].pname}</td>
+                            </tr>
+                            <tr>
+                              <td className="text-left">
+                                <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
+                                <p className="category text-primary d-inline ">Price</p>
+                              </td>
+                              <td className="text-right">{products[4].price} Klay</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </Col>
               
-              <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                <Link to={`/old-descript-page?index=${products[5].id}`}>
-                  <img alt="..." className="img-fluid rounded shadow-lg" src={products[5].image} style={{ width: "250px" ,height: "220px"}}/>
-                </Link>
-                <p>{products[5].pname}</p>
-                <h5>{products[5].price}</h5>
-              </Col>
+                <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                  <div className="card-profile card">
+                    <div className="card-image">
+                      <a href="#pablo">
+                        <Link to={`/old-descript-page?index=${products[5].id}`}>
+                          <img alt="..." className="img-fluid rounded shadow-lg" src={products[5].image} style={{ width: "250px" ,height: "220px"}}/>
+                        </Link>
+                      </a>
+                    </div>
+                    <div className="card-body">
+                      <hr className="line-primary"></hr>
+                        <table className="tablesorter table">
+                          <tbody>
+                            <tr>
+                              <td className="text-left" >
+                                <i className="tim-icons icon-bag-16 text-primary " ></i> &nbsp;
+                                <p className="category text-primary d-inline">Brand</p>
+                              </td>
+                              <td className="text-right">{products[5].pname}</td>
+                            </tr>
+                            <tr>
+                              <td className="text-left">
+                                <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
+                                <p className="category text-primary d-inline">Price</p>
+                              </td>
+                              <td className="text-right">{products[5].price} Klay</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </Col>
 
-              <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                <Link to={`/old-descript-page?index=${products[6].id}`}>
-                  <img alt="..." className="img-fluid rounded shadow-lg" src={products[6].image} style={{ width: "250px" ,height: "220px"}}/>
-                </Link>
-                <p>{products[6].pname}</p>
-                <h5>{products[6].price}</h5>
-              </Col>
+                <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                  <div className="card-profile card">
+                    <div className="card-image">
+                      <a href="#pablo">
+                        <Link to={`/old-descript-page?index=${products[6].id}`}>
+                          <img alt="..." className="img-fluid rounded shadow-lg" src={products[6].image} style={{ width: "250px" ,height: "220px"}}/>
+                        </Link>
+                      </a>
+                    </div>
+                    <div className="card-body">
+                      <hr className="line-primary"></hr>
+                        <table className="tablesorter table">
+                          <tbody>
+                            <tr>
+                              <td className="text-left" >
+                                <i className="tim-icons icon-bag-16  text-primary" ></i> &nbsp;
+                                <p className="category text-primary d-inline">Brand</p>
+                              </td>
+                              <td className="text-right">{products[6].pname}</td>
+                            </tr>
+                            <tr>
+                              <td className="text-left">
+                                <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
+                                <p className="category text-primary d-inline">Price</p>
+                              </td>
+                              <td className="text-right">{products[6].price} Klay</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </Col>
 
-              <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                <Link to={`/old-descript-page?index=${products[7].id}`}>
-                  <img alt="..." className="img-fluid rounded shadow-lg" src={products[7].image} style={{ width: "250px" ,height: "220px"}}/>
-                </Link>
-                <p>{products[7].pname}</p>
-                <h5>{products[7].price}</h5>
-              </Col>
+                <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                  <div className="card-profile card">
+                    <div className="card-image">
+                      <a href="#pablo">
+                        <Link to={`/old-descript-page?index=${products[7].id}`}>
+                          <img alt="..." className="img-fluid rounded shadow-lg" src={products[7].image} style={{ width: "250px" ,height: "220px"}}/>
+                        </Link>
+                      </a>
+                    </div>
+                    <div className="card-body">
+                      <hr className="line-primary"></hr>
+                        <table className="tablesorter table">
+                          <tbody>
+                            <tr>
+                              <td className="text-left" >
+                                <i className="tim-icons icon-bag-16 text-primary" ></i> &nbsp;
+                                <p className="category text-primary d-inline">Brand</p>
+                              </td>
+                              <td className="text-right">{products[7].pname}</td>
+                            </tr>
+                            <tr>
+                              <td className="text-left">
+                                <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
+                                <p className="category text-primary d-inline">Price</p>
+                              </td>
+                              <td className="text-right">{products[7].price} Klay</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </Col>
             </Row>
         </div>
 
