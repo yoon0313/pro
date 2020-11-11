@@ -547,10 +547,10 @@ class NewDescriptPage extends React.Component {
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
                     <h2 className="brandname">BRAND: {this.state.news.brand}</h2>
-                    <h2> PRODUCT NAME: {this.state.news.productName} </h2>
+                    <h5> PRODUCT NAME: {this.state.news.productName} </h5>
                     <h2 className="main-price">PRICE: {this.state.news.price} KLAY</h2>
                     <h2 className="category">Description</h2>
-                    <h2 className="description">{this.state.news.description}</h2><br/>
+                    <h5 className="description">{this.state.news.description}</h5><br/>
                     <div className="pick-size row">
                    <Col>
                    </Col>
