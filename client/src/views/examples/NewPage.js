@@ -153,16 +153,16 @@ class NewPage extends React.Component {
                   <table className="tablesorter table">
                     <tbody>
                       <tr>
-                        <td className="text-left">
-                          <i className="tim-icons icon-bag-16 " color="primary"/> &nbsp;
-                            Brand
+                        <td className="text-left" >
+                          <i className="tim-icons icon-bag-16  text-primary" ></i> &nbsp;
+                          <p className="category text-primary d-inline">Brand</p>
                         </td>
                         <td className="text-right">{item.brand}</td>
                       </tr>
                       <tr>
                       <td className="text-left">
-                          <i class="tim-icons icon-money-coins"/>&nbsp;
-                              Price
+                          <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
+                          <p className="category text-primary d-inline">Price</p>
                         </td>
                         <td className="text-right">{item.price} Klay</td>
                       </tr>

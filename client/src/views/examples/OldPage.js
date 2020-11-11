@@ -130,15 +130,42 @@ class OldPage extends React.Component {
       if (item._id ==='index') return( <></>)
       return(
 
-                        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-                          <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/old-descript-page?index='+item.index;}}>
-                          <img alt="..." className="img-fluid rounded shadow-lg" 
-                          src={item.images[0].binary}
-                          style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/old-descript-page"/>
-                          </button>
-                          <p>{item.brand}</p>
-                          <h5>{item.price}</h5>
-                        </Col>
+        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+        <div className="card-profile card">
+          <div className="card-image">
+            <a href="#pablo">
+            <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/old-descript-page?index='+item.index;}}>
+              <img alt="..." className="img-fluid rounded shadow-lg" 
+                src={item.images[0].binary}
+                 style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/new-descript-page"/>
+              </button>
+            </a>
+          </div>
+          <div className="card-body">
+            <hr className="line-success"></hr>
+              
+                <table className="tablesorter table">
+                  <tbody>
+                    <tr>
+                    <td className="text-left" >
+                          <i className="tim-icons icon-bag-16 text-success" ></i> &nbsp;
+                          <p className="category text-success d-inline">Brand</p>
+                        </td>
+                        <td className="text-right">{item.brand}</td>
+                      </tr>
+                      <tr>
+                      <td className="text-left">
+                          <i class="tim-icons icon-money-coins text-success"/>&nbsp;&nbsp;
+                          <p className="category text-success d-inline">Price</p>
+                        </td>
+                        <td className="text-right">{item.price} Klay</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        
+      </Col>
                   
       )});
 
