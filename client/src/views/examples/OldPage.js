@@ -107,6 +107,8 @@ class OldPage extends React.Component {
     images:this.state.file
     // tokens: Tokens[Token-1].value
   }
+
+
   //서버에서 가져오기
   Axios.get("http://localhost:5000/OldP/products/getOldP", body)
       .then(response => {
@@ -119,6 +121,8 @@ class OldPage extends React.Component {
           }
       })
   }
+
+  
 
   render() {
     
