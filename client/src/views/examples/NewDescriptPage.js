@@ -854,30 +854,21 @@ class NewDescriptPage extends React.Component {
             </Col>
           
             <Row>
-              <Col className="col-md-6 col-lg-3">
-                <div className="card-product card">
-                  <div className="card-image">
-                    <a href="#pablo">
-                      <button type="button" onClick={(e) => {
-                                                              e.preventDefault();
-                                                              window.location.href='/new-descript-page?id=${products[1]}';
-                                                            }}>
-                        <img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ballpen3.jpg")}
-                        />
-                    </button>
-                    </a>
-                  </div>
-                  <div className="card-body">
-                    <h6 className="category text-warning">Trending</h6>
-                    <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">monblanc ballpen</a>
-                    </h4>
-                    <div className="card-description">
-                      마이스터스튁 클래식 볼펜은 고급 블랙 레진 캡과 배럴로 대표되는 특별한 디자인 아이콘입니다.
+            <Col className="col-md-6 col-lg-3">
+                  <div className="card-product card">
+                    <div className="card-image">
+                      <a href="#pablo">
+                      <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA5MTZfMjcz%2FMDAxNTY4NjI4MzcyNTQ0.5A7XSRyaiMkO5M4ZyvaG-50Gd_KY6KNfW10m4dkZU8Eg.e8qM6kNfXnbqf9Y-4KU-0bPKetBTXZ4VeYSrqayaDH4g.PNG.rwrbang3738%2F44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d.png&type=sc960_832"/></Link>
+                      </a>
                     </div>
+
+                    <div className="card-body">
+                    <h6 className="category text-warning">Trending</h6>
+                    <h4 className="card-title"><a href="#pablo" className="text-white card-link">GUCCI</a></h4>
+                    <div className="card-description">남성 지갑 판매량 1위 구찌 597606 96IWT 8745</div>
                     <div className="card-footer">
                       <div className="price-container">
-                        <span className="price">9 ETH</span>
+                        <span className="price">0.12</span>
                       </div>
                       <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                         <i className="tim-icons icon-heart-2"></i>
@@ -891,65 +882,45 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                   <a href="#pablo">
-                    <button type="button" onClick={(e) => {
-                                                            e.preventDefault();
-                                                            window.location.href='/new-descript-page?id=${products[2]}';
-                                                          }}>
-                      <img alt="..."
-                          className="img-fluid rounded shadow-lg"
-                          src={require("assets/img/dior2.jpg")}
-                      />
+                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA5MTZfMjcz%2FMDAxNTY4NjI4MzcyNTQ0.5A7XSRyaiMkO5M4ZyvaG-50Gd_KY6KNfW10m4dkZU8Eg.e8qM6kNfXnbqf9Y-4KU-0bPKetBTXZ4VeYSrqayaDH4g.PNG.rwrbang3738%2F44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d.png&type=sc960_832"/></Link>
+                  </a>
+                </div>
+
+                <div className="card-body">
+                  <h6 className="category text-warning">Popular</h6>
+                  <h4 className="card-title">
+                    <a href="#pablo" className="text-white card-link">SAINT LAURENT</a>
+                  </h4>
+                  <div className="card-description">여성 가방 판매량 1위 가죽 마틀라세 스몰 루루</div>
+                  <div className="card-footer">
+                    <div className="price-container">
+                      <span className="price">0.13</span>
+                    </div>
+                    <button id="tooltip320714545" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
+                      <i className="tim-icons icon-heart-2"></i>
                     </button>
-                    </a>
                   </div>
-                  <div className="card-body">
-                    <h6 className="category text-warning">Popular</h6>
-                    <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">Dior Belt</a>
-                    </h4>
-                    <div className="card-description">
-                      블랙 Christian Dior 앰보싱 나일론 Saddle 벨트입니다.
-                      원피스,코트 바지 위에 코디 하실 수 있습니다.
-                    </div>
-                    <div className="card-footer">
-                      <div className="price-container">
-                        <span className="price">17 ETH</span>
-                      </div>
-                      <button id="tooltip320714545" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                        <i className="tim-icons icon-heart-2"></i>
-                      </button>
-                    </div>
-                  </div>
+                </div>
                 </div>
               </Col>
 
               <Col className="col-md-6 col-lg-3">
                 <div className="card-product card">
                   <div className="card-image">
-                  <a href="#pablo">
-                    <button type="button" onClick={(e) => {
-                                                            e.preventDefault();
-                                                            window.location.href='/new-descript-page?id=${products[3]}';
-                                                          }}>
-                      <img
-                        alt="..."
-                        className="img-fluid rounded shadow-lg"
-                        src={require("assets/img/patek2.jpg")}
-                      />
-                      </button>
+                    <a href="#pablo">
+                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA5MTZfMjcz%2FMDAxNTY4NjI4MzcyNTQ0.5A7XSRyaiMkO5M4ZyvaG-50Gd_KY6KNfW10m4dkZU8Eg.e8qM6kNfXnbqf9Y-4KU-0bPKetBTXZ4VeYSrqayaDH4g.PNG.rwrbang3738%2F44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d.png&type=sc960_832"/></Link>
                     </a>
                   </div>
+                  
                   <div className="card-body">
                     <h6 className="category text-warning">Trending</h6>
                     <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">patekphilippe watch</a>
+                      <a href="#pablo" className="text-white card-link">PATEK PHILIPPE</a>
                     </h4>
-                    <div className="card-description">
-                    세계 시계 브랜드 NO.1을 자부할 수 있는 시계업계 원탑 파텍틸립을 만나보세요.
-                    </div>
+                    <div className="card-description">시계 브랜드 NO.1 파텍틸립을 만나보세요.</div>
                     <div className="card-footer">
                       <div className="price-container">
-                        <span className="price">555 ETH</span>
+                        <span className="price">0.2</span>
                       </div>
                       <button id="tooltip300524105" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                         <i className="tim-icons icon-heart-2"></i>
@@ -962,35 +933,23 @@ class NewDescriptPage extends React.Component {
               <Col className="col-md-6 col-lg-3">
                 <div className="card-product card">
                   <div className="card-image">
-                  <a href="#pablo">
-                    <button type="button" onClick={(e) => {
-                                          e.preventDefault();
-                                          window.location.href='/new-descript-page?id=${products[4}';}}>
-            
-                      <img
-                        alt="..."
-                        className="img-fluid rounded shadow-lg"
-                        src={require("assets/img/tagheuer2.jpg")}
-                        
-                      />
-                    </button>
+                    <a href="#pablo">
+                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA5MTZfMjcz%2FMDAxNTY4NjI4MzcyNTQ0.5A7XSRyaiMkO5M4ZyvaG-50Gd_KY6KNfW10m4dkZU8Eg.e8qM6kNfXnbqf9Y-4KU-0bPKetBTXZ4VeYSrqayaDH4g.PNG.rwrbang3738%2F44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d.png&type=sc960_832"/></Link>
                     </a>
                   </div>
                   <div className="card-body">
                     <h6 className="category text-warning">Trending</h6>
                     <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">TAGHeuer watch</a>
+                      <a href="#pablo" className="text-white card-link">CHANEL</a>
                     </h4>
-                    <div className="card-description">
-                    대한민국 국가대표 축구선수 손흥민이 착용하는 시계!!! 한정판매 중입니다 서두르세요!!
-                    </div>
+                    <div className="card-description">샤넬 신상 입고!! 한정판매 중입니다 서두르세요!!</div>
                     <div className="card-footer">
                       <div className="price-container">
-                        <span className="price">78 ETH</span>
+                        <span className="price">0.5</span>
                       </div>
-                      <button id="tooltip755498009" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                        <i className="tim-icons icon-heart-2"></i>
-                      </button>
+                        <button id="tooltip755498009" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
+                          <i className="tim-icons icon-heart-2"></i>
+                        </button>
                     </div>
                   </div>
                 </div>

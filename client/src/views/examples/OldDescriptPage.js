@@ -35,19 +35,20 @@ class OldDescriptPage extends React.Component {
   var params = new URLSearchParams(props.location.search);
   
   this.state={
-    productKey    : '',
-      brand       : '',
-      imgUrl      : '',
-      productName : '',
-      dateCreated : '',
-      tokenUri    :'',
-      price       :'',
-      productKey  :null,
-      items       :[],
-      sell_items  : [],
-      all_items   : [],
+    productKey  : '',
+    brand       : '',
+    imgUrl      : '',
+    productName : '',
+    dateCreated : '',
+    tokenUri    : '',
+    price       : '',
+    productKey  : null,
+    items       : [],
+    sell_items  : [],
+    all_items   : [],
     products:{
       id           :'',
+      tokenIndex   :'',
       index        :'',
       image        :'',
       brandname    :'',
@@ -443,7 +444,9 @@ handleOnChange(e) {
             </Col>
                 
             <Col className="mx-auto col-md-12 col-lg-6">
-              <h2 className="brandname">{this.state.products.brand}</h2>
+              <h2 className="brandname">Index: {this.state.products.tokenIndex}</h2>
+              <h2 className="brandname">Product Key: {this.state.products.productKey}</h2>
+              <h2 className="brandname">Brand: {this.state.products.brand}</h2>
               <div className="stars stars-right">
                 <div className="stars text-warning">
                   <i className="fas fa-star"></i>
@@ -454,7 +457,7 @@ handleOnChange(e) {
                   <p className="d-inline ml-1">(8080 customer reviews)</p>
                 </div>
               </div><br/>
-              <h2 className="main-price">{this.state.products.price}</h2>
+              <h2 className="main-price">Price: {this.state.products.price} klay</h2>
               <h5 className="category">Description</h5>
               <p className="description">{this.state.products.description}</p><br/>
               
@@ -622,25 +625,22 @@ handleOnChange(e) {
                   <h3 className="title">고객님을 위한 맞춘 추천 상품</h3>
                 </Col>
           
-              <Row>
-                <Col className="col-md-6 col-lg-3">
+                <Row>
+            <Col className="col-md-6 col-lg-3">
                   <div className="card-product card">
                     <div className="card-image">
                       <a href="#pablo">
-                      <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
+                      <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
                       </a>
                     </div>
 
                     <div className="card-body">
                     <h6 className="category text-warning">Trending</h6>
-                    <h4 className="card-title"><a href="#pablo" className="text-white card-link">monblanc ballpen</a></h4>
-                    
-                    <div className="card-description">
-                      마이스터스튁 클래식 볼펜은 고급 블랙 레진 캡과 배럴로 대표되는 특별한 디자인 아이콘입니다.
-                    </div>
+                    <h4 className="card-title"><a href="#pablo" className="text-white card-link">GUCCI</a></h4>
+                    <div className="card-description">남성 지갑 판매량 1위 구찌 597606 96IWT 8745</div>
                     <div className="card-footer">
                       <div className="price-container">
-                        <span className="price">9 ETH</span>
+                        <span className="price">0.12</span>
                       </div>
                       <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                         <i className="tim-icons icon-heart-2"></i>
@@ -654,22 +654,19 @@ handleOnChange(e) {
                 <div className="card-product card">
                   <div className="card-image">
                   <a href="#pablo">
-                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
+                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20151230_287%2Fcuore6621_1451437689215VdDBO_JPEG%2FRN4.jpg&type=sc960_832"/></Link>
                   </a>
                 </div>
 
                 <div className="card-body">
                   <h6 className="category text-warning">Popular</h6>
                   <h4 className="card-title">
-                    <a href="#pablo" className="text-white card-link">Dior Belt</a>
+                    <a href="#pablo" className="text-white card-link">SAINT LAURENT</a>
                   </h4>
-                  <div className="card-description">
-                    블랙 Christian Dior 앰보싱 나일론 Saddle 벨트입니다.
-                    원피스,코트 바지 위에 코디 하실 수 있습니다.
-                  </div>
+                  <div className="card-description">여성 가방 판매량 1위 가죽 마틀라세 스몰 루루</div>
                   <div className="card-footer">
                     <div className="price-container">
-                      <span className="price">17 ETH</span>
+                      <span className="price">0.13</span>
                     </div>
                     <button id="tooltip320714545" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                       <i className="tim-icons icon-heart-2"></i>
@@ -683,21 +680,19 @@ handleOnChange(e) {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
+                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20151230_287%2Fcuore6621_1451437689215VdDBO_JPEG%2FRN4.jpg&type=sc960_832"/></Link>
                     </a>
                   </div>
                   
                   <div className="card-body">
                     <h6 className="category text-warning">Trending</h6>
                     <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">patekphilippe watch</a>
+                      <a href="#pablo" className="text-white card-link">PATEK PHILIPPE</a>
                     </h4>
-                    <div className="card-description">
-                    세계 시계 브랜드 NO.1을 자부할 수 있는 시계업계 원탑 파텍틸립을 만나보세요.
-                    </div>
+                    <div className="card-description">시계 브랜드 NO.1 파텍틸립을 만나보세요.</div>
                     <div className="card-footer">
                       <div className="price-container">
-                        <span className="price">555 ETH</span>
+                        <span className="price">0.2</span>
                       </div>
                       <button id="tooltip300524105" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                         <i className="tim-icons icon-heart-2"></i>
@@ -711,20 +706,18 @@ handleOnChange(e) {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
+                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
                     </a>
                   </div>
                   <div className="card-body">
                     <h6 className="category text-warning">Trending</h6>
                     <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">TAGHeuer watch</a>
+                      <a href="#pablo" className="text-white card-link">CHANEL</a>
                     </h4>
-                    <div className="card-description">
-                    대한민국 국가대표 축구선수 손흥민이 착용하는 시계!!! 한정판매 중입니다 서두르세요!!
-                    </div>
+                    <div className="card-description">샤넬 신상 입고!! 한정판매 중입니다 서두르세요!!</div>
                     <div className="card-footer">
                       <div className="price-container">
-                        <span className="price">78 ETH</span>
+                        <span className="price">0.5</span>
                       </div>
                         <button id="tooltip755498009" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                           <i className="tim-icons icon-heart-2"></i>
