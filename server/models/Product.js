@@ -8,10 +8,7 @@ var connection = mongoose.createConnection('mongodb+srv://angel:a1234@cluster0.0
 const Schema = mongoose.Schema;
 
 let productSchema = mongoose.Schema({
-    writer:{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
+
 
     index:'number',
     brand:{
@@ -52,7 +49,7 @@ let productSchema = mongoose.Schema({
         type: String,
         require: true
     },
-},{timestamps:true});
+},{sysdate:true});
 
 productSchema.plugin(
     autoIncrement.plugin,

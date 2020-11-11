@@ -23,6 +23,11 @@ let newSchema = mongoose.Schema({
         type: String,
         require: true
     },
+    images:{
+        type: Buffer,
+        default:[],
+        require: true
+    },
 
     tokenUri1:{
         type: String,
@@ -36,7 +41,7 @@ let newSchema = mongoose.Schema({
         type: String,
         require: true
     },
-},{timestamps:true});
+},{sysdate:true});
 
 newSchema.plugin(
     autoIncrement.plugin,
