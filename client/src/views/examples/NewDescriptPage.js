@@ -63,10 +63,10 @@ class NewDescriptPage extends React.Component {
         index        :'',
         brand        :'',
         productName  :'',
-        tokenUri1     :'',
+        tokenUri1    :'',
         description  :'',
         price        :'',
-        // date         :''  
+       
       },
       value:0,min:0,counter:0,
       index:params.get('index')
@@ -195,7 +195,6 @@ class NewDescriptPage extends React.Component {
       gas: '500000',
       value: caver.utils.toPeb('0', 'KLAY'),
     }, sender.privateKey)//트렌젝션에 sender가 서명을 한다
-
     caver.klay.sendTransaction({
       senderRawTransaction: senderRawTransaction,//위의 서명이 끝난 transaction을 넘긴다
       feePayer: feePayer.address,//feepayer의 공개주소를 넘긴다
