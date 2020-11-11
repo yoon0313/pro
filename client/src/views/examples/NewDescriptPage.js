@@ -501,7 +501,7 @@ class NewDescriptPage extends React.Component {
     }
 
     if (walletInstance.address ==='0xda88c1bd96a03b391d1983c2330ff961c9a8c255'){ 
-    // if (walletInstance){
+    
             
       return (
         <>
@@ -547,10 +547,10 @@ class NewDescriptPage extends React.Component {
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
                     <h2 className="brandname">BRAND: {this.state.news.brand}</h2>
-                    <h2> PRODUCT NAME: {this.state.news.productName} </h2>
+                    <h5> PRODUCT NAME: {this.state.news.productName} </h5>
                     <h2 className="main-price">PRICE: {this.state.news.price} KLAY</h2>
                     <h2 className="category">Description</h2>
-                    <h2 className="description">{this.state.news.description}</h2><br/>
+                    <h5 className="description">{this.state.news.description}</h5><br/>
                     <div className="pick-size row">
                    <Col>
                    </Col>
@@ -560,8 +560,8 @@ class NewDescriptPage extends React.Component {
                       {/* 토큰 URI: {this.state.products.tokenUri1}<br/> */}
                       <Button className="btn-simple btn btn-primary"  onClick={this.generateProductKey}> Generate key </Button>
                       <input placeholder="Product Key" value={this.state.productKey} label="Product key" readOnly/><br/>  
-                      제품이름: {this.state.products.productName}<br/>           
-                      브랜드이름: {this.state.products.brand}<br/>  
+                      제품이름: {this.state.news.productName}<br/>           
+                      브랜드이름: {this.state.news.brand}<br/>  
                       {/* <Button className="btn-simple btn btn-primary" style={{float: "right"}} onClick = {this.approve}> 토큰 판매승인</Button> */}
                       <Button className="btn-simple btn btn-primary" style={{float: "right"}} onClick={this.displayMyTokensAndSale}>토큰확인</Button>
                       <Button className="btn-simple btn btn-primary" style={{float: "right"}} onClick={this.handleCreateToken}>토큰생성</Button>
