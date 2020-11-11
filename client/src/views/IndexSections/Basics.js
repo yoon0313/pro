@@ -101,15 +101,16 @@ class Basics extends React.Component {
       if (item._id ==='index') return( <></>)
       return(
 
-          <Col className="mt-5 mt-sm-0" sm="3" xs="6">
-            <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/new-descript-page?index='+item.index;}}>
-            <img alt="..." className="img-fluid rounded shadow-lg" 
-            src={item.tokenUri1}
-            style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/new-descript-page"/>
-            </button>
-            <p>{item.brand}</p>
-            <h5>{item.price}</h5>
-          </Col>
+                        <Col className="mt-5 mt-sm-0" sm="3" xs="6">
+                          <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/new-descript-page?index='+item.index;}}>
+                          <img alt="..." className="img-fluid rounded shadow-lg" 
+                          src={item.images[0].binary}
+                          style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/new-descript-page"/>
+                          </button>
+                          <p>{item.brand}</p>
+                          <h5>{item.price}</h5>
+                        </Col>
+                  
       )});
 
       let Items2 = this.state.products.map( item2=>{
