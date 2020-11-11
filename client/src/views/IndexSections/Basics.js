@@ -49,31 +49,30 @@ const products = [
   {
     'id' : 5,
     'image' : 'https://ccimg.hellomarket.com/images/2019/item/03/23/17/1642_1945942_1.jpg?size=s6',
-    'pname' : 'Air Jordan shoes',
+    'pname' : 'Air Jordan',
     'price' : '0.07'
   },
   {
     'id' : 6,
     'image' : 'https://dnvefa72aowie.cloudfront.net/origin/article/202009/87CCC8EB306D3D8A8150DDE6780C8E2A6012EDAA7FC2624F0BE962873096DF63.jpg?q=82&s=300x300&t=crop',
-    'pname' : 'chanel bag',
+    'pname' : 'Chanel',
     'price' : '0.28'
   },
   {
     'id' : 7,
     'image' : 'https://static.coupangcdn.com/image/vendor_inventory/a0eb/138700c90407fbea7cf6f82e1d9c972a774382528f4acf996057950397e0.jpg',
-    'pname' : 'SAINT LAURENT pouch',
+    'pname' : 'SAINT LAURENT',
     'price' : '0.45'
   },
   {
     'id' : 8,
     'image' : 'https://dnvefa72aowie.cloudfront.net/origin/article/201910/F05ECCF00B1A9BF3E731B8A12D6F4CB6A14D0506714DBB4A857E7D078EB4BF2F.jpg?q=95&s=1440x1440&t=inside',
-    'pname' : 'balenciaga wallet',
+    'pname' : 'Balenciaga ',
     'price' : '0.3'
   }
 
 ]
 
-axios.get('http://localhost:5000/OldP/products/register');
 
 class Basics extends React.Component {
   state={
@@ -85,23 +84,7 @@ class Basics extends React.Component {
       inputFocus: false
     };
   }
-  componentDidMount(){
-    this.callApi()
-      //body로 담은 고객 목록을 받아서 
-      //이 목록을 state로 설정해주는것
-      //결과적으로 body가 res라는 변수이름으로 바뀌고
-      //그것을 customers 변수값에 넣어줌
-      .then(res => this.setState({products: res}))
-      //만약 오류가 발생하는경우 콘솔창에 오류를 보여준다.
-      .catch(err => console.log(err));
-  }
-  callApi = async()=>{
-    //접속하고자 하는 api주소를 넣어줌
-    const response = await fetch('http://localhost:5000/OldP/products/register');
-    //출력한 데이터를 json으로 만들어서 body라는 변수에 넣어줌
-    const body = await response.json();
-    return body;
-  }
+
 
   render() {
 
