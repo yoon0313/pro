@@ -18,6 +18,10 @@ import OrderCompletePage from "views/examples/OrderCompletePage.js"
 import OldDescriptPage from "views/examples/OldDescriptPage.js";
 import UploadOldPage from "views/examples/UploadOldPage.js";
 import MyPage from "views/examples/MyPage.js";
+import OrderPageOld from "views/examples/OrderPageOld.js"
+import OrderCompletePageOld from "views/examples/OrderCompletePageOld.js"
+
+
 
 
 
@@ -64,6 +68,15 @@ ReactDOM.render(
       <Route
         path="/new-descript-page"
         render={props => <NewDescriptPage {...props} />}
+      />
+
+      <Route
+        path="/order-page-old"
+        render={props => <OrderPageOld {...props} />}
+      />
+      <Route
+        path="/order-complete-page-old"
+        render={props => <OrderCompletePageOld {...props} />}
       />
       
 
