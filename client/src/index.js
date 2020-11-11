@@ -78,6 +78,10 @@ ReactDOM.render(
         path="/order-complete-page-old"
         render={props => <OrderCompletePageOld {...props} />}
       />
+      <Route
+       exact path="/upload-new-page"
+        render={props => <UploadNewPage {...props} />}
+      />
       
 
       <Redirect from="/" to="/components" />
