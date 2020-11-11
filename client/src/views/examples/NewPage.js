@@ -27,9 +27,7 @@ import {
 // core components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
-import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
-import gucci4 from 'assets/img/gucci4.jpg';
 
 
 
@@ -141,7 +139,7 @@ class NewPage extends React.Component {
                         <Col className="mt-5 mt-sm-0" sm="3" xs="6">
                           <button type="button" onClick={(e) => {e.preventDefault(); window.location.href='/new-descript-page?index='+item.index;}}>
                           <img alt="..." className="img-fluid rounded shadow-lg" 
-                          src={item.tokenUri1}
+                          src={item.images[0].binary}
                           style={{ width: "250px" ,height: "220px" }} Link tag={Link} to="/new-descript-page"/>
                           </button>
                           <p>{item.brand}</p>
