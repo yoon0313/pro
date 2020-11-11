@@ -58,16 +58,15 @@ class NewDescriptPage extends React.Component {
       items :[],
       sell_items : [],
       all_items: [],
-      products:{
+      news:{
         id           :'',
         index        :'',
-        images       :'',
         brand        :'',
         productName  :'',
         tokenUri1     :'',
         description  :'',
         price        :'',
-        date         :''  
+        // date         :''  
       },
       value:0,min:0,counter:0,
       index:params.get('index')
@@ -77,7 +76,7 @@ class NewDescriptPage extends React.Component {
     this.handleClickMinus=this.handleClickMinus.bind(this);
     this.handleOnChange=this.handleOnChange.bind(this);
 
-    Axios.get("http://localhost:5000/OldP/products/getOldp?index="+params.get('index'))
+    Axios.get("http://localhost:5000/NewP/new/getNewP?index="+params.get('index'))
       .then(response => {
           if(response.status==200){
             this.setState({
@@ -162,10 +161,10 @@ class NewDescriptPage extends React.Component {
   handleCreateToken = async () => {
     var now = new Date();
     var productKey = this.state.productKey;//유닉크해야한다.
-    var brand = this.state.products.brand;
-    var productName = this.state.products.productName;
+    var brand = this.state.news.brand;
+    var productName = this.state.news.productName;
     var dateCreated = now.toLocaleDateString();
-    var tokenUri = this.state.products.tokenUri1;  
+    var tokenUri = this.state.news.tokenUri1;  
     if (!productKey || !brand || !productName || !dateCreated ) {
       alert("조건이 맞지 않습니다")
       return;
@@ -547,11 +546,11 @@ class NewDescriptPage extends React.Component {
                     </div>
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="brandname">BRAND: {this.state.products.brand}</h2>
-                    <h2> PRODUCT NAME: {this.state.products.productName} </h2>
-                    <h2 className="main-price">PRICE: {this.state.products.price} KLAY</h2>
+                    <h2 className="brandname">BRAND: {this.state.news.brand}</h2>
+                    <h2> PRODUCT NAME: {this.state.news.productName} </h2>
+                    <h2 className="main-price">PRICE: {this.state.news.price} KLAY</h2>
                     <h2 className="category">Description</h2>
-                    <h2 className="description">{this.state.products.description}</h2><br/>
+                    <h2 className="description">{this.state.news.description}</h2><br/>
                     <div className="pick-size row">
                    <Col>
                    </Col>
@@ -643,9 +642,9 @@ class NewDescriptPage extends React.Component {
                         <p className="d-inline ml-1">(8080 customer reviews)</p>
                       </div>
                     </div> <br/>
-                    <h2 className="main-price">{this.state.products.price} KLAY</h2>
+                    <h2 className="main-price">{this.state.news.price} KLAY</h2>
                     <h5 className="category">Description</h5>
-                    <p className="description">{this.state.products.description}</p><br/>
+                    <p className="description">{this.state.news.description}</p><br/>
                     <h5 className="category">참고 LINK</h5>
                     <a href="http://www.naver.com">www.naver.com</a>
                     <div className="pick-size row">
@@ -699,9 +698,9 @@ class NewDescriptPage extends React.Component {
                        pathname:"/order-page",
                        state:{
                         //  id:this.state.productKey,
-                        brand:this.state.products.brand,
-                        productName: this.state.products.productName,
-                        price:this.state.products.price
+                        brand:this.state.news.brand,
+                        productName: this.state.news.productName,
+                        price:this.state.news.price
                        }
                      }}>
                         <Button
@@ -725,6 +724,7 @@ class NewDescriptPage extends React.Component {
                       <h4 className="description">정보가 더 필요한가요? 다른 사람이 우리 제품에 대해 말하는 것을 확인해보세요. 그들은 그들의 구매에 매우 만족합니다.</h4>
                     </Col>
                   </Row>
+
                   <Row>
                     <Col className="col-md-3" >
                       <div className="card-testimonial card">
@@ -853,12 +853,12 @@ class NewDescriptPage extends React.Component {
               <h3 className="title">고객님을 위한 맞춘 추천 상품</h3>
             </Col>
           
-            <Row>
-            <Col className="col-md-6 col-lg-3">
+             <Row>
+                <Col className="col-md-6 col-lg-3">
                   <div className="card-product card">
                     <div className="card-image">
                       <a href="#pablo">
-                      <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA5MTZfMjcz%2FMDAxNTY4NjI4MzcyNTQ0.5A7XSRyaiMkO5M4ZyvaG-50Gd_KY6KNfW10m4dkZU8Eg.e8qM6kNfXnbqf9Y-4KU-0bPKetBTXZ4VeYSrqayaDH4g.PNG.rwrbang3738%2F44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d.png&type=sc960_832"/></Link>
+                      <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju1.jpg")}/></Link>
                       </a>
                     </div>
 
@@ -882,7 +882,7 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                   <a href="#pablo">
-                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA5MTZfMjcz%2FMDAxNTY4NjI4MzcyNTQ0.5A7XSRyaiMkO5M4ZyvaG-50Gd_KY6KNfW10m4dkZU8Eg.e8qM6kNfXnbqf9Y-4KU-0bPKetBTXZ4VeYSrqayaDH4g.PNG.rwrbang3738%2F44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d.png&type=sc960_832"/></Link>
+                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju2.jpg")}/></Link>
                   </a>
                 </div>
 
@@ -908,7 +908,7 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA5MTZfMjcz%2FMDAxNTY4NjI4MzcyNTQ0.5A7XSRyaiMkO5M4ZyvaG-50Gd_KY6KNfW10m4dkZU8Eg.e8qM6kNfXnbqf9Y-4KU-0bPKetBTXZ4VeYSrqayaDH4g.PNG.rwrbang3738%2F44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d.png&type=sc960_832"/></Link>
+                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju3.jpg")}/></Link>
                     </a>
                   </div>
                   
@@ -934,7 +934,7 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA5MTZfMjcz%2FMDAxNTY4NjI4MzcyNTQ0.5A7XSRyaiMkO5M4ZyvaG-50Gd_KY6KNfW10m4dkZU8Eg.e8qM6kNfXnbqf9Y-4KU-0bPKetBTXZ4VeYSrqayaDH4g.PNG.rwrbang3738%2F44c8031cb036a7350d8b9b8603af662a4b9cdbd2f96e8d.png&type=sc960_832"/></Link>
+                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju4.jpg")}/></Link>
                     </a>
                   </div>
                   <div className="card-body">
@@ -958,9 +958,9 @@ class NewDescriptPage extends React.Component {
            </div>
           </div>
         <Footer />
-      </>
-    );
-  }
+</>
+);
+}
 }
 
 export default NewDescriptPage;

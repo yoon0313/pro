@@ -71,6 +71,7 @@ router.post('/register', async (req,res) =>{
     brand: req.body.brand,
     productName: req.body.productName,
     price : req.body.price,
+    images : req.body.images,
     tokenUri1: req.body.tokenUri1,
     tokenUri2: req.body.tokenUri2,
     tokenUri3: req.body.tokenUri3
