@@ -20,7 +20,7 @@ import UploadOldPage from "views/examples/UploadOldPage.js";
 import MyPage from "views/examples/MyPage.js";
 import OrderPageOld from "views/examples/OrderPageOld.js"
 import OrderCompletePageOld from "views/examples/OrderCompletePageOld.js"
-
+import UploadNewPage from "views/examples/UploadNewPage.js";
 
 
 
