@@ -70,11 +70,10 @@ router.post('/register', async (req,res) =>{
     index: idx,
     brand: req.body.brand,
     productName: req.body.productName,
+    description: req.body.description,
     price : req.body.price,
     images : req.body.images,
-    tokenUri1: req.body.tokenUri1,
-    tokenUri2: req.body.tokenUri2,
-    tokenUri3: req.body.tokenUri3
+    tokenUri: req.body.tokenUri
   }).then( (data)=>{
     res.json({success:true, msg:data})
   })
