@@ -111,7 +111,7 @@ class UploadNewPage extends React.Component {
     }
     reader.readAsDataURL(file);
   }
-  state = {};
+ 
 
   handleOnChange(e) {
     this.setState({
@@ -379,7 +379,7 @@ class UploadNewPage extends React.Component {
                             placeholder="description"
                             type="textarea"
                             onChange={this.handleDescriptionOnChange}
-                            value={this.Description}
+                            value={this.description}
                       />
                     
                       <br/>

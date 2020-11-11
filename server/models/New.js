@@ -18,7 +18,10 @@ let newSchema = mongoose.Schema({
         type: String,
         require: true
     },
-
+    description:{
+        type: String,
+        require: true
+    },
     price:{
         type: String,
         require: true
@@ -29,18 +32,11 @@ let newSchema = mongoose.Schema({
         require: true
     },
 
-    tokenUri1:{
+    tokenUri:{
         type: String,
         require: true
     },
-    tokenUri2:{
-        type: String,
-        require: true
-    },
-    tokenUri3:{
-        type: String,
-        require: true
-    },
+    
 },{sysdate:true});
 
 newSchema.plugin(
