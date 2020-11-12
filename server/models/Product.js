@@ -45,6 +45,10 @@ let productSchema = mongoose.Schema({
     tokenIndex:{
         type: String,
         require:true
+    },
+    sell_receipt:{
+        type: String,
+        require:true
     }
 },{Date:true});
 
