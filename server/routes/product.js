@@ -74,11 +74,13 @@ router.post('/register', async (req,res) =>{
     images : req.body.images,
     date : req.body.date,
     productKey: req.body.productKey,
-    tokenIndex : req.body.tokenIndex
+    tokenIndex : req.body.tokenIndex,
+    sell_receipt : req.body.sell_receipt
   }).then( (data)=>{
     res.json({success:true, msg:data})
   })
-})
+}
+)
 
 
 //db에서 OldProduct 가져오기 
