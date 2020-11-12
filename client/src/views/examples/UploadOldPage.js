@@ -287,6 +287,42 @@ class UploadOldPage extends React.Component {
     return await yttContract.methods.ownerOf(tokenIndex).call();
   }
 
+  submitHandler = () =>{
+    // preventDefault를 해줘야 확인 버튼을 눌렀을때
+    // 화면이 새로고침되지 않는다.
+    //모든 입력칸이 채워지지않으면 submit할 수없게 조건문
+    // if(!this.state.description || !this.state.amount ){
+    //     return alert("모든 값을 넣어주세요")
+    // }
+    //서버에 채운 값을 request로 보낸다.
+    //axious post를 하면 body를 적어줘야함
+    const body = {
+        //로그인된 사람의 ID를 가져오기위해 
+        // price:this.state.price,
+        // tokenIndex:this.state.tokenIndex,
+        description:this.state.description,
+        brand:this.state.brand,
+        images:this.state.file,
+        date:this.state.date,
+        productName:this.state.productName,
+        productKey:this.state.productKey,
+        price:this.state.amount,
+        tokenIndex:this.state.index
+        // tokens: Tokens[Token-1].value
+    }
+     //서버로 보내기
+    Axios.post("http://localhost:5000/OldP/products/register", body)
+        .then(response => {
+            if(response.data.success){
+                alert('상품 업로드에 성공 했습니다.')
+                //상품업로드 후 랜딩페이지로 돌아감
+                this.props.history.push('/')
+            }else{
+                alert('상품 업로드에 실패 했습니다.')
+            }
+        })
+  }
+
   sellToken = async(index) => {    
     var tokenIndex=index
     var amount = this.state.amount;
@@ -316,6 +352,7 @@ class UploadOldPage extends React.Component {
         value: caver.utils.toPeb('0', 'KLAY'),
       }, sender.privateKey)
 
+      this.submitHandler()
       caver.klay.sendTransaction({
         senderRawTransaction: senderRawTransaction,
         feePayer: feePayer.address,
@@ -323,13 +360,12 @@ class UploadOldPage extends React.Component {
       .then(function(receipt){
         if (receipt.transactionHash) {         
           alert("토큰 등록 완료" + receipt.transactionHash);
-          submitHandler()
         }
       });
     } catch (err) {
       console.error(err);
     }
-    window.location.reload();
+    // window.location.reload();
   }
 
   approve = () => {//판매승인
@@ -491,41 +527,7 @@ class UploadOldPage extends React.Component {
     reader.readAsDataURL(file);
   }
 
-  submitHandler = () =>{
-    // preventDefault를 해줘야 확인 버튼을 눌렀을때
-    // 화면이 새로고침되지 않는다.
-    //모든 입력칸이 채워지지않으면 submit할 수없게 조건문
-    // if(!this.state.description || !this.state.amount ){
-    //     return alert("모든 값을 넣어주세요")
-    // }
-    //서버에 채운 값을 request로 보낸다.
-    //axious post를 하면 body를 적어줘야함
-    const body = {
-        //로그인된 사람의 ID를 가져오기위해 
-        description:this.state.description,
-        brand:this.state.brand,
-        // price:this.state.price,
-        images:this.state.file,
-        date:this.state.date,
-        productName:this.state.productName,
-        tokenIndex:this.state.tokenIndex,
-        productKey:this.state.productKey,
-        amount:this.state.amount,
-        index:this.state.index
-        // tokens: Tokens[Token-1].value
-    }
-     //서버로 보내기
-    Axios.post("http://localhost:5000/OldP/products/register", body)
-        .then(response => {
-            if(response.data.success){
-                alert('상품 업로드에 성공 했습니다.')
-                //상품업로드 후 랜딩페이지로 돌아감
-                this.props.history.push('/')
-            }else{
-                alert('상품 업로드에 실패 했습니다.')
-            }
-        })
-  }
+  
 
   state = {
     };
@@ -702,7 +704,7 @@ class UploadOldPage extends React.Component {
                     </Col>
                     <br/>
 
-                    Token Index:{this.state.tokenIndex}<br/>   
+                    {/* Token Index:{this.state.tokenIndex}<br/>    */}
                     Index:{this.state.index} 
                     {/* <Input placeholder="Token Index" 
                           type="text"

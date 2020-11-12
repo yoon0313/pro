@@ -24,7 +24,8 @@ class OrderCompletePage extends React.Component {
             productKey:props.location.state.productKey,
             productName:props.location.state.productName,
             brand:props.location.state.brand,
-            sell_receipt:props.location.state.sell_receipt
+            sell_receipt:props.location.state.sell_receipt,
+            price:props.location.state.price
         }
     }
 
@@ -130,7 +131,7 @@ class OrderCompletePage extends React.Component {
                                                             <tfoot>
                                                                 <tr>
                                                                     <th className="h4">Total</th>
-                                                                    <th className="text-rught h4" colSpan="3">$750</th>
+                                                                    <th className="text-rught h4" colSpan="3">{this.state.price} klay</th>
                                                                 </tr>
                                                             </tfoot>
                                                         </table>
