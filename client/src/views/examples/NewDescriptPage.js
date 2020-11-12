@@ -45,7 +45,8 @@ class NewDescriptPage extends React.Component {
     super(props);
 
     var params = new URLSearchParams(props.location.search);
-    
+
+    this.displayAllSellTokens()
     this.state={
       productKey: '',
       brand: '',
@@ -58,6 +59,7 @@ class NewDescriptPage extends React.Component {
       items :[],
       sell_items : [],
       all_items: [],
+      allSell_items: [],
       news:{
         id           :'',
         index        :'',
@@ -111,13 +113,6 @@ class NewDescriptPage extends React.Component {
     });
   }
 
-  // selectChange(e){
-  //   this.setState({
-  //     selectedValue: e.target.value
-  //   })
-  // }
-
-  ///////////////create token//////////////////////////
   handleItemChange = (e, _tokenIndex) => {
     var tokenIndex=_tokenIndex
     var itemIndex = this.state.items.findIndex(element => element.Id == tokenIndex)
@@ -259,6 +254,50 @@ class NewDescriptPage extends React.Component {
     }
   }
 
+  displayAllSellTokens = async () => {   
+    var totalSupply = parseInt(await this.getTotalSupply());
+    if (totalSupply === 0) {
+        console.log("발행된 토큰이 없습니다");
+    } else {
+      for (var i = 0; i < totalSupply; i++) {
+        (async () => {
+          var tokenIndex = await this.getTokenByIndex(i);
+          var tokenUri = await this.getTokenUri(tokenIndex);
+          var ytt =  await this.getYTT(tokenIndex);
+          var metadata = await this.getMetadata(tokenUri);
+          var price = await this.getTokenPrice(tokenIndex); 
+        //   this.renderAllTokens(tokenIndex, ytt, metadata, price,owner);//
+          if (parseInt(price) > 0) 
+            this.renderAllSellTokens(tokenIndex, ytt, metadata, price);
+        })();
+      }
+    }
+  }
+
+  renderAllSellTokens = (tokenIndex, ytt, metadata, price) => {   
+      var _tokenIndex = tokenIndex;  
+      var _url = metadata.properties.image.description;
+      var _brand = metadata.properties.description.description;
+      var _productKey = metadata.properties.name.description;
+      var _productName = ytt[0];
+      var _dateCreated = ytt[1];
+      var _price = caver.utils.fromPeb(price, 'KLAY');
+    
+      if (parseInt(price) > 0) {
+        var allSellState = this.state;
+        allSellState.allSell_items.push({
+          index : _tokenIndex,
+          Url : _url,
+          Id : _productKey,
+          brand : _brand,
+          productName : _productName,
+          date : _dateCreated,
+          amount : _price
+        })
+        this.setState(allSellState);
+      } 
+  }
+
   renderMyTokens = (tokenIndex, ytt, metadata, isApproved, price) => {
 
   var _tokenIndex = tokenIndex;  
@@ -308,8 +347,8 @@ class NewDescriptPage extends React.Component {
 
   sellToken = async(index) => {    
     var tokenIndex=index
-    var itemIndex = this.state.items.findIndex(element => element.index == tokenIndex)
-    var amount = this.state.items[itemIndex].amount;
+    // var itemIndex = this.state.items.findIndex(element => element.index == tokenIndex)
+    var amount = this.state.news.price;
     console.log(tokenIndex, amount, typeof(tokenIndex))
     if (amount==null) 
       return;//수가0이하면 함수 종료
@@ -342,13 +381,18 @@ class NewDescriptPage extends React.Component {
       .then(function(receipt){
         if (receipt.transactionHash) {         
           alert("토큰 등록 완료" + receipt.transactionHash);
+          // location.reload();
         }
       });
     } catch (err) {
       console.error(err);
     }
   }
+  getTotalSupply = async () => {
+    return await yttContract.methods.totalSupply().call();
+  }
   
+
   getBalanceOf = async (address) => {
     return await yttContract.methods.balanceOf(address).call();
   }
@@ -431,44 +475,72 @@ class NewDescriptPage extends React.Component {
 
     var DOM_items = [];
     var sell_items = [];
+    var allSell_items = [];
+
+    for(const item of this.state.allSell_items){
+        // if (item.brand == this.state.s_brand && item.productName== this.state.s_productName&& item.amount == "0.1"){
+        if (item.brand == this.state.news.brand && item.productName == this.state.news.productName && item.amount == this.state.news.price){
+            
+          allSell_items.push(
+          <>
+          <Card className="card-coin card-plain" >
+            <Row>
+              <ListGroup>
+                <ListGroupItem>index: {item.index} </ListGroupItem>
+                <ListGroupItem>제품고유번호: {item.Id}</ListGroupItem>
+                <ListGroupItem>브랜드: {item.brand}</ListGroupItem>
+                <ListGroupItem>제품이름: {item.productName}</ListGroupItem>
+                <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
+                <ListGroupItem>제품가격: {item.amount} klay</ListGroupItem>
+              </ListGroup>
+            </Row>
+          </Card>
+          </>
+        )
+      }
+    }
 
     for(const item of this.state.items){
-      DOM_items.push(
-        <>
-        <Card className="card-coin card-plain" >
-         <img alt="..." className="img-center img-fluid" src={item.Url}/>      
-          <Row>
-            <Col className="text-center" md="12" style={{width:"230px"}}>
-            <h4 className="text-uppercase">
-              <Link to="product-page">
-                <p style ={{color : "white"}}>
-                  Light Coin
-                </p>
-              </Link>
-            </h4>
-            <hr className="line-primary" />
-            </Col>
-          </Row>
-          <Row>
-            <ListGroup>
-              <ListGroupItem>index: {item.index}</ListGroupItem>
-              <ListGroupItem>제품고유번호: {item.Id}</ListGroupItem>
-              <ListGroupItem>브렌드: {item.brand}</ListGroupItem>
-              <ListGroupItem>제품이름: {item.productName}</ListGroupItem>
-              <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
-              <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem>
-              <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem>
-              <Button onClick = {this.approve}> 토큰 판매승인</Button>
-              {this.state.isApproved&& <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button>}
-              <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button>
-            </ListGroup>
-          </Row>
-        </Card>
-        </>
-      )
+      if( item.brand == this.state.news.brand && item.productName == this.state.news.productName){
+        DOM_items.push(
+          <>
+          <Card className="card-coin card-plain" >
+          <img alt="..." className="img-center img-fluid" src={item.Url}/>      
+            <Row>
+              <Col className="text-center" md="12" style={{width:"230px"}}>
+              <h4 className="text-uppercase">
+                <Link to="product-page">
+                  <p style ={{color : "white"}}>
+                    Light Coin
+                  </p>
+                </Link>
+              </h4>
+              <hr className="line-primary" />
+              </Col>
+            </Row>
+            <Row>
+              <ListGroup>
+                <ListGroupItem>index: {item.index}</ListGroupItem>
+                <ListGroupItem>제품고유번호: {item.Id}</ListGroupItem>
+                <ListGroupItem>브렌드: {item.brand}</ListGroupItem>
+                <ListGroupItem>제품이름: {item.productName}</ListGroupItem>
+                <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
+                {/* <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem> */}
+                {/* <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem> */}
+                <Button onClick = {this.approve}> 토큰 판매승인</Button>
+                {this.state.isApproved&& <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button>}
+                <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button>
+              </ListGroup>
+            </Row>
+          </Card>
+          </>
+        )
+      }
     }
+
     //판매 중 토큰 검색//
     for(const item of this.state.sell_items){
+      if( item.brand == this.state.news.brand && item.productName == this.state.news.productName){
       sell_items.push(
         <>
         <Card className="card-coin card-plain" >
@@ -499,9 +571,9 @@ class NewDescriptPage extends React.Component {
         </>
       )
     }
+  }
 
     if (walletInstance.address ==='0xda88c1bd96a03b391d1983c2330ff961c9a8c255'){ 
-    
             
       return (
         <>
@@ -570,15 +642,33 @@ class NewDescriptPage extends React.Component {
                    </Col>
                   </Row>
                  </Container>
-                 <h4>-----------------------------생성한 토큰----------------------------------</h4>
-                 <Container>
-                  {DOM_items}
-                 </Container>
+
+                    <Row>            
+                      <Col className="align-self-center col-md-3">
+                        <label className="labels" for="#firstName">판매가능한 토큰</label>
+                      </Col>
+                    </Row>
+                    {/* 판매중인 카드 리스트 */}
+                    <Col className="align-self-center ">
+                      <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
+                        <br/> 
+                        <Row>
+                          <Col>
+                            {DOM_items}
+                          </Col>
+                        </Row>
+                      </Card>
+                    </Col>
                  
                  <h4>-----------------------------판매중 토큰----------------------------------</h4>
                  <Container>
                  {sell_items}
                  </Container>
+                 <h4>-----------------------------판매중 토큰----------------------------------</h4>
+                 <Container>
+                 {allSell_items}
+                 </Container>
+                 
                </div>
              </div>
            </div>
@@ -645,7 +735,7 @@ class NewDescriptPage extends React.Component {
                     <h2 className="main-price">{this.state.news.price} KLAY</h2>
                     <h5 className="category">Description</h5>
                     <p className="description">{this.state.news.description}</p><br/>
-                    
+                    <p>제품수량: {allSell_items.length}</p>
                     <div className="pick-size row">
                       <Col className="col-md-4 col-lg-2">
                         <label>
@@ -691,7 +781,6 @@ class NewDescriptPage extends React.Component {
                           <option value="gita">기타</option>
                         </select>
                       </Col>
-
                       <Col>
                      <Link to={{
                        pathname:"/order-page",

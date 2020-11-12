@@ -317,11 +317,11 @@ class Mypage extends React.Component {
               <ListGroupItem>브렌드: {item.brand}</ListGroupItem>
               <ListGroupItem>제품이름: {item.productName}</ListGroupItem>
               <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
-              <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem>
+              {/* <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem> */}
               {/* <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem> */}
-              {/* <Button onClick = {this.approve}> 토큰 판매승인</Button>
-              <Button onClick = {this.cancelApproval}> 승인 취소</Button>
-              <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button> */}
+              {/* <Button onClick = {this.approve}> 토큰 판매승인</Button> */}
+              {/* <Button onClick = {this.cancelApproval}> 승인 취소</Button> */}
+              {/* <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button> */}
             </ListGroup>
           </Row>
         </Card>
@@ -338,7 +338,9 @@ class Mypage extends React.Component {
             <Col className="text-center" md="12" style={{width:"230px"}}>
             <h4 className="text-uppercase">
               <Link to="product-page">
-                <p style ={{color : "white"}}>Light Coin</p>
+                <p style ={{color : "white"}}>
+                  Light Coin
+                </p>
               </Link>
             </h4>
             <hr className="line-primary" />
@@ -460,10 +462,10 @@ class Mypage extends React.Component {
                               </Col>
                             </Row>
                             <br/>
-
+                            <Button onClick = {this.cancelApproval}> 승인 취소</Button>
                             <Row>            
                               <Col className="align-self-center col-md-3">
-                                <label className="labels" for="#firstName">갖고 있는 토큰</label>
+                                <label className="labels" for="#firstName">소유한 있는 토큰</label>
                               </Col>
                             </Row>
                             <Col className="align-self-center row-md-3">
@@ -479,7 +481,7 @@ class Mypage extends React.Component {
                             </Col>
                             <br/>
 
-                         <Row>            
+                            <Row>            
                               <Col className="align-self-center col-md-3">
                                 <label className="labels" for="#firstName">판매중인 토큰</label>
                               </Col>

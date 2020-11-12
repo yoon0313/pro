@@ -32,17 +32,6 @@ class OrderPage extends React.Component {
       super(props)
       this.displayAllSellTokens()
       this.state = {
-        // accessType: 'keystore', // || 'privateKey'
-        // keystore: '',
-        // keystoreMsg: '',
-        // password: '',
-        // privateKey: '',
-        // productKey: '',
-        // brand: '',
-        // imgUrl: '',
-        // productName: '',
-        // dateCreated: '',
-        // tokenUri:'',
         items :[],
         item_index :'',
         sell_items : [],
@@ -57,12 +46,6 @@ class OrderPage extends React.Component {
       }
       console.log(props.location.state);
   }
-  // state = {};
-//   handleChange = (e) => {
-//       this.setState({
-//         [e.target.name]: e.target.value,
-//       })
-//   }
 
   getWallet = () => {
       console.log("getWallet"+caver.klay.accounts.wallet.length);
@@ -79,34 +62,6 @@ class OrderPage extends React.Component {
         return caver.klay.accounts.wallet[0]
       }
   }
-
-  // displayMyTokensAndSale = async () => {       
-  //     var walletInstance = this.getWallet()
-  //     var balance = parseInt(await this.getBalanceOf(walletInstance.address));
-  //     console.log(balance);
-  //     if (balance === 0) {
-  //       alert("현재 보유한 토큰이 없습니다.");
-  //     } else {
-  //       var isApproved = await this.isApprovedForAll(walletInstance.address, DEPLOYED_ADDRESS_TOKENSALES);
-  //       this.state.items = [];//초기화
-  //       this.state.sell_items = [];//초기화
-  //       for (var i = 0; i < balance; i++) {
-  //       (async () => {//빨리 렌더링하기 위해 쓰이는 방법
-  //           var tokenIndex = await this.getTokenOfOwnerByIndex(walletInstance.address, i);
-  //           var tokenUri = await this.getTokenUri(tokenIndex);
-  //           var ytt = await this.getYTT(tokenIndex);
-  //           var metadata = await this.getMetadata(tokenUri);
-  //           var price = await this.getTokenPrice(tokenIndex);
-  //           console.log(tokenIndex, tokenUri, price)
-  //           this.renderMyTokens(tokenIndex, ytt, metadata, isApproved, price);   
-            
-  //           if (parseInt(price) > 0) {
-  //             this.renderSellTokens(tokenIndex, ytt, metadata, price);
-  //           }
-  //       })();      
-  //       }
-  //     }
-  // }
 
   displayAllSellTokens = async () => {   
     var totalSupply = parseInt(await this.getTotalSupply());
@@ -152,30 +107,6 @@ class OrderPage extends React.Component {
         this.setState(allSellState);
       } 
   }
-  
-  // renderSellTokens = (tokenIndex, ytt, metadata, price) => {   
-  //     var _tokenIndex = tokenIndex;  
-  //     var _url = metadata.properties.image.description;
-  //     var _brand = metadata.properties.description.description;
-  //     var _productKey = metadata.properties.name.description;
-  //     var _productName = ytt[0];
-  //     var _dateCreated = ytt[1];
-  //     var _price = caver.utils.fromPeb(price, 'KLAY');
-    
-  //     if (parseInt(price) > 0) {
-  //       var sellState = this.state;
-  //       sellState.sell_items.push({
-  //         index : _tokenIndex,
-  //         Url : _url,
-  //         Id : _productKey,
-  //         brand : _brand,
-  //         productName: _productName,
-  //         date : _dateCreated,
-  //         amount : _price
-  //       })
-  //       this.setState(sellState);
-  //     } 
-  // }
 
   getBalanceOf = async (address) => {
     return await yttContract.methods.balanceOf(address).call();
@@ -267,6 +198,7 @@ class OrderPage extends React.Component {
                 productKey:odpage.state.t_productKey,
                 brand:odpage.state.s_brand,
                 productName: odpage.state.s_productName,
+                price:odpage.state.s_price,
                 sell_receipt:receipt.transactionHash,
               }
             })
@@ -315,14 +247,17 @@ class OrderPage extends React.Component {
             </Row>
           </Card>
           </>
-        )}
+        )
+      }
     }
+
     if (walletInstance) {
         return (
             <>
             <IndexNavbar />
             {/* <p>{allSell_items_metadata[0]}</p> */}
-            <p>"index번호는"{ allSell_items_metadata.length >0 ? allSell_items_metadata[0].index : -1}</p>
+            {/* <p>"index번호는"{ allSell_items_metadata.length >0 ? allSell_items_metadata[0].index : -1}</p> */}
+            {/* <p>{allSell_items.length}</p> */}
             <div className="wrapper">
             <div className="section">
                 <Container>
@@ -333,11 +268,8 @@ class OrderPage extends React.Component {
                             <div className="card-body">
                                 {allSell_items[0]}
                                 <hr class="line-info mb-3"></hr>
+                                구매가능수량: {allSell_items.length}개 
                                 <div className="align-items-center media">
-                                    {/* <h3 className="h6">Total</h3>
-                                    <div className="text-right media-body">
-                                        <span className="font-weight-semi-bold">0.1 klay</span>
-                                    </div> */}
                                 </div>
                             </div>
                         </div>
@@ -432,22 +364,24 @@ class OrderPage extends React.Component {
                             </form>
                         </Col>
                     </Row>
-                    <Link to={{
+                    {/* <Link to={{
                        pathname:"/order-complete-page",
                        state:{
                          tokenIndex: this.state.t_index,
                          productKey:this.state.t_productKey,
                          brand:this.state.s_brand,
                          productName: this.state.s_productName,
+                         price:this.state.s_price,
                         //  sell_receipt:receipt.transactionHash,
                          sell_receipt: this.state.sell_receipt,
 
                        }
-                     }}>
+                     }}> */}
                         <button type="button" class="btn btn-info btn-sm" style={{float: "right"}} onClick={(e) => this.buyToken(allSell_items_metadata[0].index)}>
                             Order now
                         </button>
-                     </Link>
+                     {/* </Link> */}
+                     
                 </Container>
                 </div>
                 <div class="space-70"></div>      
