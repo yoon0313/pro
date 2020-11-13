@@ -79,6 +79,8 @@ class NewDescriptPage extends React.Component {
     this.handleClickMinus=this.handleClickMinus.bind(this);
     this.handleOnChange=this.handleOnChange.bind(this);
 
+    this.displayMyTokensAndSale = this.displayMyTokensAndSale.bind(this)
+
     Axios.get("http://localhost:5000/NewP/new/getNewP?index="+params.get('index'))
       .then(response => {
           if(response.status==200){
@@ -199,8 +201,9 @@ class NewDescriptPage extends React.Component {
       if (receipt.transactionHash) {//제대로 영수증을 받았다면
         console.log("https://ipfs.infura.io/ipfs/" + hash);//console.log로 보여준다
         alert(receipt.transactionHash);
-        location.reload();//새로고침
+        // this.displayMyTokensAndSale();
       }
+      // location.reload();//새로고침
     });
   }
 
@@ -354,6 +357,7 @@ class NewDescriptPage extends React.Component {
       return;//수가0이하면 함수 종료
     
     var feePayer;
+    var component = this
     try {
       var sender = this.getWallet();
       console.log(sender.address);
@@ -381,7 +385,7 @@ class NewDescriptPage extends React.Component {
       .then(function(receipt){
         if (receipt.transactionHash) {         
           alert("토큰 등록 완료" + receipt.transactionHash);
-          // location.reload();
+          component.displayMyTokensAndSale();
         }
       });
     } catch (err) {
@@ -471,14 +475,12 @@ class NewDescriptPage extends React.Component {
       }
     }
     // var walletInstance= this.getWallet();
-     
 
     var DOM_items = [];
     var sell_items = [];
     var allSell_items = [];
 
     for(const item of this.state.allSell_items){
-        // if (item.brand == this.state.s_brand && item.productName== this.state.s_productName&& item.amount == "0.1"){
         if (item.brand == this.state.news.brand && item.productName == this.state.news.productName && item.amount == this.state.news.price){
             
           allSell_items.push(
@@ -642,14 +644,14 @@ class NewDescriptPage extends React.Component {
                    </Col>
                   </Row>
                  </Container>
-
+{/* 
                     <Row>            
                       <Col className="align-self-center col-md-3">
                         <label className="labels" for="#firstName">판매 가능한 토큰</label>
                       </Col>
-                    </Row>
+                    </Row> */}
                     {/* 판매중인 카드 리스트 */}
-                    <Col className="align-self-center ">
+                    {/* <Col className="align-self-center ">
                       <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
                         <br/> 
                         <Row>
@@ -658,7 +660,11 @@ class NewDescriptPage extends React.Component {
                           </Col>
                         </Row>
                       </Card>
-                    </Col>
+                    </Col> */}
+                    <p>판매 가능한 토큰</p>
+                      {DOM_items}
+                    <p>판매 중인 토큰</p>
+                      {sell_items}
                </div>
              </div>
            </div>
