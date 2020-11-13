@@ -361,197 +361,213 @@ class Mypage extends React.Component {
       )
     }
 
-    return (
-      <>
-       <IndexNavbar />
-       <div className="wrapper">
-           <div className="section">
-               <div className="container">
-                   <Row>
-                   <Col className="col-md-3">
-                    <div className="section">
-                        <section className="text-center">
-                            <div className="fileinput text-center">
-                            <div className="thumbnail img-circle">
-                            <img src={this.state.image} alt="..."></img>
-                            </div>
-                            <div>
-                            <label type="button" for="ex_file" className="btn-round btn btn-default">
-                              Add Photo
-                              <input type="file" id="ex_file" style={{width:"0px",}} accept='image/jpg,impge/png,image/jpeg,image/gif' 
-                                  onChange={this.handleFileOnChange}/>
-                            </label>
-                                 
-                            </div>
-                            </div>
-                            <h3 className="title"> </h3>
-                        </section>
+    if (walletInstance) {
+      return (
+        <>
+        <IndexNavbar />
+        <div className="wrapper">
+            <div className="section">
+                <div className="container">
+                    <Row>
+                    <Col className="col-md-3">
+                      <div className="section">
+                          <section className="text-center">
+                              <div className="fileinput text-center">
+                              <div className="thumbnail img-circle">
+                              <img src={this.state.image} alt="..."></img>
+                              </div>
+                              <div>
+                              <label type="button" for="ex_file" className="btn-round btn btn-default">
+                                Add Photo
+                                <input type="file" id="ex_file" style={{width:"0px",}} accept='image/jpg,impge/png,image/jpeg,image/gif' 
+                                    onChange={this.handleFileOnChange}/>
+                              </label>
+                                  
+                              </div>
+                              </div>
+                              <h3 className="title"> </h3>
+                          </section>
 
-                        <section>
-                        <br/>
-                        <ul role="tablist" class="flex-column nav-tabs-info nav">
-                          <li className="nav-item">
-                            <a href="#pablo" className="active nav-link">
-                              <i className="tim-icons icon-single-02">
-                              </i>
-                             &nbsp;  General 
-                            </a>
-                          </li>
-                          <hr className="line-info" />
-                          <li className="nav-item">
-                            <a href="#pablo" className="nav-link">
-                              <i className="tim-icons icon-credit-card">
+                          <section>
+                          <br/>
+                          <ul role="tablist" class="flex-column nav-tabs-info nav">
+                            <li className="nav-item">
+                              <a href="#pablo" className="active nav-link">
+                                <i className="tim-icons icon-single-02">
+                                </i>
+                              &nbsp;  General 
+                              </a>
+                            </li>
+                            <hr className="line-info" />
+                            <li className="nav-item">
+                              <a href="#pablo" className="nav-link">
+                                <i className="tim-icons icon-credit-card">
 
-                              </i>
-                             &nbsp;  Billing 
-                            </a>
-                          </li>
-                          <hr className="line-info"/>
-                          <li className="nav-item">
-                          <a href="#pablo" className="nav-link">
-                          <i className="tim-icons icon-lock-circle"></i>
-                          &nbsp;  Security 
-                          </a>
-                          </li>
-
-                          <hr className="line-info"/>
-                          <li className="nav-item">
-                          <a href="#pablo" className="nav-link">
-                          <i className="tim-icons icon-volume-98"></i>
-                          &nbsp;  Notifications 
-                          </a>
-                          </li>
-                          
-                        </ul>
-                        </section>
-                        <br/><br/><br/>
-                        <section>
-                          <div className="progress-container progress-info">
-                            <span className="progress-badge">Cryptoberry에 오신걸 환영합니다</span>
-                          </div>
-                          <div className="progress">
-                            <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                            aria-valuemax="100" style={{width: "200%"}}>
-                              {/* <span className="progress-value">100%</span> */}
-                            </div>
-                          </div>
-                        </section>
-                    </div>
-                   </Col>
-                  
-                  <Col className="m1-auto col-md-8">
-                    <div className="section">
-                      <div className="tab-content">
-                        <div className="tab-pane active">
-                          <div>
-                            <header>
-                              <h2 className="text-uppercase">My Information</h2>
-
-                            </header>
+                                </i>
+                              &nbsp;  Billing 
+                              </a>
+                            </li>
                             <hr className="line-info"/>
-                            <br/>
+                            <li className="nav-item">
+                            <a href="#pablo" className="nav-link">
+                            <i className="tim-icons icon-lock-circle"></i>
+                            &nbsp;  Security 
+                            </a>
+                            </li>
 
-                            <Row>
-                              <Col className="align-self-center col-md-3">
-                                <label className="labels" for="#firstName">User Address</label>
-                              </Col>
-                              <Col className="align-self-center col-md-8">
-                                <div>
-                                 {walletInstance.address}
-                                </div>
-                              </Col>
-                            </Row>
-                            <br/>
-                            <Button onClick = {this.cancelApproval}> 승인 취소</Button>
-                            <Row>            
-                              <Col className="align-self-center col-md-3">
-                                <label className="labels" for="#firstName">소유한 있는 토큰</label>
-                              </Col>
-                            </Row>
-                            <Col className="align-self-center row-md-3">
-                              <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
-                                <br/> 
-                                <Row>
-                                  {/* 첫번째 토큰 */}                              
-                                  <Col>
-                                    {DOM_items}
-                                  </Col>
-                                </Row>
-                              </Card>
-                            </Col>
-                            <br/>
+                            <hr className="line-info"/>
+                            <li className="nav-item">
+                            <a href="#pablo" className="nav-link">
+                            <i className="tim-icons icon-volume-98"></i>
+                            &nbsp;  Notifications 
+                            </a>
+                            </li>
+                            
+                          </ul>
+                          </section>
+                          <br/><br/><br/>
+                          <section>
+                            <div className="progress-container progress-info">
+                              <span className="progress-badge">Cryptoberry에 오신걸 환영합니다</span>
+                            </div>
+                            <div className="progress">
+                              <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                              aria-valuemax="100" style={{width: "200%"}}>
+                                {/* <span className="progress-value">100%</span> */}
+                              </div>
+                            </div>
+                          </section>
+                      </div>
+                    </Col>
+                    
+                    <Col className="m1-auto col-md-8">
+                      <div className="section">
+                        <div className="tab-content">
+                          <div className="tab-pane active">
+                            <div>
+                              <header>
+                                <h2 className="text-uppercase">My Information</h2>
 
-                            <Row>            
-                              <Col className="align-self-center col-md-3">
-                                <label className="labels" for="#firstName">판매중인 토큰</label>
-                              </Col>
-                            </Row>
-                            <Col className="align-self-center row-md-3">
-                              <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
-                                <br/> 
-                                <Row>
-                                  {/* 판매중인 토큰 */}
-                                  <Col>
-                                    {sell_items}
-                                  </Col>
-                                </Row>
-                              </Card>
-                            </Col>
-                            <br/>
+                              </header>
+                              <hr className="line-info"/>
+                              <br/>
 
-                             <Row>            
-                              <Col className="align-self-center col-md-3">
-                                <label className="labels" for="#firstName">판매완료 된 토큰</label>
+                              <Row>
+                                <Col className="align-self-center col-md-3">
+                                  <label className="labels" for="#firstName">User Address</label>
+                                </Col>
+                                <Col className="align-self-center col-md-8">
+                                  <div>
+                                  {walletInstance.address}
+                                  </div>
+                                </Col>
+                              </Row>
+                              <br/>
+                              <Button onClick = {this.cancelApproval}> 승인 취소</Button>
+                              <Row>            
+                                <Col className="align-self-center col-md-3">
+                                  <label className="labels" for="#firstName">소유한 있는 토큰</label>
+                                </Col>
+                              </Row>
+                              <Col className="align-self-center row-md-3">
+                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
+                                  <br/> 
+                                  <Row>
+                                    {/* 첫번째 토큰 */}                              
+                                    <Col>
+                                      {DOM_items}
+                                    </Col>
+                                  </Row>
+                                </Card>
                               </Col>
-                            </Row>
-                            <Col className="align-self-center row-md-3">
-                              <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
-                                <br/> 
-                                <Row>
-                                  {/* 세번째 토큰 */}      
-                                  <Col>
-                                    <Card className="card-coin card-plain">                                  
-                                        <img
-                                          alt="..."
-                                          className="img-center img-fluid"
-                                          src={require("assets/img/etherum.png")}
-                                        />                                                                
-                                        <Row>
-                                          <Col className="text-center" md="12" style={{width:"230px"}}>
-                                            <h4 className="text-uppercase">
-                                            <Link to="OldProduct-page1">
-                                                <p style ={{color : "white"}}>
-                                              BRIGHT Coin
-                                             </p>
-                                            </Link>
-                                              </h4>
-                                            <hr className="line-warning" />
-                                          </Col>
-                                        </Row>
-                                        <Row>
-                                          <ListGroup>
-                                          product<ListGroupItem>Padding</ListGroupItem>
-                                            Brand<ListGroupItem>Moncler</ListGroupItem>
-                                          </ListGroup>
-                                        </Row>
-                             
-                                    </Card>
-                                  </Col>
+                              <br/>
 
-                                </Row>
-                              </Card>
-                            </Col>
-                            <br/>
+                              <Row>            
+                                <Col className="align-self-center col-md-3">
+                                  <label className="labels" for="#firstName">판매중인 토큰</label>
+                                </Col>
+                              </Row>
+                              <Col className="align-self-center row-md-3">
+                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
+                                  <br/> 
+                                  <Row>
+                                    {/* 판매중인 토큰 */}
+                                    <Col>
+                                      {sell_items}
+                                    </Col>
+                                  </Row>
+                                </Card>
+                              </Col>
+                              <br/>
+
+                              <Row>            
+                                <Col className="align-self-center col-md-3">
+                                  <label className="labels" for="#firstName">판매완료 된 토큰</label>
+                                </Col>
+                              </Row>
+                              <Col className="align-self-center row-md-3">
+                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
+                                  <br/> 
+                                  <Row>
+                                    {/* 세번째 토큰 */}      
+                                    <Col>
+                                      <Card className="card-coin card-plain">                                  
+                                          <img
+                                            alt="..."
+                                            className="img-center img-fluid"
+                                            src={require("assets/img/etherum.png")}
+                                          />                                                                
+                                          <Row>
+                                            <Col className="text-center" md="12" style={{width:"230px"}}>
+                                              <h4 className="text-uppercase">
+                                              <Link to="OldProduct-page1">
+                                                  <p style ={{color : "white"}}>
+                                                BRIGHT Coin
+                                              </p>
+                                              </Link>
+                                                </h4>
+                                              <hr className="line-warning" />
+                                            </Col>
+                                          </Row>
+                                          <Row>
+                                            <ListGroup>
+                                            product<ListGroupItem>Padding</ListGroupItem>
+                                              Brand<ListGroupItem>Moncler</ListGroupItem>
+                                            </ListGroup>
+                                          </Row>
+                              
+                                      </Card>
+                                    </Col>
+
+                                  </Row>
+                                </Card>
+                              </Col>
+                              <br/>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Col>
-                </Row>
+                    </Col>
+                  </Row>
+                </div>
+            </div>
+          </div>
+        <Footer />
+        </>
+      );
+    }
+    return (
+      <>
+      <IndexNavbar />
+      <div className="space-70"></div>
+          <div className="wrapper">
+              <div className="section">
+                  <Container>
+                      <h4>로그인 후 확인 가능합니다.</h4>
+                  </Container>
               </div>
           </div>
-        </div>
-       <Footer />
+          <Footer />
       </>
     );
   }
