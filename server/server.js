@@ -31,34 +31,15 @@ const connect = mongoose.connect(config.mongoURI,
 
 
   
-app.get('/OldP/products', (req,res)=>{
+// app.get('/OldP/products', (req,res)=>{
   
-// const[Products, setProducts] = useState([])
-// axios.get('OldP/product/products')
-// .then (response =>{
-//   if(response.data.success){
-//       setProducts(response.data.productInfo)
-//   }else{
-//       alert("상품을 가져오는데 실패했습니다.")
-//   }
-// })
-    res.send(
+
+//     res.send(
       
-    )
-      // db.producta.find(){
-      //   "id" : id......0
-      // }
-    // {'id' : products.product.find({writer}),
-    // 'pname': 'GUCCI Snake wallet',
-    // 'price': 0.15,
-    // },
-    // {'id' : 2,
-    // 'pname': 'MONTBLAC ballpen',
-    // 'price': 0.9,
-    // }
-    //     ]);
+//     )
+
     
-});
+// });
 
 //Old Table
 app.use('/OldP/products', require('./routes/product'))
@@ -66,9 +47,6 @@ app.use('/OldP/products', require('./routes/product'))
 //New Table
 app.use('/NewP/new', require('./routes/new'))
 
-app.get('/api/hello', (req, res)=>{
-    res.send({message: 'Hello Express!'});
-});
 
 if (process.env.NODE_ENV === "production") {
 
