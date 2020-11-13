@@ -26,6 +26,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { FormContext } from "antd/lib/form/context";
 
 const axios = require('axios').default;
 const config = {rpcURL: 'https://api.baobab.klaytn.net:8651'}
@@ -315,6 +316,7 @@ class UploadOldPage extends React.Component {
         brand:this.state.brand,
         images:this.state.file,
         date:this.state.date,
+
         productName:this.state.productName,
         productKey:this.state.productKey,
         price:this.state.amount,
@@ -397,10 +399,7 @@ class UploadOldPage extends React.Component {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", this.followCursor);
    
-    //시간흐르게
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000)
+
   }
 
   //컴포넌트 실행안할시
@@ -410,8 +409,7 @@ class UploadOldPage extends React.Component {
       "mousemove",
       this.followCursor
     );
-    //시간흐르게
-    clearInterval(this.timerID);
+   
   }
 
   followCursor = event => {
@@ -433,12 +431,6 @@ class UploadOldPage extends React.Component {
     });
   };
   
-  //시간 계속 흐르게하기
-  tick() {
-    this.setState({
-        date : new Date()
-    })
-  }
   
   handleIndexOnChange = (event) => {
     event.preventDefault();
@@ -525,10 +517,6 @@ class UploadOldPage extends React.Component {
         reader.result
       )
 
-      /*this.setState({
-        file : file,
-        previewURL : reader.result
-      })*/
       console.log(this.state.previewURL)
       this.forceUpdate()
     }

@@ -23,16 +23,16 @@ client.connect().then( res =>{
     return ret.value.seq;
   }
 
-  updateOldSellReceipt = async function(tokenIndex, _sell_receipt){
+  updateOldSellReceipt = async function(tokenIndex, sell_receipt){
     
     let pd = DB.collection('products')
     var ret = await pd.findOneAndUpdate(
       { tokenIndex : tokenIndex },
-      { $set: { sell_receipt: _sell_receipt } },
+      { $set: { sell_receipt: sell_receipt } },
       {
-        returnOriginal: true
+        returnOriginal: false
       })
-    return ret.value;
+    return ret.value.seq;
   }
 
   console.log(getNextSequence)
@@ -96,8 +96,21 @@ router.post('/register', async (req,res) =>{
 router.post('/receipt', async (req,res) =>{
   console.log(req.body);
   var products = DB.collection('products');
-  data = await updateOldSellReceipt(req.body.tokenIndex, req.body.sell_receipt),
-  res.json({success:true, msg:data})
+  idx = await updateOldSellReceipt(req.body.tokenIndex, req.body.sell_receipt),
+  products.insertOne({
+    // index: req.body.index,
+    // brand: req.body.brand,
+    // productName: req.body.productName,
+    // description : req.body.description,
+    // price : req.body.price,
+    // images : req.body.images,
+    // date : req.body.date,
+    // productKey: req.body.productKey,
+    tokenIndex : req.body.tokenIndex,
+    sell_receipt : idx
+  }).then( (data)=>{
+    res.json({success:true, msg:data})
+  })
 })
 
 
