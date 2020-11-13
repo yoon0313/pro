@@ -316,7 +316,6 @@ class UploadOldPage extends React.Component {
         brand:this.state.brand,
         images:this.state.file,
         date:this.state.date,
-
         productName:this.state.productName,
         productKey:this.state.productKey,
         price:this.state.amount,
