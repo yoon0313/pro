@@ -22,9 +22,6 @@ import OrderPageOld from "views/examples/OrderPageOld.js"
 import OrderCompletePageOld from "views/examples/OrderCompletePageOld.js"
 import UploadNewPage from "views/examples/UploadNewPage.js";
 
-
-
-
 ReactDOM.render(
   <BrowserRouter>
     <Switch>

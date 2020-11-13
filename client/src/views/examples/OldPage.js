@@ -30,6 +30,7 @@ import Caver from "caver-js";
 const config = {rpcURL: 'https://api.baobab.klaytn.net:8651'}
 const caver = new Caver(config.rpcURL);
 
+
 class OldPage extends React.Component {
   state = {
     squares1to6: "",
@@ -109,7 +110,6 @@ class OldPage extends React.Component {
     images:this.state.file
     // tokens: Tokens[Token-1].value
   }
-
 
   //서버에서 가져오기
   Axios.get("http://localhost:5000/OldP/products/getOldP", body)

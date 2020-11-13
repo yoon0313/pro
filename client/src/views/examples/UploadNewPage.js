@@ -66,17 +66,17 @@ class UploadNewPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file : [],
-      previewURL : [],
-      items :[],    
-      index:'',
-      brand:'',
-      productName:'',
-      price:'',
-      binary : "",
+      file        : [],
+      previewURL  : [],
+      items       : [],    
+      index       : '',
+      brand       : '',
+      productName : '',
+      price       : '',
+      binary      : "",
       description : "",
-      date: new Date(),
-      tokenUri:''
+      date        : new Date(),
+      tokenUri    :''
     }
   }
   

@@ -52,7 +52,6 @@ var storage = multer.diskStorage({
    
   var upload = multer({ storage: storage }).single("file")
 
-
 router.post('/image',(req,res) => {
     //프론트에서 가져온 이미지를 저장해줌 (2)
     upload(req, res, err =>{
@@ -61,7 +60,6 @@ router.post('/image',(req,res) => {
         }
         return res.json({success: true, filePath: res.req.file.path , fileName: res.req.file.filename})
     })
-
 })
 
 router.post('/',(req,res) => {
@@ -80,16 +78,16 @@ router.post('/register', async (req,res) =>{
   var products = DB.collection('products');
   idx = await getNextSequence(),
   products.insertOne({
-    index: idx,
-    brand: req.body.brand,
-    productName: req.body.productName,
-    description : req.body.description,
-    price : req.body.price,
-    images : req.body.images,
-    date : req.body.date,
-    productKey: req.body.productKey,
-    tokenIndex : req.body.tokenIndex,
-    sell_receipt : req.body._sell_receipt
+    index         : idx,
+    brand         : req.body.brand,
+    productName   : req.body.productName,
+    description   : req.body.description,
+    price         : req.body.price,
+    images        : req.body.images,
+    date          : req.body.date,
+    productKey    : req.body.productKey,
+    tokenIndex    : req.body.tokenIndex,
+    sell_receipt  : req.body._sell_receipt
   }).then( (data)=>{
     res.json({success:true, msg:data})
   })
@@ -103,14 +101,10 @@ router.post('/receipt', async (req,res) =>{
 })
 
 
-
-
-
 //db에서 OldProduct 가져오기 
 router.get('/getOldP', (req,res) =>{
   var products = DB.collection('products');
 
-  
   let cusor;
   if(req.query.index){
     cursor =products.find({index:parseInt(req.query.index)});
@@ -119,7 +113,6 @@ router.get('/getOldP', (req,res) =>{
     cursor =products.find({});
   }
   
-
   let result=[];
   cursor.count().then(cnt =>{
     let arrLength=  cnt;
@@ -131,7 +124,6 @@ router.get('/getOldP', (req,res) =>{
           result.push(doc)
           if(result.length == arrLength){
             res.json(result)
-    
           }
         } 
       })
