@@ -45,7 +45,7 @@ class NewDescriptPage extends React.Component {
     super(props);
 
     var params = new URLSearchParams(props.location.search);
-
+    // this.displayMyTokensAndSale()
     this.displayAllSellTokens()
     this.state={
       productKey: '',
@@ -199,7 +199,7 @@ class NewDescriptPage extends React.Component {
       if (receipt.transactionHash) {//제대로 영수증을 받았다면
         console.log("https://ipfs.infura.io/ipfs/" + hash);//console.log로 보여준다
         alert(receipt.transactionHash);
-        // location.reload();//새로고침
+        location.reload();//새로고침
       }
     });
   }
@@ -388,10 +388,10 @@ class NewDescriptPage extends React.Component {
       console.error(err);
     }
   }
+
   getTotalSupply = async () => {
     return await yttContract.methods.totalSupply().call();
   }
-  
 
   getBalanceOf = async (address) => {
     return await yttContract.methods.balanceOf(address).call();
@@ -528,7 +528,7 @@ class NewDescriptPage extends React.Component {
                 {/* <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem> */}
                 {/* <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem> */}
                 <Button onClick = {this.approve}> 토큰 판매승인</Button>
-                {this.state.isApproved&& <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button>}
+                {/* {this.state.isApproved&& <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button>} */}
                 <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button>
               </ListGroup>
             </Row>
@@ -645,7 +645,7 @@ class NewDescriptPage extends React.Component {
 
                     <Row>            
                       <Col className="align-self-center col-md-3">
-                        <label className="labels" for="#firstName">판매가능한 토큰</label>
+                        <label className="labels" for="#firstName">판매 가능한 토큰</label>
                       </Col>
                     </Row>
                     {/* 판매중인 카드 리스트 */}
@@ -659,16 +659,6 @@ class NewDescriptPage extends React.Component {
                         </Row>
                       </Card>
                     </Col>
-                 
-                 <h4>-----------------------------판매중 토큰----------------------------------</h4>
-                 <Container>
-                 {sell_items}
-                 </Container>
-                 <h4>-----------------------------판매중 토큰----------------------------------</h4>
-                 <Container>
-                 {allSell_items}
-                 </Container>
-                 
                </div>
              </div>
            </div>
@@ -735,52 +725,8 @@ class NewDescriptPage extends React.Component {
                     <h2 className="main-price">{this.state.news.price} KLAY</h2>
                     <h5 className="category">Description</h5>
                     <p className="description">{this.state.news.description}</p><br/>
-                    <p>제품수량: {allSell_items.length}</p>
+                    <p>현재 제품수량: {allSell_items.length}</p>
                     <div className="pick-size row">
-                      <Col className="col-md-4 col-lg-2">
-                        <label>
-                          &nbsp; &nbsp; 수량
-                        </label>
-                        <div className="input-group">
-                          <div className="input-group-btn">
-                            <button onClick={this.handleClickMinus} type="button" className="btn-round btn-simple btn btn-warning">
-                              <i className="tim-icons icon-simple-delete"></i>
-                            </button>
-                          </div>
-                        </div> 
-                        <input id="myNumber" type="text" className="input-number form-control"  value={this.state.value} onChange={this.handleOnChange}/>
-                        <div className="input-group">
-                          <div className="input-group-btn">
-                            <button onClick={this.handleClickPlus} type="button" className="btn-round btn-simple btn btn-warning">
-                              <i className="tim-icons icon-simple-add"></i>
-                            </button>
-                          </div>
-                        </div>          
-                      </Col>
-
-                      <Col className="col-sm-6 col-md-4 col-lg-4">
-                        <label>Select color</label>
-                        <select>
-                          <option selected value="choice">==선택==</option>
-                          <option value="Black">Black</option>
-                          <option value="Brown">Brown</option>
-                          <option value="Gray">Gray</option>
-                          <option value="Navy">Navy</option>
-                          <option value="gita">기타</option>
-                        </select>
-                      </Col>
-                      <Col className="col-sm-6 col-md-4 col-lg-4">
-                        <label>Select size</label>
-                        <select>
-                          <option selected value="choice">==선택==</option>
-                          <option value="Extra Small">Extra Small</option>
-                          <option value="Small">Small</option>
-                          <option value="Medium">Medium</option>
-                          <option value="Large">Large</option>
-                          <option value="Extra Large">Extra Large</option>
-                          <option value="gita">기타</option>
-                        </select>
-                      </Col>
                       <Col>
                      <Link to={{
                        pathname:"/order-page",

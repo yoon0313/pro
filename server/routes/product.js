@@ -98,7 +98,7 @@ router.post('/register', async (req,res) =>{
 router.post('/receipt', async (req,res) =>{
   console.log(req.body);
   var products = DB.collection('products');
-  data = await updateOldSellReceipt(req.body.tokenIndex, req.body._sell_receipt),
+  data = await updateOldSellReceipt(req.body.tokenIndex, req.body.sell_receipt),
   res.json({success:true, msg:data})
 })
 

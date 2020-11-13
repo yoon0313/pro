@@ -46,14 +46,13 @@ class OrderPageOld extends React.Component {
         metadata:'',
         tokenUri:''
       }
+      // this.getTokenUri(this.state.t_tokenIndex).then( result=>{
+      //   this.setState({metadata: result})
+      // })
 
-      this.getTokenUri(this.state.t_tokenIndex).then( result=>{
-        this.setState({metadata: result})
-      })
-
-      this.getMetadata(this.state.tokenUri).then( result => {
-        this.setState({tokenUri: result})
-      })
+      // this.getMetadata(this.state.tokenUri).then( result => {
+      //   this.setState({tokenUri: result})
+      // })
   }
 
   displayAllSellTokens = async (tokenIndex) => {   
@@ -207,164 +206,133 @@ class OrderPageOld extends React.Component {
         return (
             <>
             <IndexNavbar />
-            {/* <p>"tokenIndex"{ this.state.t_tokenIndex}</p>
-            <p>"tproduckey"{ this.state.t_productKey}</p>
-            <p>"brand"{ this.state.t_brand}</p>
-            <p>"productName"{ this.state.t_productName}</p>
-            <p>"price"{ this.state.t_price}</p> */}
-            {/* <p>{this.state.tokenUri.properties.image.description}</p> */}
-            
-
             <div className="wrapper">
-            <div className="section">
+              <div className="section">
                 <Container>
-                    <Row>
-                        <Col className="col-lg-4">
-                        <h2 className="title">Order summary</h2>
-                        <div className="card">
-                            <div className="card-body">
-                            <>
-
-          <Card className="card-coin card-plain" >
-            <img alt="..." className="img-center img-fluid" src={this.state.tokenUrl}/>      
-            <Row>
-              <Col className="text-center" md="12" style={{width:"230px"}}>
-              <h4 className="text-uppercase">
-                {/* <Link to="product-page">
-                </Link> */}
-              </h4>
-              <hr className="line-primary" />
-              </Col>
-            </Row>
-            <Row>
-              <ListGroup>
-                <ListGroupItem>index: {this.state.tokenIndex} </ListGroupItem>
-                <ListGroupItem>제품고유번호: {this.state.productKey}</ListGroupItem>
-                <ListGroupItem>브랜드: {this.state.brand}</ListGroupItem>
-                <ListGroupItem>제품이름: {this.state.productName}</ListGroupItem>
-                <ListGroupItem>제품제작일: {this.state.date}</ListGroupItem>
-                <ListGroupItem>제품가격: {this.state.price} klay</ListGroupItem>
-              </ListGroup>
-            </Row>
-          </Card>
-          </>
-
-                                <hr class="line-info mb-3"></hr>
-                                <div className="align-items-center media">
-                                    {/* <h3 className="h6">Total</h3>
-                                    <div className="text-right media-body">
-                                        <span className="font-weight-semi-bold">0.1 klay</span>
-                                    </div> */}
-                                </div>
+                  <Row>
+                    <Col className="col-lg-4">
+                      <h2 className="title">Order summary</h2>
+                      <div className="card">
+                          <div className="card-body">
+                          <>
+                            <Card className="card-coin card-plain" >
+                              <img alt="..." className="img-center img-fluid" src={this.state.tokenUrl}/>      
+                              <Row>
+                                <Col className="text-center" md="12" style={{width:"230px"}}>
+                                <h4 className="text-uppercase">
+                                </h4>
+                                <hr className="line-primary" />
+                                </Col>
+                              </Row>
+                              <Row>
+                                <ListGroup>
+                                  <ListGroupItem>index: {this.state.tokenIndex} </ListGroupItem>
+                                  <ListGroupItem>제품고유번호: {this.state.productKey}</ListGroupItem>
+                                  <ListGroupItem>브랜드: {this.state.brand}</ListGroupItem>
+                                  <ListGroupItem>제품이름: {this.state.productName}</ListGroupItem>
+                                  <ListGroupItem>제품제작일: {this.state.date}</ListGroupItem>
+                                  <ListGroupItem>제품가격: {this.state.price} klay</ListGroupItem>
+                                </ListGroup>
+                              </Row>
+                            </Card>
+                            </>
+                            <hr class="line-info mb-3"></hr>
+                            <div className="align-items-center media">
                             </div>
                         </div>
-                        </Col>
-                        {/* -------------오른쪽---------- */}
-                        <Col className="col-lg-8">
-                            <form className="js-validate">
-                                <Container>
-                                    <h3 className="title">Billing address</h3>
-                                    <Row>
-                                        <Col className="col-md-6">
-                                            <label class="labels">
-                                                First Name
-                                                <span className="text-danger">*</span>
-                                            </label>
-                                            <input aria-label="길동" name="firstName" placeholder="길동" type="text" className="form-control"></input>
-                                        </Col>
-                                        <Col className="col-md-6">
-                                        <label class="labels">
-                                                Last Name
-                                                <span className="text-danger">*</span>
-                                            </label>
-                                            <input aria-label="홍" name="lastName" placeholder="홍" type="text" className="form-control"></input>
-                                        </Col>
-                                    </Row>
-                                        <br/>    
-                                    <Row>
-                                        <Col className="col-md-6">
-                                            <div className="js-form-message mb-6">
-                                                <label className="labes">
-                                                    Email address
-                                                    <span className="text-danger">*</span>
-                                                </label>
-                                                <input aria-label="abc@naver.com" name="emailAddress" placeholder="abc@naver.com" type="email" className="form-control"></input>
-                                            </div>
-                                        </Col>
-    
-                                        <Col className="col-md-6">
-                                        <div className="js-form-message mb-6">
-                                                <label className="labes">
-                                                    Phone number
-                                                    <span className="text-danger">*</span>
-                                                    ( 숫자만 기입해주세요)
-                                                </label>
-                                                <input aria-label="01011112222" name="phonNumber" placeholder="01011112222" type="text" className="form-control"></input>
-                                            </div>
-                                        </Col>
-                                    </Row>
-                                    <br/>
-                                    <Row>
-                                        <Col className="col-md-8">
-                                            <div className="js-form-message mb-6">
-                                                <label className="labels">
-                                                    Address
-                                                    <span className="text-danger">*</span>
-                                                </label>
-                                                <input aria-label="서울시 구로구" name="Address" placeholder="서울시 구로구" type="text" className="form-control"></input>
-                                            </div>
-                                        </Col>
-                                        <Col className="col-md-4">
-                                        <div className="js-form-message mb-6">
-                                                <label className="labels">
-                                                    Postcode
-                                                    <span className="text-danger">*</span>
-                                                </label>
-                                                <input aria-label="12345" name="postcode" placeholder="12345" type="text" className="form-control"></input>
-                                            </div>
-                                        </Col>
-                                    </Row>
-    
-                                    <h3 className="title">Payment</h3>
-                                    <div className="tab-content tab-space">
-                                        <div className="tab-pane active">
-                                            <Row>
-                                                <Col className="col-md-12">
-                                                    <div className="js-form-message">
-                                                    <label className="labels">
-                                                    My Wallet
-                                                </label>
-                                                <div>
-                                                {walletInstance.address}
-                                                </div>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                            <br/>
-                                           
-                                        </div>
-                                        <div className="tab-pane"></div>
-                                    </div>
-                                </Container>
-                            </form>
-                        </Col>
-                    </Row>
-                    {/* <Link to={{
-                       pathname:"/order-complete-page-old",
-                       state:{
-                         tokenIndex: this.state.t_index,
-                         productKey:this.state.t_productKey,
-                         brand:this.state.t_brand,
-                         productName: this.state.t_productName,
-                        //  sell_receipt:receipt.transactionHash,
-                         sell_receipt: this.state.sell_receipt,
+                      </div>
+                    </Col>
+                    <Col className="col-lg-8">
+                      <form className="js-validate">
+                        <Container>
+                          <h3 className="title">Billing address</h3>
+                          <Row>
+                            <Col className="col-md-6">
+                              <label class="labels">
+                                First Name
+                                <span className="text-danger">*</span>
+                              </label>
+                              <input aria-label="길동" name="firstName" placeholder="길동" type="text" className="form-control"></input>
+                            </Col>
+                            <Col className="col-md-6">
+                              <label class="labels">
+                                Last Name
+                                <span className="text-danger">*</span>
+                              </label>
+                              <input aria-label="홍" name="lastName" placeholder="홍" type="text" className="form-control"></input>
+                            </Col>
+                          </Row>
+                          <br/>    
+                          <Row>
+                            <Col className="col-md-6">
+                              <div className="js-form-message mb-6">
+                                <label className="labes">
+                                  Email address
+                                  <span className="text-danger">*</span>
+                                </label>
+                                <input aria-label="abc@naver.com" name="emailAddress" placeholder="abc@naver.com" type="email" className="form-control"></input>
+                              </div>
+                            </Col>
 
-                       }
-                     }}> */}
-                        <button type="button" class="btn btn-info btn-sm" style={{float: "right"}} onClick={(e) => this.buyToken(this.state.t_tokenIndex)}>
-                            Order now
-                        </button>
-                     {/* </Link> */}
+                            <Col className="col-md-6">
+                              <div className="js-form-message mb-6">
+                                <label className="labes">
+                                  Phone number
+                                  <span className="text-danger">*</span>
+                                  ( 숫자만 기입해주세요)
+                                </label>
+                                <input aria-label="01011112222" name="phonNumber" placeholder="01011112222" type="text" className="form-control"></input>
+                              </div>
+                            </Col>
+                          </Row>
+                          <br/>
+                          <Row>
+                            <Col className="col-md-8">
+                              <div className="js-form-message mb-6">
+                                <label className="labels">
+                                  Address
+                                  <span className="text-danger">*</span>
+                                </label>
+                                <input aria-label="서울시 구로구" name="Address" placeholder="서울시 구로구" type="text" className="form-control"></input>
+                              </div>
+                            </Col>
+                            <Col className="col-md-4">
+                            <div className="js-form-message mb-6">
+                              <label className="labels">
+                                Postcode
+                                <span className="text-danger">*</span>
+                              </label>
+                              <input aria-label="12345" name="postcode" placeholder="12345" type="text" className="form-control"></input>
+                            </div>
+                            </Col>
+                          </Row>
+
+                          <h3 className="title">Payment</h3>
+                          <div className="tab-content tab-space">
+                            <div className="tab-pane active">
+                              <Row>
+                                <Col className="col-md-12">
+                                  <div className="js-form-message">
+                                    <label className="labels">
+                                      My Wallet
+                                    </label>
+                                    <div>
+                                    {walletInstance.address}
+                                    </div>
+                                  </div>
+                                </Col>
+                              </Row>
+                              <br/>
+                            </div>
+                            <div className="tab-pane"></div>
+                          </div>
+                        </Container>
+                      </form>
+                    </Col>
+                    </Row>
+                      <button type="button" class="btn btn-info btn-sm" style={{float: "right"}} onClick={(e) => this.buyToken(this.state.t_tokenIndex)}>
+                          Order now
+                      </button>
                 </Container>
                 </div>
                 <div class="space-70"></div>      
@@ -373,7 +341,6 @@ class OrderPageOld extends React.Component {
          </>
         )
     }
-
 
     return (
       <>

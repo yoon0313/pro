@@ -394,122 +394,16 @@ class OrderPage extends React.Component {
 
     return (
       <>
-        <IndexNavbar />
-        <div className="wrapper">
-        <div className="section">
-            <Container>
-                <Row>
-                    <p1>로그인 후 이용할 수 있습니다.</p1>
-                    {/* -------------오른쪽---------- */}
-                    <Col className="col-lg-8">
-                        <form className="js-validate">
-                            <Container>
-                                <h3 className="title">Billing address</h3>
-                                <Row>
-                                    <Col className="col-md-6">
-                                        <label class="labels">
-                                            First Name
-                                            <span className="text-danger">*</span>
-                                        </label>
-                                        <input aria-label="길동" name="firstName" placeholder="길동" type="text" className="form-control"></input>
-                                    </Col>
-                                    <Col className="col-md-6">
-                                    <label class="labels">
-                                            Last Name
-                                            <span className="text-danger">*</span>
-                                        </label>
-                                        <input aria-label="홍" name="lastName" placeholder="홍" type="text" className="form-control"></input>
-                                    </Col>
-                                </Row>
-                                    <br/>    
-                                <Row>
-                                    <Col className="col-md-6">
-                                        <div className="js-form-message mb-6">
-                                            <label className="labes">
-                                                Email address
-                                                <span className="text-danger">*</span>
-                                            </label>
-                                            <input aria-label="abc@naver.com" name="emailAddress" placeholder="abc@naver.com" type="email" className="form-control"></input>
-                                        </div>
-                                    </Col>
-
-                                    <Col className="col-md-6">
-                                    <div className="js-form-message mb-6">
-                                            <label className="labes">
-                                                Phone number
-                                                <span className="text-danger">*</span>
-                                                ( 숫자만 기입해주세요)
-                                            </label>
-                                            <input aria-label="01011112222" name="phonNumber" placeholder="01011112222" type="text" className="form-control"></input>
-                                        </div>
-                                    </Col>
-
-                                </Row>
-                                <br/>
-                                <Row>
-                                    <Col className="col-md-8">
-                                        <div className="js-form-message mb-6">
-                                            <label className="labels">
-                                                Address
-                                                <span className="text-danger">*</span>
-                                            </label>
-                                            <input aria-label="서울시 구로구" name="Address" placeholder="서울시 구로구" type="text" className="form-control"></input>
-                                        </div>
-                                    </Col>
-                                    <Col className="col-md-4">
-                                    <div className="js-form-message mb-6">
-                                            <label className="labels">
-                                                Postcode
-                                                <span className="text-danger">*</span>
-                                            </label>
-                                            <input aria-label="12345" name="postcode" placeholder="12345" type="text" className="form-control"></input>
-                                        </div>
-                                    </Col>
-                                </Row>
-
-                                <h3 className="title">Payment</h3>
-                                <div className="tab-content tab-space">
-                                    <div className="tab-pane active">
-                                        <Row>
-                                            <Col className="col-md-12">
-                                                <div className="js-form-message">
-                                                <label className="labels">
-                                                Wallet
-                                                
-                                            </label>
-                                            <input aria-label="0x89d7g98s7d8g7d8s6g..." name="wallet" placeholder="0x89d7g98s7d8g7d8s6g..." type="text" className="form-control"></input>
-                                                </div>
-                                            </Col>
-                                        </Row>
-                                        <br/>
-                                        <Row>
-                                            <Col className="col-md-12">
-                                                <div className="js-form-message">
-                                                <label className="labels">
-                                                Password
-                                                
-                                            </label>
-                                            <input aria-label="*****" name="password" placeholder="*****" type="text" className="form-control"></input>
-                                                </div>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                    <div className="tab-pane"></div>
-                                </div>
-                            </Container>
-                        </form>
-                    </Col>
-                </Row>
-                <Link to="/order-complete-page">
-                {/* <button type="button" class="btn btn-info btn-sm" style={{float: "right"}} tag={Link} to="/order-complete-page">
-                    Order now
-                </button> */}
-                </Link>
-            </Container>
-        </div>
-        <div class="space-70"></div>
-        <Footer />
-        </div>
+      <IndexNavbar />
+      <div className="space-70"></div>
+          <div className="wrapper">
+              <div className="section">
+                  <Container>
+                      <h4>로그인 후 이용 가능합니다.</h4>
+                  </Container>
+              </div>
+          </div>
+          <Footer />
       </>
     );
   }

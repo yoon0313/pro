@@ -93,8 +93,7 @@ class UploadOldPage extends React.Component {
       price : "" ,
       productName: "",
       date: new Date(),
-      tokenIndex:"",
-      sell_receipt: null
+      tokenIndex:""
     }
   }
   
@@ -308,8 +307,7 @@ class UploadOldPage extends React.Component {
         productName:this.state.productName,
         productKey:this.state.productKey,
         price:this.state.amount,
-        tokenIndex:this.state.index,
-        sell_receipt:this.state.sell_receipt
+        tokenIndex:this.state.index
         // tokens: Tokens[Token-1].value
     }
      //서버로 보내기
@@ -486,9 +484,6 @@ class UploadOldPage extends React.Component {
       productName : event.target.value
     })
   }
-
-
-
 
   handleFileOnChange = (event) => {
     event.preventDefault();

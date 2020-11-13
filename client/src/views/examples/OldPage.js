@@ -25,6 +25,10 @@ import {
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import { Link } from "react-router-dom";
+import Caver from "caver-js";
+
+const config = {rpcURL: 'https://api.baobab.klaytn.net:8651'}
+const caver = new Caver(config.rpcURL);
 
 class OldPage extends React.Component {
   state = {
@@ -120,10 +124,24 @@ class OldPage extends React.Component {
       })
   }
 
-  
+  getWallet = () => {
+    console.log("getWallet"+caver.klay.accounts.wallet.length);
+    if (caver.klay.accounts.wallet.length) {
+      return caver.klay.accounts.wallet[0]
+    } else {
+
+      const walletFromSession = sessionStorage.getItem('walletInstance')
+      try {
+        caver.klay.accounts.wallet.add(JSON.parse(walletFromSession))
+      } catch (e) {
+        sessionStorage.removeItem('walletInstance')
+      }
+      return caver.klay.accounts.wallet[0]
+    }
+  }
 
   render() {
-    
+ 
     let Items = this.state.products.map( item=>{
       if (item._id ==='index') return( <></>)
       return(
@@ -167,7 +185,112 @@ class OldPage extends React.Component {
                   
       )});
 
-   
+      
+    var walletInstance = this.getWallet();
+    if (walletInstance) { 
+      return (
+        <>
+        <IndexNavbar />
+          <div className="wrapper">
+            <div className="page-header">
+            <div className="page-header-image" />
+              <div className="content">
+
+                <Container>
+                  <Row>
+                  <Col className="item">
+                  <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/>
+                  </Col>
+                  <Col className="item"><h1>OLD PRODUCT</h1></Col>
+                  <Col className="item">
+                  <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/>
+                  </Col>
+                  </Row>
+                
+                  <Row className="row-grid justify-content-between align-items-center text-left">
+                    <Col lg="6" md="6">
+                      <h1 className="text-white">We keep your coin <br />
+                      <span className="text-white">secured</span>
+                      </h1>
+                      <p className="text-white mb-3">
+                        A wonderful serenity has taken possession of my entire soul,
+                        like these sweet mornings of spring which I enjoy with my
+                        whole heart. I am alone, and feel...
+                      </p>
+                      <div className="btn-wrapper mb-3">
+                        <p className="category text-success d-inline">From 9.99%/mo</p>
+                        <Button className="btn-link" color="success" href="#pablo" onClick={e => e.preventDefault()} size="sm">
+                        <i className="tim-icons icon-minimal-right" />
+                        </Button>
+                      </div>
+                      
+                      <div className="btn-wrapper">
+                        <div className="button-container">
+                          <Button className="btn-icon btn-simple btn-round btn-neutral" color="default" href="#pablo"
+                            onClick={e => e.preventDefault()}>
+                          <i className="fab fa-twitter" />
+                          </Button>
+                          <Button className="btn-icon btn-simple btn-round btn-neutral" color="default" href="#pablo"
+                            onClick={e => e.preventDefault()}>
+                          <i className="fab fa-dribbble" />
+                          </Button>
+                          <Button
+                            className="btn-icon btn-simple btn-round btn-neutral" color="default" href="#pablo"
+                            onClick={e => e.preventDefault()}>
+                          <i className="fab fa-facebook" />
+                          </Button>
+                        </div>
+                      </div>
+                    </Col>
+                  
+                    <Col lg="4" md="5">
+                    <img alt="..." className="img-fluid" src="https://demos.creative-tim.com/blk-design-system-pro-react/static/media/etherum.73bbf767.png"/>
+                    </Col>
+
+                  </Row>
+            
+                  <Row>
+                    <Col className="item">
+                    <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/>
+                    <Button
+                    className="btn-simple btn btn-success" style={{float: "right"}} Link tag={Link} to="/upload-old-page">
+                    <font color="cyan">등록</font>
+                    </Button>
+                    {/* <Button
+                    className="btn-simple btn btn-warning" style={{float: "right"}} Link tag={Link} to="/old-descript-page">
+                    <font color="magenta">상품 더보기</font>
+                    </Button> */}
+                    </Col>
+                  </Row>
+                
+                  <Row>
+                  <font size="150" color="white " > &nbsp; &nbsp; TOP ITEM</font>
+                  </Row>
+
+
+                  <Row>
+                    {Items}
+                  </Row>
+                    
+                    {/* <Row>
+                      <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
+                      <div className="square square-7" id="square7" style={{ transform: this.state.squares7and8 }}/>
+                      <div className="square square-8" id="square8" style={{ transform: this.state.squares7and8 }}/>
+                      </Col>
+                    </Row> */}
+
+                    <div className="square square-3" id="square3" style={{ transform: this.state.squares1to6 }}/>
+                    <div className="square square-5" id="square5" style={{ transform: this.state.squares1to6 }}/>
+                    <div className="square square-6" id="square6" style={{ transform: this.state.squares1to6 }}/>
+                </Container>
+              </div>
+            </div>
+          <Footer/>
+        </div>
+        
+      </>
+      );
+    }
     return (
       <>
       <IndexNavbar />
@@ -232,14 +355,6 @@ class OldPage extends React.Component {
                 <Row>
                   <Col className="item">
                   <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/>
-                  <Button
-                  className="btn-simple btn btn-success" style={{float: "right"}} Link tag={Link} to="/upload-old-page">
-                  <font color="cyan">등록</font>
-                  </Button>
-                  <Button
-                  className="btn-simple btn btn-warning" style={{float: "right"}} Link tag={Link} to="/old-descript-page">
-                  <font color="magenta">상품 더보기</font>
-                  </Button>
                   </Col>
                 </Row>
               
@@ -251,13 +366,6 @@ class OldPage extends React.Component {
                 <Row>
                   {Items}
                 </Row>
-                  
-                  {/* <Row>
-                    <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
-                    <div className="square square-7" id="square7" style={{ transform: this.state.squares7and8 }}/>
-                    <div className="square square-8" id="square8" style={{ transform: this.state.squares7and8 }}/>
-                    </Col>
-                  </Row> */}
 
                   <div className="square square-3" id="square3" style={{ transform: this.state.squares1to6 }}/>
                   <div className="square square-5" id="square5" style={{ transform: this.state.squares1to6 }}/>
