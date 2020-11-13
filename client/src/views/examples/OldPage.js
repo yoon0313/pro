@@ -129,7 +129,6 @@ class OldPage extends React.Component {
     if (caver.klay.accounts.wallet.length) {
       return caver.klay.accounts.wallet[0]
     } else {
-
       const walletFromSession = sessionStorage.getItem('walletInstance')
       try {
         caver.klay.accounts.wallet.add(JSON.parse(walletFromSession))

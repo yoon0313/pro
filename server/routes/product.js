@@ -23,16 +23,16 @@ client.connect().then( res =>{
     return ret.value.seq;
   }
 
-  updateOldSellReceipt = async function(tokenIndex, sell_receipt){
+  updateOldSellReceipt = async function(tokenIndex, _sell_receipt){
     
     let pd = DB.collection('products')
     var ret = await pd.findOneAndUpdate(
       { tokenIndex : tokenIndex },
-      { $set: { sell_receipt: sell_receipt } },
+      { $set: { sell_receipt: _sell_receipt } },
       {
-        returnOriginal: false
+        returnOriginal: true
       })
-    return ret.value.seq;
+    return ret.value;
   }
 
   console.log(getNextSequence)
@@ -52,6 +52,7 @@ var storage = multer.diskStorage({
    
   var upload = multer({ storage: storage }).single("file")
 
+
 router.post('/image',(req,res) => {
     //프론트에서 가져온 이미지를 저장해줌 (2)
     upload(req, res, err =>{
@@ -60,6 +61,7 @@ router.post('/image',(req,res) => {
         }
         return res.json({success: true, filePath: res.req.file.path , fileName: res.req.file.filename})
     })
+
 })
 
 router.post('/',(req,res) => {
@@ -78,16 +80,16 @@ router.post('/register', async (req,res) =>{
   var products = DB.collection('products');
   idx = await getNextSequence(),
   products.insertOne({
-    index         : idx,
-    brand         : req.body.brand,
-    productName   : req.body.productName,
-    description   : req.body.description,
-    price         : req.body.price,
-    images        : req.body.images,
-    date          : req.body.date,
-    productKey    : req.body.productKey,
-    tokenIndex    : req.body.tokenIndex,
-    sell_receipt  : req.body._sell_receipt
+    index: idx,
+    brand: req.body.brand,
+    productName: req.body.productName,
+    description : req.body.description,
+    price : req.body.price,
+    images : req.body.images,
+    date : req.body.date,
+    productKey: req.body.productKey,
+    tokenIndex : req.body.tokenIndex,
+    sell_receipt : req.body.sell_receipt
   }).then( (data)=>{
     res.json({success:true, msg:data})
   })
@@ -96,36 +98,29 @@ router.post('/register', async (req,res) =>{
 router.post('/receipt', async (req,res) =>{
   console.log(req.body);
   var products = DB.collection('products');
-  idx = await updateOldSellReceipt(req.body.tokenIndex, req.body.sell_receipt),
-  products.insertOne({
-    // index: req.body.index,
-    // brand: req.body.brand,
-    // productName: req.body.productName,
-    // description : req.body.description,
-    // price : req.body.price,
-    // images : req.body.images,
-    // date : req.body.date,
-    // productKey: req.body.productKey,
-    tokenIndex : req.body.tokenIndex,
-    sell_receipt : idx
-  }).then( (data)=>{
-    res.json({success:true, msg:data})
-  })
+  data = await updateOldSellReceipt(req.body.tokenIndex, req.body.sell_receipt),
+  res.json({success:true, msg:data})
 })
+
+
+
 
 
 //db에서 OldProduct 가져오기 
 router.get('/getOldP', (req,res) =>{
-  var products = DB.collection('products');
+  var _products = DB.collection('products');
+  var cursor;
 
-  let cusor;
-  if(req.query.index){
-    cursor =products.find({index:parseInt(req.query.index)});
+  if(req.query.index == null){
+    cursor = _products.find({"sell_receipt":{$eq: null}})
+  }else {
+    cursor = _products.find({ 
+      index: {$eq : parseInt(req.query.index) },
+      sell_receipt:{$eq: null}
+    })
+
   }
-  else {
-    cursor =products.find({});
-  }
-  
+
   let result=[];
   cursor.count().then(cnt =>{
     let arrLength=  cnt;
