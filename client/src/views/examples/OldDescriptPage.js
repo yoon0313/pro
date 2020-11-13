@@ -18,13 +18,13 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Link } from "react-router-dom";
 import Caver from "caver-js";
 
-// const axios = require('axios').default;
+const axios = require('axios').default;
 const config = {rpcURL: 'https://api.baobab.klaytn.net:8651'}
 const caver = new Caver(config.rpcURL);
-// var ipfsClient = require('ipfs-http-client');//ipfs 클라이언트를 import 한다
-// var ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' });
-// const yttContract = new caver.klay.Contract(DEPLOYED_ABI, DEPLOYED_ADDRESS);
-// const tsContract = new caver.klay.Contract(DEPLOYED_ABI_TOKENSALES, DEPLOYED_ADDRESS_TOKENSALES);
+var ipfsClient = require('ipfs-http-client');//ipfs 클라이언트를 import 한다
+var ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' });
+const yttContract = new caver.klay.Contract(DEPLOYED_ABI, DEPLOYED_ADDRESS);
+const tsContract = new caver.klay.Contract(DEPLOYED_ABI_TOKENSALES, DEPLOYED_ADDRESS_TOKENSALES);
 
 class OldDescriptPage extends React.Component {
   state = {products: []}
@@ -54,6 +54,7 @@ class OldDescriptPage extends React.Component {
     items       : [],
     sell_items  : [],
     all_items   : [],
+    ownerAddress:'',
     products:{
       id           :'',
       tokenIndex   :'',
@@ -67,12 +68,15 @@ class OldDescriptPage extends React.Component {
       price        :'',
       date         :''  
     },
+    
     index:params.get('index')
   };
 
   Axios.get("http://localhost:5000/OldP/products/getOldp?index="+params.get('index'))
     .then(response => {
         if(response.status==200){
+
+          this.getOwnerOf(response.data[0].tokenIndex);
           this.setState({
             products:response.data[0]
           })
@@ -80,14 +84,6 @@ class OldDescriptPage extends React.Component {
         }
   })
 }
-
-// getOwnerAddress = async (tokenIndex) => {   
-//   var tokenIndex = tokenIndex
-//   var owner = await this.getOwnerOf(tokenIndex);
-//   this.setState({
-//     owner : owner
-//   })
-// }  
 
 getWallet = () => {
       console.log("getWallet"+caver.klay.accounts.wallet.length);
@@ -105,56 +101,14 @@ getWallet = () => {
       }
   }
   
-  // getBalanceOf = async (address) => {
-  //   return await yttContract.methods.balanceOf(address).call();
-  // }
-
-  // getTokenOfOwnerByIndex = async (address, index) => {
-  //   return await yttContract.methods.tokenOfOwnerByIndex(address, index).call();
-  // }
-
-  // getTokenUri = async (tokenIndex) => {
-  //   return await yttContract.methods.tokenURI(tokenIndex).call();
-  // }
-
-  // getYTT = async (tokenIndex) => {
-  //   return await yttContract.methods.getYTT(tokenIndex).call();
-  // }
-
-  // getMetadata = async (tokenUri) => {
-  //   if(~tokenUri.indexOf("http")) {
-  //     tokenUri = tokenUri;
-  //   }
-  //   else {
-  //     tokenUri = "https://ipfs.infura.io/ipfs/" + tokenUri;
-  //   }
-  //   return new Promise(function (resolve,reject){
-  //     axios({
-  //       method: 'get',
-  //       url: tokenUri,
-  //     })
-  //     .then(function (response) {
-  //       resolve(response.data);
-  //     })
-  //     .catch(error => reject(error));
-  //   })
-  // }
-
-  // getTokenByIndex = async (index) => {
-  //   return await yttContract.methods.tokenByIndex(index).call();
-  // }
-
-  // isApprovedForAll = async (owner, operator) => {
-  //   return await yttContract.methods.isApprovedForAll(owner, operator).call();
-  // }
-
-  // getTokenPrice = async (tokenIndex) => {
-  //   return await tsContract.methods.tokenPrice(tokenIndex).call();
-  // }
-
-  // getOwnerOf = async (tokenIndex) => {
-  //   return await yttContract.methods.ownerOf(tokenIndex).call();
-  // }
+  getOwnerOf = async (tokenIndex) => {
+    yttContract.methods.ownerOf(tokenIndex).call().then( owner=>{
+      this.setState({
+        ownerAddress : owner
+      })
+    })
+    
+  }
 
   render() {
     
@@ -171,7 +125,9 @@ getWallet = () => {
         })
       });
     }
-    
+    var _tokenIndex = (this.state.products.tokenIndex);
+   
+    var ownerAddress = 0//this.getOwnerOf(_tokenIndex);
     var walletInstance = this.getWallet();
     if (walletInstance) {
       return (
@@ -220,6 +176,8 @@ getWallet = () => {
                       <h3 className="brandname">Brand: {this.state.products.brand}</h3>
                       <h3 className="main-price">Price: {this.state.products.price} klay</h3>
                       <h3 className="Date">판매 등록일: {this.state.products.date} </h3>
+                      <h3 className="Description">판매자 주소:<h5>{this.state.ownerAddress}</h5></h3>
+                      <h3 className="Description">구매자 주소:<h5>{walletInstance.address}</h5></h3>
                       <h3 className="Description">Description</h3>
                       <p className="description">{this.state.products.description}</p><br/>
                       
