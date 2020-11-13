@@ -7,6 +7,7 @@ const MongoClient = require('mongodb').MongoClient;
 const client = new MongoClient(Mongodb_URI);
 var DB;
 let getNextSequence
+let updateOldSellReceipt
 client.connect().then( res =>{
   DB = client.db('Cryptoberry')
   console.log(DB)
@@ -21,6 +22,19 @@ client.connect().then( res =>{
       })
     return ret.value.seq;
   }
+
+  updateOldSellReceipt = async function(tokenIndex, _sell_receipt){
+    
+    let pd = DB.collection('products')
+    var ret = await pd.findOneAndUpdate(
+      { tokenIndex : tokenIndex },
+      { $set: { sell_receipt: _sell_receipt } },
+      {
+        returnOriginal: true
+      })
+    return ret.value;
+  }
+
   console.log(getNextSequence)
 })
 //=================================
@@ -75,12 +89,21 @@ router.post('/register', async (req,res) =>{
     date : req.body.date,
     productKey: req.body.productKey,
     tokenIndex : req.body.tokenIndex,
-    sell_receipt : req.body.sell_receipt
+    sell_receipt : req.body._sell_receipt
   }).then( (data)=>{
     res.json({success:true, msg:data})
   })
-}
-)
+})
+
+router.post('/receipt', async (req,res) =>{
+  console.log(req.body);
+  var products = DB.collection('products');
+  data = await updateOldSellReceipt(req.body.tokenIndex, req.body._sell_receipt),
+  res.json({success:true, msg:data})
+})
+
+
+
 
 
 //db에서 OldProduct 가져오기 

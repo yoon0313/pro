@@ -26,8 +26,6 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footer/Footer.js";
 import { Link } from "react-router-dom";
 
-
-
 class OldPage extends React.Component {
   state = {
     squares1to6: "",

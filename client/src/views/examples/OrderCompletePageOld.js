@@ -19,6 +19,7 @@ class OrderCompletePageOld extends React.Component {
 
     constructor(props) {
         super(props)
+        this.submitHandler(props.location.state.tokenIndex,props.location.state.sell_receipt)
         this.state = {
             tokenIndex:props.location.state.tokenIndex,
             productKey:props.location.state.productKey,
@@ -46,17 +47,31 @@ class OrderCompletePageOld extends React.Component {
     }
   }
 
+  submitHandler = (tokenIndex,sell_receipt) =>{
+
+    const body = {
+        tokenIndex:tokenIndex,
+        sell_receipt:sell_receipt     
+    }
+     //서버로 보내기
+    Axios.post("http://localhost:5000/OldP/products/receipt", body)
+        .then(response => {
+            if(response.data.success){
+                alert('sell_receipt update완료')
+                //상품업로드 후 랜딩페이지로 돌아감
+                this.props.history.push('/')
+            }else{
+                alert('sell_receipt update 실패')
+            }
+        })
+  }
+
   render() {
     var walletInstance = this.getWallet();
     if (walletInstance) {
     return (
       <>
         <IndexNavbar />
-        {/* <p>tokenIndex:{this.state.tokenIndex}</p>
-        <p>productKey: {this.state.productKey}</p>
-        <p>brand: {this.state.brand}</p>
-        <p>productName:{this.state.productName}</p>
-        <p>sell_receipt:{this.state.sell_receipt}</p> */}
         <div className="space-70"></div>
             <div className="wrapper">
                 <div className="section">
@@ -285,6 +300,7 @@ class OrderCompletePageOld extends React.Component {
                                   </div>
                                   {/* printing */}
                                   <div className="ml-auto col-md-3">
+                               
                                       <button type="button" className="btn-print mt-5 btn btn-info"> 
                                       <i className="tim-icons icon-laptop">
                                           </i>
