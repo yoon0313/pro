@@ -26,6 +26,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import { FormContext } from "antd/lib/form/context";
 
 const axios = require('axios').default;
 const config = {rpcURL: 'https://api.baobab.klaytn.net:8651'}
@@ -70,9 +71,18 @@ class UploadOldPage extends React.Component {
     });
   };
 
+  formatDate(date) {
+    return date.getFullYear() + '년 ' + 
+      (date.getMonth() + 1) + '월 ' + 
+      date.getDate() + '일 ' + 
+      date.getHours() + '시 ' + 
+      date.getMinutes() + '분';
+  }
   constructor(props) {
     super(props);
     this.displayMyTokensAndSale()
+
+    let date = this.formatDate(new Date())
     this.state = {
       file : [],
       previewURL : [],
@@ -92,7 +102,7 @@ class UploadOldPage extends React.Component {
       description : "",
       price : "" ,
       productName: "",
-      date: new Date(),
+      date:date,
       tokenIndex:""
     }
   }
@@ -100,7 +110,7 @@ class UploadOldPage extends React.Component {
   handleFileOnChange = (event) => {
     event.preventDefault();
     if(this.state.previewURL.length >=3){
-      alert("더 이상은 무리데쓰");
+      alert("사진은 최대 3장까지 업로드 가능합니다");
       return;
     }
     let reader = new FileReader();
@@ -304,6 +314,7 @@ class UploadOldPage extends React.Component {
         brand:this.state.brand,
         images:this.state.file,
         date:this.state.date,
+
         productName:this.state.productName,
         productKey:this.state.productKey,
         price:this.state.amount,
@@ -386,10 +397,7 @@ class UploadOldPage extends React.Component {
     document.body.classList.toggle("register-page");
     document.documentElement.addEventListener("mousemove", this.followCursor);
    
-    //시간흐르게
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000)
+
   }
 
   //컴포넌트 실행안할시
@@ -399,8 +407,7 @@ class UploadOldPage extends React.Component {
       "mousemove",
       this.followCursor
     );
-    //시간흐르게
-    clearInterval(this.timerID);
+   
   }
 
   followCursor = event => {
@@ -422,12 +429,6 @@ class UploadOldPage extends React.Component {
     });
   };
   
-  //시간 계속 흐르게하기
-  tick() {
-    this.setState({
-        date: new Date()
-    })
-  }
   
   handleIndexOnChange = (event) => {
     event.preventDefault();
@@ -514,10 +515,6 @@ class UploadOldPage extends React.Component {
         reader.result
       )
 
-      /*this.setState({
-        file : file,
-        previewURL : reader.result
-      })*/
       console.log(this.state.previewURL)
       this.forceUpdate()
     }

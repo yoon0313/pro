@@ -35,7 +35,8 @@ let productSchema = mongoose.Schema({
     date:{
         type: Date,
         default:0,
-        require: true
+        require: true,
+       
     },
 
     productKey:{
