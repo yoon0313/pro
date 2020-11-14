@@ -463,7 +463,7 @@ class Mypage extends React.Component {
                                 </Col>
                               </Row>
                               <br/>
-                              <Button onClick = {this.cancelApproval}> 중고 판매 취소</Button>
+                              {/* <Button onClick = {this.cancelApproval}> 중고 판매 취소</Button> */}
                               <Row>            
                                 <Col className="align-self-center col-md-3">
                                   <label className="labels" for="#firstName">소유한 있는 토큰</label>

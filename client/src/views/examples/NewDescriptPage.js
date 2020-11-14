@@ -1,18 +1,12 @@
-import React , { Component } from "react";
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import React from "react";
 import {
   Button,
   Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
   ListGroupItem,
   ListGroup,
   Container,
   Row,
   Col,
-  UncontrolledTooltip,
   UncontrolledCarousel
 } from "reactstrap";
 
@@ -179,6 +173,7 @@ class NewDescriptPage extends React.Component {
   mintYTT = async (productKey, productName, dateCreated, hash) => {
     const sender = this.getWallet();// 함수를 호출하는 계정
     var feePayer;
+    var component = this
     try { 
       feePayer = caver.klay.accounts.wallet.add('0x4e2fc35f9a305401b0f7dedf2dcaa97f3cb0bb9dcae12378d9f31d7644fc34a7')
     }
@@ -201,9 +196,8 @@ class NewDescriptPage extends React.Component {
       if (receipt.transactionHash) {//제대로 영수증을 받았다면
         console.log("https://ipfs.infura.io/ipfs/" + hash);//console.log로 보여준다
         alert(receipt.transactionHash);
-        // this.displayMyTokensAndSale();
+        component.approve();
       }
-      // location.reload();//새로고침
     });
   }
 
@@ -225,7 +219,7 @@ class NewDescriptPage extends React.Component {
     console.log(productKey);
     console.log("key 생성완료");
   }
-  ///////////////////////토큰 이미지.///////////////////////////
+  
   displayMyTokensAndSale = async () => {       
     var walletInstance = this.getWallet()
     var balance = parseInt(await this.getBalanceOf(walletInstance.address));
@@ -474,7 +468,6 @@ class NewDescriptPage extends React.Component {
         address:'0'
       }
     }
-    // var walletInstance= this.getWallet();
 
     var DOM_items = [];
     var sell_items = [];
@@ -529,9 +522,9 @@ class NewDescriptPage extends React.Component {
                 <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
                 {/* <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem> */}
                 {/* <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem> */}
-                <Button onClick = {this.approve}> 토큰 판매승인</Button>
+                {/* <Button onClick = {this.approve}> 토큰 판매승인</Button> */}
                 {/* {this.state.isApproved&& <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button>} */}
-                <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button>
+                <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>제품인증서 활성화</Button>
               </ListGroup>
             </Row>
           </Card>
@@ -540,7 +533,6 @@ class NewDescriptPage extends React.Component {
       }
     }
 
-    //판매 중 토큰 검색//
     for(const item of this.state.sell_items){
       if( item.brand == this.state.news.brand && item.productName == this.state.news.productName){
       sell_items.push(
@@ -550,11 +542,6 @@ class NewDescriptPage extends React.Component {
           <Row>
             <Col className="text-center" md="12" style={{width:"230px"}}>
             <h4 className="text-uppercase">
-              <Link to="product-page">
-                <p style ={{color : "white"}}>
-                  Light Coin
-                </p>
-              </Link>
             </h4>
             <hr className="line-primary" />
             </Col>
@@ -632,7 +619,7 @@ class NewDescriptPage extends React.Component {
                     <form name = "product_token">
                       <p>관리자모드: {walletInstance.address}</p>
                       {/* 토큰 URI: {this.state.products.tokenUri1}<br/> */}
-                      <Button className="btn-simple btn btn-primary"  onClick={this.generateProductKey}> Generate key </Button>
+                      <Button className="btn-simple btn btn-primary"  onClick={this.generateProductKey}> 제품 일련번호 </Button>
                       <input placeholder="Product Key" value={this.state.productKey} label="Product key" readOnly/><br/>  
                       제품이름: {this.state.news.productName}<br/>           
                       브랜드이름: {this.state.news.brand}<br/>  
@@ -644,23 +631,6 @@ class NewDescriptPage extends React.Component {
                    </Col>
                   </Row>
                  </Container>
-{/* 
-                    <Row>            
-                      <Col className="align-self-center col-md-3">
-                        <label className="labels" for="#firstName">판매 가능한 토큰</label>
-                      </Col>
-                    </Row> */}
-                    {/* 판매중인 카드 리스트 */}
-                    {/* <Col className="align-self-center ">
-                      <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
-                        <br/> 
-                        <Row>
-                          <Col>
-                            {DOM_items}
-                          </Col>
-                        </Row>
-                      </Card>
-                    </Col> */}
                     <p>판매 가능한 토큰</p>
                       {DOM_items}
                     <p>판매 중인 토큰</p>
@@ -737,7 +707,6 @@ class NewDescriptPage extends React.Component {
                      <Link to={{
                        pathname:"/order-page",
                        state:{
-                        //  id:this.state.productKey,
                         brand:this.state.news.brand,
                         productName: this.state.news.productName,
                         price:this.state.news.price
@@ -750,7 +719,6 @@ class NewDescriptPage extends React.Component {
                         </Button>
                      </Link>
                      </Col>
-
                     </div>
                   </Col>
                 </Row>
@@ -998,9 +966,9 @@ class NewDescriptPage extends React.Component {
            </div>
           </div>
         <Footer />
-</>
-);
-}
+      </>
+    );
+  }
 }
 
 export default NewDescriptPage;
