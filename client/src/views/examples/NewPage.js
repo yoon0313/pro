@@ -186,10 +186,10 @@ class NewPage extends React.Component {
             <div className="content">
               <Container>
               <Row>
-          <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
-          <Col className="item"><h1>NEW PRODUCT</h1></Col>
-          <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
-        </Row>
+                <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 1, Align: "center"}}/></Col>
+                <Col className="item"><h1>NEW PRODUCT</h1></Col>
+                <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 1, Align: "center"}}/></Col>
+              </Row>
 
    
 
@@ -204,7 +204,10 @@ class NewPage extends React.Component {
 
        
         <div class="space-70"></div>
-   
+
+          <Row>
+            <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 1, Align: "center"}}/></Col>
+          </Row>
 
         <Row>
         <font size="100" color="white " > &nbsp; &nbsp; TOP 8</font>

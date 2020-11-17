@@ -170,7 +170,7 @@ getWallet = () => {
                     </Col>
                           
                     <Col className="mx-auto col-md-12 col-lg-6">
-                      <h3 className="brandname">Token Index: {this.state.products.tokenIndex}</h3>
+                      <h4 className="brandname">Token Index: {this.state.products.tokenIndex}</h4>
                       <h3 className="brandname">Product Key: {this.state.products.productKey}</h3>
                       <h3 className="brandname">Product Name: {this.state.products.productName}</h3>
                       <h3 className="brandname">Brand: {this.state.products.brand}</h3>

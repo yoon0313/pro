@@ -466,11 +466,11 @@ class Mypage extends React.Component {
                               {/* <Button onClick = {this.cancelApproval}> 중고 판매 취소</Button> */}
                               <Row>            
                                 <Col className="align-self-center col-md-3">
-                                  <label className="labels" for="#firstName">소유한 있는 토큰</label>
+                                  <b className="text-primary"><label className="labels" for="#firstName">소유하고 있는 토큰</label></b>
                                 </Col>
                               </Row>
                               <Col className="align-self-center row-md-3">
-                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
+                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '720px',paddingLeft:'30px', paddingRight:'30px'}}>
                                   <br/> 
                                   <Row>
                                     {/* 첫번째 토큰 */}                              
@@ -484,11 +484,11 @@ class Mypage extends React.Component {
 
                               <Row>            
                                 <Col className="align-self-center col-md-3">
-                                  <label className="labels" for="#firstName">판매중인 토큰</label>
+                                  <b className="text-primary"><label className="labels" for="#firstName">판매중인 토큰</label></b>
                                 </Col>
                               </Row>
                               <Col className="align-self-center row-md-3">
-                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
+                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '720px',paddingLeft:'30px', paddingRight:'30px'}}>
                                   <br/> 
                                   <Row>
                                     {/* 판매중인 토큰 */}
@@ -499,49 +499,6 @@ class Mypage extends React.Component {
                                 </Card>
                               </Col>
                               <br/>
-
-                              <Row>            
-                                <Col className="align-self-center col-md-3">
-                                  <label className="labels" for="#firstName">판매완료 된 토큰</label>
-                                </Col>
-                              </Row>
-                              <Col className="align-self-center row-md-3">
-                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px',overflowX: "scroll"}}>
-                                  <br/> 
-                                  <Row>
-                                    {/* 세번째 토큰 */}      
-                                    <Col>
-                                      <Card className="card-coin card-plain">                                  
-                                          <img
-                                            alt="..."
-                                            className="img-center img-fluid"
-                                            src={require("assets/img/etherum.png")}
-                                          />                                                                
-                                          <Row>
-                                            <Col className="text-center" md="12" style={{width:"230px"}}>
-                                              <h4 className="text-uppercase">
-                                              <Link to="OldProduct-page1">
-                                                  <p style ={{color : "white"}}>
-                                                BRIGHT Coin
-                                              </p>
-                                              </Link>
-                                                </h4>
-                                              <hr className="line-warning" />
-                                            </Col>
-                                          </Row>
-                                          <Row>
-                                            <ListGroup>
-                                            product<ListGroupItem>Padding</ListGroupItem>
-                                              Brand<ListGroupItem>Moncler</ListGroupItem>
-                                            </ListGroup>
-                                          </Row>
-                              
-                                      </Card>
-                                    </Col>
-
-                                  </Row>
-                                </Card>
-                              </Col>
                               <br/>
                             </div>
                           </div>

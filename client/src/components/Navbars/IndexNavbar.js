@@ -262,7 +262,7 @@ class ComponentsNavbar extends React.Component {
                      <i className="tim-icons  icon-single-02" />
                      </Link>
                 </Button>
-                <p >{walletInstance.address}</p>
+                <p >계정 주소: {walletInstance.address}</p>
                 <Button size="sm" color="secondary" onClick={this.removeWallet}>Logout</Button>
               </Nav>
             </Collapse>
