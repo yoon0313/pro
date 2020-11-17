@@ -78,34 +78,35 @@ class UploadOldPage extends React.Component {
       date.getHours() + '시 ' + 
       date.getMinutes() + '분';
   }
+
   constructor(props) {
     super(props);
     this.displayMyTokensAndSale()
-
     let date = this.formatDate(new Date())
     this.state = {
-      file : [],
-      previewURL : [],
-      items :[],
-      sell_items:[],
-      t_index:'',
-      t_productKey:'',
-      index:'',
-      productKey:'',
-      brand:'',
-      productName:'',
-      amount:'',
-      file : [],
-      previewURL : [],
-      binary : "",
-      brand : "",
-      description : "",
-      price : "" ,
-      productName: "",
-      date:date,
-      tokenIndex:""
+      file          :[],
+      previewURL    :[],
+      items         :[],
+      sell_items    :[],
+      t_index       :'',
+      t_productKey  :'',
+      index         :'',
+      productKey    :'',
+      brand         :'',
+      productName   :'',
+      amount        :'',
+      file          :[],
+      previewURL    :[],
+      binary        :"",
+      brand         :"",
+      description   :"",
+      price         :"" ,
+      productName   :"",
+      date          :date,
+      tokenIndex    :""
     }
   }
+  
   
   handleFileOnChange = (event) => {
     event.preventDefault();
@@ -113,6 +114,7 @@ class UploadOldPage extends React.Component {
       alert("사진은 최대 3장까지 업로드 가능합니다");
       return;
     }
+    
     let reader = new FileReader();
     let file = event.target.files[0];
     reader.onloadend = () => {
@@ -314,7 +316,6 @@ class UploadOldPage extends React.Component {
         brand:this.state.brand,
         images:this.state.file,
         date:this.state.date,
-
         productName:this.state.productName,
         productKey:this.state.productKey,
         price:this.state.amount,
@@ -563,7 +564,7 @@ class UploadOldPage extends React.Component {
                     <ListGroupItem>제품고유번호: {item.Id}</ListGroupItem>
                     <ListGroupItem>브렌드: {item.brand}</ListGroupItem>
                     <ListGroupItem>제품이름: {item.productName}</ListGroupItem>
-                    <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
+                    <ListGroupItem>제품제작일: {item.date()}</ListGroupItem>
                     {/* <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem>
                     <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem>
                     <Button onClick = {this.approve}> 토큰 판매승인</Button>

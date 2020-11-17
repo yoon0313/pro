@@ -466,11 +466,11 @@ class Mypage extends React.Component {
                               {/* <Button onClick = {this.cancelApproval}> 중고 판매 취소</Button> */}
                               <Row>            
                                 <Col className="align-self-center col-md-3">
-                                  <label className="labels" for="#firstName">소유한 있는 토큰</label>
+                                  <b className="text-primary"><label className="labels" for="#firstName">소유하고 있는 토큰</label></b>
                                 </Col>
                               </Row>
                               <Col className="align-self-center row-md-3">
-                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px'}}>
+                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '720px',paddingLeft:'30px', paddingRight:'30px'}}>
                                   <br/> 
                                   <Row>
                                     {/* 첫번째 토큰 */}                              
@@ -484,11 +484,11 @@ class Mypage extends React.Component {
 
                               <Row>            
                                 <Col className="align-self-center col-md-3">
-                                  <label className="labels" for="#firstName">판매중인 토큰</label>
+                                  <b className="text-primary"><label className="labels" for="#firstName">판매중인 토큰</label></b>
                                 </Col>
                               </Row>
                               <Col className="align-self-center row-md-3">
-                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px'}}>
+                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '720px',paddingLeft:'30px', paddingRight:'30px'}}>
                                   <br/> 
                                   <Row>
                                     {/* 판매중인 토큰 */}
@@ -499,8 +499,6 @@ class Mypage extends React.Component {
                                 </Card>
                               </Col>
                               <br/>
-
-                            
                               <br/>
                             </div>
                           </div>

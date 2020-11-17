@@ -59,7 +59,7 @@ class OrderCompletePageOld extends React.Component {
         }
         Axios.post("http://localhost:5000/OldP/products/receipt", body)
             .then(response => {
-                if(response.data.success){
+                if(response.data.success || this.state._sell_receipt){
                     alert('sell_receipt update완료')
                     // this.props.history.push('/')
                 }else{

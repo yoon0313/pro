@@ -890,7 +890,7 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                   <a href="#pablo">
-                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
+                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://images.www.fendi.com/images/h5b/hf9/9046121644062/7VZ053A72VF0GXN_01_xlarge-grey#product-big"/></Link>
                   </a>
                 </div>
 
@@ -899,7 +899,7 @@ class NewDescriptPage extends React.Component {
                   <h4 className="card-title">
                     <a href="#pablo" className="text-white card-link">SAINT LAURENT</a>
                   </h4>
-                  <div className="card-description">여성 가방 판매량 1위 가죽 마틀라세 스몰 루루</div>
+                  <div className="card-description">여성 가방 판매량 1위 정통 가죽 펜디 백팩</div>
                   <div className="card-footer">
                     <div className="price-container">
                       <span className="price">0.13</span>
@@ -916,7 +916,7 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
+                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://cdn2.chrono24.com/images/uhren/16654191-cj197gqmg5d3ibwfht51t1n3-Zoom.jpg"/></Link>
                     </a>
                   </div>
                   
@@ -942,7 +942,7 @@ class NewDescriptPage extends React.Component {
                 <div className="card-product card">
                   <div className="card-image">
                     <a href="#pablo">
-                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
+                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://www.chanel.com/images/t_fashionselector/q_auto,f_auto,fl_lossy,dpr_auto/w_972/stole-pink-white-wool-wool-packshot-default-aa7401b04957nb268-8832611483678.jpg"/></Link>
                     </a>
                   </div>
                   <div className="card-body">

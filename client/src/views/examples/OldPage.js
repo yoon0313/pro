@@ -111,7 +111,6 @@ class OldPage extends React.Component {
     // tokens: Tokens[Token-1].value
   }
 
-
   //서버에서 가져오기
   Axios.get("http://localhost:5000/OldP/products/getOldP", body)
       .then(response => {
@@ -130,7 +129,6 @@ class OldPage extends React.Component {
     if (caver.klay.accounts.wallet.length) {
       return caver.klay.accounts.wallet[0]
     } else {
-
       const walletFromSession = sessionStorage.getItem('walletInstance')
       try {
         caver.klay.accounts.wallet.add(JSON.parse(walletFromSession))
@@ -200,11 +198,11 @@ class OldPage extends React.Component {
                 <Container>
                   <Row>
                   <Col className="item">
-                  <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/>
+                  <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 1, Align: "center"}}/>
                   </Col>
                   <Col className="item"><h1>OLD PRODUCT</h1></Col>
                   <Col className="item">
-                  <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/>
+                  <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 1, Align: "center"}}/>
                   </Col>
                   </Row>
                 
@@ -252,7 +250,7 @@ class OldPage extends React.Component {
             
                   <Row>
                     <Col className="item">
-                    <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/>
+                    <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 1, Align: "center"}}/>
                     <Button
                     className="btn-simple btn btn-success" style={{float: "right"}} Link tag={Link} to="/upload-old-page">
                     <font color="cyan">등록</font>
