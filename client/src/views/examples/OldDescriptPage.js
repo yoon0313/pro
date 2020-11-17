@@ -8,7 +8,8 @@ import {
   Row,
   Col,
   UncontrolledTooltip,
-  UncontrolledCarousel
+  UncontrolledCarousel,
+  UncontrolledAlert
 } from "reactstrap";
 
 // core components
@@ -170,16 +171,47 @@ getWallet = () => {
                     </Col>
                           
                     <Col className="mx-auto col-md-12 col-lg-6">
-                      <h3 className="brandname">Token Index: {this.state.products.tokenIndex}</h3>
-                      <h3 className="brandname">Product Key: {this.state.products.productKey}</h3>
-                      <h3 className="brandname">Product Name: {this.state.products.productName}</h3>
-                      <h3 className="brandname">Brand: {this.state.products.brand}</h3>
-                      <h3 className="main-price">Price: {this.state.products.price} klay</h3>
-                      <h3 className="Date">판매 등록일: {this.state.products.date} </h3>
-                      <h3 className="Description">판매자 주소:<h5>{this.state.ownerAddress}</h5></h3>
-                      <h3 className="Description">구매자 주소:<h5>{walletInstance.address}</h5></h3>
-                      <h3 className="Description">Description</h3>
-                      <p className="description">{this.state.products.description}</p><br/>
+                      <h3 className="brandname"><b className="text-primary">
+                        Token Index : </b>{this.state.products.tokenIndex}
+                      </h3>
+                      
+                      <UncontrolledAlert className="alert-with-icon" color="primary">
+                      <span data-notify="icon" className="tim-icons icon-coins" />
+                      <span>
+                        <b>Product Key: </b>
+                        {this.state.products.productKey}
+                      </span>
+                    </UncontrolledAlert>
+                      {/* <h3 className="brandname">Product Key: {this.state.products.productKey}</h3> */}
+
+                      <h3 className="brandname">
+                        <nav class="bg-primary navbar navbar-expand-lg"><b>Product Name : </b> {this.state.products.productName}</nav>
+                      </h3>
+
+                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-coins" />
+                        <span>
+                          <b className="text-primary"> Brand : </b>
+                        </span>{this.state.products.brand}
+                      </h3>
+
+                      <h3 className="main-price">
+                        <span class="badge badge-primary"> Price </span>{this.state.products.price} klay
+                      </h3>
+
+                      
+                      <h3 className="Date"><b class="nav-item">판매 등록일: </b> {this.state.products.date} </h3>
+
+                      <h3 className="Description"><b class="btn-simple btn-round btn btn-primary btn-lg">판매자 주소 </b>
+                        <h5>{this.state.ownerAddress}</h5></h3>
+
+                      <h3 className="Description"><b className="text-info">구매자 주소 </b></h3>
+                        <h5>{walletInstance.address}</h5>
+                        
+                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-coins" />
+                        <span>
+                          <b className="text-info"> Description : </b>
+                        </span>{this.state.products.description}
+                      </h3>  
                       
                       <div className="pick-size row">
                         <Col className="col-md-4 col-lg-2">

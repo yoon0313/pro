@@ -13,3 +13,9 @@ insert document 눌러서
 아래와 같이 추가 요망
     _id:"index"
     seq:0
+
+ㅡㅡㅡㅡ
+*서버에 돌리고 싶을 때
+root- package.json 에서 
+"webpack": "webpack-dev-server --progress --host 183.111.227.113 --port 8080",
+복붙
