@@ -376,20 +376,20 @@ getWallet = () => {
                     <div className="card-product card">
                       <div className="card-image">
                         <a href="#pablo">
-                        <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
+                        <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju1.jpg")}/></Link>
                         </a>
                       </div>
 
                       <div className="card-body">
                       <h6 className="category text-warning">Trending</h6>
-                      <h4 className="card-title"><a href="#pablo" className="text-white card-link">monblanc ballpen</a></h4>
+                      <h4 className="card-title"><a href="#pablo" className="text-white card-link">Gucci Wallet</a></h4>
                       
                       <div className="card-description">
-                        마이스터스튁 클래식 볼펜은 고급 블랙 레진 캡과 배럴로 대표되는 특별한 디자인 아이콘입니다.
+                        대한민국 남성들이 뽑은 가장 선호하는 브랜드 1위 구찌 망설이지 마세요~~!!
                       </div>
                       <div className="card-footer">
                         <div className="price-container">
-                          <span className="price">9 ETH</span>
+                          <span className="price">0.12 klay</span>
                         </div>
                         <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                           <i className="tim-icons icon-heart-2"></i>
@@ -403,22 +403,21 @@ getWallet = () => {
                   <div className="card-product card">
                     <div className="card-image">
                     <a href="#pablo">
-                    <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
+                    <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju22.jpg")}/></Link>
                     </a>
                   </div>
 
                   <div className="card-body">
                     <h6 className="category text-warning">Popular</h6>
                     <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">Dior Belt</a>
+                      <a href="#pablo" className="text-white card-link">SAINT LAURENT Bag</a>
                     </h4>
                     <div className="card-description">
-                      블랙 Christian Dior 앰보싱 나일론 Saddle 벨트입니다.
-                      원피스,코트 바지 위에 코디 하실 수 있습니다.
+                      2020 여자 백 전체 판매량 1위 생로랑 백!!! 품절 임박하니 얼른 만나보세요
                     </div>
                     <div className="card-footer">
                       <div className="price-container">
-                        <span className="price">17 ETH</span>
+                        <span className="price">0.13 Klay</span>
                       </div>
                       <button id="tooltip320714545" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                         <i className="tim-icons icon-heart-2"></i>
@@ -432,7 +431,7 @@ getWallet = () => {
                   <div className="card-product card">
                     <div className="card-image">
                       <a href="#pablo">
-                        <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
+                        <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju3.jpg")}/></Link>
                       </a>
                     </div>
                     
@@ -446,7 +445,7 @@ getWallet = () => {
                       </div>
                       <div className="card-footer">
                         <div className="price-container">
-                          <span className="price">555 ETH</span>
+                          <span className="price">0.2 Klay</span>
                         </div>
                         <button id="tooltip300524105" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                           <i className="tim-icons icon-heart-2"></i>
@@ -460,20 +459,20 @@ getWallet = () => {
                   <div className="card-product card">
                     <div className="card-image">
                       <a href="#pablo">
-                        <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1566920705/597606_96IWT_8745_001_080_0000_Light--GG.jpg"/></Link>
+                        <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju555.jpg")}/></Link>
                       </a>
                     </div>
                     <div className="card-body">
                       <h6 className="category text-warning">Trending</h6>
                       <h4 className="card-title">
-                        <a href="#pablo" className="text-white card-link">TAGHeuer watch</a>
+                        <a href="#pablo" className="text-white card-link">CHANEL Scarf</a>
                       </h4>
                       <div className="card-description">
-                      대한민국 국가대표 축구선수 손흥민이 착용하는 시계!!! 한정판매 중입니다 서두르세요!!
+                      대한민국 모든 여성분들이 꿈꾸는 샤넬 스카프 크립토베리와 함께 하세요!!
                       </div>
                       <div className="card-footer">
                         <div className="price-container">
-                          <span className="price">78 ETH</span>
+                          <span className="price">0.5 Klay</span>
                         </div>
                           <button id="tooltip755498009" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                             <i className="tim-icons icon-heart-2"></i>
