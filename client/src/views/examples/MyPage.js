@@ -369,76 +369,7 @@ class Mypage extends React.Component {
             <div className="section">
                 <div className="container">
                     <Row>
-                    <Col className="col-md-3">
-                      <div className="section">
-                          <section className="text-center">
-                              <div className="fileinput text-center">
-                              <div className="thumbnail img-circle">
-                              <img src={this.state.image} alt="..."></img>
-                              </div>
-                              <div>
-                              <label type="button" for="ex_file" className="btn-round btn btn-default">
-                                Add Photo
-                                <input type="file" id="ex_file" style={{width:"0px",}} accept='image/jpg,impge/png,image/jpeg,image/gif' 
-                                    onChange={this.handleFileOnChange}/>
-                              </label>
-                                  
-                              </div>
-                              </div>
-                              <h3 className="title"> </h3>
-                          </section>
-
-                          <section>
-                          <br/>
-                          <ul role="tablist" class="flex-column nav-tabs-info nav">
-                            <li className="nav-item">
-                              <a href="#pablo" className="active nav-link">
-                                <i className="tim-icons icon-single-02">
-                                </i>
-                              &nbsp;  General 
-                              </a>
-                            </li>
-                            <hr className="line-info" />
-                            <li className="nav-item">
-                              <a href="#pablo" className="nav-link">
-                                <i className="tim-icons icon-credit-card">
-
-                                </i>
-                              &nbsp;  Billing 
-                              </a>
-                            </li>
-                            <hr className="line-info"/>
-                            <li className="nav-item">
-                            <a href="#pablo" className="nav-link">
-                            <i className="tim-icons icon-lock-circle"></i>
-                            &nbsp;  Security 
-                            </a>
-                            </li>
-
-                            <hr className="line-info"/>
-                            <li className="nav-item">
-                            <a href="#pablo" className="nav-link">
-                            <i className="tim-icons icon-volume-98"></i>
-                            &nbsp;  Notifications 
-                            </a>
-                            </li>
-                            
-                          </ul>
-                          </section>
-                          <br/><br/><br/>
-                          <section>
-                            <div className="progress-container progress-info">
-                              <span className="progress-badge">Cryptoberry에 오신걸 환영합니다</span>
-                            </div>
-                            <div className="progress">
-                              <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                              aria-valuemax="100" style={{width: "200%"}}>
-                                {/* <span className="progress-value">100%</span> */}
-                              </div>
-                            </div>
-                          </section>
-                      </div>
-                    </Col>
+                    
                     
                     <Col className="m1-auto col-md-8">
                       <div className="section">
