@@ -385,7 +385,7 @@ class Mypage extends React.Component {
 
                               <Row>
                                 <Col className="align-self-center col-md-3">
-                                  <label className="labels" for="#firstName">User Address</label>
+                                <b className="text-primary"><label className="labels" for="#firstName">User Address</label></b>
                                 </Col>
                                 <Col className="align-self-center col-md-8">
                                   <div>
