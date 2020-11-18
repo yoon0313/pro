@@ -23,7 +23,7 @@ import Caver from "caver-js";
 const axios = require('axios').default;
 const config = {rpcURL: 'https://api.baobab.klaytn.net:8651'}
 const caver = new Caver(config.rpcURL);
-var ipfsClient = require('ipfs-http-client');//ipfs 클라이언트를 import 한다
+var ipfsClient = require('ipfs-http-client');//ipfs 클라이언트를 import 한다
 var ipfs = ipfsClient({ host: 'ipfs.infura.io', port: '5001', protocol: 'https' });
 const yttContract = new caver.klay.Contract(DEPLOYED_ABI, DEPLOYED_ADDRESS);
 const tsContract = new caver.klay.Contract(DEPLOYED_ABI_TOKENSALES, DEPLOYED_ADDRESS_TOKENSALES);
@@ -369,7 +369,59 @@ class Mypage extends React.Component {
             <div className="section">
                 <div className="container">
                     <Row>
-                    
+                    <Col className="col-md-3">
+                      <div className="section">
+                          <section>
+                              <br/>
+                            <ul role="tablist" class="flex-column nav-tabs-info nav">
+                              <li className="nav-item">
+                                <a href="#pablo" className="badge badge-primary">
+                                  <i className="tim-icons icon-single-02">
+                                  </i>
+                                &nbsp;  General 
+                                </a>
+                              </li>
+                              <hr className="line-info" />
+                              <li className="nav-item">
+                                <a href="#pablo" className="badge badge-primary">
+                                  <i className="tim-icons icon-credit-card">
+
+                                  </i>
+                                &nbsp;  Billing 
+                                </a>
+                              </li>
+                              <hr className="line-info"/>
+                              <li className="nav-item">
+                              <a href="#pablo" className="badge badge-primary">
+                              <i className="tim-icons icon-lock-circle"></i>
+                              &nbsp;  Security 
+                              </a>
+                              </li>
+
+                              <hr className="line-info"/>
+                              <li className="nav-item">
+                              <a href="#pablo" className="badge badge-primary">
+                              <i className="tim-icons icon-volume-98"></i>
+                              &nbsp;  Notifications 
+                              </a>
+                              </li>
+
+                            </ul>
+                          </section>
+                          <br/><br/><br/>
+                          <section>
+                            <div className="progress-container progress-info">
+                              <span className="progress-badge">Cryptoberry에 오신걸 환영합니다</span>
+                            </div>
+                            <div className="progress">
+                              <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                              aria-valuemax="100" style={{width: "200%"}}>
+                                {/* <span className="progress-value">100%</span> */}
+                              </div>
+                            </div>
+                          </section>
+                      </div>
+                    </Col>
                     
                     <Col className="m1-auto col-md-8">
                       <div className="section">
@@ -377,7 +429,7 @@ class Mypage extends React.Component {
                           <div className="tab-pane active">
                             <div>
                               <header>
-                                <h2 className="text-uppercase">My Information</h2>
+                                <h2 className="text-uppercase"><b>My Information</b></h2>
 
                               </header>
                               <hr className="line-info"/>
@@ -385,10 +437,10 @@ class Mypage extends React.Component {
 
                               <Row>
                                 <Col className="align-self-center col-md-3">
-                                  <label className="labels" for="#firstName">User Address</label>
+                                  <label className="badge badge-default" for="#firstName">User Address</label>
                                 </Col>
                                 <Col className="align-self-center col-md-8">
-                                  <div>
+                                  <div className="badge badge-info">
                                   {walletInstance.address}
                                   </div>
                                 </Col>
@@ -397,7 +449,7 @@ class Mypage extends React.Component {
                               {/* <Button onClick = {this.cancelApproval}> 중고 판매 취소</Button> */}
                               <Row>            
                                 <Col className="align-self-center col-md-3">
-                                  <b className="text-primary"><label className="labels" for="#firstName">소유하고 있는 토큰</label></b>
+                                  <b className="text-primary"><label className="badge badge-default" for="#firstName">소유하고 있는 토큰</label></b>
                                 </Col>
                               </Row>
                               <Col className="align-self-center row-md-3">
@@ -415,7 +467,7 @@ class Mypage extends React.Component {
 
                               <Row>            
                                 <Col className="align-self-center col-md-3">
-                                  <b className="text-primary"><label className="labels" for="#firstName">판매중인 토큰</label></b>
+                                  <b className="text-primary"><label className="badge badge-default" for="#firstName">판매중인 토큰</label></b>
                                 </Col>
                               </Row>
                               <Col className="align-self-center row-md-3">
