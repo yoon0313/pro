@@ -189,7 +189,7 @@ getWallet = () => {
                         </span>{this.state.products.productName}
                       </h3>
 
-                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-coins" />
+                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-puzzle-10" />
                         <span>
                           <b className="text-primary"> Brand : </b>
                         </span>{this.state.products.brand}
@@ -201,25 +201,25 @@ getWallet = () => {
                         </span>{this.state.products.price} klay
                       </h3>
                       
-                      <h3 className="Date"><span data-notify="icon" className="tim-icons icon-coins" />
+                      <h3 className="Date"><span data-notify="icon" className="tim-icons icon-paper" />
                         <span>
                           <b className="text-primary"> 판매등록일 :  </b>
                         </span>{this.state.products.date} 
                       </h3>
                       
-                      <h3 className="Description"><span data-notify="icon" className="tim-icons icon-coins" />
+                      <h3 className="Description"><span data-notify="icon" className="tim-icons icon-single-02" />
                         <span>
                           <b className="text-primary"> 판매자 주소 :  </b>
                         </span>{this.state.ownerAddress} 
                       </h3>
 
-                      <h3 className="Description"><span data-notify="icon" className="tim-icons icon-coins" />
+                      <h3 className="Description"><span data-notify="icon" className="tim-icons icon-single-02" />
                         <span>
                           <b className="text-primary"> 구매자 주소 :  </b>
                         </span>{walletInstance.address} 
                       </h3>
 
-                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-coins" />
+                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-align-left-2햣 " />
                         <span>
                           <b className="text-primary"> Description :  </b>
                         </span>{this.state.products.description} 
