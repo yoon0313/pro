@@ -188,8 +188,15 @@ class NewPage extends React.Component {
 
 
               <Row>
+                {/* <Col>              <div className="progress">
+                              <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                              aria-valuemax="100" style={{width: "100%"}}>
+                              </div>
+                              
+                            </div></Col> */}
                 <Col className="item"><hr className="line-primary"></hr></Col>
               </Row>
+
               <Row>
               <h2>NEW PRODUCT</h2>
              
@@ -240,11 +247,11 @@ class NewPage extends React.Component {
                   id="square4"
                   style={{ transform: this.state.squares1to6 }}
                 />
-                <div
+                {/* <div
                   className="square square-5"
                   id="square5"
                   style={{ transform: this.state.squares1to6 }}
-                />
+                /> */}
                 <div
                   className="square square-6"
                   id="square6"

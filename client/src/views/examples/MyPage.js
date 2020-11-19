@@ -301,11 +301,7 @@ class Mypage extends React.Component {
           <Row>
             <Col className="text-center" md="12" style={{width:"230px"}}>
             <h4 className="text-uppercase">
-              {/* <Link to="product-page">
-                <p style ={{color : "white"}}>
-                  Light Coin
-                </p>
-              </Link> */}
+
             </h4>
             <hr className="line-primary" />
             </Col>
@@ -317,11 +313,7 @@ class Mypage extends React.Component {
               <ListGroupItem>브렌드: {item.brand}</ListGroupItem>
               <ListGroupItem>제품이름: {item.productName}</ListGroupItem>
               <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
-              {/* <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem> */}
-              {/* <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem> */}
-              {/* <Button onClick = {this.approve}> 토큰 판매승인</Button> */}
-              {/* <Button onClick = {this.cancelApproval}> 승인 취소</Button> */}
-              {/* <Button value={item.index} onClick={(e) => this.sellToken(item.index)}>토큰 등록</Button> */}
+             
             </ListGroup>
           </Row>
         </Card>
@@ -365,11 +357,14 @@ class Mypage extends React.Component {
       return (
         <>
         <IndexNavbar />
+
         <div className="wrapper">
             <div className="section">
                 <div className="container">
                     <Row>
                     <Col className="col-md-3">
+                    <div className="space-70"></div>
+                 
                       <div className="section">
                           <section>
                               <br/>
@@ -416,8 +411,13 @@ class Mypage extends React.Component {
                             <div className="progress">
                               <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
                               aria-valuemax="100" style={{width: "200%"}}>
-                                {/* <span className="progress-value">100%</span> */}
                               </div>
+                            </div>
+                            <div className="progress">
+                              <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                              aria-valuemax="100" style={{width: "200%"}}>
+                              </div>
+                              
                             </div>
                           </section>
                       </div>
