@@ -564,7 +564,7 @@ class UploadOldPage extends React.Component {
                     <ListGroupItem>제품고유번호: {item.Id}</ListGroupItem>
                     <ListGroupItem>브렌드: {item.brand}</ListGroupItem>
                     <ListGroupItem>제품이름: {item.productName}</ListGroupItem>
-                    <ListGroupItem>제품제작일: {item.date()}</ListGroupItem>
+                    <ListGroupItem>제품제작일: {item.date}</ListGroupItem>
                     {/* <ListGroupItem>제품판매가격: {item.amount}</ListGroupItem>
                     <ListGroupItem>제품가격: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={(e) => this.handleItemChange(e, item.Id)}/>klay</ListGroupItem>
                     <Button onClick = {this.approve}> 토큰 판매승인</Button>
@@ -616,11 +616,11 @@ class UploadOldPage extends React.Component {
       <IndexNavbar/>
       <div className="section section-signup">
         <Container>
-          <Row>
+          {/* <Row>
             <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
             <Col className="item"><h2>OLD PRODUCT REGISTER</h2></Col>
             <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>                
-          </Row>
+          </Row> */}
           <br/>
           <br/>
             <Row className="row-grid justify-content-between align-items-center">
@@ -661,11 +661,12 @@ class UploadOldPage extends React.Component {
 
               <Card className="card-register">
                 <CardHeader>
+                <CardTitle tag="h4">register</CardTitle>
                   <CardImg
                     alt="..."
                     src={require("assets/img/square-purple-1.png")}
                   />
-                  <CardTitle tag="h4">register</CardTitle>
+                  
                 </CardHeader>
                  
                 <CardBody>

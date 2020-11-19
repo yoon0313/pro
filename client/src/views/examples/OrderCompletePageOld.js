@@ -60,7 +60,7 @@ class OrderCompletePageOld extends React.Component {
         Axios.post("http://localhost:5000/OldP/products/receipt", body)
             .then(response => {
                 if(response.data.success || this.state._sell_receipt){
-                    alert('sell_receipt update완료')
+                    alert('구매 완료')
                     // this.props.history.push('/')
                 }else{
                     alert('sell_receipt update 실패')
@@ -109,7 +109,7 @@ class OrderCompletePageOld extends React.Component {
                                                     </Col>
                                                     <Col className="text-left mt-3 col-md-5 col-lg-3">
                                                         <h3 className="mb-1">Biled to :</h3>
-                                                        <span className="d-block"> Yunjoung Kim</span>
+                                                        <span className="d-block"> {walletInstance.address} </span>
                                                         <p>
                                                             Bld Mihail Kogalnicewnu, nr.8
                                                             <br/>
@@ -128,7 +128,7 @@ class OrderCompletePageOld extends React.Component {
                                                 <div className="card-body">
                                                     <Row>
                                                         <Col className="mt-5 col-12">
-                                                            <div className="table-responsive">
+                                                            
                                                                 <table className="text-right table">
                                                                     <thead className="bg-default">
                                                                         <tr>
@@ -155,7 +155,7 @@ class OrderCompletePageOld extends React.Component {
                                                                         </tr>
                                                                     </tfoot>
                                                                 </table>
-                                                            </div>
+                                                            
                                                         </Col>
                                                     </Row>
                                                 </div>
