@@ -414,14 +414,20 @@ class Mypage extends React.Component {
                         <div className="tab-content">
                           <div className="tab-pane active">
                             <div>
-                            <div className="progress">
+
+
+
+                            {/* <div className="progress">
                               <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
                               aria-valuemax="100" style={{width: "200%"}}>
-                                {/* <span className="progress-value">100%</span> */}
+                                <span className="progress-value">100%</span>
                               </div>
-                            </div>
-                            <br/>
-                            <br/>
+                            </div> */}
+
+
+
+
+                         
                               <header>
                                 <h2 className="text-uppercase"><b>My Information</b></h2>
 
@@ -438,8 +444,7 @@ class Mypage extends React.Component {
                                 </Col>
                                 <Col className="align-self-center col-md-8">
                                 <p className="text-neutral"><b>
-                                {walletInstance.address}</b>
-                  </p>
+                                {walletInstance.address}</b></p>
                         
                                 </Col>
                               </Row>
