@@ -579,22 +579,7 @@ class NewDescriptPage extends React.Component {
                 <div className="btn-wrapper"></div>
               </Col>
             </Row>
-            <Row className="row-grid justify-content align-items text-left">
-              <Col lg="12" md="6">
-                <h1 className="text-white">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  New products 
-                </h1><br/>
-                <h3 className="text-white mb-3">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp;
-                  
-                </h3>
-                <div className="btn-wrapper"></div>
-              </Col>
-            </Row>
+            
 
             <div className="section">
               <Container>
@@ -607,34 +592,55 @@ class NewDescriptPage extends React.Component {
                     </div>
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="brandname">BRAND: {this.state.news.brand}</h2>
-                    <h5> PRODUCT NAME: {this.state.news.productName} </h5>
-                    <h2 className="main-price">PRICE: {this.state.news.price} KLAY</h2>
-                    <h2 className="category">Description</h2>
+                  <header>
+                <h3 className="text-uppercase" style={{align: "left"}}><b>{this.state.news.brand}</b></h3>
+                </header>
+                
+               
+                <h4 className="text-uppercase">{this.state.news.productName}</h4>
+                
+                    
+                    <h5 className="main-price"> {this.state.news.price} KLAY</h5>
+                    <h4 className="category">Description</h4>
                     <h5 className="description">{this.state.news.description}</h5><br/>
-                    <div className="pick-size row">
-                   <Col>
-                   </Col>
+                    
+            
 
                     <form name = "product_token">
-                      <p>관리자모드: {walletInstance.address}</p>
-                      {/* 토큰 URI: {this.state.products.tokenUri1}<br/> */}
-                      <Button className="btn-simple btn btn-primary"  onClick={this.generateProductKey}> 제품 일련번호 </Button>
-                      <input placeholder="Product Key" value={this.state.productKey} label="Product key" readOnly/><br/>  
-                      제품이름: {this.state.news.productName}<br/>           
-                      브랜드이름: {this.state.news.brand}<br/>  
-                      {/* <Button className="btn-simple btn btn-primary" style={{float: "right"}} onClick = {this.approve}> 토큰 판매승인</Button> */}
-                      <Button className="btn-simple btn btn-primary" style={{float: "right"}} onClick={this.displayMyTokensAndSale}>토큰확인</Button>
-                      <Button className="btn-simple btn btn-primary" style={{float: "right"}} onClick={this.handleCreateToken}>토큰생성</Button>
+                      <Button className="btn-simple btn btn-neutral"  onClick={this.generateProductKey}> 제품 일련번호 </Button>
+                      <input placeholder="Serial Number" value={this.state.productKey} label="Product key" readOnly/><br/>  
+                      <Button className="btn-simple btn btn-info" style={{float: "right"}} onClick={this.displayMyTokensAndSale}>토큰확인</Button>
+                      <Button className="btn-simple btn btn-success" style={{float: "right"}} onClick={this.handleCreateToken}>토큰생성</Button>
                     </form>
-                   </div>
+
+                  
                    </Col>
                   </Row>
-                 </Container>
-                    <p>판매 가능한 토큰</p>
+                  <br/>
+                  <br/>
+                  <br/>
+
+                  <hr className="line-primary"></hr>
+                  <Row>
+                <header>
+                <h3 className="text-uppercase" style={{align: "left"}}><b>판매 가능한 토큰</b></h3>
+                </header>
+                </Row>
+
                       {DOM_items}
-                    <p>판매 중인 토큰</p>
-                      {sell_items}
+                  <br/>
+                  <br/>
+                  <hr className="line-primary"></hr>
+                  <Row>
+                  <header>
+                <h3 className="text-uppercase" style={{align: "left"}}><b>판매중인 토큰</b></h3>
+                </header>
+                      
+                  </Row>
+                  {sell_items}
+                 </Container>
+
+
                </div>
              </div>
            </div>
@@ -674,7 +680,10 @@ class NewDescriptPage extends React.Component {
                     </div>
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
-                    <h2 className="brandname">{this.state.news.brand}</h2>
+                  <header>
+                <h3 className="text-uppercase" style={{align: "left"}}><b>{this.state.news.brand}</b></h3>
+                </header>
+                  
                     <h5>{this.state.news.productName}</h5>
                     <div className="stars stars-right">
                       <div className="stars text-warning">
