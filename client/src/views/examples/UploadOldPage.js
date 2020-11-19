@@ -681,7 +681,7 @@ class UploadOldPage extends React.Component {
                               </header>
                     {/* 판매중인 카드 리스트 */}
                     <Col className="align-self-center ">
-                      <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px'}}>
+                      <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '5px', width: '1080px'}}>
                         <br/> 
                         <Row>
                           <Col>
