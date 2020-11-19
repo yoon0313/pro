@@ -160,12 +160,13 @@ getWallet = () => {
                     </Col>
                           
                     <Col className="mx-auto col-md-12 col-lg-6">
+                    <hr className="line-primary" />
                     <header>
-                 <h3 className="text-uppercase" style={{align: "left"}}><b>{this.state.products.brand}</b></h3>
-                </header>
+                    <h3 className="text-uppercase" style={{align: "left"}}><b>{this.state.products.brand}</b></h3>
+                    </header>
                 
                
-                <h4 className="text-uppercase">{this.state.products.productName}</h4>
+                     <h4 className="text-uppercase">{this.state.products.productName}</h4>
                 
                     
                     <h5 className="main-price"> {this.state.products.price} KLAY</h5>
@@ -176,35 +177,31 @@ getWallet = () => {
                   
                     {/* ----------------------------------------------------------------------------- */}
 
+                    <h4 className="text-uppercase"><span><b className="text-primary">Token Index : </b>
+                    
+                    </span>{this.state.products.tokenIndex}
+                    </h4>
+                    
+
+                    <h4 className="text-uppercase"><span><b className="text-primary">Serial Number : </b>
+                    
+                    </span>{this.state.products.productKey}
+                    </h4>
 
 
-                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-bulb-63" />
-                        <span>
-                          <b className="text-primary"> Token Index : </b>
-                        </span>{this.state.products.tokenIndex}
-                      </h3>
+                    <h4 className="text-uppercase"><span><b className="text-primary">판매등록일 : </b>
+                    
+                    </span>{this.state.products.date} 
+                    </h4>
 
-                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-tag" />
-                        <span>
-                          <b className="text-primary"> Serial Number : </b>
-                        </span>{this.state.products.productKey}
-                      </h3>
+                    <h4 className="text-uppercase"><span><b className="text-primary">현 소유자 : </b>
+                    
+                    </span> {this.state.ownerAddress} 
+                    </h4>
 
-              
 
-      
-                      <h3 className="Date"><span data-notify="icon" className="tim-icons icon-paper" />
-                        <span>
-                          <b className="text-primary"> 판매등록일 :  </b>
-                        </span>{this.state.products.date} 
-                      </h3>
-                      
-                      <h3 className="Description"><span data-notify="icon" className="tim-icons icon-single-02" />
-                        <span>
-                          <b className="text-primary"> 현 소유자 주소 :  </b>
-                        </span>{this.state.ownerAddress} 
-                      </h3>
-
+          
+           
 
 
                       <div className="pick-size row">

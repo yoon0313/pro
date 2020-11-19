@@ -331,9 +331,7 @@ class Mypage extends React.Component {
             <Col className="text-center" md="12" style={{width:"230px"}}>
             <h4 className="text-uppercase">
               <Link to="product-page">
-                <p style ={{color : "white"}}>
-                  Light Coin
-                </p>
+               
               </Link>
             </h4>
             <hr className="line-primary" />
