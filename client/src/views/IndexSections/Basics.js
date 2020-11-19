@@ -130,7 +130,7 @@ class Basics extends React.Component {
                               <i class="tim-icons icon-money-coins text-primary"/>&nbsp;&nbsp;
                               <p className="category text-primary d-inline">Price</p>
                             </td>
-                            <td className="text-right">{products[0].price} Klay</td>
+                            <td className="text-right" >{products[0].price} Klay</td>
                           </tr>
                         </tbody>
                       </table>
