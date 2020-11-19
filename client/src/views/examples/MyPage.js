@@ -10,6 +10,7 @@ import {
   ListGroup,
   Container,
   Row,
+  Badge,
   Col,
   UncontrolledTooltip,
   UncontrolledCarousel
@@ -404,17 +405,7 @@ class Mypage extends React.Component {
                           </ul>
                           </section>
                           <br/><br/><br/>
-                          <section>
-                            <div className="progress-container progress-info">
-                              <span className="progress-badge">Cryptoberry에 오신걸 환영합니다</span>
-                            </div>
-                            <div className="progress">
-                              <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                              aria-valuemax="100" style={{width: "200%"}}>
-                                {/* <span className="progress-value">100%</span> */}
-                              </div>
-                            </div>
-                          </section>
+           
                       </div>
                     </Col>
                     
@@ -423,11 +414,19 @@ class Mypage extends React.Component {
                         <div className="tab-content">
                           <div className="tab-pane active">
                             <div>
+                            <div className="progress">
+                              <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                              aria-valuemax="100" style={{width: "200%"}}>
+                                {/* <span className="progress-value">100%</span> */}
+                              </div>
+                            </div>
+                            <br/>
+                            <br/>
                               <header>
                                 <h2 className="text-uppercase"><b>My Information</b></h2>
 
                               </header>
-                              <hr className="line-info"/>
+                              
                               <br/>
 
 
@@ -435,21 +434,23 @@ class Mypage extends React.Component {
                             <CardBody>
                               <Row>
                                 <Col className="align-self-center col-md-3">
-                                  <label className="badge badge-default" for="#firstName">User Address</label>
+                                <Badge color="primary">User Address</Badge>
                                 </Col>
                                 <Col className="align-self-center col-md-8">
-                                  <div className="badge badge-info">
-                                  {walletInstance.address}
-                                  </div>
+                                <p className="text-neutral"><b>
+                                {walletInstance.address}</b>
+                  </p>
+                        
                                 </Col>
                               </Row>
                               <br/>
-                              {/* <Button onClick = {this.cancelApproval}> 중고 판매 취소</Button> */}
-                              <Row>            
-                                <Col className="align-self-center col-md-3">
-                                  <b className="text-primary"><label className="badge badge-default" for="#firstName">소유하고 있는 토큰</label></b>
-                                </Col>
-                              </Row>
+                              <hr className="line-primary"></hr>
+                              <header>
+                                <h3 className="text-uppercase"><b>My Token</b></h3>
+
+                              </header>
+
+
                               <Col className="align-self-center row-md-3">
                                 <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '660px',paddingLeft:'30px', paddingRight:'30px'}}>
                                   <br/> 
@@ -463,11 +464,11 @@ class Mypage extends React.Component {
                               </Col>
                               <br/>
 
-                              <Row>            
-                                <Col className="align-self-center col-md-3">
-                                  <b className="text-primary"><label className="badge badge-default" for="#firstName">판매중인 토큰</label></b>
-                                </Col>
-                              </Row>
+                              <hr className="line-success"></hr>
+                              <header>
+                                <h3 className="text-uppercase"><b>판매중인 Token</b></h3>
+
+                              </header>
                               <Col className="align-self-center row-md-3">
                                 <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '660px',paddingLeft:'30px', paddingRight:'30px'}}>
                                   <br/> 
