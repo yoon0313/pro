@@ -451,7 +451,7 @@ class Mypage extends React.Component {
                                 </Col>
                               </Row>
                               <Col className="align-self-center row-md-3">
-                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '720px',paddingLeft:'30px', paddingRight:'30px'}}>
+                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '660px',paddingLeft:'30px', paddingRight:'30px'}}>
                                   <br/> 
                                   <Row>
                                     {/* 첫번째 토큰 */}                              
@@ -469,7 +469,7 @@ class Mypage extends React.Component {
                                 </Col>
                               </Row>
                               <Col className="align-self-center row-md-3">
-                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '720px',paddingLeft:'30px', paddingRight:'30px'}}>
+                                <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto', width: '660px',paddingLeft:'30px', paddingRight:'30px'}}>
                                   <br/> 
                                   <Row>
                                     {/* 판매중인 토큰 */}
