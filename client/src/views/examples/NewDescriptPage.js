@@ -727,117 +727,126 @@ class NewDescriptPage extends React.Component {
             </div>
           </div>
           <div className="section related-products">
-            <div className="container">
-            <Col className="col-md-8">
-              <h2 className="title">You may also like</h2>
-              <h3 className="title">고객님을 위한 맞춘 추천 상품</h3>
-            </Col>
-          
-             <Row>
+                <div className="container">
+                  <Col className="col-md-8">
+                    <h2 className="title">You may also like</h2>
+                    <h3 className="title">고객님을 위한 맞춘 추천 상품</h3>
+                  </Col>
+            
+                <Row>
+                  <Col className="col-md-6 col-lg-3">
+                    <div className="card-product card">
+                      <div className="card-image">
+                        <a href="#pablo">
+                        <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju1.jpg")}/></Link>
+                        </a>
+                      </div>
+
+                      <div className="card-body">
+                      <h6 className="category text-warning">Trending</h6>
+                      <h4 className="card-title"><a href="#pablo" className="text-white card-link">Gucci Wallet</a></h4>
+                      
+                      <div className="card-description">
+                        대한민국 남성들이 뽑은 가장 선호하는 브랜드 1위 구찌 망설이지 마세요~~!!
+                      </div>
+                      <div className="card-footer">
+                        <div className="price-container">
+                          <span className="price">0.12 klay</span>
+                        </div>
+                        <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
+                          <i className="tim-icons icon-heart-2"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+
+                <Col className="col-md-6 col-lg-3">
+                  <div className="card-product card">
+                    <div className="card-image">
+                    <a href="#pablo">
+                    <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju22.jpg")}/></Link>
+                    </a>
+                  </div>
+
+                  <div className="card-body">
+                    <h6 className="category text-warning">Popular</h6>
+                    <h4 className="card-title">
+                      <a href="#pablo" className="text-white card-link">SAINT LAURENT Bag</a>
+                    </h4>
+                    <div className="card-description">
+                      2020 여자 백 전체 판매량 1위 생로랑 백!!! 품절 임박하니 얼른 만나보세요
+                    </div>
+                    <div className="card-footer">
+                      <div className="price-container">
+                        <span className="price">0.13 Klay</span>
+                      </div>
+                      <button id="tooltip320714545" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
+                        <i className="tim-icons icon-heart-2"></i>
+                      </button>
+                    </div>
+                  </div>
+                  </div>
+                </Col>
+
                 <Col className="col-md-6 col-lg-3">
                   <div className="card-product card">
                     <div className="card-image">
                       <a href="#pablo">
-                      <Link to={`/new-descript-page?index=1`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200619_273%2F1592543557126m8Nlb_JPEG%2F29902785110927888_1227731715.jpg&type=sc960_832"/></Link>
+                        <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju3.jpg")}/></Link>
                       </a>
                     </div>
-
+                    
                     <div className="card-body">
-                    <h6 className="category text-warning">Trending</h6>
-                    <h4 className="card-title"><a href="#pablo" className="text-white card-link">GUCCI</a></h4>
-                    <div className="card-description">남성 지갑 판매량 1위 구찌 597606 96IWT 8745</div>
-                    <div className="card-footer">
-                      <div className="price-container">
-                        <span className="price">0.12</span>
+                      <h6 className="category text-warning">Trending</h6>
+                      <h4 className="card-title">
+                        <a href="#pablo" className="text-white card-link">patekphilippe watch</a>
+                      </h4>
+                      <div className="card-description">
+                      세계 시계 브랜드 NO.1을 자부할 수 있는 시계업계 원탑 파텍틸립을 만나보세요.
                       </div>
-                      <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                        <i className="tim-icons icon-heart-2"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-
-              <Col className="col-md-6 col-lg-3">
-                <div className="card-product card">
-                  <div className="card-image">
-                  <a href="#pablo">
-                  <Link to={`/new-descript-page?index=2`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://images.www.fendi.com/images/h5b/hf9/9046121644062/7VZ053A72VF0GXN_01_xlarge-grey#product-big"/></Link>
-                  </a>
-                </div>
-
-                <div className="card-body">
-                  <h6 className="category text-warning">Popular</h6>
-                  <h4 className="card-title">
-                    <a href="#pablo" className="text-white card-link">SAINT LAURENT</a>
-                  </h4>
-                  <div className="card-description">여성 가방 판매량 1위 정통 가죽 펜디 백팩</div>
-                  <div className="card-footer">
-                    <div className="price-container">
-                      <span className="price">0.13</span>
-                    </div>
-                    <button id="tooltip320714545" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                      <i className="tim-icons icon-heart-2"></i>
-                    </button>
-                  </div>
-                </div>
-                </div>
-              </Col>
-
-              <Col className="col-md-6 col-lg-3">
-                <div className="card-product card">
-                  <div className="card-image">
-                    <a href="#pablo">
-                      <Link to={`/new-descript-page?index=3`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://cdn2.chrono24.com/images/uhren/16654191-cj197gqmg5d3ibwfht51t1n3-Zoom.jpg"/></Link>
-                    </a>
-                  </div>
-                  
-                  <div className="card-body">
-                    <h6 className="category text-warning">Trending</h6>
-                    <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">PATEK PHILIPPE</a>
-                    </h4>
-                    <div className="card-description">시계 브랜드 NO.1 파텍틸립을 만나보세요.</div>
-                    <div className="card-footer">
-                      <div className="price-container">
-                        <span className="price">0.2</span>
-                      </div>
-                      <button id="tooltip300524105" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                        <i className="tim-icons icon-heart-2"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-
-              <Col className="col-md-6 col-lg-3">
-                <div className="card-product card">
-                  <div className="card-image">
-                    <a href="#pablo">
-                      <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src="https://www.chanel.com/images/t_fashionselector/q_auto,f_auto,fl_lossy,dpr_auto/w_972/stole-pink-white-wool-wool-packshot-default-aa7401b04957nb268-8832611483678.jpg"/></Link>
-                    </a>
-                  </div>
-                  <div className="card-body">
-                    <h6 className="category text-warning">Trending</h6>
-                    <h4 className="card-title">
-                      <a href="#pablo" className="text-white card-link">CHANEL</a>
-                    </h4>
-                    <div className="card-description">샤넬 신상 입고!! 한정판매 중입니다 서두르세요!!</div>
-                    <div className="card-footer">
-                      <div className="price-container">
-                        <span className="price">0.5</span>
-                      </div>
-                        <button id="tooltip755498009" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
+                      <div className="card-footer">
+                        <div className="price-container">
+                          <span className="price">0.2 Klay</span>
+                        </div>
+                        <button id="tooltip300524105" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                           <i className="tim-icons icon-heart-2"></i>
                         </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Col>
-            </Row>
-           </div>
-          </div>
-        <Footer />
+                </Col>
+
+                <Col className="col-md-6 col-lg-3">
+                  <div className="card-product card">
+                    <div className="card-image">
+                      <a href="#pablo">
+                        <Link to={`/new-descript-page?index=4`}><img alt="..." className="img-fluid rounded shadow-lg" src={require("assets/img/ju555.jpg")}/></Link>
+                      </a>
+                    </div>
+                    <div className="card-body">
+                      <h6 className="category text-warning">Trending</h6>
+                      <h4 className="card-title">
+                        <a href="#pablo" className="text-white card-link">CHANEL Scarf</a>
+                      </h4>
+                      <div className="card-description">
+                      대한민국 모든 여성분들이 꿈꾸는 샤넬 스카프 크립토베리와 함께 하세요!!
+                      </div>
+                      <div className="card-footer">
+                        <div className="price-container">
+                          <span className="price">0.5 Klay</span>
+                        </div>
+                          <button id="tooltip755498009" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
+                            <i className="tim-icons icon-heart-2"></i>
+                          </button>
+                      </div>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            </div>
+            </div>
+          <Footer />
       </>
     );
   }
