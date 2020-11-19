@@ -278,7 +278,7 @@ getWallet = () => {
                       </div>
                       <div className="card-footer">
                         <div className="price-container">
-                          <span className="price">0.12 klay</span>
+                          <span className="badge badge-warning">0.12 klay</span>
                         </div>
                         <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                           <i className="tim-icons icon-heart-2"></i>
@@ -306,7 +306,7 @@ getWallet = () => {
                     </div>
                     <div className="card-footer">
                       <div className="price-container">
-                        <span className="price">0.13 Klay</span>
+                        <span className="badge badge-warning">0.13 Klay</span>
                       </div>
                       <button id="tooltip320714545" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                         <i className="tim-icons icon-heart-2"></i>
@@ -334,7 +334,7 @@ getWallet = () => {
                       </div>
                       <div className="card-footer">
                         <div className="price-container">
-                          <span className="price">0.2 Klay</span>
+                          <span className="badge badge-warning">0.2 Klay</span>
                         </div>
                         <button id="tooltip300524105" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                           <i className="tim-icons icon-heart-2"></i>
@@ -361,7 +361,7 @@ getWallet = () => {
                       </div>
                       <div className="card-footer">
                         <div className="price-container">
-                          <span className="price">0.5 Klay</span>
+                          <span className="badge badge-warning">0.5 Klay</span>
                         </div>
                           <button id="tooltip755498009" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
                             <i className="tim-icons icon-heart-2"></i>
