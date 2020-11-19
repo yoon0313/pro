@@ -626,7 +626,7 @@ class UploadOldPage extends React.Component {
             <Row className="row-grid justify-content-between align-items-center">
               <Row>
                 <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
-                  <div
+                  {/* <div
                     className="square square-7"
                     id="square7"
                     style={{ transform: this.state.squares7and8 }}
@@ -635,10 +635,10 @@ class UploadOldPage extends React.Component {
                     className="square square-8"
                     id="square8"
                     style={{ transform: this.state.squares7and8 }}
-                  />
+                  /> */}
                 </Col>
               </Row>
-              <div
+              {/* <div
                 className="square square-3"
                 id="square3"
                 style={{ transform: this.state.squares1to6 }}
@@ -657,35 +657,28 @@ class UploadOldPage extends React.Component {
                 className="square square-6"
                 id="square6"
                 style={{ transform: this.state.squares1to6 }}
-              />
+              /> */}
 
               <Card className="card-register">
+                
+                            <div className="progress">
+                              <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
+                              aria-valuemax="100" style={{width: "200%"}}>
+                                <span className="progress-value">100%</span>
+                              </div>
+                            </div>
+
                 <CardHeader>
-                <CardTitle tag="h4">register</CardTitle>
-                  <CardImg
-                    alt="..."
-                    src={require("assets/img/square-purple-1.png")}
-                  /> 
+                <CardTitle tag="h4" className="text-neutral text-uppercase">Register</CardTitle>
                 </CardHeader>
                  
                 <CardBody>
                   <Form className="form">
-                    <Row>
-                      <Col className="align-self-center col-md-3">
-                        <label className="labels" for="#firstName">User Address</label>
-                      </Col>
-                      <Col className="align-self-center col-md-8">
-                        <div>
-                          {walletInstance.address}
-                        </div>
-                      </Col>
-                    </Row>
-          
-                    <Row>            
-                      <Col className="align-self-center col-md-3">
-                        <label className="labels" for="#firstName">판매가능한 토큰</label>
-                      </Col>
-                    </Row>
+                  <hr className="line-primary"></hr>
+                              <header>
+                                <h3 className="text-uppercase"><b>My Token</b></h3>
+
+                              </header>
                     {/* 판매중인 카드 리스트 */}
                     <Col className="align-self-center ">
                       <Card className="card-coin card-plain" style={{ display: 'flex', overFlow: 'auto',paddingLeft: '20px', width: '720px'}}>

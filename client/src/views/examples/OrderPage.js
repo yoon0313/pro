@@ -268,7 +268,7 @@ class OrderPage extends React.Component {
                             <div className="card-body">
                                 {allSell_items[0]}
                                 <hr class="line-info mb-3"></hr>
-                                구매가능수량: {allSell_items.length}개 
+                               
                                 <div className="align-items-center media">
                                 </div>
                             </div>

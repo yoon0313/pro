@@ -100,28 +100,9 @@ class OrderCompletePageOld extends React.Component {
                                     <div className="ml-auto mr-auto col-md-10">
                                         <div className="card-invoice card">
                                             <div className="text-center card-header" data-color-icon="warning">
-                                                <Row className="justify-content-between">
-                                                    <Col className="text-left col-md-4">
-                                                        <img alt="..." className="mb-2" src={require("assets/img/yunjoungIcon.png")}>
-                                                        </img>
-                                                        <h4>St. Independence Embankment, 050105 Bucharest, Romaia</h4>
-                                                        <small className="d-block text-muted">tel: 01087226597</small>
-                                                    </Col>
-                                                    <Col className="text-left mt-3 col-md-5 col-lg-3">
-                                                        <h3 className="mb-1">Biled to :</h3>
-                                                        <span className="d-block"> {walletInstance.address} </span>
-                                                        <p>
-                                                            Bld Mihail Kogalnicewnu, nr.8
-                                                            <br/>
-                                                            7652 Bucharest,
-                                                            <br/>
-                                                            Romania
-                                                        </p>
-                                                    </Col>
-                                                </Row>
-                                                <br/>
-                                                <h4>계정주소: {walletInstance.address} </h4>
-                                                <h4 className="mt-3 text-left">#Transaction Hash</h4>
+                                               
+                                                
+                                                <h4 className="mt-3 text-left text-success">#Transaction Hash</h4>
                                                 <h4><small className="mr-2">{this.state.sell_receipt}</small></h4>
                                                 <Row className="justify-content-md-between">
                                                 </Row>
