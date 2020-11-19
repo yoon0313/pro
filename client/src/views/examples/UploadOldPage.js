@@ -692,41 +692,32 @@ class UploadOldPage extends React.Component {
                     </Col>
                     <br/>
 
-                    {/* Token Index:{this.state.tokenIndex}<br/>    */}
-                    Index:{this.state.index} 
-                    {/* <Input placeholder="Token Index" 
-                          type="text"
-                          onFocus={e => this.setState({ emailFocus: true })}
-                          onBlur={e => this.setState({ emailFocus: false })}
-                    /> */}
-                    <br/>          
-                    
-                    Product Key: {this.state.productKey} <br/>    
-                    {/* <Input placeholder="Product Key" 
-                          type="text"
-                          onFocus={e => this.setState({ emailFocus: true })}
-                          onBlur={e => this.setState({ emailFocus: false })}
-                    /> */}
-                    <br/>   
+         
 
-                    Brand: {this.state.brand} <br/>    
-                    <br/>          
-                    
-                    Pruduct Name: {this.state.productName} <br/>    
-                    <br/>   
-                    
-                    {/* Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleValueChange}/> klay */}
-                    Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleAmoutOnChange}/> klay
+                   
+               
 
-                    <br/>
-                    <br/>
+                  {/* ----------------------------------------------------------- */}
+                  <header>
+                 <h3 className="text-uppercase" style={{align: "left"}}><b>Brand: {this.state.brand}   </b></h3>
+                </header>
+                
+                <h4 className="text-uppercase"> Index:{this.state.index} </h4>
+                <h4 className="text-uppercase">Pruduct Name: {this.state.productName}</h4>
+                <h5 className="main-price">  Serial Number: {this.state.productKey}</h5>
+
                     
-                    Description: {this.state.description}
+                    <h5 className="main-price">  Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleAmoutOnChange}/> klay</h5>
+                    <h4 className="category">Description</h4>
+                    {/* <h5 className="description">{this.state.description}</h5><br/> */}
                     <Input cols="100" rows="1000"
                           placeholder="description"
                           type="textarea"
                           onChange={this.handleDescriptionOnChange}
                     />
+                  {/* ---------------------------------------------------------------- */}
+
+
 
                   <div class="profile_img">                      
                     <input type='file' 
@@ -749,17 +740,11 @@ class UploadOldPage extends React.Component {
                   </FormGroup>
                   </Form> 
                 </CardBody>
-                {/* <CardFooter>
-                  <div Button className="btn-round btn btn-primary" size="lg">
-                    <Link to="profile-page3"> 
-                      <font color="white">판매하기 &nbsp;</font>
-                    </Link>
-                  </div>  
-                </CardFooter> */}
+         
                 <Button onClick = {this.approve}> 중고 판매 승인</Button>
                 <Button onClick={(e) => {this.sellToken(this.state.index)}} 
                   type="submit" >중고 판매 등록</Button>
-                {/* <Button onClick={(e) => this.sellToken(this.state.index)}>중고 판매 등록</Button> */}
+                
               </Card>
             </Row>          
         </Container>
