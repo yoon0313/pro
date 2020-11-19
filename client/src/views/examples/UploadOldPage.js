@@ -691,52 +691,52 @@ class UploadOldPage extends React.Component {
                       </Card>
                     </Col>
                     <br/>
+                    <div className="card-body">
+                      {/* Token Index:{this.state.tokenIndex}<br/>    */}
+                      Index:{this.state.index} 
+                      {/* <Input placeholder="Token Index" 
+                            type="text"
+                            onFocus={e => this.setState({ emailFocus: true })}
+                            onBlur={e => this.setState({ emailFocus: false })}
+                      /> */}
+                      <br/>          
+                      
+                      Product Key: {this.state.productKey} <br/>    
+                      {/* <Input placeholder="Product Key" 
+                            type="text"
+                            onFocus={e => this.setState({ emailFocus: true })}
+                            onBlur={e => this.setState({ emailFocus: false })}
+                      /> */}
+                      <br/>   
 
-                    {/* Token Index:{this.state.tokenIndex}<br/>    */}
-                    Index:{this.state.index} 
-                    {/* <Input placeholder="Token Index" 
-                          type="text"
-                          onFocus={e => this.setState({ emailFocus: true })}
-                          onBlur={e => this.setState({ emailFocus: false })}
-                    /> */}
-                    <br/>          
-                    
-                    Product Key: {this.state.productKey} <br/>    
-                    {/* <Input placeholder="Product Key" 
-                          type="text"
-                          onFocus={e => this.setState({ emailFocus: true })}
-                          onBlur={e => this.setState({ emailFocus: false })}
-                    /> */}
-                    <br/>   
+                      Brand: {this.state.brand} <br/>    
+                      <br/>          
+                      
+                      Pruduct Name: {this.state.productName} <br/>    
+                      <br/>   
+                      
+                      {/* Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleValueChange}/> klay */}
+                      Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleAmoutOnChange}/> klay
 
-                    Brand: {this.state.brand} <br/>    
-                    <br/>          
-                    
-                    Pruduct Name: {this.state.productName} <br/>    
-                    <br/>   
-                    
-                    {/* Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleValueChange}/> klay */}
-                    Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleAmoutOnChange}/> klay
-
-                    <br/>
-                    <br/>
-                    
-                    Description: {this.state.description}
-                    <Input cols="100" rows="1000"
-                          placeholder="description"
-                          type="textarea"
-                          onChange={this.handleDescriptionOnChange}
-                    />
-
-                  <div class="profile_img">                      
-                    <input type='file' 
-                        accept='image/jpg,impge/png,image/jpeg,image/gif' 
-                        name='profile_img' 
-                        onChange={this.handleFileOnChange}>
-                    </input>
-                    {profile_preview}
+                      <br/>
+                      <br/>
+                      
+                      Description: {this.state.description}
+                      <Input cols="100" rows="1000"
+                            placeholder="description"
+                            type="textarea"
+                            onChange={this.handleDescriptionOnChange}
+                      />
+                      <div class="profile_img">                      
+                        <input type='file' 
+                            accept='image/jpg,impge/png,image/jpeg,image/gif' 
+                            name='profile_img' 
+                            onChange={this.handleFileOnChange}>
+                        </input>
+                        {profile_preview}
+                      </div>
                   </div>
-                    
+
                   <FormGroup check className="text-left">
                     <Label check>
                       <Input type="checkbox" />
