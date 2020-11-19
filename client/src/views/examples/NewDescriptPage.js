@@ -505,9 +505,7 @@ class NewDescriptPage extends React.Component {
               <Col className="text-center" md="12" style={{width:"230px"}}>
               <h4 className="text-uppercase">
                 <Link to="product-page">
-                  <p style ={{color : "white"}}>
-                    Light Coin
-                  </p>
+                
                 </Link>
               </h4>
               <hr className="line-primary" />
@@ -680,6 +678,7 @@ class NewDescriptPage extends React.Component {
                     </div>
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
+                  <hr className="line-primary" />
                   <header>
                 <h3 className="text-uppercase" style={{align: "left"}}><b>{this.state.news.brand}</b></h3>
                 </header>
@@ -698,7 +697,8 @@ class NewDescriptPage extends React.Component {
                     <h2 className="main-price">{this.state.news.price} KLAY</h2>
                     <h5 className="category">Description</h5>
                     <p className="description">{this.state.news.description}</p><br/>
-                    <p>현재 제품수량: {allSell_items.length}</p>
+                    <h5 className="category text-primary">제품 수량: {allSell_items.length}</h5>
+                    
                     <div className="pick-size row">
                       <Col>
                      <Link to={{

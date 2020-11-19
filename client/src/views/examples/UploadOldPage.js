@@ -588,9 +588,7 @@ class UploadOldPage extends React.Component {
             <Col className="text-center" md="12" style={{width:"230px"}}>
             <h4 className="text-uppercase">
               <Link to="product-page">
-                <p style ={{color : "white"}}>
-                  Light Coin
-                </p>
+          
               </Link>
             </h4>
             <hr className="line-primary" />
@@ -753,17 +751,11 @@ class UploadOldPage extends React.Component {
                   </FormGroup>
                   </Form> 
                 </CardBody>
-                {/* <CardFooter>
-                  <div Button className="btn-round btn btn-primary" size="lg">
-                    <Link to="profile-page3"> 
-                      <font color="white">판매하기 &nbsp;</font>
-                    </Link>
-                  </div>  
-                </CardFooter> */}
+         
                 <Button onClick = {this.approve}> 중고 판매 승인</Button>
                 <Button onClick={(e) => {this.sellToken(this.state.index)}} 
                   type="submit" >중고 판매 등록</Button>
-                {/* <Button onClick={(e) => this.sellToken(this.state.index)}>중고 판매 등록</Button> */}
+                
               </Card>
             </Row>          
         </Container>
