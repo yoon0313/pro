@@ -690,34 +690,34 @@ class UploadOldPage extends React.Component {
                     </Col>
                     <br/>
                     <ul className="card-body">
-                      <i className="tim-icons icon-check-2 text-default">
+                      <i className="tim-icons icon-check-2 text-success">
                         &nbsp;Index:{this.state.index} 
                       </i>
                       <br/>          
                       <br/>            
-                      <i className="tim-icons icon-check-2 text-default">
+                      <i className="tim-icons icon-check-2 text-success">
                         &nbsp;Product Key: {this.state.productKey} <br/> 
                       </i>
                       <br/>   
                       <br/>
-                      <i className="tim-icons icon-check-2 text-default">
+                      <i className="tim-icons icon-check-2 text-success">
                         &nbsp;Brand: {this.state.brand} <br/>  
                       </i>  
                       <br/>          
                       <br/>
-                      <i className="tim-icons icon-check-2 text-default">
+                      <i className="tim-icons icon-check-2 text-success">
                         &nbsp;Pruduct Name: {this.state.productName} <br/>  
                       </i>  
                       <br/>   
                       <br/>
-                      <i className="tim-icons icon-check-2 text-default">
+                      <i className="tim-icons icon-check-2 text-success">
                         &nbsp;Price: <input type="text" placeholder= "제품판매가격입력" name="amount" value={this.state.amount} onChange={this.handleAmoutOnChange}/> klay
                       </i>
 
                       <br/>
                       <br/>
                       
-                      <i className="tim-icons icon-check-2 text-default">
+                      <i className="tim-icons icon-check-2 text-success">
                         &nbsp;Description: 
                         <br/><br/>
                         {this.state.description}
