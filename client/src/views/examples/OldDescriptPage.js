@@ -159,7 +159,7 @@ getWallet = () => {
               </Col>
             </Row>
 
-              <div className="section">
+            <div className="section">
               <Container>
                   <Row>
                     <Col className="col-md-12 col-lg-6">
