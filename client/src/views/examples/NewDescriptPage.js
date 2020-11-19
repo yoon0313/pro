@@ -651,28 +651,17 @@ class NewDescriptPage extends React.Component {
         
         <div className="wrapper">
           <div className="page-header" style={{display : 'inline'}}>
+
             <Row className="row-grid justify-content align-items text-left">
               <Col lg="12" md="6">
                 <h1 className="text-white"></h1><br/>
-                <h3 className="text-white mb-3"></h3><br/>
-                <h3 className="text-white mb-3"></h3><br/>
+                {/* <h3 className="text-white mb-3"></h3><br/>
+                <h3 className="text-white mb-3"></h3><br/> */}
                 <div className="btn-wrapper"></div>
               </Col>
             </Row>
 
-            <Row className="row-grid justify-content align-items text-left">
-              <Col lg="12" md="6">
-                <hr className="line-primary"></hr>
-                <h1 className="text-white">
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                  
-                  New product
-                </h1><br/>
-
-                <div className="btn-wrapper"></div>
-              </Col>
-            </Row>
+  
 
             <div className="section">
               <Container>
@@ -723,136 +712,9 @@ class NewDescriptPage extends React.Component {
                 </Row>
               </Container>
             </div>
-              <div className="section">
-                <div className="container">
-                  <Row>
-                    <Col className="ml-auto mr-auto text-center col-md-6">
-                      <h2 className="title">Not convinced yet?</h2>
-                      <h4 className="description">정보가 더 필요한가요? 다른 사람이 우리 제품에 대해 말하는 것을 확인해보세요. 그들은 그들의 구매에 매우 만족합니다.</h4>
-                    </Col>
-                  </Row>
-
-                  <Row>
-                    <Col className="col-md-3" >
-                      <div className="card-testimonial card">
-                        <div className="card-avatar">
-                          <a href="#pablo">
-                            <img alt="..." class="img img-raised" src={require("assets/img/girl11.jpg")}></img>"
-                          </a>
-                        </div>
-                        <div className="icon icon-primary">
-                          <i className="fa fa-quote-right"></i>
-                        </div>
-                        <div className="card-body">
-                          <p className="card-description">크립토베리에서 10번 넘게 구매합니다. 히히</p><br/>
-                          <p className="card-description">믿고 사셔도 좋아요 ㅎㅎ</p>
-                        </div>
-                        <div className="icon icon-primary">
-                          <i className="fa fa-quote-right"></i>
-                        </div>
-                        <div className="card-footer">
-                          <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                            <Link to="profile-page">
-                              <i className="tim-icons icon-single-02"></i>
-                            </Link>
-                          </button>
-                          <h4 className="card-title">효정님</h4>
-                          <p classNamee="category">@hyojung</p>
-                        </div>
-                      </div>
-                    </Col>
-
-                    <Col className="col-md-3">
-                      <div className="card-testimonial card">
-                        <div className="card-avatar">
-                          <a href="#pablo">
-                            <img alt="..." class="img img-raised" src={require("assets/img/man1.jpg")}></img>"
-                          </a>
-                        </div>
-                        <div className="icon icon-primary">
-                          <i className="fa fa-quote-right"></i>
-                        </div>
-                        <div className="card-body">
-                          <p className="card-description">명품샵 가기는 귀찮고 그렇다고</p><br/>
-                          <p className="card-description">인터넷은 가짜 같은데, 여긴 그 생각을 깨줬습니당</p>
-                        </div>
-                        <div className="icon icon-primary">
-                          <i className="fa fa-quote-right"></i>
-                        </div>
-                        <div className="card-footer">
-                          <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                            <Link to="profile-page">
-                              <i className="tim-icons icon-single-02"></i>
-                            </Link>
-                          </button>
-                          <h4 className="card-title">Olivia Harper</h4>
-                          <p classNamee="category">@oliviaharper</p>
-                        </div>
-                      </div>
-                    </Col>
-
-                    <Col className="col-md-3">
-                      <div className="card-testimonial card">
-                        <div className="card-avatar">
-                          <a href="#pablo">
-                            <img alt="..." class="img img-raised" src={require("assets/img/girl2.jpg")}></img>"
-                          </a>
-                        </div>
-                        <div className="icon icon-primary">
-                          <i className="fa fa-quote-right"></i>
-                        </div>
-                        <div className="card-body">
-                          <p className="card-description">물건이 정말 좋고 예쁩니다!!! &nbsp; 진짜 최고^^</p><br/>
-                          <p className="card-description">cryptoberry very nice!!!</p>
-                        </div>
-                        <div className="icon icon-primary">
-                          <i className="fa fa-quote-right"></i>
-                        </div>
-                        <div className="card-footer">
-                          <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                            <Link to="profile-page">
-                              <i className="tim-icons icon-single-02"></i>
-                            </Link>
-                          </button>
-                          <h4 className="card-title">James Logan</h4>
-                          <p classNamee="category">@jameslogan</p>
-                        </div>
-                      </div>
-                    </Col>
-
-                    <Col className="col-md-3">
-                      <div className="card-testimonial card">
-                        <div className="card-avatar">
-                          <a href="#pablo">
-                            <img alt="..." class="img img-raised" src={require("assets/img/man2.jpg")}></img>"
-                          </a>
-                        </div>
-                        <div className="icon icon-primary">
-                          <i className="fa fa-quote-right"></i>
-                        </div>
-                        <div className="card-body">
-                          <p className="card-description">한국에 놀러왔더니 이런 사이트도 있고,</p><br/>
-                          <p className="card-description">배송이 엄청 빨라서 좋네요</p>
-                        </div>
-                        <div className="icon icon-primary">
-                          <i className="fa fa-quote-right"></i>
-                        </div>
-                        <div className="card-footer">
-                          <button id="tooltip449471879" className="btn-simple btn-icon btn-round pull-right btn btn-warning">
-                            <Link to="profile-page">
-                              <i className="tim-icons icon-single-02"></i>
-                            </Link>
-                          </button>
-                            <h4 className="card-title">DELE ALLI</h4>
-                            <p classNamee="category">@delealli</p>
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>  
-                </div>
-              </div>
             </div>
           </div>
+
           <div className="section related-products">
                 <div className="container">
                   <Col className="col-md-8">

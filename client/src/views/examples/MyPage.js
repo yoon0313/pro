@@ -413,12 +413,7 @@ class Mypage extends React.Component {
                               aria-valuemax="100" style={{width: "200%"}}>
                               </div>
                             </div>
-                            <div className="progress">
-                              <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
-                              aria-valuemax="100" style={{width: "200%"}}>
-                              </div>
-                              
-                            </div>
+               
                           </section>
                       </div>
                     </Col>
