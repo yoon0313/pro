@@ -202,8 +202,7 @@ class NewPage extends React.Component {
           <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
 
 
-
-        <iframe width="850" height="400" src="https://www.youtube.com/embed/ch6f2mrGUYk?amp;autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="850" height="400" src="https://nikevideo.nike.com/72451143001/202011/44/72451143001_6206983118001_6206980123001.mp4" frameborder="0" allow="accelerometer; autoplay; loop; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <Col className="item"><hr style={{width: '100%', height: 2, Align: "center"}}/></Col>
         </Row>
 

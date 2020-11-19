@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
-import { Button,  Collapse, NavbarBrand, Navbar, NavItem, NavLink, Nav, Container, Row, Col, FormGroup, Modal, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Label } from "reactstrap";
+import { Button,  Collapse, NavbarBrand, Navbar,UncontrolledTooltip, NavItem, NavLink, Nav, Container, Row, Col, FormGroup, Modal, Form, Input, InputGroup, InputGroupAddon, InputGroupText, Label } from "reactstrap";
 import Caver from "caver-js";
 
 const config = { rpcURL: 'https://api.baobab.klaytn.net:8651' }
@@ -257,12 +257,38 @@ class ComponentsNavbar extends React.Component {
                   </NavLink>
                 </NavItem>
                 
+                <Button
+                className="btn-tooltip"
+                color="success"
+                id="tooltip789511871"
+                size="sm"
+              >
+             <Link to="my-page">
+              <i className="tim-icons icon-single-02 text-neutral" />
+              </Link>
+              </Button>
+              <UncontrolledTooltip
+                delay={0}
+                placement="bottom"
+                target="tooltip789511871"
+              >
+                             <Link to="my-page">
+              <i className="tim-icons icon-single-02 text-neutral" />
+              </Link>
+              {walletInstance.address}
+              </UncontrolledTooltip>
+
+
+{/* 
                 <Button className="btn-round btn-icon" color="success">
                     <Link to="my-page">
                      <i className="tim-icons  icon-single-02" />
                      </Link>
                 </Button>
-                <p >계정 주소: {walletInstance.address}</p>
+                <p >계정 주소: {walletInstance.address}</p> */}
+
+
+
                 <Button size="sm" color="secondary" onClick={this.removeWallet}>Logout</Button>
               </Nav>
             </Collapse>
