@@ -142,22 +142,11 @@ getWallet = () => {
             <Row className="row-grid justify-content align-items text-left">
               <Col lg="12" md="6">
                 <h1 className="text-white"></h1><br/>
-                <h3 className="text-white mb-3"></h3><br/>
-                <h3 className="text-white mb-3"></h3><br/>
+            
                 <div className="btn-wrapper"></div>
               </Col>
             </Row>
 
-            <Row className="row-grid justify-content align-items text-left">
-              <Col lg="12" md="6">
-                <h1 className="text-white">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Our products </h1><br/>
-                <h3 className="text-white mb-3">
-                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                크립토 베리 에서는 본사에서 직접 받아온 제품만 판매합니다.
-                </h3>
-                <div className="btn-wrapper"></div>
-              </Col>
-            </Row>
 
             <div className="section">
               <Container>
@@ -171,6 +160,24 @@ getWallet = () => {
                     </Col>
                           
                     <Col className="mx-auto col-md-12 col-lg-6">
+                    <header>
+                 <h3 className="text-uppercase" style={{align: "left"}}><b>{this.state.products.brand}</b></h3>
+                </header>
+                
+               
+                <h4 className="text-uppercase">{this.state.products.productName}</h4>
+                
+                    
+                    <h5 className="main-price"> {this.state.products.price} KLAY</h5>
+                    
+                    <h4 className="category">Description</h4>
+                    <h5 className="description">{this.state.products.description}</h5><br/>
+
+                  
+                    {/* ----------------------------------------------------------------------------- */}
+
+
+
                       <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-bulb-63" />
                         <span>
                           <b className="text-primary"> Token Index : </b>
@@ -179,28 +186,13 @@ getWallet = () => {
 
                       <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-tag" />
                         <span>
-                          <b className="text-primary"> Product Key : </b>
+                          <b className="text-primary"> Serial Number : </b>
                         </span>{this.state.products.productKey}
                       </h3>
 
-                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-calendar-60" />
-                        <span>
-                          <b className="text-primary"> Product Name : </b>
-                        </span>{this.state.products.productName}
-                      </h3>
+              
 
-                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-puzzle-10" />
-                        <span>
-                          <b className="text-primary"> Brand : </b>
-                        </span>{this.state.products.brand}
-                      </h3>
-
-                      <h3 className="main-price"><span data-notify="icon" className="tim-icons icon-coins" />
-                        <span>
-                          <b className="text-primary"> Price :  </b>
-                        </span>{this.state.products.price} klay
-                      </h3>
-                      
+      
                       <h3 className="Date"><span data-notify="icon" className="tim-icons icon-paper" />
                         <span>
                           <b className="text-primary"> 판매등록일 :  </b>
@@ -209,21 +201,11 @@ getWallet = () => {
                       
                       <h3 className="Description"><span data-notify="icon" className="tim-icons icon-single-02" />
                         <span>
-                          <b className="text-primary"> 판매자 주소 :  </b>
+                          <b className="text-primary"> 현 소유자 주소 :  </b>
                         </span>{this.state.ownerAddress} 
                       </h3>
 
-                      <h3 className="Description"><span data-notify="icon" className="tim-icons icon-single-02" />
-                        <span>
-                          <b className="text-primary"> 구매자 주소 :  </b>
-                        </span>{walletInstance.address} 
-                      </h3>
 
-                      <h3 className="brandname"><span data-notify="icon" className="tim-icons icon-align-left-2" />
-                        <span>
-                          <b className="text-primary"> Description :  </b>
-                        </span>{this.state.products.description} 
-                      </h3>
 
                       <div className="pick-size row">
                         <Col className="col-md-4 col-lg-2">

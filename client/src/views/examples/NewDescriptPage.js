@@ -593,7 +593,7 @@ class NewDescriptPage extends React.Component {
                   </Col>
                   <Col className="mx-auto col-md-12 col-lg-6">
                   <header>
-                <h3 className="text-uppercase" style={{align: "left"}}><b>{this.state.news.brand}</b></h3>
+                 <h3 className="text-uppercase" style={{align: "left"}}><b>{this.state.news.brand}</b></h3>
                 </header>
                 
                
