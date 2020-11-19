@@ -19,7 +19,7 @@ import Footer from "components/Footer/Footer.js";
 import { Link } from "react-router-dom";
 import Caver from "caver-js";
 
-//gittest code
+
 const axios = require('axios').default;
 const config = {rpcURL: 'https://api.baobab.klaytn.net:8651'}
 const caver = new Caver(config.rpcURL);
@@ -366,42 +366,42 @@ class Mypage extends React.Component {
                     <div className="space-70"></div>
                  
                       <div className="section">
-                          <section>
-                              <br/>
-                            <ul role="tablist" class="flex-column nav-tabs-info nav">
-                              <li className="nav-item">
-                                <a href="#pablo" className="badge badge-primary">
-                                  <i className="tim-icons icon-single-02">
-                                  </i>
-                                &nbsp;  General 
-                                </a>
-                              </li>
-                              <hr className="line-info" />
-                              <li className="nav-item">
-                                <a href="#pablo" className="badge badge-primary">
-                                  <i className="tim-icons icon-credit-card">
-
-                                  </i>
-                                &nbsp;  Billing 
-                                </a>
-                              </li>
-                              <hr className="line-info"/>
-                              <li className="nav-item">
-                              <a href="#pablo" className="badge badge-primary">
-                              <i className="tim-icons icon-lock-circle"></i>
-                              &nbsp;  Security 
+                      <section>
+                          <br/>
+                          <ul role="tablist" class="flex-column nav-tabs-info nav">
+                            <li className="nav-item">
+                              <a href="#pablo" className="active nav-link">
+                                <i className="tim-icons icon-single-02">
+                                </i>
+                              &nbsp;  General 
                               </a>
-                              </li>
+                            </li>
+                            <hr className="line-info" />
+                            <li className="nav-item">
+                              <a href="#pablo" className="nav-link">
+                                <i className="tim-icons icon-credit-card">
 
-                              <hr className="line-info"/>
-                              <li className="nav-item">
-                              <a href="#pablo" className="badge badge-primary">
-                              <i className="tim-icons icon-volume-98"></i>
-                              &nbsp;  Notifications 
+                                </i>
+                              &nbsp;  Billing 
                               </a>
-                              </li>
+                            </li>
+                            <hr className="line-info"/>
+                            <li className="nav-item">
+                            <a href="#pablo" className="nav-link">
+                            <i className="tim-icons icon-lock-circle"></i>
+                            &nbsp;  Security 
+                            </a>
+                            </li>
 
-                            </ul>
+                            <hr className="line-info"/>
+                            <li className="nav-item">
+                            <a href="#pablo" className="nav-link">
+                            <i className="tim-icons icon-volume-98"></i>
+                            &nbsp;  Notifications 
+                            </a>
+                            </li>
+
+                          </ul>
                           </section>
                           <br/><br/><br/>
                           <section>
@@ -411,9 +411,9 @@ class Mypage extends React.Component {
                             <div className="progress">
                               <div className="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
                               aria-valuemax="100" style={{width: "200%"}}>
+                                {/* <span className="progress-value">100%</span> */}
                               </div>
                             </div>
-               
                           </section>
                       </div>
                     </Col>
@@ -430,6 +430,9 @@ class Mypage extends React.Component {
                               <hr className="line-info"/>
                               <br/>
 
+
+                          <Card>
+                            <CardBody>
                               <Row>
                                 <Col className="align-self-center col-md-3">
                                   <label className="badge badge-default" for="#firstName">User Address</label>
@@ -478,13 +481,18 @@ class Mypage extends React.Component {
                               </Col>
                               <br/>
                               <br/>
+                              </CardBody>
+                              </Card>  
                             </div>
                           </div>
                         </div>
                       </div>
+                      
+
                     </Col>
                   </Row>
                 </div>
+                
             </div>
           </div>
         <Footer />
