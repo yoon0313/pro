@@ -665,8 +665,7 @@ class UploadOldPage extends React.Component {
                   <CardImg
                     alt="..."
                     src={require("assets/img/square-purple-1.png")}
-                  />
-                  
+                  /> 
                 </CardHeader>
                  
                 <CardBody>
