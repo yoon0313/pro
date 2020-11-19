@@ -616,11 +616,11 @@ class UploadOldPage extends React.Component {
       <IndexNavbar/>
       <div className="section section-signup">
         <Container>
-          <Row>
+          {/* <Row>
             <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>
             <Col className="item"><h2>OLD PRODUCT REGISTER</h2></Col>
             <Col className="item"><hr style={{width: '100%', color: "white", backgroundColor:"white", height: 2, Align: "center"}}/></Col>                
-          </Row>
+          </Row> */}
           <br/>
           <br/>
             <Row className="row-grid justify-content-between align-items-center">
@@ -661,11 +661,12 @@ class UploadOldPage extends React.Component {
 
               <Card className="card-register">
                 <CardHeader>
+                <CardTitle tag="h4">register</CardTitle>
                   <CardImg
                     alt="..."
                     src={require("assets/img/square-purple-1.png")}
                   />
-                  <CardTitle tag="h4">register</CardTitle>
+                  
                 </CardHeader>
                  
                 <CardBody>

@@ -196,19 +196,21 @@ class OldPage extends React.Component {
               <div className="content">
 
                 <Container>
+                  
+                 
                   <Row>
-                  <Col className="item">
-                  <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 1, Align: "center"}}/>
-                  </Col>
-                  <Col className="item"><h1>OLD PRODUCT</h1></Col>
-                  <Col className="item">
-                  <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 1, Align: "center"}}/>
-                  </Col>
-                  </Row>
+                <Col className="item"><hr className="line-success"></hr></Col>
+              </Row>
+              <Row>
+              <h2>OLD PRODUCT</h2>
+             
+              </Row>
+    
+                  
                 
                   <Row className="row-grid justify-content-between align-items-center text-left">
                     <Col lg="6" md="6">
-                      <h1 className="text-white">We keep your coin <br />
+                      <h1 className="text-white">We keep your token <br />
                       <span className="text-white">secured</span>
                       </h1>
                       <p className="text-white mb-3">
@@ -216,12 +218,13 @@ class OldPage extends React.Component {
                         like these sweet mornings of spring which I enjoy with my
                         whole heart. I am alone, and feel...
                       </p>
-                      <div className="btn-wrapper mb-3">
+                      {/* <div className="btn-wrapper mb-3">
                         <p className="category text-success d-inline">From 9.99%/mo</p>
                         <Button className="btn-link" color="success" href="#pablo" onClick={e => e.preventDefault()} size="sm">
                         <i className="tim-icons icon-minimal-right" />
                         </Button>
-                      </div>
+                      </div> */}
+
                       
                       <div className="btn-wrapper">
                         <div className="button-container">
@@ -240,6 +243,12 @@ class OldPage extends React.Component {
                           </Button>
                         </div>
                       </div>
+                      <div className="space-70"></div>
+                      <Button
+                    className="btn btn-success"  Link tag={Link} to="/upload-old-page">
+                    <b>중고 상품 등록</b>
+                    </Button>
+                    
                     </Col>
                   
                     <Col lg="4" md="5">
@@ -248,23 +257,15 @@ class OldPage extends React.Component {
 
                   </Row>
             
-                  <Row>
-                    <Col className="item">
-                    <hr style={{width: '100%', color: "white", backgroundColor:"white", height: 1, Align: "center"}}/>
-                    <Button
-                    className="btn-simple btn btn-success" style={{float: "right"}} Link tag={Link} to="/upload-old-page">
-                    <font color="cyan">등록</font>
-                    </Button>
-                    {/* <Button
-                    className="btn-simple btn btn-warning" style={{float: "right"}} Link tag={Link} to="/old-descript-page">
-                    <font color="magenta">상품 더보기</font>
-                    </Button> */}
-                    </Col>
-                  </Row>
+
                 
                   <Row>
-                  <font size="150" color="white " > &nbsp; &nbsp; TOP ITEM</font>
-                  </Row>
+                <Col className="item"><hr className="line-success"></hr></Col>
+              </Row>
+              <Row>
+              <h2>OLD</h2>
+             
+              </Row>
 
 
                   <Row>
